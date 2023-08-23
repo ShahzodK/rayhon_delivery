@@ -6,11 +6,29 @@
         align-items: center;
         gap: 64px;
         flex-shrink: 0;
+    }
+    &_form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        button {
+            font-weight: 700;
+            margin-top: 24px;
+            &:disabled {
+                background:var(--disabledColor);
+                box-shadow: none;
+            }
+        }
         input {
-            background: var(--greyscale50);
-            padding: 0px 20px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            background: var(--greyscaleColor50);
+            padding: 20px 20px;
             border: none;
             border-radius: 16px;
         }
+    }
+    &_back {
+        align-self: flex-start;
     }
 }
