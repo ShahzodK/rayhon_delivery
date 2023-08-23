@@ -1,0 +1,77 @@
+$primaryColor_light: #1BAC4B;
+
+$secondaryColor_light: #FFD300;
+
+$successColor_light: #1BAC4B;
+
+$infoColor_light: #246BFD;
+
+$warningColor_light: #FACC15;
+
+$errorColor_light: #F75555;
+
+$disabledColor_light: #D8D8D8;
+
+$disabledBtnColor_light: #29974D;
+
+$greyscaleColor900_light: #212121;
+
+$greyscaleColor800_light: #424242;
+
+$greyscaleColor700_light: #616161;
+
+$greyscaleColor600_light: #757575;
+
+$greyscaleColor500_light: #9E9E9E;
+
+$greyscaleColor400_light: #BDBDBD;
+
+$greyscaleColor300_light: #BDBDBD;
+
+$greyscaleColor200_light: #EEEEEE;
+
+$greyscaleColor100_light: #F5F5F5;
+
+$greyscaleColor50_light: #FAFAFA;
+
+@mixin lighten() {
+    --primaryColor: #{$primaryColor_light};
+    --secondaryColor: #{$secondaryColor_light};
+    --successColor: #{$successColor_light};
+    --infoColor: #{$infoColor_light};
+    --warningColor: #{$warningColor_light};
+    --errorColor: #{$errorColor_light};
+    --disabledColor: #{$disabledColor_light};
+    --disabledBtnColor: #{$disabledBtnColor_light};
+    --greyscaleColor900: #{$greyscaleColor900_light};
+    --greyscaleColor800: #{$greyscaleColor800_light};
+    --greyscaleColor700: #{$greyscaleColor700_light};
+    --greyscaleColor600: #{$greyscaleColor600_light};
+    --greyscaleColor500: #{$greyscaleColor500_light};
+    --greyscaleColor400: #{$greyscaleColor400_light};
+    --greyscaleColor300: #{$greyscaleColor300_light};
+    --greyscaleColor200: #{$greyscaleColor200_light};
+    --greyscaleColor100: #{$greyscaleColor100_light};
+    --greyscaleColor50: #{$greyscaleColor50_light};
+}
+
+@mixin darken() {
+    --primaryColor: #{$primaryColor_light};
+    --secondaryColor: #{$secondaryColor_light};
+    --successColor: #{$successColor_light};
+    --infoColor: #{$infoColor_light};
+    --warningColor: #{$warningColor_light};
+    --errorColor: #{$errorColor_light};
+    --disabledColor: #{$disabledColor_light};
+    --disabledBtnColor: #{$disabledBtnColor_light};
+    --greyscaleColor900: #{$greyscaleColor900_light};
+    --greyscaleColor800: #{$greyscaleColor800_light};
+    --greyscaleColor700: #{$greyscaleColor700_light};
+    --greyscaleColor600: #{$greyscaleColor600_light};
+    --greyscaleColor500: #{$greyscaleColor500_light};
+    --greyscaleColor400: #{$greyscaleColor400_light};
+    --greyscaleColor300: #{$greyscaleColor300_light};
+    --greyscaleColor200: #{$greyscaleColor200_light};
+    --greyscaleColor100: #{$greyscaleColor100_light};
+    --greyscaleColor50: #{$greyscaleColor50_light};
+}
