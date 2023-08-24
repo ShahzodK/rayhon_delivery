@@ -1,0 +1,31 @@
+<section class="walkthrough">
+    <owl-carousel-o [options]="customOptions" #owlSlide (change)="getSlideId($event)">
+        <ng-template carouselSlide>
+            <div class="slide_content slide-1">
+                <img src="../../../../assets/icons/slide-1.svg" alt="slide-1">
+                <h2>{{"Auth.walkthrough.walkthrough-1.title" | translate}}</h2>
+                <p>{{"Auth.walkthrough.walkthrough-1.desc" | translate}}</p>
+            </div>
+        </ng-template>  
+        <ng-template carouselSlide>
+            <div class="slide_content slide-2">
+                <img src="../../../../assets/icons/slide-2.svg" alt="slide-2">
+                <h2>{{"Auth.walkthrough.walkthrough-2.title" | translate}}</h2>
+                <p>{{"Auth.walkthrough.walkthrough-2.desc" | translate}}</p>
+            </div>
+        </ng-template>  
+        <ng-template carouselSlide>
+            <div class="slide_content slide-3">
+                <img src="../../../../assets/icons/slide-3.svg" alt="slide-3">
+                <h2>{{"Auth.walkthrough.walkthrough-3.title" | translate}}</h2>
+                <p>{{"Auth.walkthrough.walkthrough-3.desc" | translate}}</p>
+            </div>
+        </ng-template>  
+      </owl-carousel-o>
+        <button *ngIf="!isLastSlide" (click)="owlSlide.next()" class="walkthrough_next_btn">
+            {{"Auth.walkthrough.btn" | translate}}
+        </button>
+        <button *ngIf="isLastSlide" (click)="authService.isWalkthroughEnd = true" class="walkthrough_next_btn">
+            {{"Auth.walkthrough.walkthrough-3.btn" | translate}}
+        </button>
+</section>
