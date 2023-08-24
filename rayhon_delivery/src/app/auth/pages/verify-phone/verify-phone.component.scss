@@ -1,0 +1,67 @@
+.verify_phone {
+    &_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+        padding: 16px 0 32px 0;
+    }
+    &_back {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-left: 16px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+    }
+    &_description {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        color: var(--greyscaleColor900);
+        margin-top: 83px;
+        margin-bottom: 60px;
+    }
+    &_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        &_input {
+            display: flex;
+            gap: 16px;
+            input {
+                width: 16px;
+                font-size: 24px;
+                font-weight: 700;
+                text-align: center;
+                color: var(--greyscaleColor900);
+                padding: 16px 32px;
+                border-radius: 16px;
+                border: 1px solid var(--greyscaleColor200);
+                background: var(--greyscaleColor50);
+                &:focus {
+                    outline-color: var(--primaryColor);
+                    border: 1px solid var(--primaryColor);
+                    background: var(--transparentGreenColor);
+                }
+            }
+        }
+        button {
+            width: 100%;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+    }
+    &_resend {
+        margin-top: 60px;
+        margin-bottom: 83px;
+        span {
+            color: var(--primaryColor);
+        }
+    }
+}

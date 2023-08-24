@@ -7,12 +7,22 @@ import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 })
 export class AuthService {
 
+  public isWalkthroughEnd = false;
+
   constructor(
     private http: HttpClient
   ) { }
 
   public login(data: {phone: string, language: string}) {
-    return this.http.post(CommonUrl.MAIN_URL + CommonUrl.LOGIN_URL, JSON.stringify(data), {
+    return this.http.post<{data: {phone: string, otp_job_id: string}}>(CommonUrl.MAIN_URL + CommonUrl.LOGIN_URL, JSON.stringify(data), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  public verifyPhoneNum(data: {}) {
+    return this.http.post(CommonUrl.MAIN_URL + CommonUrl.VERIFY_OTP_URL, JSON.stringify(data), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

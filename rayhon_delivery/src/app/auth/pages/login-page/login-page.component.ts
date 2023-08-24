@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { Store } from '@ngrx/store';
+import { saveLoginDataSuccess } from 'src/app/redux/actions/auth.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -11,11 +13,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPageComponent implements OnDestroy {
 
+
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-              private authService: AuthService,
-              private router: Router
+              public authService: AuthService,
+              private router: Router,
+              private store: Store
               ) {}
 
   public authForm = new FormGroup({
@@ -32,20 +36,12 @@ export class LoginPageComponent implements OnDestroy {
       }
       this.authService.login(profileValues).pipe(
         takeUntil(this.unsubscribe$)
-      ).subscribe({
-        next(data) {
-          console.log(data);
-        },
-        error(err) {
-          console.error(err.error.message, err.error.code)
-        }
+      ).subscribe((data: {data: {phone: string, otp_job_id: string}}) => {
+        console.log(data)
+        this.store.dispatch(saveLoginDataSuccess({phoneNum: '+' + profileValues.phone, otp_job_id: data.data.otp_job_id}))
+        this.router.navigate(['/auth/verify_num']);
       })
-      console.log(profileValues)
     }
-  }
-
-  public verifyOtp() {
-    
   }
 
   ngOnDestroy(): void {

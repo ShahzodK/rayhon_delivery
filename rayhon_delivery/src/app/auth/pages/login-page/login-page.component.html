@@ -1,7 +1,8 @@
-<section class="auth">
+<app-walkthrough *ngIf="!authService.isWalkthroughEnd"></app-walkthrough>
+<section class="auth" *ngIf="authService.isWalkthroughEnd">
     <div class="container">
         <div class="auth_content">
-            <div class="auth_back"><img src="../../../../assets/icons/arrow-left.svg" alt="back"></div>
+            <div class="auth_back" (click)="authService.isWalkthroughEnd = false"><img src="../../../../assets/icons/arrow-left.svg" alt="back"></div>
             <div class="auth_logo"><img src="../../../../assets/icons/logo.svg" alt="Logo"></div>
             <div class="auth_title">
                 <h3>{{"Auth.title" | translate}}</h3>
@@ -15,7 +16,12 @@
                        #phoneNum>
                 <button (click)="login()" [disabled]="phoneNum.value.length !== 18">{{"Auth.btn" | translate}}</button>
             </form>
-            <div class="auth_agreement"></div>
+            <div class="auth_agreement">
+                {{"Auth.agreement" | translate}}
+                <span>{{"Auth.agreement-btn" | translate}}</span>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- <app-verify-phone></app-verify-phone> -->
