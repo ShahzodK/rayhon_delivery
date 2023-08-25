@@ -6,7 +6,7 @@
                 <h4>{{"Auth.sms.title" | translate}}</h4>
             </div>
             <div class="verify_phone_description">
-                {{"Auth.sms.desc" | translate}} {{(authData | async)?.phoneNum}}
+                {{"Auth.sms.desc" | translate}} {{(authData$ | async)?.phoneNum}}
             </div>
             <form class="verify_phone_form" [formGroup]="verifyPhoneForm">
                 <div class="verify_phone_form_input">
@@ -30,6 +30,16 @@
                            formControlName="fourthNum"
                            (keyup)="onInputKeyUp($event, 'fourthNum')"
                            mask="0" #input4>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="fifthNum"
+                           (keyup)="onInputKeyUp($event, 'fifthNum')"
+                           mask="0" #input5>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="sixthNum"
+                           (keyup)="onInputKeyUp($event, 'sixthNum')"
+                           mask="0" #input6>
                 </div>
                 <p class="verify_phone_resend" *ngIf="time !== 0">
                       {{"Auth.sms.sendAgainAfter" | translate}}

@@ -1,7 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { switchMap } from 'rxjs';
+import { AngularDeviceInformationService } from 'angular-device-information';
+import { AuthService } from '../../services/auth.service';
 import { selectAuthData } from 'src/app/redux/selectors/app.selectors';
+import * as uuid from 'uuid';
+
+/// <reference types="user-agent-data-types" />
 
 @Component({
   selector: 'app-verify-phone',
@@ -10,16 +16,22 @@ import { selectAuthData } from 'src/app/redux/selectors/app.selectors';
 })
 export class VerifyPhoneComponent {
 
-  constructor(public store: Store) {}
+  constructor(
+              public store: Store,
+              private deviceInformationService: AngularDeviceInformationService,
+              private authService: AuthService
+              ) {}
 
   @ViewChild('input1') public firstNumInput!: ElementRef;
   @ViewChild('input2') public secondNumInput!: ElementRef;
   @ViewChild('input3') public thirdNumInput!: ElementRef;
   @ViewChild('input4') public fourthNumInput!: ElementRef;
+  @ViewChild('input5') public fifthNumInput!: ElementRef;
+  @ViewChild('input6') public sixthNumInput!: ElementRef;
 
-  public authData = this.store.select(selectAuthData);
+  public authData$ = this.store.select(selectAuthData);
   
-  public time = 6000;
+  public time = 60000;
 
   public interval = setInterval(() => {
   this.time -= 1000;
@@ -40,6 +52,12 @@ export class VerifyPhoneComponent {
     ]),
     fourthNum: new FormControl<string>('', [
       Validators.required
+    ]),
+    fifthNum: new FormControl<string>('', [
+      Validators.required
+    ]),
+    sixthNum: new FormControl<string>('', [
+      Validators.required
     ])
   })
 
@@ -48,10 +66,30 @@ export class VerifyPhoneComponent {
       const smsCode = this.verifyPhoneForm.value.firstNum!
       + this.verifyPhoneForm.value.secondNum
       + this.verifyPhoneForm.value.thirdNum
-      + this.verifyPhoneForm.value.fourthNum;
-      const profileValues = {
-        otp: smsCode
-      }
+      + this.verifyPhoneForm.value.fourthNum
+      + this.verifyPhoneForm.value.fifthNum
+      + this.verifyPhoneForm.value.sixthNum;
+
+      this.authData$.pipe(
+        switchMap(authData => {
+          const profileValues = {
+            phone: authData.phoneNum,
+            otp: smsCode + 56,
+            otp_job_id: authData.otp_job_id,
+            Device: {
+              id: uuid.v4(),
+              name: 'name',
+              platform: this.deviceInformationService.getDeviceInfo().os,
+              version: this.deviceInformationService.getDeviceInfo().osVersion,
+              build: 'build'
+            }
+          }
+          return this.authService.verifyPhoneNum(profileValues);
+        })
+      ).subscribe(data => {
+        console.log(data);
+        console.log(this.deviceInformationService.getDeviceInfo())
+      })
     }
   }
 
@@ -75,6 +113,12 @@ export class VerifyPhoneComponent {
       case 'thirdNum':
         this.fourthNumInput.nativeElement.focus();
         break;
+      case 'fourthNum':
+        this.fifthNumInput.nativeElement.focus();
+        break;
+      case 'fifthNum':
+        this.sixthNumInput.nativeElement.focus();
+        break;
     }
   }
 
@@ -88,6 +132,12 @@ export class VerifyPhoneComponent {
         break;
       case 'fourthNum':
         this.thirdNumInput.nativeElement.focus();
+        break;
+      case 'fifthNum':
+        this.fourthNumInput.nativeElement.focus();
+        break;
+      case 'sixthNum':
+        this.fifthNumInput.nativeElement.focus();
         break;
     }
   }

@@ -22,7 +22,10 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": [
+      "./node_modules/user-agent-data-types"
+     ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

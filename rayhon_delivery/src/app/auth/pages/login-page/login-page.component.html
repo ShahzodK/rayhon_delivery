@@ -2,7 +2,7 @@
 <section class="auth" *ngIf="authService.isWalkthroughEnd">
     <div class="container">
         <div class="auth_content">
-            <div class="auth_back" (click)="authService.isWalkthroughEnd = false"><img src="../../../../assets/icons/arrow-left.svg" alt="back"></div>
+            <div class="auth_back" (click)="authService.setWalkthroughEnd(false)"><img src="../../../../assets/icons/arrow-left.svg" alt="back"></div>
             <div class="auth_logo"><img src="../../../../assets/icons/logo.svg" alt="Logo"></div>
             <div class="auth_title">
                 <h3>{{"Auth.title" | translate}}</h3>
@@ -23,5 +23,3 @@
         </div>
     </div>
 </section>
-
-<!-- <app-verify-phone></app-verify-phone> -->
