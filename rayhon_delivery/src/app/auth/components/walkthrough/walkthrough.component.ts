@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { AuthService } from '../../services/auth.service';
 
@@ -7,9 +7,18 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './walkthrough.component.html',
   styleUrls: ['./walkthrough.component.scss']
 })
-export class WalkthroughComponent {
+export class WalkthroughComponent implements OnInit {
 
   constructor(public authService: AuthService) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem('isFirstVisit') == 'true') {
+      this.authService.isWalkthroughEnd = true;
+    }
+    else {
+      localStorage.setItem('isFirstVisit', 'true')
+    }
+  }
   
   public isLastSlide = false;
 

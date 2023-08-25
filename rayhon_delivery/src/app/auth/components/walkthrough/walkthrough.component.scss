@@ -2,6 +2,7 @@
     width: 32px;
     height: 8px;
     background: linear-gradient(315deg, #1BAC4B 0%, #46D375 100%);
+    transition: 0.4s ease;
 }
 ::ng-deep .owl-theme .owl-dots .owl.dot span {
     width: 8px !important;

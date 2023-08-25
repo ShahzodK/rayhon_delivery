@@ -7,7 +7,12 @@ import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 })
 export class AuthService {
 
-  public isWalkthroughEnd = false;
+  public isWalkthroughEnd = localStorage.getItem('isFirstVisit') == 'true' ? true : false;
+
+  public setWalkthroughEnd(boolean: boolean) {
+    this.isWalkthroughEnd = boolean;
+    localStorage.setItem('isFirstVisit', `${boolean}`)
+  }
 
   constructor(
     private http: HttpClient
@@ -22,6 +27,7 @@ export class AuthService {
   }
 
   public verifyPhoneNum(data: {}) {
+    console.log(data)
     return this.http.post(CommonUrl.MAIN_URL + CommonUrl.VERIFY_OTP_URL, JSON.stringify(data), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
