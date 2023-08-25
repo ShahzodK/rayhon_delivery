@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { ModeToggleService } from './shared/services/mode-toggle.service';
 import { Mode } from './shared/services/mode-toggle.model';
+import { CommonKey } from './shared/consts/commonKey';
+import * as AuthActions from 'src/app/redux/actions/auth.actions'
 
 @Component({
   selector: 'app-root',
@@ -17,7 +20,8 @@ export class AppComponent implements OnInit {
 
   constructor(
               private translateService: TranslateService,
-              private modeToggleService: ModeToggleService
+              private modeToggleService: ModeToggleService,
+              private store: Store
               ) {
                 this.modeToggleService.modeChanged$.subscribe((mode: Mode) => {
                   this.currentMode = mode;
@@ -27,6 +31,9 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
       this.translateService.setDefaultLang(environment.defaultLocale);
       this.translateService.use(environment.defaultLocale);
+      if(localStorage.getItem(CommonKey.TOKEN)) {
+        this.store.dispatch(AuthActions.fetchUser())
+      }
     }
               
 }

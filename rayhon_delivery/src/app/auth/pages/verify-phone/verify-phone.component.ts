@@ -2,10 +2,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
+import * as uuid from 'uuid';
 import { AngularDeviceInformationService } from 'angular-device-information';
 import { AuthService } from '../../services/auth.service';
 import { selectAuthData } from 'src/app/redux/selectors/app.selectors';
-import * as uuid from 'uuid';
+import { IVerifyPhoneRequest } from '../../models/verifyPhoneRequest.model';
+import { CommonKey } from 'src/app/shared/consts/commonKey';
+import * as AuthActions from 'src/app/redux/actions/auth.actions'
 
 /// <reference types="user-agent-data-types" />
 
@@ -40,6 +43,8 @@ export class VerifyPhoneComponent {
     } 
   }, 1000);
 
+  public errorMsg!: string;
+
   public verifyPhoneForm = new FormGroup({
     firstNum: new FormControl<string>('', [
       Validators.required
@@ -72,23 +77,33 @@ export class VerifyPhoneComponent {
 
       this.authData$.pipe(
         switchMap(authData => {
-          const profileValues = {
-            phone: authData.phoneNum,
-            otp: smsCode + 56,
+          const profileValues: IVerifyPhoneRequest = {
+            phone: authData.phoneNum.slice(1),
+            otp: smsCode,
             otp_job_id: authData.otp_job_id,
             Device: {
-              id: uuid.v4(),
+              id: uuid.v4() as string,
               name: 'name',
-              platform: this.deviceInformationService.getDeviceInfo().os,
-              version: this.deviceInformationService.getDeviceInfo().osVersion,
+              platform: 'web',
+              version: this.deviceInformationService.getDeviceInfo().osVersion.toString(),
               build: 'build'
             }
           }
           return this.authService.verifyPhoneNum(profileValues);
         })
       ).subscribe(data => {
-        console.log(data);
-        console.log(this.deviceInformationService.getDeviceInfo())
+        console.log(data)
+        if(data.data) {
+          localStorage.setItem(CommonKey.TOKEN, data.data!.access_token);
+          localStorage.setItem(CommonKey.TOKEN_EXPIRE_DATE, data.data!.expires);
+          this.store.dispatch(AuthActions.fetchUser())
+        }
+        else if(data.error) {
+          this.verifyPhoneForm.controls.sixthNum.setErrors({
+            wrongPassword: true
+          });
+          this.errorMsg = data.error.message;
+        }
       })
     }
   }
