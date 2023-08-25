@@ -1,0 +1,56 @@
+<section class="verify_phone">
+    <div class="container">
+        <div class="verify_phone_content">
+            <div class="verify_phone_back">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" routerLink="/auth/login">
+                <h4>{{"Auth.sms.title" | translate}}</h4>
+            </div>
+            <div class="verify_phone_description">
+                {{"Auth.sms.desc" | translate}} {{(authData$ | async)?.phoneNum}}
+            </div>
+            <form class="verify_phone_form" [formGroup]="verifyPhoneForm">
+                <div class="verify_phone_form_input">
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="firstNum"
+                           (keyup)="onInputKeyUp($event, 'firstNum')"
+                           mask="0" #input1>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="secondNum"
+                           (keyup)="onInputKeyUp($event, 'secondNum')"
+                           mask="0" #input2>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="thirdNum"
+                           (keyup)="onInputKeyUp($event, 'thirdNum')"
+                           mask="0" #input3>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="fourthNum"
+                           (keyup)="onInputKeyUp($event, 'fourthNum')"
+                           mask="0" #input4>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="fifthNum"
+                           (keyup)="onInputKeyUp($event, 'fifthNum')"
+                           mask="0" #input5>
+                    <input type="text"
+                           maxlength="1"
+                           formControlName="sixthNum"
+                           (keyup)="onInputKeyUp($event, 'sixthNum')"
+                           mask="0" #input6>
+                </div>
+                <p class="verify_phone_resend" *ngIf="time !== 0">
+                      {{"Auth.sms.sendAgainAfter" | translate}}
+                      <span>{{time / 1000}}</span>
+                      {{"Auth.sms.seconds" | translate}}
+                </p>
+                <p class="verify_phone_resend" *ngIf="time == 0">
+                    <span>{{"Auth.sms.sendAgain" | translate}}</span>
+                </p>
+                <button [disabled]="!verifyPhoneForm.valid" (click)="verify()">{{"Auth.sms.btn" | translate}}</button>
+            </form>
+        </div>
+    </div>
+</section>

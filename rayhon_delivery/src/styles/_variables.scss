@@ -14,6 +14,8 @@ $disabledColor_light: #D8D8D8;
 
 $disabledBtnColor_light: #29974D;
 
+$transparentGreenColor_light: rgba(27, 172, 75, 0.08);
+
 $greyscaleColor900_light: #212121;
 
 $greyscaleColor800_light: #424242;
@@ -43,6 +45,7 @@ $greyscaleColor50_light: #FAFAFA;
     --errorColor: #{$errorColor_light};
     --disabledColor: #{$disabledColor_light};
     --disabledBtnColor: #{$disabledBtnColor_light};
+    --transparentGreenColor: #{$transparentGreenColor_light};
     --greyscaleColor900: #{$greyscaleColor900_light};
     --greyscaleColor800: #{$greyscaleColor800_light};
     --greyscaleColor700: #{$greyscaleColor700_light};
@@ -64,6 +67,7 @@ $greyscaleColor50_light: #FAFAFA;
     --errorColor: #{$errorColor_light};
     --disabledColor: #{$disabledColor_light};
     --disabledBtnColor: #{$disabledBtnColor_light};
+    --transparentGreenColor: #{$transparentGreenColor_light};
     --greyscaleColor900: #{$greyscaleColor900_light};
     --greyscaleColor800: #{$greyscaleColor800_light};
     --greyscaleColor700: #{$greyscaleColor700_light};

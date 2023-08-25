@@ -1,9 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import "../src/styles/variables";
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&family=Urbanist:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Urbanist', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+}
 
 body.dark {
     @include darken();
   }
 body.light {
     @include lighten();
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 20px;
+}
+button {
+    background: var(--primaryColor);
+    color: white;
+    box-shadow: 4px 8px 24px 0px rgba(27, 172, 75, 0.25);
+    padding: 18px 16px;
+    border: none;
+    border-radius: 100px;
+    &:disabled {
+        background:var(--disabledColor);
+        box-shadow: none;
+    }
+}
+
+.container {
+    padding-left: 24px;
+    padding-right: 24px;
 }
