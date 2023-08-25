@@ -36,9 +36,9 @@ export class LoginPageComponent implements OnDestroy {
       }
       this.authService.login(profileValues).pipe(
         takeUntil(this.unsubscribe$)
-      ).subscribe((data: {data: {phone: string, otp_job_id: string}}) => {
+      ).subscribe((data) => {
         console.log(data)
-        this.store.dispatch(saveLoginDataSuccess({phoneNum: '+' + profileValues.phone, otp_job_id: data.data.otp_job_id}))
+        this.store.dispatch(saveLoginDataSuccess({phoneNum: '+' + profileValues.phone, otp_job_id: data.data!.otp_job_id}))
         this.router.navigate(['/auth/verify_num']);
       })
     }

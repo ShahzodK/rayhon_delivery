@@ -1,7 +1,7 @@
 export interface IVerifyPhoneRequest {
     phone: string,
     otp: string,
-    otp_job_id: number,
+    otp_job_id: string,
     Device: {
       id: string,
       name: string,

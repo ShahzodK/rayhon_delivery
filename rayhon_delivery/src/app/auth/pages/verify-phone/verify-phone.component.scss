@@ -34,6 +34,7 @@
         align-items: center;
         width: 100%;
         &_input {
+            position: relative;
             display: flex;
             gap: 10px;
             input {
@@ -51,6 +52,13 @@
                     border: 1px solid var(--primaryColor);
                     background: var(--transparentGreenColor);
                 }
+            }
+            .input_error {
+                position: absolute;
+                bottom: -21px;
+                width: 100%;
+                color: var(--errorColor);
+                text-align: center;
             }
         }
         button {

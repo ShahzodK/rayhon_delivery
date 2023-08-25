@@ -40,6 +40,9 @@
                            formControlName="sixthNum"
                            (keyup)="onInputKeyUp($event, 'sixthNum')"
                            mask="0" #input6>
+                    <div *ngIf="verifyPhoneForm.get('sixthNum')!.hasError('wrongPassword')" class="input_error">
+                      <span>{{errorMsg}}</span>
+                    </div>
                 </div>
                 <p class="verify_phone_resend" *ngIf="time !== 0">
                       {{"Auth.sms.sendAgainAfter" | translate}}
