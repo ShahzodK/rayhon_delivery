@@ -1,7 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { switchMap } from 'rxjs';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import * as uuid from 'uuid';
 import { AngularDeviceInformationService } from 'angular-device-information';
 import { AuthService } from '../../services/auth.service';
@@ -17,10 +18,13 @@ import * as AuthActions from 'src/app/redux/actions/auth.actions'
   templateUrl: './verify-phone.component.html',
   styleUrls: ['./verify-phone.component.scss']
 })
-export class VerifyPhoneComponent {
+export class VerifyPhoneComponent implements OnDestroy {
+
+  public unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
               public store: Store,
+              private router: Router,
               private deviceInformationService: AngularDeviceInformationService,
               private authService: AuthService
               ) {}
@@ -67,6 +71,7 @@ export class VerifyPhoneComponent {
   })
 
   public verify() {
+    console.log(this.verifyPhoneForm.get('firstNum')!.value)
     if(this.verifyPhoneForm.valid) {
       const smsCode = this.verifyPhoneForm.value.firstNum!
       + this.verifyPhoneForm.value.secondNum
@@ -74,13 +79,13 @@ export class VerifyPhoneComponent {
       + this.verifyPhoneForm.value.fourthNum
       + this.verifyPhoneForm.value.fifthNum
       + this.verifyPhoneForm.value.sixthNum;
-
+      console.log(smsCode)
       this.authData$.pipe(
         switchMap(authData => {
           const profileValues: IVerifyPhoneRequest = {
             phone: authData.phoneNum.slice(1),
             otp: smsCode,
-            otp_job_id: authData.otp_job_id,
+            otp_job_id: (+authData.otp_job_id + 1).toString(),
             Device: {
               id: uuid.v4() as string,
               name: 'name',
@@ -89,14 +94,16 @@ export class VerifyPhoneComponent {
               build: 'build'
             }
           }
+          console.log(profileValues)
           return this.authService.verifyPhoneNum(profileValues);
         })
-      ).subscribe(data => {
+      ).pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
         console.log(data)
         if(data.data) {
           localStorage.setItem(CommonKey.TOKEN, data.data!.access_token);
           localStorage.setItem(CommonKey.TOKEN_EXPIRE_DATE, data.data!.expires);
-          this.store.dispatch(AuthActions.fetchUser())
+          this.store.dispatch(AuthActions.fetchUser());
+          this.router.navigate(['profile'])
         }
         else if(data.error) {
           this.verifyPhoneForm.controls.sixthNum.setErrors({
@@ -155,6 +162,11 @@ export class VerifyPhoneComponent {
         this.fifthNumInput.nativeElement.focus();
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
   
 

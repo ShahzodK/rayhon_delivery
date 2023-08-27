@@ -38,15 +38,14 @@
             display: flex;
             gap: 10px;
             input {
-                width: 16px;
+                width: 42px;
                 font-size: 20px;
                 font-weight: 700;
                 text-align: center;
                 color: var(--greyscaleColor900);
-                padding: 13px 13px;
+                padding: 10px 14px;
                 border-radius: 16px;
                 border: 1px solid var(--greyscaleColor200);
-                background: var(--greyscaleColor50);
                 &:focus {
                     outline-color: var(--primaryColor);
                     border: 1px solid var(--primaryColor);

@@ -41,6 +41,7 @@ export class AuthService {
   }
 
   public verifyPhoneNum(data: IVerifyPhoneRequest) {
+    console.log(data)
     return this.http.post<IVerifyPhoneResponse>(CommonUrl.MAIN_URL + CommonUrl.VERIFY_OTP_URL, JSON.stringify(data), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
