@@ -9,6 +9,12 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module')
       .then((mod) => mod.AuthModule),
       canActivate: [authGuardCanActivate]
+  },
+  {
+    path: AppRoutePathes.PROFILE,
+    loadChildren: () => import('./profile/profile.module')
+      .then((mod) => mod.ProfileModule),
+      canActivate: [authGuardCanActivate]
   }
 ];
 @NgModule({

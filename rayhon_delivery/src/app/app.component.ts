@@ -6,6 +6,7 @@ import { ModeToggleService } from './shared/services/mode-toggle.service';
 import { Mode } from './shared/services/mode-toggle.model';
 import { CommonKey } from './shared/consts/commonKey';
 import * as AuthActions from 'src/app/redux/actions/auth.actions'
+import { fetchAddresses } from './redux/actions/address.actions';
 
 @Component({
   selector: 'app-root',
