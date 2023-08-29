@@ -1,0 +1,78 @@
+::ng-deep .mat-mdc-icon-button:not(.mat-calendar-previous-button):not(.mat-calendar-next-button) {
+    position: absolute !important;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent !important;
+    color: var(--greyscaleColor500) !important;
+    box-shadow: none !important;
+}
+.profile {
+    &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-height: 100vh;
+    }
+    &_back {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
+        width: 100%;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-left: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    &_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        .user-photo {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .file-input-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .file-input-label {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-end;
+            cursor: pointer;
+        }
+
+        .file-input-icon {
+            margin-top: 5px;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        input, .input_datepicker {
+            width: 100%;
+        }
+        .input_datepicker {
+            position: relative;
+        }
+    }
+
+    &_save_btn {
+        padding-bottom: 45px;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+        button {
+            font-weight: 700;
+        }
+    }
+
+}

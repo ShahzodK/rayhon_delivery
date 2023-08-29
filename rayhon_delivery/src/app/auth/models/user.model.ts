@@ -1,3 +1,5 @@
+import { IError } from "src/app/shared/models/IError.model"
+
 export interface IUser {
     data: {
         id: string,
@@ -7,8 +9,5 @@ export interface IUser {
         image: string,
         language: string
     } | null,
-    error: null | {
-        code: string
-        message: string
-    }
+    error: IError | null
 }

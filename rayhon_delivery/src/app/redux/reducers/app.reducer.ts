@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from '../actions/auth.actions';
+import * as AddressActions from '../actions/address.actions';
 import { IAppState } from "../appState.model";
 
 export const initialState: IAppState = {
@@ -14,7 +15,8 @@ export const initialState: IAppState = {
         last_name: '',
         image: '',
         language: ''
-    }
+    },
+    addresses: []
 }
 
 export const appReducer = createReducer(
@@ -41,6 +43,13 @@ export const appReducer = createReducer(
                 image: profile.data!.image,
                 language: profile.data!.language
             }
+        })
+    ),
+    on(
+        AddressActions.fetchAddressesSuccess,
+        (state, addresses): IAppState => ({
+            ...state,
+            addresses: addresses.data
         })
     )
 )

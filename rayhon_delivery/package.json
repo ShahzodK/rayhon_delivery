@@ -25,11 +25,13 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "angular-device-information": "^4.0.0",
+    "angular8-yandex-maps": "^16.1.0",
     "ngx-mask": "^16.2.9",
     "ngx-owl-carousel-o": "^16.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",
+    "ymaps": "^0.2.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

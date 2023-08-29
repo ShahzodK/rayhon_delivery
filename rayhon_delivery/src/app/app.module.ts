@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthEffects } from './redux/effects/auth.effects';
+import { AddressEffects } from './redux/effects/address.effects';
 import { appReducer } from './redux/reducers/app.reducer';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -34,7 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, AddressEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

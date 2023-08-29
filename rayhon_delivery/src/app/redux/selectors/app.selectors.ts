@@ -7,3 +7,8 @@ export const selectAuthData = createSelector(
     selectAppState,
     (state) => state.auth
 );
+
+export const selectUserData = createSelector(
+    selectAppState,
+    (state) => state.user
+);
