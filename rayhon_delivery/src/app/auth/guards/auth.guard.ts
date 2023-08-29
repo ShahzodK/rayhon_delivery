@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
 import { selectAddresses, selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { IUser } from '../models/user.model';
+import { ProfileService } from 'src/app/profile/services/profile.service';
 
 export const authGuardCanActivate: CanActivateFn = (route, state) => {
   const router: Router = inject(Router);

@@ -11,6 +11,8 @@ import { IAddress } from '../models/address.model';
 })
 export class ProfileService {
 
+  public addressesCount = 0;
+
   constructor(
               private http : HttpClient
               ) { }

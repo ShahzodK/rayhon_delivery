@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ProfileService } from '../../services/profile.service';
 import { fetchAddresses } from 'src/app/redux/actions/address.actions';
+import { selectAddresses } from 'src/app/redux/selectors/app.selectors';
 
 @Component({
   selector: 'app-location-page',
@@ -38,7 +39,7 @@ export class LocationPageComponent implements OnInit {
     if(this.locationForm.valid || (this.locationForm.get('locationName')!.valid && this.latitude && this.longitude)) {
       const profileValues = {
         name: this.locationForm.get('locationName')!.value!,
-        is_default: true,
+        is_default: this.profileService.addressesCount > 0 ? false : true,
         latitude: this.latitude,
         longitude: this.longitude
       }

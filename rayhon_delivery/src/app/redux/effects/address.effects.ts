@@ -22,6 +22,7 @@ export class AddressEffects {
             switchMap(() => this.profileService.getAddresses()),
             map((address: IAddress) => {
                 console.log(address)
+                this.profileService.addressesCount = address.count;
                 return ProfileActions.fetchAddressesSuccess(address)
             }),
             catchError(() => of(ProfileActions.fetchAddressesFailed))

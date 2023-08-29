@@ -13,7 +13,7 @@
                 <form class="location_form" [formGroup]="locationForm">
                     <h4>Выберите Адрес Доставки</h4>
                     <div class="choose-location">
-                        <img src="../../../../assets/icons/Location.svg" alt="location" class="location-icon">
+                        <img src="../../../../assets/icons/location.svg" alt="location" class="location-icon">
                         <input type="text" id="suggest" formControlName="locationAddress" placeholder="{{'Location.write-address' | translate}}">
                         <span *ngIf="locationForm.get('locationAddress')!.hasError('unsupportedLocation')" class="input_error">
                             {{errorMsg}}
