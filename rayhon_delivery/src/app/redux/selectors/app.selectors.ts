@@ -12,3 +12,8 @@ export const selectUserData = createSelector(
     selectAppState,
     (state) => state.user
 );
+
+export const selectAddresses = createSelector(
+    selectAppState,
+    (state) => state.addresses
+);
