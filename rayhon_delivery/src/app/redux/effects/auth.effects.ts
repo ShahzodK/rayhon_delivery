@@ -5,6 +5,7 @@ import { catchError, map, of, switchMap } from "rxjs";
 import * as AuthActions from '../actions/auth.actions';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { IUser } from "src/app/auth/models/user.model";
+import { fetchAddresses } from "../actions/address.actions";
 
 
 @Injectable()
@@ -23,6 +24,8 @@ export class AuthEffects {
             ofType(AuthActions.fetchUser),
             switchMap(() => this.authService.getUser()),
             map((user: IUser) => {
+                localStorage.setItem('isLogined', 'true');
+                this.store.dispatch(fetchAddresses());
                 return AuthActions.fetchUserSuccess(user)
             }),
             catchError(() => of(AuthActions.fetchUserFailed))
