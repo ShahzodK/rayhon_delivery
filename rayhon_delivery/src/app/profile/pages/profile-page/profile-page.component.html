@@ -1,0 +1,35 @@
+<section class="profile">
+    <div class="container">
+        <div class="profile_content">
+            <div class="profile_back">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" routerLink="/auth/login">
+                <h4>{{"Profile.title" | translate}}</h4>
+            </div>
+            <form class="profile_form" [formGroup]="profileForm">
+                <div class="file-input-container">
+                    <label class="file-input-label">
+                        <input type="file"
+                               class="file-input"
+                               accept="image/jpeg, image/png, image/gif, image/jpg"
+                               formControlName="profileImg"
+                               style="display: none;"
+                               (change)="saveUploadedImg($event)">
+                        <span class="file-input-icon">
+                            <img src="../../../../assets/icons/edit-profile.svg" alt="Upload">
+                        </span>
+                    </label>
+                    <img [src]="userData!.image || '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
+                </div>
+                <input type="text" formControlName="name" placeholder="{{'Profile.name' | translate}}">
+                <div class="input_datepicker">
+                    <input matInput disabled="true" [matDatepicker]="datepicker" [max]="maxDate" placeholder="{{'Profile.birthday' | translate}}">
+                    <mat-datepicker-toggle disabled="false" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker disabled="false" #datepicker [touchUi]="true">
+                    </mat-datepicker>
+                </div>
+            </form>
+            <div class="profile_save_btn"><button (click)="onSubmit()" [disabled]="!profileForm.valid">{{"Profile.btn" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -25,7 +25,7 @@ export class AuthEffects {
             map((user: IUser) => {
                 return AuthActions.fetchUserSuccess(user)
             }),
-            catchError(() => of(AuthActions.fetchUserSuccess))
+            catchError(() => of(AuthActions.fetchUserFailed))
         )
     })
 

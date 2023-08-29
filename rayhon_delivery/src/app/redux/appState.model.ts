@@ -10,5 +10,13 @@ export interface IAppState {
         last_name: string,
         image: string,
         language: string
-    }
+    },
+    addresses: {
+            id: string,
+            name: string,
+            address: string,
+            latitude: number,
+            longitude: number,
+            is_default: boolean
+        }[]
 }

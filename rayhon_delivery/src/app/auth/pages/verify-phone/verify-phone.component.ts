@@ -94,7 +94,6 @@ export class VerifyPhoneComponent implements OnDestroy {
               build: 'build'
             }
           }
-          console.log(profileValues)
           return this.authService.verifyPhoneNum(profileValues);
         })
       ).pipe(takeUntil(this.unsubscribe$)).subscribe(data => {

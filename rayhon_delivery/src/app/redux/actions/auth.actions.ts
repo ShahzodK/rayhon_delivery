@@ -15,8 +15,7 @@ export const fetchUserFailed = createAction(
 )
 
 
-  
-  export const saveLoginDataSuccess = createAction (
+export const saveLoginDataSuccess = createAction (
     '[AUTH] Save Login Data Success',
     props<{ phoneNum: string, otp_job_id: string }>(),
-  )
+)
