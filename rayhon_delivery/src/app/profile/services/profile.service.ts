@@ -4,6 +4,7 @@ import { IUser } from 'src/app/auth/models/user.model';
 import { CommonKey } from 'src/app/shared/consts/commonKey';
 import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 import { IAddressRequest } from '../models/addressRequest.model';
+import { IAddresses } from '../models/addresses.model';
 import { IAddress } from '../models/address.model';
 
 @Injectable({
@@ -35,8 +36,7 @@ export class ProfileService {
   }
 
   public getAddresses() {
-    console.log('rg')
-    return this.http.get<IAddress>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}`, {
+    return this.http.get<IAddresses>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -44,15 +44,15 @@ export class ProfileService {
   }
 
   public sendAddress(data: IAddressRequest) {
-    return this.http.post<IAddress>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL, data, {
+    return this.http.post<IAddresses>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL, data, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
     });
   }
 
-  public updateAddress(data: {name: string, is_default: boolean}) {
-    return this.http.put<IAddressRequest>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL , data, {
+  public updateAddress(data: {id: string, name: string, is_default: boolean}) {
+    return this.http.put<IAddress>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}/${data.id}` , data, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })

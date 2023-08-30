@@ -16,7 +16,15 @@ export const initialState: IAppState = {
         image: '',
         language: ''
     },
-    addresses: []
+    addresses: [],
+    chosenAddress: {
+        id: '',
+        name: '',
+        address: '',
+        latitude: 0,
+        longitude: 0,
+        is_default: true
+    }
 }
 
 export const appReducer = createReducer(
@@ -50,6 +58,13 @@ export const appReducer = createReducer(
         (state, addresses): IAppState => ({
             ...state,
             addresses: addresses.data
+        })
+    ),
+    on(
+        AddressActions.chooseAddressSuccess,
+        (state, address): IAppState => ({
+            ...state,
+            chosenAddress: address
         })
     )
 )

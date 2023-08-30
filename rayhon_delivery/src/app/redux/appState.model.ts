@@ -18,5 +18,13 @@ export interface IAppState {
             latitude: number,
             longitude: number,
             is_default: boolean
-        }[]
+        }[],
+    chosenAddress: {
+        id: string,
+        name: string,
+        address: string,
+        latitude: number,
+        longitude: number,
+        is_default: boolean
+    }
 }

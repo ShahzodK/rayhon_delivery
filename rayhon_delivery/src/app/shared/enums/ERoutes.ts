@@ -1,4 +1,5 @@
 export enum AppRoutePathes {
     AUTH = 'auth',
-    PROFILE = 'profile'
+    PROFILE = 'profile',
+    HOME = 'home'
 }

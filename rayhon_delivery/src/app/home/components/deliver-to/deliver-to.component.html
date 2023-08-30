@@ -1,0 +1,34 @@
+<section class="deliver-to">
+    <div class="container">
+        <div class="deliver-to_content">
+            <div class="deliver-to_back">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" routerLink="/home">
+                <h4>{{"Home.deliver-to.title" | translate}}</h4>
+            </div>
+            <ul>
+                <li *ngFor="let address of ( selectAddresses | async)"
+                    (click)="setAsDefaultAddress({id: address.id, name: address.name, is_default: true})">
+                    <div class="deliver-to_address_item">
+                        <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">
+                        <div class="deliver-to_address_item_content">
+                            <div class="deliver-to_address_item_content_top">
+                                <h6>{{address.name}}</h6>
+                                <span *ngIf="homeService.chosenAddressId == address.id">{{"Home.deliver-to.default" | translate}}</span>
+                            </div>
+                            <span class="deliver-to_address_item_content_address">{{address.address}}</span>
+                        </div>
+                        <div class="address_state">
+                            <span *ngIf="homeService.chosenAddressId == address.id"></span>
+                        </div>
+                    </div>
+                </li>
+                <button class="new-address_btn"  routerLink="/profile/location">
+                    {{"Home.deliver-to.new-address-btn" | translate}}
+                </button>
+            </ul>
+            <button class="choose_btn" routerLink="/home">
+                {{"Home.deliver-to.choose-btn" | translate}}
+            </button>
+        </div>
+    </div>
+</section>

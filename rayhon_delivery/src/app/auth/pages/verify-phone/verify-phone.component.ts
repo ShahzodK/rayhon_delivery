@@ -79,7 +79,6 @@ export class VerifyPhoneComponent implements OnDestroy {
       + this.verifyPhoneForm.value.fourthNum
       + this.verifyPhoneForm.value.fifthNum
       + this.verifyPhoneForm.value.sixthNum;
-      console.log(smsCode)
       this.authData$.pipe(
         switchMap(authData => {
           const profileValues: IVerifyPhoneRequest = {

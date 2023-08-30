@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store"
 import { IAddress } from "src/app/profile/models/address.model"
+import { IAddresses } from "src/app/profile/models/addresses.model"
 
 export const fetchAddresses = createAction (
     '[PROFILE] Fetch Addresses'
@@ -7,9 +8,23 @@ export const fetchAddresses = createAction (
   
 export const fetchAddressesSuccess = createAction(
   '[PROFILE] Fetch Addresses Success',
-  props<Pick<IAddress, 'data'>>(),
+  props<Pick<IAddresses, 'data'>>(),
 )
 
-export const fetchAddressesFailed = createAction(
+export const fetchAddressesFailed = createAction (
   '[PROFILE] Fetch Addresses Failed'
+)
+
+export const chooseAddress = createAction(
+  '[PROFILE] Choose Address',
+  props<{id: string, name: string, is_default: boolean}>(),
+)
+
+export const chooseAddressSuccess = createAction(
+  '[PROFILE] Choose Address Success',
+  props<IAddress>(),
+)
+
+export const chooseAddressFailed = createAction(
+  '[PROFILE] Choose Address Failed'
 )
