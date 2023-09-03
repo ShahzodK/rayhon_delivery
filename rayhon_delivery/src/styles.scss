@@ -77,3 +77,10 @@ input {
     color: var(--errorColor);
     text-align: center;
 }
+
+@media (max-width: 384px) {
+    .container {
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+}

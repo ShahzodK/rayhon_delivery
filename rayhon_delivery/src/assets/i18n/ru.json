@@ -46,5 +46,20 @@
         "write-address": "Напишите Свой Адрес",
         "address-name": "Напишите имя адреса",
         "btn": "Продолжить"
+    },
+    "Home" : {
+        "deliver-to": {
+            "title": "Адрес Доставки",
+            "default": "По Умолчанию",
+            "new-address-btn": "Добавить новый адрес",
+            "choose-btn": "Выбрать"
+        },
+        "special-offers": {
+            "title": "Специальные предложения"
+        },
+        "delivery-address": "Адрес Доставки",
+        "special-offer": "Специальные предложения",
+        "all": "Все",
+        "search": "Поиск"
     }
 }

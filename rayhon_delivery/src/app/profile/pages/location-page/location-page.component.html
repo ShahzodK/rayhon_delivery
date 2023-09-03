@@ -2,7 +2,7 @@
         <div class="location_content">
             <div class="container">
                 <div class="location_back">
-                    <img src="../../../../assets/icons/arrow-left.svg" alt="back" routerLink="/profile">
+                    <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="this.location.back()">
                     <h4>{{"Profile.title" | translate}}</h4>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <form class="location_form" [formGroup]="locationForm">
                     <h4>Выберите Адрес Доставки</h4>
                     <div class="choose-location">
-                        <img src="../../../../assets/icons/Location.svg" alt="location" class="location-icon">
+                        <img src="../../../../assets/icons/location.svg" alt="location" class="location-icon">
                         <input type="text" id="suggest" formControlName="locationAddress" placeholder="{{'Location.write-address' | translate}}">
                         <span *ngIf="locationForm.get('locationAddress')!.hasError('unsupportedLocation')" class="input_error">
                             {{errorMsg}}

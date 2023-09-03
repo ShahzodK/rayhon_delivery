@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AuthActions from '../actions/auth.actions';
 import * as AddressActions from '../actions/address.actions';
+import * as HomeActions from '../actions/home.actions';
 import { IAppState } from "../appState.model";
 
 export const initialState: IAppState = {
@@ -16,7 +17,36 @@ export const initialState: IAppState = {
         image: '',
         language: ''
     },
-    addresses: []
+    addresses: [],
+    chosenAddress: {
+        id: '',
+        name: '',
+        address: '',
+        latitude: 0,
+        longitude: 0,
+        is_default: true
+    },
+    UIElements: {
+        category: {
+            id: 0,
+            name: '',
+            items: [],
+            items_count: 0,
+            wrap_at: 0
+        },
+        offer: {
+            id: 0,
+            name: '',
+            items: [],
+            items_count: 0,
+        },
+        popular: {
+            id: 0,
+            name: '',
+            items: [],
+            items_count: 0
+        }
+    }
 }
 
 export const appReducer = createReducer(
@@ -50,6 +80,27 @@ export const appReducer = createReducer(
         (state, addresses): IAppState => ({
             ...state,
             addresses: addresses.data
+        })
+    ),
+    on(
+        AddressActions.chooseAddressSuccess,
+        (state, address): IAppState => ({
+            ...state,
+            chosenAddress: address.data
+        })
+    ),
+    on(
+        AddressActions.fetchChosenAddress,
+        (state, address): IAppState => ({
+            ...state,
+            chosenAddress: address
+        })
+    ),
+    on(
+        HomeActions.fetchUIElementsSuccess,
+        (state, elements): IAppState => ({
+            ...state,
+            UIElements: elements.data
         })
     )
 )

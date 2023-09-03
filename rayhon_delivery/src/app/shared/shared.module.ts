@@ -8,9 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     TranslateModule,
@@ -22,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       }
     }),
     ReactiveFormsModule,
+    CarouselModule
   ],
   exports: [
     TranslateModule,
@@ -30,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    CarouselModule
   ]
 })
 export class SharedModule { }

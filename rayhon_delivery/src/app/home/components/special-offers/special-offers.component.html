@@ -1,0 +1,15 @@
+<section class="special-offers" *ngIf="(selectOffers$ | async) as offers">
+    <div class="container">
+        <div class="special-offers_back">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
+            <h4>{{offers.name}}</h4>
+        </div>
+        <div class="special-offers_content">
+            <ul>
+                <li *ngFor="let offer of offers?.items" [routerLink]="'/home/special-offers/' + offer.id">
+                    <img src="../../../../assets/icons/offer-example.png" [alt]="offer.name">
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,68 @@
+::ng-deep .owl-item {
+    width: initial !important;
+}
+
+.home-page {
+    padding-top: 16px;
+    &_content {
+        
+    }
+    &_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+            .user-image {
+                padding: 0;
+                width: 48px;
+                border-radius: 100px;
+            }
+        
+        &_location {
+            p {
+                font-size: 16px;
+                color: var(--greyscaleColor600);
+                margin: 0;
+            }
+            &_name {
+                display: flex;
+                align-items: center;
+                span {
+                    font-size: 18px;
+                    font-weight: 700;
+                    width: 50vw;
+                    color: var(--greyscaleColor900);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+        &_notifications {
+            padding: 10px 12px;
+            border: 1px solid var(--greyscale-200, #EEE);
+            border-radius: 100px;
+        }
+    }
+    &_offers {
+        &_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &_showAll {
+            color: var(--primaryColor);
+            font-weight: 700;
+        }
+        &_carousel {
+            display: flex;
+            img {
+                margin-left: 12px;
+                // width: 90vw;
+            }
+        }
+    }
+    &_search {
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+}

@@ -1,0 +1,41 @@
+<section class="home-page">
+        <div class="home-page_content">
+            <div class="container">
+                <div class="home-page_header">
+                        <img [src]="(selectUserData$ | async)!.image || '../../../../assets/icons/user-photo.svg'" alt="user-image" class="user-image">
+                    <div class="home-page_header_location">
+                        <p>{{"Home.delivery-address" | translate}}</p>
+                        <div class="home-page_header_location_name" routerLink="/home/deliver-to">
+                            <span>
+                                {{(selectChosenAddress$ | async)!.address}}
+                            </span>
+                            <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
+                        </div>
+                    </div>
+                    <div class="home-page_header_notifications">
+                        <img src="../../../../assets/icons/notification.svg" alt="notifications">
+                    </div>
+                </div>
+                <div class="home-page_search">
+                    <app-search></app-search>
+                </div>
+            </div>
+            <div class="home-page_offers" *ngIf="(selectOffers$ | async) as offers">
+                <div class="container">
+                    <div class="home-page_offers_header">
+                        <h5>{{offers.name}}</h5>
+                        <span class="home-page_offers_showAll" routerLink="/home/special-offers">{{"Home.all" | translate}}</span>
+                    </div>
+                </div>
+                <div class="home-page_offers_content">
+                    <owl-carousel-o [options]="customOptions" #owlSlide>
+                        <ng-template carouselSlide *ngFor="let offer of offers.items">
+                            <div class="home-page_offers_carousel">
+                                <img src="../../../../assets/icons/offer-example.png" [alt]="offer.name">
+                            </div>
+                        </ng-template>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+</section>

@@ -8,7 +8,6 @@ export interface IAddress {
         latitude: number,
         longitude: number,
         is_default: true
-      }[],
-      error: IError | null,
-      count: number
+    },
+    error: IError | null
 }

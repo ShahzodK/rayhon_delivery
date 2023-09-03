@@ -5,4 +5,5 @@ export let CommonUrl = {
     USER_URL: 'me',
     UPLOAD_IMG: 'upload-profile-image',
     ADDRESSES_URL: 'addresses',
+    UI_ELEMENTS_URL: 'ui-elements'
 }

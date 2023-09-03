@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ProfileService } from '../../services/profile.service';
 import { fetchAddresses } from 'src/app/redux/actions/address.actions';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-location-page',
@@ -19,7 +21,9 @@ export class LocationPageComponent implements OnInit {
 
   constructor(
               private profileService: ProfileService,
-              private store: Store) {}
+              private store: Store,
+              public location: Location,
+              private router: Router) {}
 
   ngOnInit(): void {
     ymaps.ready().then(() => this.createMap());
@@ -38,15 +42,17 @@ export class LocationPageComponent implements OnInit {
     if(this.locationForm.valid || (this.locationForm.get('locationName')!.valid && this.latitude && this.longitude)) {
       const profileValues = {
         name: this.locationForm.get('locationName')!.value!,
-        is_default: true,
+        is_default: this.profileService.addressesCount > 0 ? false : true,
         latitude: this.latitude,
         longitude: this.longitude
       }
-      console.log(profileValues)
       this.profileService.sendAddress(profileValues).subscribe((data) => {
+        console.log(data);
+        console.log(profileValues)
         if(data.data) {
           console.log(data);
-          this.store.dispatch(fetchAddresses())
+          this.store.dispatch(fetchAddresses());
+          this.router.navigate(['/home'])
         }
         else if(data.error) {
           this.locationForm.controls.locationAddress.setErrors({
@@ -119,5 +125,9 @@ export class LocationPageComponent implements OnInit {
       this.latitude = myPlacemarkAddress[0];
       this.longitude = myPlacemarkAddress[1];
     });
+  }
+
+  public goBack() {
+    this.location.back()
   }
 }
