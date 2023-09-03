@@ -13,7 +13,7 @@ export class WalkthroughComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem('isFirstVisit') == 'true') {
-      this.authService.isWalkthroughEnd = true;
+      this.authService.isFirstVisit = true;
     }
     else {
       localStorage.setItem('isFirstVisit', 'true')

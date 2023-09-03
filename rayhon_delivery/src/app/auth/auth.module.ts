@@ -5,7 +5,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { VerifyPhoneComponent } from './pages/verify-phone/verify-phone.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { WalkthroughComponent } from './components/walkthrough/walkthrough.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { WalkthroughComponent } from './components/walkthrough/walkthrough.compo
     SharedModule,
     NgxMaskDirective,
     NgxMaskPipe,
-    CarouselModule 
   ],
   providers: [provideNgxMask()]
 })

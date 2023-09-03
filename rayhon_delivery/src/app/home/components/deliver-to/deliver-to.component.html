@@ -2,11 +2,11 @@
     <div class="container">
         <div class="deliver-to_content">
             <div class="deliver-to_back">
-                <img src="../../../../assets/icons/arrow-left.svg" alt="back" routerLink="/home">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
                 <h4>{{"Home.deliver-to.title" | translate}}</h4>
             </div>
             <ul>
-                <li *ngFor="let address of ( selectAddresses | async)"
+                <li *ngFor="let address of ( selectAddresses$ | async)"
                     (click)="setAsDefaultAddress({id: address.id, name: address.name, is_default: true})">
                     <div class="deliver-to_address_item">
                         <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">

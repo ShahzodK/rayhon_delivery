@@ -2,7 +2,7 @@
     <div class="container">
         <div class="profile_content">
             <div class="profile_back">
-                <img src="../../../../assets/icons/arrow-left.svg" alt="back" routerLink="/auth/login">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
                 <h4>{{"Profile.title" | translate}}</h4>
             </div>
             <form class="profile_form" [formGroup]="profileForm">

@@ -15,6 +15,11 @@ export const fetchAddressesFailed = createAction (
   '[PROFILE] Fetch Addresses Failed'
 )
 
+export const fetchChosenAddress = createAction (
+  '[PROFILE] Fetch Chosen Addresses',
+  props<IAddress['data']>(),
+)
+
 export const chooseAddress = createAction(
   '[PROFILE] Choose Address',
   props<{id: string, name: string, is_default: boolean}>(),

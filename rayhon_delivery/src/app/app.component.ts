@@ -7,6 +7,7 @@ import { Mode } from './shared/services/mode-toggle.model';
 import { CommonKey } from './shared/consts/commonKey';
 import * as AuthActions from 'src/app/redux/actions/auth.actions'
 import { fetchAddresses } from './redux/actions/address.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
   constructor(
               private translateService: TranslateService,
               private modeToggleService: ModeToggleService,
-              private store: Store
+              private store: Store,
+              private router: Router
               ) {
                 this.modeToggleService.modeChanged$.subscribe((mode: Mode) => {
                   this.currentMode = mode;
@@ -32,8 +34,21 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
       this.translateService.setDefaultLang(environment.defaultLocale);
       this.translateService.use(environment.defaultLocale);
-      if(localStorage.getItem(CommonKey.TOKEN)) {
-        this.store.dispatch(AuthActions.fetchUser())
+      if(localStorage.getItem(CommonKey.TOKEN) && localStorage.getItem(CommonKey.TOKEN_EXPIRE_DATE)) {
+        let tokenExpireDate = new Date(localStorage.getItem(CommonKey.TOKEN_EXPIRE_DATE)!).getTime();
+        let currentDate = new Date().getTime();
+        if(currentDate < tokenExpireDate) {
+          this.store.dispatch(AuthActions.fetchUser())
+        }
+        else {
+          localStorage.removeItem(CommonKey.TOKEN)
+          localStorage.removeItem(CommonKey.TOKEN_EXPIRE_DATE);
+          localStorage.setItem(CommonKey.IS_LOGINED, 'false');
+          this.router.navigate(['/'])
+        }
+      }
+      else {
+        this.router.navigate(['/'])
       }
     }
               

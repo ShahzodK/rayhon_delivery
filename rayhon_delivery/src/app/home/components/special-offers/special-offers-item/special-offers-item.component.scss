@@ -1,0 +1,11 @@
+.special-offer-item {
+    &_header {
+        height: 40vh;
+        background: url('../../../../../assets/icons/offer-example.png') no-repeat center;
+        background-size: cover;
+        img {
+            margin-left: 24px;
+            filter: invert(1);
+        }
+    }
+}

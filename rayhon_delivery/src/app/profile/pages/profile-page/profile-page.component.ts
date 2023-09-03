@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, switchMap, takeUntil } from 'rxjs';
+import { Location } from '@angular/common';
 import { ProfileService } from '../../services/profile.service';
 import { Store } from '@ngrx/store';
-import { selectUserData } from 'src/app/redux/selectors/app.selectors';
+import { selectAddresses, selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { IUser } from 'src/app/auth/models/user.model';
 import { fetchUser } from 'src/app/redux/actions/auth.actions';
 
@@ -25,11 +26,14 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   public userData$ = this.store.select(selectUserData);
 
+  public userAddresses$ = this.store.select(selectAddresses);
+
 
   constructor(
               private profileService: ProfileService,
               private store: Store,
-              private router: Router
+              private router: Router,
+              public location: Location
               ) {
     this.maxDate = new Date();
   }
@@ -66,15 +70,29 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
       if(this.userData?.first_name !== profileValues.first_name || this.userData.last_name !== profileValues.last_name) {
         this.profileService.updateUser(profileValues).pipe(
           takeUntil(this.unsubscribe$),
-        ).subscribe((data) => {
-          if(data.data) {
-            this.router.navigate(['/profile/location']);
+          switchMap(() => {
             this.store.dispatch(fetchUser());
+            return this.userAddresses$
+          })
+        ).subscribe((data) => {
+          if(data.length > 0) {
+            this.router.navigate(['/home'])
           }
+          else {
+            this.router.navigate(['/profile/location'])
+          }        
         })
       }
       else {
-        this.router.navigate(['/profile/location'])
+        this.userAddresses$.subscribe((data) => {
+          console.log(data)
+          if(data.length > 0) {
+            this.router.navigate(['/home'])
+          }
+          else {
+            this.router.navigate(['/profile/location'])
+          }
+        })
       }
     }
   }

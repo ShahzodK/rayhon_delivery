@@ -6,7 +6,6 @@ import { VerifyPhoneComponent } from './pages/verify-phone/verify-phone.componen
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'verify_num', component: VerifyPhoneComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
 ];
 
 @NgModule({

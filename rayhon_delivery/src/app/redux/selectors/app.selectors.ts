@@ -17,3 +17,13 @@ export const selectAddresses = createSelector(
     selectAppState,
     (state) => state.addresses
 );
+
+export const selectChosenAddress = createSelector(
+    selectAppState,
+    (state) => state.chosenAddress
+)
+
+export const selectOffers = createSelector(
+    selectAppState,
+    (state) => state.UIElements.offer
+)

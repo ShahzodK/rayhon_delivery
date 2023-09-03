@@ -3,14 +3,13 @@ import { CanActivateFn, CanMatchFn, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
 import { selectAddresses, selectUserData } from 'src/app/redux/selectors/app.selectors';
-import { IUser } from '../models/user.model';
-import { ProfileService } from 'src/app/profile/services/profile.service';
+import { CommonKey } from 'src/app/shared/consts/commonKey';
 
 export const authGuardCanActivate: CanActivateFn = (route, state) => {
   const router: Router = inject(Router);
   const store: Store = inject(Store);
 
-  if(localStorage.getItem('isLogined') == 'true') {
+  if(localStorage.getItem(CommonKey.IS_LOGINED) == 'true') {
     let navigateToHome = false;
     store.select(selectAddresses).pipe(
       switchMap(addresses => {
@@ -35,6 +34,9 @@ export const authGuardCanActivate: CanActivateFn = (route, state) => {
       }
     })
   }
+  else {
+    return true;
+  }
   return true;
 };
 
@@ -42,7 +44,7 @@ export const authGuardCanMatch: CanMatchFn = (route, state) => {
   const router: Router = inject(Router);
   const store: Store = inject(Store);
 
-  if(localStorage.getItem('isLogined') == 'true') {
+  if(localStorage.getItem(CommonKey.IS_LOGINED) == 'true') {
     let navigateToHome = false;
     store.select(selectAddresses).pipe(
       switchMap(addresses => {
@@ -66,6 +68,9 @@ export const authGuardCanMatch: CanMatchFn = (route, state) => {
         router.navigate(['/profile'])
       }
     })
+  }
+  else {
+    return true;
   }
   return true;
 };

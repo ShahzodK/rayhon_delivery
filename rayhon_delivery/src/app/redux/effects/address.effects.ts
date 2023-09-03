@@ -6,6 +6,7 @@ import { ProfileService } from "src/app/profile/services/profile.service";
 import { IAddresses } from "src/app/profile/models/addresses.model";
 import { IAddress } from "src/app/profile/models/address.model";
 import { HomeService } from "src/app/home/services/home.service";
+import { Store } from "@ngrx/store";
 
 
 @Injectable()
@@ -15,7 +16,8 @@ export class AddressEffects {
     constructor(
         private actions$: Actions,
         private profileService: ProfileService,
-        private homeService: HomeService
+        private homeService: HomeService,
+        private store: Store
         ) {}
 
     public fetchAddresses$ = createEffect(() => {
@@ -24,11 +26,18 @@ export class AddressEffects {
             ofType(ProfileActions.fetchAddresses),
             switchMap(() => this.profileService.getAddresses()),
             map((addresses: IAddresses) => {
-                this.profileService.addressesCount = addresses.count;
-                addresses.data.forEach(address => {
-                    if(address.is_default == true)  this.homeService.chosenAddressId = address.id
-                });
-                return ProfileActions.fetchAddressesSuccess(addresses)
+                console.log(addresses)
+                if(addresses.data) {
+                    this.profileService.addressesCount = addresses.count;
+                    addresses.data.forEach(address => {
+                        if(address.is_default == true){
+                            this.homeService.chosenAddressId = address.id
+                            this.store.dispatch(ProfileActions.fetchChosenAddress(address))
+                        }
+                    });
+                    return ProfileActions.fetchAddressesSuccess(addresses)
+                }
+                else return ProfileActions.fetchAddressesFailed
             }),
             catchError(() => of(ProfileActions.fetchAddressesFailed))
         )
@@ -40,7 +49,11 @@ export class AddressEffects {
             ofType(ProfileActions.chooseAddress),
             switchMap((payload) => this.profileService.updateAddress(payload)),
             map((address: IAddress) => {
-                return ProfileActions.chooseAddressSuccess(address)
+                console.log(address)
+                if(address.data) {
+                    return ProfileActions.chooseAddressSuccess(address)
+                }
+                else return ProfileActions.chooseAddressFailed
             }),
             catchError(() => of(ProfileActions.chooseAddressFailed))
         )

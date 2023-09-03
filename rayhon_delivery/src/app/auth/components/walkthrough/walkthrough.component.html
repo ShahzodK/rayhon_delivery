@@ -25,7 +25,7 @@
         <button *ngIf="!isLastSlide" (click)="owlSlide.next()" class="walkthrough_next_btn">
             {{"Auth.walkthrough.btn" | translate}}
         </button>
-        <button *ngIf="isLastSlide" (click)="authService.isWalkthroughEnd = true" class="walkthrough_next_btn">
+        <button *ngIf="isLastSlide" (click)="authService.setFirstVisit(false)" class="walkthrough_next_btn">
             {{"Auth.walkthrough.walkthrough-3.btn" | translate}}
         </button>
 </section>
