@@ -34,10 +34,27 @@
         "name": "ФИО",
         "birthday": "Дата Рождения",
         "btn": "Сохранить",
+        "events": "Акции",
+        "payment": "Способы оплаты",
+        "profile": "Профиль",
+        "address": "Адрес",
+        "notification": "Уведомление",
+        "favorite-meals": "Любимые блюда",
+        "language": "Язык",
+        "language-name": "Русский",
+        "dark-mode": "Темный режим",
+        "support": "Служба поддержки",
+        "invite-friends": "Пригласить друзей",
+        "exit": "Выйти",
         "location": {
             "title": "Локация",
             "address": "Выберите Адрес Доставки",
             "btn": "Продолжить"
+        },
+        "address-page": {
+            "title": "Адрес",
+            "btn": "Добавить адрес",
+            "default": "По Умолчанию"
         }
     },
     "Location": {

@@ -1,0 +1,30 @@
+<section class="profile-address">
+    <div class="container">
+        <div class="profile-address_content">
+            <div class="profile-address_back">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
+                <h4>{{"Profile.address-page.title" | translate}}</h4>
+            </div>
+            <ul>
+                <li *ngFor="let address of ( selectAddresses$ | async)">
+                    <div class="profile-address_address_item">
+                        <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">
+                        <div class="profile-address_address_item_content">
+                            <div class="profile-address_address_item_content_top">
+                                <h6>{{address.name}}</h6>
+                                <span *ngIf="homeService.chosenAddressId == address.id">{{"Profile.address-page.default" | translate}}</span>
+                            </div>
+                            <span class="profile-address_address_item_content_address">{{address.address}}</span>
+                        </div>
+                        <div class="address_change">
+                            <img src="../../../../assets/icons/edit.svg" alt="edit">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <button class="choose_btn" routerLink="/home">
+                {{"Profile.address-page.btn" | translate}}
+            </button>
+        </div>
+    </div>
+</section>

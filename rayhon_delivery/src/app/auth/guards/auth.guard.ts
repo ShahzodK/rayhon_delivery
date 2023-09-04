@@ -8,7 +8,6 @@ import { CommonKey } from 'src/app/shared/consts/commonKey';
 export const authGuardCanActivate: CanActivateFn = (route, state) => {
   const router: Router = inject(Router);
   const store: Store = inject(Store);
-
   if(localStorage.getItem(CommonKey.IS_LOGINED) == 'true') {
     let navigateToHome = false;
     store.select(selectAddresses).pipe(

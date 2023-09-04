@@ -1,0 +1,94 @@
+.profile-address {
+    background: var(--greyscaleColor100);
+    min-height: 100vh;
+    &_content {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    &_back {
+        display: flex;
+        justify-content: flex-start;
+        padding-top: 10px;
+        margin-bottom: 24px;
+        width: 100%;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-left: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 64px;
+        li {
+            background-color: white;
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+            h6 {
+                font-size: 18px;
+                font-weight: 700;
+            }
+        }
+        .new-address_btn {
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 100px;
+            background: #E8F7ED;
+            color: var(--primaryColor);
+            text-shadow: 4px 8px 24px rgba(27, 172, 75, 0.25);
+        }
+    }
+    &_address_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &_content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 6px;
+            img {
+                margin-top: 25px;
+                margin-left: 14px;
+            }
+            &_top {
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: 7px;
+                h6 {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+                span {
+                    background: var(--transparentGreenColor);
+                    color: var(--primaryColor);
+                    font-size: 10px;
+                    font-weight: 600;
+                    padding: 6px 10px;
+                    margin-left: 8px;
+                    border-radius: 6px;
+                }
+            }
+            &_address {
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--greyscaleColor700);
+                white-space: nowrap;
+                overflow: hidden;
+                width: 57vw;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+    .choose_btn {
+        align-self: center;
+        margin-top: auto;
+        margin-bottom: 36px;
+    }
+}
