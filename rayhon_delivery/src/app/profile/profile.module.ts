@@ -8,6 +8,7 @@ import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { CommonKey } from '../shared/consts/commonKey';
 import { ProfileSettingsPageComponent } from './pages/profile-settings-page/profile-settings-page.component';
 import { ProfileAddressPageComponent } from './pages/profile-address-page/profile-address-page.component';
+import { ProfileLanguagePageComponent } from './pages/profile-language-page/profile-language-page.component';
 
 const mapConfig: YaConfig = {
   apikey: '275222c6-ec7c-4bf1-92a5-e0de7a7cc878',
@@ -19,7 +20,8 @@ const mapConfig: YaConfig = {
     ProfilePageComponent,
     LocationPageComponent,
     ProfileSettingsPageComponent,
-    ProfileAddressPageComponent
+    ProfileAddressPageComponent,
+    ProfileLanguagePageComponent
   ],
   imports: [
     CommonModule,

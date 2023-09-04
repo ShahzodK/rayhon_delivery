@@ -11,6 +11,7 @@ import { IUIElements } from '../models/uiElements.model';
 export class HomeService {
 
   public chosenAddressId!: string;
+  public chosenLanguage!: string;
 
   constructor(private http: HttpClient) { }
 

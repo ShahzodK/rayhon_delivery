@@ -1,0 +1,43 @@
+.profile-language {
+    &_header {
+        display: flex;
+        margin-top: 10px;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-left: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 0;
+        margin-top: 57px;
+        li {
+            list-style: none;
+        }
+    }
+    &_item {
+        display: flex;
+        justify-content: space-between;
+        .address_state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid var(--primaryColor);
+            border-radius: 100px;
+            align-self: center;
+            span {
+                width: 12px;
+                height: 12px;
+                background: var(--primaryColor);
+                display: inline-block;
+                border-radius: 100px;            
+            }
+        }
+    }
+}

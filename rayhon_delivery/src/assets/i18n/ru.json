@@ -55,6 +55,9 @@
             "title": "Адрес",
             "btn": "Добавить адрес",
             "default": "По Умолчанию"
+        },
+        "language-page": {
+            "title": "Язык"
         }
     },
     "Location": {

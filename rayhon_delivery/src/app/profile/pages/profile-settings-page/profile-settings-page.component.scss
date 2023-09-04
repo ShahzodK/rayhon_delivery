@@ -1,8 +1,13 @@
 .profile-settings {
     margin-bottom: 20px;
     &_header {
+        margin-top: 10px;
+        margin-bottom: 36px;
         display: flex;
         h4 {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-right: 0;
             margin-left: 16px;
         }
     }

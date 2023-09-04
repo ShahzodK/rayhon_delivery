@@ -7,6 +7,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 import { IUser } from "src/app/auth/models/user.model";
 import { fetchAddresses } from "../actions/address.actions";
 import { CommonKey } from "src/app/shared/consts/commonKey";
+import { HomeService } from "src/app/home/services/home.service";
 
 
 @Injectable()
@@ -16,7 +17,8 @@ export class AuthEffects {
     constructor(
         private actions$: Actions,
         private store: Store,
-        private authService: AuthService
+        private authService: AuthService,
+        private homeService: HomeService
         ) {}
 
     public fetchUsers$ = createEffect(() => {
@@ -28,6 +30,7 @@ export class AuthEffects {
                 if(user.data) {
                     localStorage.setItem(CommonKey.IS_LOGINED, 'true');
                     this.store.dispatch(fetchAddresses());
+                    this.homeService.chosenLanguage = user.data.language;
                     return AuthActions.fetchUserSuccess(user)
                 }
                 else return AuthActions.fetchUserFailed
