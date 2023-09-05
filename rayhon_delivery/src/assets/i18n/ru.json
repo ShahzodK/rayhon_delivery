@@ -58,6 +58,12 @@
         },
         "language-page": {
             "title": "Язык"
+        },
+        "exit-modal": {
+            "title": "Выйти",
+            "content": "Вы действительно хотите выйти?",
+            "cancel-btn": "Отменить",
+            "accept-btn": "Да, выйти"
         }
     },
     "Location": {
