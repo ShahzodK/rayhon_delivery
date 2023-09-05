@@ -1,0 +1,34 @@
+<div class="profile-language" *ngIf="(selectUserData$ | async) as user">
+    <div class="container">
+        <div class="profile-language_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
+            <h4>{{"Profile.language-page.title" | translate}}</h4>
+        </div>
+        <ul>
+            <li  (click)="updateLanguage(user.first_name,user.last_name,'uz')">
+                <div class="profile-language_item">
+                    <span class="profile-language_item_content">O'zbek tili</span>
+                    <div class="address_state">
+                        <span *ngIf="homeService.chosenLanguage == 'uz'"></span>
+                    </div>
+                </div>
+            </li>
+            <li (click)="updateLanguage(user.first_name,user.last_name,'ru')">
+                <div class="profile-language_item">
+                    <span class="profile-language_item_content">Русский</span>
+                    <div class="address_state">
+                        <span *ngIf="homeService.chosenLanguage == 'ru'"></span>
+                    </div>
+                </div>
+            </li>
+            <li (click)="updateLanguage(user.first_name,user.last_name,'en')">
+                <div class="profile-language_item">
+                    <span class="profile-language_item_content">English</span>
+                    <div class="address_state">
+                        <span *ngIf="homeService.chosenLanguage == 'en'"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

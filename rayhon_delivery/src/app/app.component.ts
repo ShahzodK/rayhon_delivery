@@ -26,9 +26,6 @@ export class AppComponent implements OnInit {
               private store: Store,
               private router: Router
               ) {
-                this.modeToggleService.modeChanged$.subscribe((mode: Mode) => {
-                  this.currentMode = mode;
-                });
               };
 
     ngOnInit(): void {

@@ -6,6 +6,10 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { LocationPageComponent } from './pages/location-page/location-page.component';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { CommonKey } from '../shared/consts/commonKey';
+import { ProfileSettingsPageComponent } from './pages/profile-settings-page/profile-settings-page.component';
+import { ProfileAddressPageComponent } from './pages/profile-address-page/profile-address-page.component';
+import { ProfileLanguagePageComponent } from './pages/profile-language-page/profile-language-page.component';
+import { ExitModalComponent } from './components/exit-modal/exit-modal.component';
 
 const mapConfig: YaConfig = {
   apikey: '275222c6-ec7c-4bf1-92a5-e0de7a7cc878',
@@ -15,7 +19,11 @@ const mapConfig: YaConfig = {
 @NgModule({
   declarations: [
     ProfilePageComponent,
-    LocationPageComponent
+    LocationPageComponent,
+    ProfileSettingsPageComponent,
+    ProfileAddressPageComponent,
+    ProfileLanguagePageComponent,
+    ExitModalComponent
   ],
   imports: [
     CommonModule,

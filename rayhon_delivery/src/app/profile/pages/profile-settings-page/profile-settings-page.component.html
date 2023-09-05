@@ -1,0 +1,106 @@
+<div class="profile-settings">
+    <div class="container">
+        <div class="profile-settings_header">
+            <img src="../../../../assets/icons/profile-logo.svg" alt="logo">
+            <h4>{{"Profile.title" | translate}}</h4>
+        </div>
+        <div class="profile-settings_user_data" *ngIf="(selectUserData$ | async) as userData">
+            <img [src]="userData.image || '../../../../assets/icons/user-photo.svg'" alt="user-image" class="user-image">
+            <div class="profile-settings_user_name">
+                <h5>{{userData.first_name + ' ' +  userData.last_name}}</h5>
+                <span>{{userData.phone}}</span>
+            </div>
+            <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/profile">
+        </div>
+        <div class="profile-settings_additional">
+            <ul>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/discount.svg" alt="icon">
+                        <span>{{"Profile.events" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/wallet.svg" alt="icon">
+                        <span>{{"Profile.payment" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+            </ul>
+        </div>
+        <div class="profile-settings_main">
+            <ul>
+                <li routerLink="/profile">
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/profile-black.svg" alt="icon" [style.margin-left]="'2px'">
+                        <span>{{"Profile.profile" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li routerLink="/profile/address">
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/location-thin.svg" alt="icon" [style.margin-left]="'2px'">
+                        <span>{{"Profile.address" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/notification.svg" alt="icon">
+                        <span>{{"Profile.notification" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/heart.svg" alt="icon">
+                        <span>{{"Profile.favorite-meals" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li routerLink="/profile/language">
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/language.svg" alt="icon">
+                        <span>{{"Profile.language" | translate}}</span>
+                    </div>
+                    <div class="profile-settings_language">
+                        <span>{{"Profile.language-name" | translate}}</span>
+                        <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                    </div>
+                </li>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/eye.svg" alt="icon">
+                        <span>{{"Profile.dark-mode" | translate}}</span>
+                    </div>
+                    <div class="profile-settings_toggle_mode">
+                        <input type="checkbox" id="modeToggle" (click)="modeToggleService.toggleMode()" [checked]="modeToggleService.get() == 'dark' ? true : false"><label for="modeToggle" class="modeToggle ios"></label>
+                    </div>
+                </li>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/support.svg" alt="icon">
+                        <span>{{"Profile.support" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li>
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/friends.svg" alt="icon">
+                        <span>{{"Profile.invite-friends" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+                <li (click)="exit('0ms', '0ms')">
+                    <div class="profile-settings_item">
+                        <img src="../../../../assets/icons/exit.svg" alt="icon">
+                        <span>{{"Profile.exit" | translate}}</span>
+                    </div>
+                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

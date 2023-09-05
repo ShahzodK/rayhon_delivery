@@ -36,6 +36,8 @@ $greyscaleColor100_light: #F5F5F5;
 
 $greyscaleColor50_light: #FAFAFA;
 
+$white_light: #FFFFFF;
+
 @mixin lighten() {
     --primaryColor: #{$primaryColor_light};
     --secondaryColor: #{$secondaryColor_light};
@@ -56,6 +58,7 @@ $greyscaleColor50_light: #FAFAFA;
     --greyscaleColor200: #{$greyscaleColor200_light};
     --greyscaleColor100: #{$greyscaleColor100_light};
     --greyscaleColor50: #{$greyscaleColor50_light};
+    --white: #{$white_light};
 }
 
 @mixin darken() {
@@ -78,4 +81,5 @@ $greyscaleColor50_light: #FAFAFA;
     --greyscaleColor200: #{$greyscaleColor200_light};
     --greyscaleColor100: #{$greyscaleColor100_light};
     --greyscaleColor50: #{$greyscaleColor50_light};
+    --white: #{$white_light};
 }

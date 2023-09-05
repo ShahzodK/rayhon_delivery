@@ -2,7 +2,7 @@
         <div class="home-page_content">
             <div class="container">
                 <div class="home-page_header">
-                        <img [src]="(selectUserData$ | async)!.image || '../../../../assets/icons/user-photo.svg'" alt="user-image" class="user-image">
+                        <img [src]="(selectUserData$ | async)!.image || '../../../../assets/icons/user-photo.svg'" alt="user-image" class="user-image" routerLink="/profile/settings">
                     <div class="home-page_header_location">
                         <p>{{"Home.delivery-address" | translate}}</p>
                         <div class="home-page_header_location_name" routerLink="/home/deliver-to">
