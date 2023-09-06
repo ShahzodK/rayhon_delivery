@@ -14,7 +14,9 @@ export class HomePagesComponent implements OnInit {
 
   public selectUserData$ = this.store.select(selectUserData);
   public selectChosenAddress$ = this.store.select(selectChosenAddress);
-  public selectOffers$ = this.store.select(selectOffers)
+  public selectOffers$ = this.store.select(selectOffers);
+
+  public contentLoaded = false;
 
   constructor(
               private store: Store,

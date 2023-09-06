@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MatNativeDateModule,
     MatDialogModule,
     MatButtonModule,
-    CarouselModule
+    CarouselModule,
+    NgxSkeletonLoaderModule
   ]
 })
 export class SharedModule { }

@@ -7,6 +7,7 @@ import { selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { CommonKey } from 'src/app/shared/consts/commonKey';
 import { ModeToggleService } from 'src/app/shared/services/mode-toggle.service';
 import { ExitModalComponent } from '../../components/exit-modal/exit-modal.component';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-profile-settings-page',
@@ -29,10 +30,6 @@ export class ProfileSettingsPageComponent implements OnInit {
     const dialogRef = this.dialog.open(ExitModalComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 }

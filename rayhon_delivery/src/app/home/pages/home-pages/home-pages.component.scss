@@ -4,9 +4,6 @@
 
 .home-page {
     padding-top: 16px;
-    &_content {
-        
-    }
     &_header {
         display: flex;
         align-items: center;
@@ -57,7 +54,7 @@
             display: flex;
             img {
                 margin-left: 12px;
-                // width: 90vw;
+                width: 90vw;
             }
         }
     }
