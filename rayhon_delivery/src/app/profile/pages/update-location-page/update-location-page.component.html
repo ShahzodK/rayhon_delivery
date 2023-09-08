@@ -1,0 +1,32 @@
+<section class="update_location">
+    <div class="update_location_content">
+        <div class="container">
+            <div class="update_location_back">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="this.location.back()">
+                <h4>{{"Home.update-address.title" | translate}}</h4>
+            </div>
+        </div>
+        <div class="update_location_map">
+            <div id="map" style="width: 99%; height: 250px" #yamaps></div>   
+        </div>
+        <div class="container">
+            <form class="update_location_form" [formGroup]="locationForm">
+                <h4>{{"Home.update-address.edit" | translate}}</h4>
+                <div class="choose-location">
+                    <img src="../../../../assets/icons/location.svg" alt="location" class="update_location-icon">
+                    <input type="text" id="suggest" formControlName="locationAddress">
+                    <span *ngIf="locationForm.get('locationAddress')!.hasError('unsupportedLocation')" class="input_error">
+                        {{errorMsg}}
+                    </span>
+                </div>
+                <div class="location-name">
+                    <input type="text" formControlName="locationName">
+                </div>
+            </form>
+            <div class="update_location_actions">
+                <button (click)="deleteAddress()" class="delete_btn">{{'Home.update-address.delete-btn' | translate}}</button>
+                <button (click)="updateAddress()">{{'Home.update-address.save-btn' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>

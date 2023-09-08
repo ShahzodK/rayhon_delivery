@@ -83,6 +83,12 @@
         "special-offers": {
             "title": "Специальные предложения"
         },
+        "update-address": {
+            "title": "Локация",
+            "edit": "Редактировать",
+            "delete-btn": "Удалить",
+            "save-btn": "Сохранить"
+        },
         "delivery-address": "Адрес Доставки",
         "special-offer": "Специальные предложения",
         "all": "Все",

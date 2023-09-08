@@ -17,7 +17,7 @@
                             <span class="profile-address_address_item_content_address">{{address.address}}</span>
                         </div>
                         <div class="address_change">
-                            <img src="../../../../assets/icons/edit.svg" alt="edit">
+                            <img src="../../../../assets/icons/edit.svg" alt="edit" [routerLink]="'/profile/location/' + address.id">
                         </div>
                     </div>
                 </li>

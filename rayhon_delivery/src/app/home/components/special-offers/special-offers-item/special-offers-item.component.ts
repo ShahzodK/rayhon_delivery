@@ -26,7 +26,7 @@ export class SpecialOffersItemComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
       this.store.dispatch(fetchUIElements());
       this.route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
-        this.id = params.get('id')!; // Access the 'id' parameter value
+        this.id = params.get('id')!;
       });
       this.selectOffers$.pipe(takeUntil(this.unsubscribe$)).subscribe((data) => {
         data.items.forEach((item) => {
