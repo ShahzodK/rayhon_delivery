@@ -29,12 +29,20 @@ export class AddressEffects {
                 console.log(addresses)
                 if(addresses.data) {
                     this.profileService.addressesCount = addresses.count;
+                    let hasDefaultAddress = false;
                     addresses.data.forEach(address => {
                         if(address.is_default == true){
                             this.homeService.chosenAddressId = address.id
                             this.store.dispatch(ProfileActions.fetchChosenAddress(address))
+                            hasDefaultAddress = true;
                         }
                     });
+                    if (!hasDefaultAddress && addresses.data.length > 0) {
+                        const firstAddress = addresses.data[0];
+                        firstAddress.is_default = true;
+                        this.homeService.chosenAddressId = firstAddress.id;
+                        this.store.dispatch(ProfileActions.fetchChosenAddress(firstAddress));
+                    }
                     return ProfileActions.fetchAddressesSuccess(addresses)
                 }
                 else return ProfileActions.fetchAddressesFailed

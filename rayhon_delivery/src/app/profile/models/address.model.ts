@@ -7,7 +7,7 @@ export interface IAddress {
         address: string,
         latitude: number,
         longitude: number,
-        is_default: true
+        is_default: boolean
     },
     error: IError | null
 }

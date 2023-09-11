@@ -1,0 +1,26 @@
+<section class="bottom-navigation">
+    <div class="container">
+        <div class="bottom-navigation_content">
+            <ul>
+                <li (click)="toPage('/home')" #homeBtn>
+                    <img src="../../../../assets/icons/home.svg" alt="" *ngIf="activePage !== 'home'">
+                    <img src="../../../../assets/icons/home-active.svg" alt="" *ngIf="activePage == 'home'">
+                    <span>{{"Bottom-navigation.home" | translate}}</span>
+                </li>
+                <li #ordersBtn>
+                    <img src="../../../../assets/icons/orders.svg" alt="">
+                    <span>{{"Bottom-navigation.orders" | translate}}</span>
+                </li>
+                <li #basketBtn>
+                    <img src="../../../../assets/icons/bag.svg" alt="bag">
+                    <span>{{"Bottom-navigation.cart" | translate}}</span>
+                </li>
+                <li (click)="toPage('/profile/settings')" #profileBtn>
+                    <img src="../../../../assets/icons/profile.svg" alt="profile" *ngIf="activePage !== 'profile'">
+                    <img src="../../../../assets/icons/profile-active.svg" alt="profile" *ngIf="activePage == 'profile'">
+                    <span>{{"Bottom-navigation.profile" | translate}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
