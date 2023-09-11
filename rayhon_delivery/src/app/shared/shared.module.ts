@@ -12,9 +12,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SharedModalComponent } from './components/shared-modal/shared-modal.component';
+import { BottomNavigationComponent } from './components/bottom-navigation/bottom-navigation.component';
 
 @NgModule({
   declarations: [
+    SharedModalComponent,
+    BottomNavigationComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatDialogModule,
     MatButtonModule,
     CarouselModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    SharedModalComponent,
+    BottomNavigationComponent
   ]
 })
 export class SharedModule { }

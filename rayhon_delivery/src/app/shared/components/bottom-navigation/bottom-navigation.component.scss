@@ -1,0 +1,37 @@
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    background: var(--white);
+    width: 100vw;
+    &_content {
+        ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            padding: 0;
+            gap: 19px;
+        }
+        li {
+            display: flex;
+            flex-direction: column;
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+            span {
+                font-size: 10px;
+                font-weight: 500;
+                color: var(--greyscaleColor500);
+                text-align: center;
+                padding-top: 3px;
+            }
+        }
+        .bottom_nav_active {
+            span {
+                color: var(--primaryColor);
+            }
+        }
+    }
+}

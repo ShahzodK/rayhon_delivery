@@ -102,7 +102,6 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
                     takeUntil(this.unsubscribe$)
                     ).subscribe((data) => {
                       console.log(data);
-                      console.log('update');
                       if(data.data) {
                         this.router.navigate(['/home']),
                         this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;

@@ -93,5 +93,11 @@
         "special-offer": "Специальные предложения",
         "all": "Все",
         "search": "Поиск"
+    },
+    "Bottom-navigation": {
+        "home": "Дом",
+        "orders": "Заказы",
+        "cart": "Корзина",
+        "profile": "Профиль"
     }
 }
