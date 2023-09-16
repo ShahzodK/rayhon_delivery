@@ -14,13 +14,19 @@ $disabledColor_light: #D8D8D8;
 
 $disabledBtnColor_light: #29974D;
 
+$secondaryBtnColor_light: #E8F7ED;
+$secondaryBtnColor_dark: #35383F;
+
 $transparentGreenColor_light: rgba(27, 172, 75, 0.08);
 
 $greyscaleColor900_light: #212121;
+$greyscaleColor900_dark: #FFFFFF;
 
 $greyscaleColor800_light: #424242;
+$greyscaleColor800_dark: #FAFAFA;
 
 $greyscaleColor700_light: #616161;
+$greyscaleColor700_dark: #E0E0E0;
 
 $greyscaleColor600_light: #757575;
 
@@ -31,6 +37,7 @@ $greyscaleColor400_light: #BDBDBD;
 $greyscaleColor300_light: #BDBDBD;
 
 $greyscaleColor200_light: #EEEEEE;
+$greyscaleColor200_dark: #35383F;
 
 $greyscaleColor100_light: #F5F5F5;
 $greyscaleColor100_dark: #1F222A;
@@ -43,6 +50,12 @@ $white_light: #FFFFFF;
 $bottomNavigationBg_light: #FFFFFF;
 $bottomNavigationBg_dark: rgba(24, 26, 32);
 
+$searchTextColor_light: #212121;
+$searchTextColor_dark: #FFFFFF;
+
+$foodCardBg_light: #FFFFFF;
+$foodCardBg_dark: #1F222A;
+
 @mixin lighten() {
     --primaryColor: #{$primaryColor_light};
     --secondaryColor: #{$secondaryColor_light};
@@ -52,6 +65,7 @@ $bottomNavigationBg_dark: rgba(24, 26, 32);
     --errorColor: #{$errorColor_light};
     --disabledColor: #{$disabledColor_light};
     --disabledBtnColor: #{$disabledBtnColor_light};
+    --secondaryBtnColor: #{$secondaryBtnColor_light};
     --transparentGreenColor: #{$transparentGreenColor_light};
     --greyscaleColor900: #{$greyscaleColor900_light};
     --greyscaleColor800: #{$greyscaleColor800_light};
@@ -65,6 +79,8 @@ $bottomNavigationBg_dark: rgba(24, 26, 32);
     --greyscaleColor50: #{$greyscaleColor50_light};
     --white: #{$white_light};
     --bottomNavigationBg: #{$bottomNavigationBg_light};
+    --searchTextColor: #{$searchTextColor_light};
+    --foodCardBg: #{$foodCardBg_light};
 }
 
 @mixin darken() {
@@ -76,17 +92,20 @@ $bottomNavigationBg_dark: rgba(24, 26, 32);
     --errorColor: #{$errorColor_light};
     --disabledColor: #{$disabledColor_light};
     --disabledBtnColor: #{$disabledBtnColor_light};
+    --secondaryBtnColor: #{$secondaryBtnColor_dark};
     --transparentGreenColor: #{$transparentGreenColor_light};
-    --greyscaleColor900: #{$greyscaleColor900_light};
-    --greyscaleColor800: #{$greyscaleColor800_light};
-    --greyscaleColor700: #{$greyscaleColor700_light};
+    --greyscaleColor900: #{$greyscaleColor900_dark};
+    --greyscaleColor800: #{$greyscaleColor800_dark};
+    --greyscaleColor700: #{$greyscaleColor700_dark};
     --greyscaleColor600: #{$greyscaleColor600_light};
     --greyscaleColor500: #{$greyscaleColor500_light};
     --greyscaleColor400: #{$greyscaleColor400_light};
     --greyscaleColor300: #{$greyscaleColor300_light};
-    --greyscaleColor200: #{$greyscaleColor200_light};
+    --greyscaleColor200: #{$greyscaleColor200_dark};
     --greyscaleColor100: #{$greyscaleColor100_dark};
     --greyscaleColor50: #{$greyscaleColor50_light};
     --white: #{$white_light};
     --bottomNavigationBg: #{$bottomNavigationBg_dark};
+    --searchTextColor: #{$searchTextColor_dark};
+    --foodCardBg: #{$foodCardBg_dark};
 }

@@ -28,7 +28,7 @@
             text-align: center;
         }
         .secondary_btn {
-            background:#E8F7ED;
+            background:var(--secondaryBtnColor);
             color: var(--successColor);
         }
     }

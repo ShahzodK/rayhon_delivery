@@ -1,10 +1,12 @@
 .profile-settings {
-    margin-bottom: 20px;
+    padding-bottom: 80px;
+    background: var(--bottomNavigationBg);
     &_header {
-        margin-top: 10px;
+        padding-top: 10px;
         margin-bottom: 36px;
         display: flex;
         h4 {
+            color: var(--greyscaleColor900);
             margin-top: 0;
             margin-bottom: 0;
             margin-right: 0;

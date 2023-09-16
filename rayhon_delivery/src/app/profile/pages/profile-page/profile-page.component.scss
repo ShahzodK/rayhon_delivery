@@ -8,6 +8,7 @@
     box-shadow: none !important;
 }
 .profile {
+    background: var(--foodCardBg);
     &_content {
         display: flex;
         flex-direction: column;

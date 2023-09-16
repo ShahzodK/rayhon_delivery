@@ -19,6 +19,14 @@ body {
 
 body.dark {
     @include darken();
+    .profile-settings_item {
+        img {
+            filter: invert(1);
+        }
+    }
+    .arrow, .notifications_img  {
+        filter: invert(1);
+    }
   }
 body.light {
     @include lighten();

@@ -4,16 +4,17 @@
 
 .home-page {
     padding-top: 16px;
-    margin-bottom: 150px;
+    padding-bottom: 150px;
+    background: var(--foodCardBg);
     &_header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-            .user-image {
-                padding: 0;
-                width: 48px;
-                border-radius: 100px;
-            }
+        .user-image {
+            padding: 0;
+            width: 48px;
+            border-radius: 100px;
+        }
         
         &_location {
             p {
@@ -50,6 +51,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            h5 {
+                color: var(--greyscaleColor900)
+            }
         }
         &_carousel {
             display: flex;
@@ -59,6 +63,11 @@
         }
     }
     &_popular {
+        &_header {
+            h5 {
+                color: var(--greyscaleColor900)
+            }
+        }
         &_item {
             position: relative;
             display: flex;
@@ -66,6 +75,7 @@
             // margin-left: 12px;
             padding: 14px;
             border-radius: 28px;
+            background: var(--foodCardBg);
             box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
             &_discount {
                 position: absolute;
@@ -81,6 +91,8 @@
             }
             h5 {
                 margin: 0;
+                margin-top: 12px;
+                color: var(--greyscaleColor900);
             }
             &_img {
                 width: 80vw;

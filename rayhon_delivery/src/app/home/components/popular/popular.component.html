@@ -1,7 +1,7 @@
 <section class="popular" *ngIf="(selectPopular$ | async) as popularMeals">
     <div class="container">
         <div class="popular_back">
-            <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
             <h4>{{popularMeals.name}}</h4>
         </div>
         <div class="popular_content">
