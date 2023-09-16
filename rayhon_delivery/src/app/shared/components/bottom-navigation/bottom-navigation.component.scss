@@ -1,8 +1,9 @@
 .bottom-navigation {
     position: fixed;
     bottom: 0;
-    background: var(--white);
+    background: var(--bottomNavigationBg);
     width: 100vw;
+    z-index: 1000;
     &_content {
         ul {
             display: flex;

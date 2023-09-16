@@ -7,7 +7,7 @@ export interface IUIElements {
     data: {
         category: ICategory,
         offer: IOffer,
-        popular: IPopularMeal
+        popular: IPopularMeal[]
     },
     error: IError | null
 }

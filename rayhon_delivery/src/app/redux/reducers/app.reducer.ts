@@ -40,12 +40,12 @@ export const initialState: IAppState = {
             items: [],
             items_count: 0,
         },
-        popular: {
+        popular: [{
             id: 0,
             name: '',
             items: [],
             items_count: 0
-        }
+        }]
     }
 }
 

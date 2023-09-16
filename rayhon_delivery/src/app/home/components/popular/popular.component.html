@@ -1,0 +1,30 @@
+<section class="popular" *ngIf="(selectPopular$ | async) as popularMeals">
+    <div class="container">
+        <div class="popular_back">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
+            <h4>{{popularMeals.name}}</h4>
+        </div>
+        <div class="popular_content">
+            <ul>
+                <li *ngFor="let popularMeal of popularMeals?.items">
+                    <img src="../../../../assets/icons/popular-example.png" [alt]="popularMeal.name">
+                    <h5>{{popularMeal.name}}</h5>
+                    <div class="popular_item_time">
+                        <span>
+                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                            20 min
+                        </span>
+                        <span>
+                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                            20 min
+                        </span>
+                    </div>
+                    <div class="popular_item_footer">
+                        <span>{{popularMeal.price}}</span>
+                        <img src="../../../../assets/icons/heart.svg" alt="">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

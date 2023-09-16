@@ -33,10 +33,15 @@ $greyscaleColor300_light: #BDBDBD;
 $greyscaleColor200_light: #EEEEEE;
 
 $greyscaleColor100_light: #F5F5F5;
+$greyscaleColor100_dark: #1F222A;
+
 
 $greyscaleColor50_light: #FAFAFA;
 
 $white_light: #FFFFFF;
+
+$bottomNavigationBg_light: #FFFFFF;
+$bottomNavigationBg_dark: rgba(24, 26, 32);
 
 @mixin lighten() {
     --primaryColor: #{$primaryColor_light};
@@ -59,6 +64,7 @@ $white_light: #FFFFFF;
     --greyscaleColor100: #{$greyscaleColor100_light};
     --greyscaleColor50: #{$greyscaleColor50_light};
     --white: #{$white_light};
+    --bottomNavigationBg: #{$bottomNavigationBg_light};
 }
 
 @mixin darken() {
@@ -79,7 +85,8 @@ $white_light: #FFFFFF;
     --greyscaleColor400: #{$greyscaleColor400_light};
     --greyscaleColor300: #{$greyscaleColor300_light};
     --greyscaleColor200: #{$greyscaleColor200_light};
-    --greyscaleColor100: #{$greyscaleColor100_light};
+    --greyscaleColor100: #{$greyscaleColor100_dark};
     --greyscaleColor50: #{$greyscaleColor50_light};
     --white: #{$white_light};
+    --bottomNavigationBg: #{$bottomNavigationBg_dark};
 }
