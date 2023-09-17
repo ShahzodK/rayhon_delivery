@@ -12,7 +12,7 @@ import { IUser } from '../models/user.model';
 })
 export class AuthService {
 
-  public isFirstVisit = localStorage.getItem('isFirstVisit') == 'true' ? true : false;
+  public isFirstVisit = localStorage.getItem('isFirstVisit') == null ? true : false;
 
   public setFirstVisit(boolean: boolean) {
     this.isFirstVisit = boolean;

@@ -8,7 +8,7 @@
     box-shadow: none !important;
 }
 .profile {
-    background: var(--foodCardBg);
+    background: var(--mainBg);
     &_content {
         display: flex;
         flex-direction: column;
@@ -60,6 +60,8 @@
         }
         input, .input_datepicker {
             width: 100%;
+            background: var(--mainBg);
+            color: var(--searchTextColor);
         }
         .input_datepicker {
             position: relative;

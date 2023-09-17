@@ -1,9 +1,10 @@
 .location {
     min-height: 100vh;
+    background: var(--mainBg);
     &_back {
         display: flex;
         justify-content: flex-start;
-        margin-top: 10px;
+        padding-top: 10px;
         margin-bottom: 20px;
         width: 100%;
         h4 {
@@ -17,6 +18,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        h4 {
+            color: var(--greyscaleColor900);
+        }
         .choose-location, .location-name {
             width: 100%;
             position: relative;
@@ -31,6 +35,8 @@
                 font-size: 12px;
                 width: 100%;
                 padding-right: 30px;
+                background: var(--mainBg);
+                color: var(--searchTextColor);
             }
         }
         .choose-location {
