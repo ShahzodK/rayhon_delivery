@@ -1,7 +1,7 @@
 <div class="profile-language" *ngIf="(selectUserData$ | async) as user">
     <div class="container">
         <div class="profile-language_header">
-            <img src="../../../../assets/icons/arrow-left.svg" alt="back" (click)="location.back()">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
             <h4>{{"Profile.language-page.title" | translate}}</h4>
         </div>
         <ul>

@@ -1,7 +1,9 @@
 .profile-language {
+    background: var(--bottomNavigationBg);
+    height: 100vh;
     &_header {
         display: flex;
-        margin-top: 10px;
+        padding-top: 10px;
         h4 {
             color: var(--greyscaleColor900);
             margin-left: 16px;
@@ -22,6 +24,9 @@
     &_item {
         display: flex;
         justify-content: space-between;
+        &_content {
+            color: var(--greyscaleColor900);
+        }
         .address_state {
             display: flex;
             align-items: center;

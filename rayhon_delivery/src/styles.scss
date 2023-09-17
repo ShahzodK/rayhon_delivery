@@ -19,6 +19,17 @@ body {
 
 body.dark {
     @include darken();
+    .profile-settings_item {
+        img {
+            filter: invert(1);
+        }
+    }
+    .arrow, .notifications_img  {
+        filter: invert(1);
+    }
+    input {
+        border: 1px solid var(--greyscaleColor200);
+    }
   }
 body.light {
     @include lighten();
@@ -51,6 +62,7 @@ button:not(.mat-calendar button) {
     padding: 18px 16px;
     border: none;
     border-radius: 100px;
+    cursor: pointer;
     &:disabled {
         background:var(--disabledColor);
         box-shadow: none;

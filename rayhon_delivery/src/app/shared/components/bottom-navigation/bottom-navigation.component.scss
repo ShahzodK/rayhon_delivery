@@ -1,8 +1,9 @@
 .bottom-navigation {
     position: fixed;
     bottom: 0;
-    background: var(--white);
+    background: var(--bottomNavigationBg);
     width: 100vw;
+    z-index: 1000;
     &_content {
         ul {
             display: flex;
@@ -14,6 +15,7 @@
         li {
             display: flex;
             flex-direction: column;
+            cursor: pointer;
             img {
                 width: 24px;
                 height: 24px;

@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="home-page_header_notifications">
-                        <img src="../../../../assets/icons/notification.svg" alt="notifications">
+                        <img src="../../../../assets/icons/notification.svg" alt="notifications" class="notifications_img">
                     </div>
                 </div>
                 <div class="home-page_search">
@@ -56,18 +56,121 @@
 
             <div class="home-page_offers" *ngIf="(selectOffers$ | async) as offers; else offersName">
                 <div class="container">
-                    <div class="home-page_offers_header">
+                    <div class="home-page_offers_header home-page_header">
                         <h5>{{offers.name}}</h5>
-                        <span class="home-page_offers_showAll" routerLink="/home/special-offers">{{"Home.all" | translate}}</span>
+                        <span class="home-page_showAll" routerLink="/home/special-offers">{{"Home.all" | translate}}</span>
                     </div>
                 </div>
                 <div class="home-page_offers_content">
-                    <owl-carousel-o [options]="customOptions" #owlSlide>
-                        <ng-template carouselSlide *ngFor="let offer of offers.items">
-                            <div class="home-page_offers_carousel">
-                                <img src="../../../../assets/icons/offer-example.png" [alt]="offer.name"  [routerLink]="'/home/special-offers/' + offer.id">
-                            </div>
-                        </ng-template>
+                    <owl-carousel-o [options]="offersCarouselOptions" #owlSlide>
+                        <ng-container *ngFor="let offer of offers.items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_offers_carousel">
+                                    <img src="../../../../assets/icons/offer-example.png" [alt]="offer.name"  [routerLink]="'/home/special-offers/' + offer.id">
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                </div>
+            </div>
+            <div class="home-page_popular" *ngIf="(selectPopular$ | async) as popularMeals; else offersName">
+                <div class="container">
+                    <div class="home-page_popular_header home-page_header">
+                        <h5>{{popularMeals[0].name}}</h5>
+                        <span class="home-page_showAll">{{"Home.all" | translate}}</span>
+                    </div>
+                </div>
+                <div class="home-page_popular_content">
+                    <owl-carousel-o [options]="popularCarouselOptions" #owlSlide>
+                        <ng-container *ngFor="let popular of popularMeals[0].items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_popular_item">
+                                    <span class="home-page_popular_item_discount" *ngIf="popular.has_discount">{{popular.discount.value}}</span>
+                                    <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
+                                    <h5>{{popular.name}}</h5>
+                                    <div class="home-page_popular_item_time">
+                                        <p>
+                                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                            <span>20 min</span>
+                                        </p>
+                                        <p>
+                                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                            <span>20 min</span>
+                                        </p>
+                                    </div>
+                                    <div class="home-page_popular_item_footer">
+                                        <h5>{{popular.price}} so'm</h5>
+                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngFor="let popular of popularMeals[0].items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_popular_item">
+                                    <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
+                                    <h5>{{popular.name}}</h5>
+                                    <div class="home-page_popular_item_time">
+                                        <p>
+                                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                            <span>20 min</span>
+                                        </p>
+                                        <p>
+                                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                            <span>20 min</span>
+                                        </p>
+                                    </div>
+                                    <div class="home-page_popular_item_footer">
+                                        <h5>{{popular.price}} so'm</h5>
+                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngFor="let popular of popularMeals[0].items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_popular_item">
+                                    <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
+                                    <h5>{{popular.name}}</h5>
+                                    <div class="home-page_popular_item_time">
+                                        <p>
+                                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                            <span>20 min</span>
+                                        </p>
+                                        <p>
+                                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                            <span>20 min</span>
+                                        </p>
+                                    </div>
+                                    <div class="home-page_popular_item_footer">
+                                        <h5>{{popular.price}} so'm</h5>
+                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>     
+                        <ng-container *ngFor="let popular of popularMeals[0].items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_popular_item">
+                                    <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
+                                    <h5>{{popular.name}}</h5>
+                                    <div class="home-page_popular_item_time">
+                                        <p>
+                                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                            <span>20 min</span>
+                                        </p>
+                                        <p>
+                                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                            <span>20 min</span>
+                                        </p>
+                                    </div>
+                                    <div class="home-page_popular_item_footer">
+                                        <h5>{{popular.price}} so'm</h5>
+                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>     
                     </owl-carousel-o>
                 </div>
             </div>

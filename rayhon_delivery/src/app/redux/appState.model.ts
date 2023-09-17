@@ -34,6 +34,6 @@ export interface IAppState {
     UIElements: {
         category: ICategory,
         offer: IOffer,
-        popular: IPopularMeal
+        popular: IPopularMeal[]
     }
 }

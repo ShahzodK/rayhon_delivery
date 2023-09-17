@@ -1,4 +1,7 @@
 input {
+    color: var(--searchTextColor);
+    font-size: 14px;  
+    font-weight: 600;
     background: var(--greyscaleColor100) url('../../../../assets/icons/search.svg') no-repeat 20px;
     width: 100%;
     border-radius: 16px;

@@ -27,3 +27,8 @@ export const selectOffers = createSelector(
     selectAppState,
     (state) => state.UIElements.offer
 )
+
+export const selectPopular = createSelector(
+    selectAppState,
+    (state) => state.UIElements.popular
+)

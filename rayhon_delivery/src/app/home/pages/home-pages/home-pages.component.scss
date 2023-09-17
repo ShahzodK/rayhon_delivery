@@ -1,18 +1,21 @@
-::ng-deep .owl-item {
-    width: initial !important;
+::ng-deep .owl-stage {
+    padding-left: 30px !important
 }
 
 .home-page {
     padding-top: 16px;
+    padding-bottom: 150px;
+    background: var(--mainBg);
     &_header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-            .user-image {
-                padding: 0;
-                width: 48px;
-                border-radius: 100px;
-            }
+        .user-image {
+            padding: 0;
+            width: 48px;
+            border-radius: 100px;
+            cursor: pointer;
+        }
         
         &_location {
             p {
@@ -23,6 +26,7 @@
             &_name {
                 display: flex;
                 align-items: center;
+                cursor: pointer;
                 span {
                     font-size: 18px;
                     font-weight: 700;
@@ -40,21 +44,111 @@
             border-radius: 100px;
         }
     }
+    &_showAll {
+        color: var(--primaryColor);
+        font-weight: 700;
+        cursor: pointer;
+    }
     &_offers {
         &_header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        &_showAll {
-            color: var(--primaryColor);
-            font-weight: 700;
+            h5 {
+                color: var(--greyscaleColor900)
+            }
         }
         &_carousel {
             display: flex;
             img {
                 margin-left: 12px;
-                width: 90vw;
+            }
+        }
+    }
+    &_popular {
+        &_header {
+            h5 {
+                color: var(--greyscaleColor900)
+            }
+        }
+        &_item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            // margin-left: 12px;
+            padding: 14px;
+            border-radius: 28px;
+            background: var(--mainBg);
+            box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+            &_discount {
+                position: absolute;
+                top: 26px;
+                left: 26px;
+                font-size: 10px;
+                font-weight: 600;
+                color: var(--white);
+                background: var(--primaryColor);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                padding: 6px 10px;
+                border-radius: 6px;
+            }
+            h5 {
+                margin: 0;
+                margin-top: 12px;
+                color: var(--greyscaleColor900);
+            }
+            &_img {
+                width: 80vw;
+            }
+            &_time {
+                display: flex;
+                align-items: center;
+                p {
+                    display: flex;
+                    align-items: center;
+                    color: var(--greyscaleColor700);
+                    // padding-right: 5px;
+                    position: relative;
+                    &:first-of-type:after {
+                        background: #616161;
+                        content: "";
+                        height: 50%;
+                        width: 1px;
+                        position: absolute;
+                        right: 0;
+                        bottom: 3px;
+                    }
+                    span {
+                        &:first-of-type {
+                            padding-right: 5px;
+                            padding-left: 5px;
+                        }
+                        &:last-of-type {
+                            padding-right: 5px;
+                            padding-left: 5px;
+                        }
+                    }
+                    &:last-of-type {
+                        padding-left: 5px;
+                        padding-right: 0;
+                    }
+                }
+                img {
+                    width: 16px;
+                }
+            }
+            &_footer {
+                display: flex;
+                h5 {
+                    color: var(--primaryColor);
+                    padding-right: 8px;
+                    margin: 0;
+                    border-right: 1px solid var(--greyscaleColor700)
+                }
+                img {
+                    padding-left: 8px;
+                    width: 32px;
+                }
             }
         }
     }
