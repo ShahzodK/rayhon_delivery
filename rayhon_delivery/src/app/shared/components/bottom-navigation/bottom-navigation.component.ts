@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { CommonUrl } from '../../consts/commonUrl';
 
 @Component({
   selector: 'app-bottom-navigation',

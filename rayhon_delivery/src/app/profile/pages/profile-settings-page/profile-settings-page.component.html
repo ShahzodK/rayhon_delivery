@@ -89,7 +89,7 @@
                         <input type="checkbox" id="modeToggle" (click)="modeToggleService.toggleMode()" [checked]="modeToggleService.get() == 'dark' ? true : false"><label for="modeToggle" class="modeToggle ios"></label>
                     </div>
                 </li>
-                <li>
+                <li routerLink="/profile/support">
                     <div class="profile-settings_item">
                         <img src="../../../../assets/icons/support.svg" alt="icon">
                         <span>{{"Profile.support" | translate}}</span>
