@@ -59,6 +59,16 @@
         "language-page": {
             "title": "Язык"
         },
+        "support-page": {
+            "title": "Служба поддержки",
+            "contact-with-us": "Связатся с нами",
+            "chips": {
+                "general": "Главное",
+                "account": "Аккаунт",
+                "service": "Сервис",
+                "payment": "Оплата"
+            }
+        },
         "exit-modal": {
             "title": "Выйти",
             "content": "Вы действительно хотите выйти?",

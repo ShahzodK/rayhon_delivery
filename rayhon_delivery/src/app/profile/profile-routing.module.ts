@@ -6,6 +6,7 @@ import { ProfileSettingsPageComponent } from './pages/profile-settings-page/prof
 import { ProfileAddressPageComponent } from './pages/profile-address-page/profile-address-page.component';
 import { ProfileLanguagePageComponent } from './pages/profile-language-page/profile-language-page.component';
 import { UpdateLocationPageComponent } from './pages/update-location-page/update-location-page.component';
+import { ProfileSupportPageComponent } from './pages/profile-support-page/profile-support-page.component';
 
 const routes: Routes = [
   { path: '', component: ProfilePageComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'settings', component: ProfileSettingsPageComponent },
   { path: 'address', component: ProfileAddressPageComponent },
   { path: 'language', component: ProfileLanguagePageComponent },
-  { path: 'location/:id', component: UpdateLocationPageComponent }
+  { path: 'location/:id', component: UpdateLocationPageComponent },
+  { path: 'support', component: ProfileSupportPageComponent },
 ];
 
 @NgModule({

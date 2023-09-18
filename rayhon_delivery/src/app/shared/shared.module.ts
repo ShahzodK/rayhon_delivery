@@ -10,15 +10,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SharedModalComponent } from './components/shared-modal/shared-modal.component';
 import { BottomNavigationComponent } from './components/bottom-navigation/bottom-navigation.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     SharedModalComponent,
-    BottomNavigationComponent
+    BottomNavigationComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -41,11 +46,15 @@ import { BottomNavigationComponent } from './components/bottom-navigation/bottom
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatTabsModule,
     MatButtonModule,
+    MatChipsModule,
+    MatExpansionModule,
     CarouselModule,
     NgxSkeletonLoaderModule,
     SharedModalComponent,
-    BottomNavigationComponent
+    BottomNavigationComponent,
+    SearchComponent
   ]
 })
 export class SharedModule { }
