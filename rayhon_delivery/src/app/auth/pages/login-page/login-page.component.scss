@@ -1,4 +1,5 @@
 .auth {
+    background: var(--mainBg);
     &_content {
         display: flex;
         padding: 16px 0 48px 0;
@@ -12,10 +13,20 @@
             width: 290px;
         }
     }
+    &_title {
+        h3 {
+            color: var(--searchTextColor)
+        }
+    }
     &_form {
         display: flex;
         flex-direction: column;
         width: 100%;
+        input {
+            color: var(--searchTextColor);
+            background: var(--mainBg);
+            border: 1px solid var(--greyscaleColor200);
+        }
         button {
             font-weight: 700;
             margin-top: 24px;
