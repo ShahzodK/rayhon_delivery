@@ -59,7 +59,7 @@
 }
 
 ::ng-deep .mat-expansion-panel-header {
-    background: var(--mainBg) !important;
+    background: var(--greyscaleColor50) !important;
 }
 
 .profile-support {
@@ -104,7 +104,7 @@
             margin-top: 24px;
         }
         .accordion-item {
-            background: var(--mainBg);
+            background: var(--greyscaleColor50);
             box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
             border-radius: 20px;
             h6 {

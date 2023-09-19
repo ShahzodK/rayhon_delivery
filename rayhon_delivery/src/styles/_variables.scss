@@ -44,6 +44,7 @@ $greyscaleColor100_dark: #1F222A;
 
 
 $greyscaleColor50_light: #FAFAFA;
+$greyscaleColor50_dark: #1F222A;
 
 $white_light: #FFFFFF;
 
@@ -54,7 +55,7 @@ $searchTextColor_light: #212121;
 $searchTextColor_dark: #FFFFFF;
 
 $mainBg_light: #FFFFFF;
-$mainBg_dark: #1F222A;
+$mainBg_dark: #181A20;
 
 @mixin lighten() {
     --primaryColor: #{$primaryColor_light};
@@ -103,7 +104,7 @@ $mainBg_dark: #1F222A;
     --greyscaleColor300: #{$greyscaleColor300_light};
     --greyscaleColor200: #{$greyscaleColor200_dark};
     --greyscaleColor100: #{$greyscaleColor100_dark};
-    --greyscaleColor50: #{$greyscaleColor50_light};
+    --greyscaleColor50: #{$greyscaleColor50_dark};
     --white: #{$white_light};
     --bottomNavigationBg: #{$bottomNavigationBg_dark};
     --searchTextColor: #{$searchTextColor_dark};

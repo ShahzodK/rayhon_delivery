@@ -58,9 +58,11 @@
             bottom: 20px;
             right: 20px;
         }
+        input {
+            background: var(--greyscaleColor50);
+        }
         input, .input_datepicker {
             width: 100%;
-            background: var(--mainBg);
             color: var(--searchTextColor);
         }
         .input_datepicker {
