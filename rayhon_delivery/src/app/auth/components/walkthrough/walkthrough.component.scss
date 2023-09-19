@@ -12,6 +12,7 @@
 
 
 .walkthrough {
+    background: var(--mainBg);
     .owl-dots {
         display: none;
     }
@@ -26,6 +27,7 @@
     p {
         font-size: 18px;
         font-weight: 500;
+        color: var(--searchTextColor);
     }
     img {
         width: 360px;

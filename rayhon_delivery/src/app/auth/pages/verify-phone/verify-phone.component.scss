@@ -1,4 +1,5 @@
 .verify_phone {
+    background: var(--mainBg);
     &_content {
         display: flex;
         flex-direction: column;
@@ -42,6 +43,7 @@
                 font-size: 20px;
                 font-weight: 700;
                 text-align: center;
+                background: var(--mainBg);
                 color: var(--greyscaleColor900);
                 padding: 10px 14px;
                 border-radius: 16px;
@@ -69,6 +71,7 @@
     &_resend {
         margin-top: 60px;
         margin-bottom: 83px;
+        color: var(--greyscaleColor900);
         span {
             color: var(--primaryColor);
         }
