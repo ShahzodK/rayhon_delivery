@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { ProfileService } from '../../services/profile.service';
 import { fetchUser } from 'src/app/redux/actions/auth.actions';
-import { HomeService } from 'src/app/home/services/home.service';
+import { HomeService } from 'src/app/home/services/home/home.service';
 
 @Component({
   selector: 'app-profile-language-page',

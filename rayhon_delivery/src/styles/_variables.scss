@@ -57,6 +57,9 @@ $searchTextColor_dark: #FFFFFF;
 $mainBg_light: #FFFFFF;
 $mainBg_dark: #181A20;
 
+$blockBg_light: #FFFFFF;
+$blockBg_dark: #1F222A;
+
 @mixin lighten() {
     --primaryColor: #{$primaryColor_light};
     --secondaryColor: #{$secondaryColor_light};
@@ -82,6 +85,7 @@ $mainBg_dark: #181A20;
     --bottomNavigationBg: #{$bottomNavigationBg_light};
     --searchTextColor: #{$searchTextColor_light};
     --mainBg: #{$mainBg_light};
+    --blockBg: #{$blockBg_light}
 }
 
 @mixin darken() {
@@ -109,4 +113,5 @@ $mainBg_dark: #181A20;
     --bottomNavigationBg: #{$bottomNavigationBg_dark};
     --searchTextColor: #{$searchTextColor_dark};
     --mainBg: #{$mainBg_dark};
+    --blockBg: #{$blockBg_dark}
 }
