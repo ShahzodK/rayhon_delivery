@@ -85,7 +85,7 @@ $blockBg_dark: #1F222A;
     --bottomNavigationBg: #{$bottomNavigationBg_light};
     --searchTextColor: #{$searchTextColor_light};
     --mainBg: #{$mainBg_light};
-    --blockBg: #{$blockBg_light}
+    --blockBg: #{$blockBg_light};
 }
 
 @mixin darken() {
@@ -113,5 +113,5 @@ $blockBg_dark: #1F222A;
     --bottomNavigationBg: #{$bottomNavigationBg_dark};
     --searchTextColor: #{$searchTextColor_dark};
     --mainBg: #{$mainBg_dark};
-    --blockBg: #{$blockBg_dark}
+    --blockBg: #{$blockBg_dark};
 }

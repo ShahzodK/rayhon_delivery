@@ -126,5 +126,14 @@
         "orders": "Заказы",
         "cart": "Корзина",
         "profile": "Профиль"
+    },
+    "Orders": {
+        "driver": "Курьер",
+        "rating": "Рейтинг",
+        "orders": "Заказа",
+        "experience": "Опыт",
+        "member-since": "Курьер с",
+        "transport-model": "Модель транспорта",
+        "plate-number": "Номер транспорта"
     }
 }
