@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
 import { chooseAddress } from 'src/app/redux/actions/address.actions';
 import { selectAddresses } from 'src/app/redux/selectors/app.selectors';
-import { HomeService } from '../../services/home.service';
+import { HomeService } from '../../services/home/home.service';
 
 @Component({
   selector: 'app-deliver-to',

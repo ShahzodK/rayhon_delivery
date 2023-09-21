@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectAddresses } from 'src/app/redux/selectors/app.selectors';
-import { HomeService } from 'src/app/home/services/home.service';
+import { HomeService } from 'src/app/home/services/home/home.service';
 import { filter, pairwise } from 'rxjs';
 import { Router, RoutesRecognized } from '@angular/router';
 

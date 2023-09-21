@@ -7,7 +7,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 import { IUser } from "src/app/auth/models/user.model";
 import { fetchAddresses } from "../actions/address.actions";
 import { CommonKey } from "src/app/shared/consts/commonKey";
-import { HomeService } from "src/app/home/services/home.service";
+import { HomeService } from "src/app/home/services/home/home.service";
 
 
 @Injectable()

@@ -5,7 +5,7 @@ import * as ProfileActions from '../actions/address.actions';
 import { ProfileService } from "src/app/profile/services/profile.service";
 import { IAddresses } from "src/app/profile/models/addresses.model";
 import { IAddress } from "src/app/profile/models/address.model";
-import { HomeService } from "src/app/home/services/home.service";
+import { HomeService } from "src/app/home/services/home/home.service";
 import { Store } from "@ngrx/store";
 
 

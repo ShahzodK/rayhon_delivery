@@ -1,0 +1,71 @@
+<div class="filter">
+    <div class="container">
+        <div class="filter_header">
+            <span class="filter_close" (click)="location.back()"></span>
+            <h4>{{"Home.search-page.filter" | translate}}</h4>
+        </div>
+        <div class="filter_content">
+            <mat-tab-group>
+                <mat-tab [label]="'Home.search-page.sort' | translate">
+                    <div class="filter_content_block">
+                        <div class="filter_content_block_header">
+                            <h5>{{"Home.search-page.sort-by" | translate}}</h5>
+                        </div>
+                        <button class="filter_content_block_action_btn" (click)="filterService.sortType = 'popular'">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'popular'"></span>
+                            </div>
+                            <span>{{"Home.search-page.popularity" | translate}}</span>
+                        </button>
+                        <button class="filter_content_block_action_btn" (click)="filterService.sortType = 'review'">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'review'"></span>
+                            </div>
+                            <span>{{"Home.search-page.review" | translate}}</span>
+                        </button>
+                        <button class="filter_content_block_action_btn" (click)="filterService.sortType = 'price'">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'price'"></span>
+                            </div>
+                            <span>{{"Home.search-page.price" | translate}}</span>
+                        </button>
+                    </div>
+                    <div class="filter_content_block">
+                        <div class="filter_content_block_header">
+                            <h5>{{"Home.search-page.price" | translate}}</h5>
+                        </div>
+                        <button class="filter_content_block_action_btn" (click)="filterService.maxPrice = 0">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'popular'"></span>
+                            </div>
+                            <span>{{"Home.search-page.any" | translate}}</span>
+                        </button>
+                        <button class="filter_content_block_action_btn" (click)="filterService.maxPrice = 20000">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'popular'"></span>
+                            </div>
+                            <span>{{"Home.search-page.up-to-20000" | translate}}</span>
+                        </button>
+                        <button class="filter_content_block_action_btn" (click)="filterService.maxPrice = 40000">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'review'"></span>
+                            </div>
+                            <span>{{"Home.search-page.up-to-40000" | translate}}</span>
+                        </button>
+                        <button class="filter_content_block_action_btn" (click)="filterService.maxPrice = 80000">
+                            <div class="sort_type">
+                                <span *ngIf="filterService.sortType == 'price'"></span>
+                            </div>
+                            <span>{{"Home.search-page.up-to-80000" | translate}}</span>
+                        </button>
+                    </div>
+                    <div class="filter_content_actions">
+                        <button class="filter_content_action_btn filter_content_cancel_btn" (click)="location.back()">{{"Home.search-page.cancel" | translate}}</button>
+                        <button class="filter_content_action_btn filter_content_apply_btn">{{"Home.search-page.apply" | translate}}</button>
+                    </div>
+                </mat-tab>
+                <mat-tab [label]="'Home.search-page.price' | translate"></mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

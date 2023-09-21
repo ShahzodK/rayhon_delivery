@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/auth/models/user.model';
 import { CommonKey } from 'src/app/shared/consts/commonKey';
 import { CommonUrl } from 'src/app/shared/consts/commonUrl';
-import { IUIElements } from '../models/uiElements.model';
+import { IUIElements } from '../../models/uiElements.model';
 
 @Injectable({
   providedIn: 'root'

@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home.routing.module';
 import { SpecialOffersComponent } from './components/special-offers/special-offers.component';
 import { SpecialOffersItemComponent } from './components/special-offers/special-offers-item/special-offers-item.component';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 
 
@@ -15,6 +17,8 @@ import { SpecialOffersItemComponent } from './components/special-offers/special-
     DeliverToComponent,
     SpecialOffersComponent,
     SpecialOffersItemComponent,
+    SearchPageComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
