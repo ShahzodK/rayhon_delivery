@@ -11,13 +11,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule} from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { StarRatingConfigService, StarRatingModule } from 'angular-star-rating';
 import { SharedModalComponent } from './components/shared-modal/shared-modal.component';
 import { BottomNavigationComponent } from './components/bottom-navigation/bottom-navigation.component';
 import { SearchComponent } from './components/search/search.component';
+import { CustomStarRatingService } from '../orders/services/custom-star-rating.service';
 
 @NgModule({
   declarations: [
@@ -50,11 +52,17 @@ import { SearchComponent } from './components/search/search.component';
     MatButtonModule,
     MatChipsModule,
     MatExpansionModule,
+    StarRatingModule,
     CarouselModule,
     NgxSkeletonLoaderModule,
     SharedModalComponent,
     BottomNavigationComponent,
     SearchComponent
+  ],
+  providers: [
+    {
+      provide:StarRatingConfigService, useClass: CustomStarRatingService
+    }
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,21 @@
+<section class="rate-driver">
+    <div class="container">
+        <div class="rate-driver_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+        </div>
+        <div class="rate-driver_content">
+            <img src="../../../../assets/icons/driver-img.png" alt="driver-photo">
+            <h3>{{"Orders.rate-driver.title" | translate}}</h3>
+            <span>{{"Orders.rate-driver.content" | translate}}</span>
+            <star-rating [starType]="'svg'" [rating]="0"></star-rating>
+            <div class="rate-driver_contact">
+                <span>{{"Orders.rate-driver.didnt-get-order" | translate}}</span>
+                <button routerLink="/profile/support">{{"Orders.rate-driver.contact-us" | translate}}</button>
+            </div>
+            <div class="rate-driver_actions">
+                <button class="rate-driver_cancel_btn" (click)="location.back()">{{"Orders.rate-driver.cancel-btn" | translate}}</button>
+                <button>{{"Orders.rate-driver.send-btn" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>

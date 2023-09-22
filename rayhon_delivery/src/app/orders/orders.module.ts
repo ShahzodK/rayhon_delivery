@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 import { DriverInformationPageComponent } from './pages/driver-information-page/driver-information-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { OrdersRoutingModule } from './orders-routing.module';
+import { RateDriverPageComponent } from './pages/rate-driver-page/rate-driver-page.component';
 
 
 
 @NgModule({
   declarations: [
-    DriverInformationPageComponent
+    DriverInformationPageComponent,
+    RateDriverPageComponent
   ],
   imports: [
     CommonModule,
     OrdersRoutingModule,
-    SharedModule
+    SharedModule,
+  ],
+  providers: [
   ]
 })
 export class OrdersModule { }
