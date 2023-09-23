@@ -10,7 +10,5 @@ import { CustomStarRatingService } from '../../services/custom-star-rating.servi
 export class RateDriverPageComponent {
 
 
-  constructor(
-              public location: Location,
-              private customStarRatingService: CustomStarRatingService) {}
+  constructor(public location: Location) {}
 }

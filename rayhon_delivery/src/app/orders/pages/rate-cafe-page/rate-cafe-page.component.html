@@ -1,0 +1,20 @@
+<section class="rate-cafe">
+    <div class="container">
+        <div class="rate-cafe_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+        </div>
+        <div class="rate-cafe_content">
+            <img src="../../../../assets/images/meal.png" alt="meal-photo">
+            <h3>{{"Orders.rate-cafe.title" | translate}}</h3>
+            <span>{{"Orders.rate-cafe.content" | translate}}</span>
+            <star-rating [starType]="'svg'" [rating]="0"></star-rating>
+            <div class="rate-cafe_review">
+                <textarea cols="10" rows="3" [placeholder]="'Orders.rate-cafe.write-review' | translate"></textarea>
+            </div>
+            <div class="rate-cafe_actions">
+                <button class="rate-cafe_cancel_btn" (click)="location.back()">{{"Orders.rate-cafe.cancel-btn" | translate}}</button>
+                <button>{{"Orders.rate-cafe.send-btn" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</section>
