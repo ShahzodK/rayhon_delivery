@@ -1,5 +1,6 @@
 .verify_phone {
     background: var(--mainBg);
+    min-height: 100vh;
     &_content {
         display: flex;
         flex-direction: column;
