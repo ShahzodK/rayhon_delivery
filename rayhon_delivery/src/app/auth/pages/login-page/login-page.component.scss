@@ -1,5 +1,6 @@
 .auth {
     background: var(--mainBg);
+    min-height: 100vh;
     &_content {
         display: flex;
         padding: 16px 0 48px 0;

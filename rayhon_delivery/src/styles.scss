@@ -2,6 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import '~css-star-rating/css/star-rating.css';
 @import "../src/styles/variables";
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&family=Urbanist:wght@400;500;600;700&display=swap');
@@ -159,6 +160,19 @@ input {
 
 .mat-expansion-panel-header {
     background: var(--greyscaleColor50) !important;
+}
+
+.star-container .star svg {
+    width: 40px;
+    height: 40px;
+}
+.star-container .star {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 24px;
+    &:last-of-type {
+        margin-right: 0;
+    }
 }
 
 

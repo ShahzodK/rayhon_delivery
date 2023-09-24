@@ -22,6 +22,11 @@ const routes: Routes = [
       .then((mod) => mod.HomeModule),
   },
   {
+    path: AppRoutePathes.ORDERS,
+    loadChildren: () => import('./orders/orders.module')
+      .then((mod) => mod.OrdersModule),
+  },
+  {
     path: '**',
     redirectTo: '/auth/login',
   }

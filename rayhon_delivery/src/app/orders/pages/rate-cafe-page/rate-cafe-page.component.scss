@@ -1,0 +1,55 @@
+.rate-cafe {
+    min-height: 100vh;
+    background: var(--mainBg);
+    padding-top: 16px;
+    &_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        h3 {
+            text-align: center;
+            color: var(--greyscaleColor900);
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        span {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--greyscaleColor700);
+            text-align: center;
+        }
+    }
+    &_review {
+        width: 100%;
+        padding-top: 32px;
+        padding-bottom: 62px;
+        border-top: 1px solid var(--greyscaleColor200);
+        border-bottom: 1px solid var(--greyscaleColor200);
+        textarea {
+            width: 100%;
+            color: var(--searchTextColor);
+            background: var(--greyscaleColor50);
+            padding: 20px;    
+            border: none;
+            border-radius: 16px;
+        }
+    }
+    &_actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 30px;
+        button {
+            font-weight: 700;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+    &_cancel_btn {
+        color: var(--primaryColor);
+        background: var(--secondaryBtnColor);
+        text-shadow: 4px 8px 24px rgba(27, 172, 75, 0.25);
+        box-shadow: none;
+    }
+}

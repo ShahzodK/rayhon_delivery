@@ -100,14 +100,22 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   public saveUploadedImg(event: any) {
     const f: File[] = (event.srcElement! || event!.target).files;
     this.uploadedImg = f[0];
-    const formData = new FormData();
-    formData.append('image', this.uploadedImg);
-    this.profileService.uploadProfileImage(formData).pipe(
-      takeUntil(this.unsubscribe$),
-    ).subscribe((data) => {
-      console.log(data);
-      this.store.dispatch(fetchUser())
-    })
+    const imageSize = this.uploadedImg.size / (1024 * 1024);
+    if(imageSize > 4.99) {
+      this.profileForm.controls.profileImg.setErrors({
+        tooBigImg: true
+      }); 
+    }
+    else {
+      const formData = new FormData();
+      formData.append('image', this.uploadedImg);
+      this.profileService.uploadProfileImage(formData).pipe(
+        takeUntil(this.unsubscribe$),
+      ).subscribe((data) => {
+        console.log(data);
+        this.store.dispatch(fetchUser())
+      })
+    }
   }
 
   ngOnDestroy(): void {

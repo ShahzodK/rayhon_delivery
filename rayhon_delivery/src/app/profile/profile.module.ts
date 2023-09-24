@@ -32,7 +32,7 @@ const mapConfig: YaConfig = {
     CommonModule,
     ProfileRoutingModule,
     SharedModule,
-    AngularYandexMapsModule.forRoot(mapConfig)
+    AngularYandexMapsModule.forRoot(mapConfig),
   ]
 })
 export class ProfileModule { }

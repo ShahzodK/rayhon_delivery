@@ -17,6 +17,9 @@
                         <span class="file-input-icon">
                             <img src="../../../../assets/icons/edit-profile.svg" alt="Upload">
                         </span>
+                        <div *ngIf="profileForm.get('profileImg')!.hasError('tooBigImg')" class="input_error">
+                            <span>{{'Profile.too-big-image' | translate}}</span>
+                        </div>
                     </label>
                     <img [src]="userData!.image || '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
                 </div>
