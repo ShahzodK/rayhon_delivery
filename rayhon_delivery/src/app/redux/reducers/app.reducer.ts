@@ -46,6 +46,17 @@ export const initialState: IAppState = {
             items: [],
             items_count: 0
         }]
+    },
+    notifications: {
+        generalNotifications: false,
+        sound: false,
+        vibration: false,
+        specialOffers: false,
+        promos: false,
+        payments: false,
+        updates: false,
+        services: false,
+        advices: false
     }
 }
 

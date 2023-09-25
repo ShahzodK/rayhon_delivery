@@ -32,3 +32,8 @@ export const selectPopular = createSelector(
     selectAppState,
     (state) => state.UIElements.popular
 )
+
+export const selectNotification = createSelector(
+    selectAppState,
+    (state) => state.notifications
+)

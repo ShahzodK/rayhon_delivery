@@ -11,6 +11,7 @@ import { ProfileLanguagePageComponent } from './pages/profile-language-page/prof
 import { ExitModalComponent } from './components/exit-modal/exit-modal.component';
 import { UpdateLocationPageComponent } from './pages/update-location-page/update-location-page.component';
 import { ProfileSupportPageComponent } from './pages/profile-support-page/profile-support-page.component';
+import { ProfileNotificationsPageComponent } from './pages/profile-notifications-page/profile-notifications-page.component';
 
 const mapConfig: YaConfig = {
   apikey: '275222c6-ec7c-4bf1-92a5-e0de7a7cc878',
@@ -27,6 +28,7 @@ const mapConfig: YaConfig = {
     ExitModalComponent,
     UpdateLocationPageComponent,
     ProfileSupportPageComponent,
+    ProfileNotificationsPageComponent,
   ],
   imports: [
     CommonModule,

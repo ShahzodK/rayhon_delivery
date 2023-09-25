@@ -1,12 +1,12 @@
 .profile-language {
     background: var(--bottomNavigationBg);
-    height: 100vh;
+    min-height: 100vh;
     &_header {
         display: flex;
+        gap: 16px;
         padding-top: 10px;
         h4 {
             color: var(--greyscaleColor900);
-            margin-left: 16px;
             margin-top: 0;
             margin-bottom: 0;
         }

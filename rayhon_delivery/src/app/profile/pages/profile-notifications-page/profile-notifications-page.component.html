@@ -1,0 +1,46 @@
+<section class="profile-notifications">
+    <div class="container">
+        <div class="profile-notifications_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{"Profile.notifications-page.title" | translate}}</h4>
+        </div>
+        <div class="profile-notifications_content">
+            <form class="profile-notifications_form" [formGroup]="notificationForm">
+                <ul>
+                    <li>
+                        <span>{{"Profile.notifications-page.general" | translate}}</span>
+                        <input type="checkbox" id="generalNotification" formControlName="generalNotification" (click)="updatePreferences()" #generalNotification><label for="generalNotification" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.sound" | translate}}</span>
+                        <input type="checkbox" id="sound" formControlName="sound" (click)="updatePreferences()" #sound><label for="sound" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.vibration" | translate}}</span>
+                        <input type="checkbox" id="vibration" formControlName="vibration" (click)="updatePreferences()" #vibration><label for="vibration" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.special-offers" | translate}}</span>
+                        <input type="checkbox" id="specialOffers" formControlName="specialOffers" (click)="updatePreferences()" #specialOffers><label for="specialOffers" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.payments" | translate}}</span>
+                        <input type="checkbox" id="payments" formControlName="payments" (click)="updatePreferences()" #payments><label for="payments" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.updates" | translate}}</span>
+                        <input type="checkbox" id="updates" formControlName="updates" (click)="updatePreferences()" #updates><label for="updates" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.service" | translate}}</span>
+                        <input type="checkbox" id="newServices" formControlName="newServices" (click)="updatePreferences()" #newServices><label for="newServices" class="notificationToggle ios"></label>
+                    </li>
+                    <li>
+                        <span>{{"Profile.notifications-page.advice" | translate}}</span>
+                        <input type="checkbox" id="newAdvices" formControlName="newAdvices" (click)="updatePreferences()" #newAdvices><label for="newAdvices" class="notificationToggle ios"></label>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</section>
