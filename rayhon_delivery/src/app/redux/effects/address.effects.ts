@@ -26,7 +26,6 @@ export class AddressEffects {
             ofType(ProfileActions.fetchAddresses),
             switchMap(() => this.profileService.getAddresses()),
             map((addresses: IAddresses) => {
-                console.log(addresses)
                 if(addresses.data) {
                     this.profileService.addressesCount = addresses.count;
                     let hasDefaultAddress = false;
@@ -57,7 +56,6 @@ export class AddressEffects {
             ofType(ProfileActions.chooseAddress),
             switchMap((payload) => this.profileService.updateAddress(payload)),
             map((address: IAddress) => {
-                console.log(address)
                 if(address.data) {
                     return ProfileActions.chooseAddressSuccess(address)
                 }

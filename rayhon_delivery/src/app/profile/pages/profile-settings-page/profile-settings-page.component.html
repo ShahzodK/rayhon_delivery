@@ -5,21 +5,26 @@
             <h4>{{"Profile.title" | translate}}</h4>
         </div>
         <div class="profile-settings_user_data">
-            <ng-template #userDataLoading>
+            <ng-container #userDataLoading *ngIf="profileImgLoaded == false">
                 <ngx-skeleton-loader count="1" appearance="circle" [theme]="{width: '70px', height: '70px'}"></ngx-skeleton-loader>
                 <div class="profile-settings_user_name">
                     <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30vw', display: 'block'}"></ngx-skeleton-loader>
                     <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '22vw'}"></ngx-skeleton-loader>
                 </div>
                 <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '25px'}"></ngx-skeleton-loader>
-            </ng-template>
-            <ng-container *ngIf="(selectUserData$ | async) as userData; else userDataLoading">
-                <img [src]="userData.image || '../../../../assets/icons/user-photo.svg'" alt="user-image" class="user-image">
-                <div class="profile-settings_user_name">
+            </ng-container>
+            <ng-container *ngIf="(selectUserData$ | async) as userData">
+                <img
+                    [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none'}"
+                    [src]="userData.image || '../../../../assets/icons/user-photo.svg'"
+                    alt="user-image"
+                    class="user-image"
+                    (load)="profileImgLoaded = true">
+                <div class="profile-settings_user_name" [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none'}">
                     <h5>{{userData.first_name + ' ' +  userData.last_name}}</h5>
                     <span>{{userData.phone}}</span>
                 </div>
-                <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/profile">
+                <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/profile" [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none'}">
             </ng-container>
         </div>
         <div class="profile-settings_additional">
