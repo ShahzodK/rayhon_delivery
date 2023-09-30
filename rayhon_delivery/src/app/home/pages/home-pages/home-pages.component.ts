@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -18,6 +18,16 @@ export class HomePagesComponent implements OnInit {
   public selectPopular$ = this.store.select(selectPopular)
 
   public contentLoaded = false;
+
+  public userImageLoaded = false;
+
+  public offersImageLoaded = false;
+
+  public popularImageLoaded = false;
+
+  public isSmallScreen = false;
+
+  public smallScreenBreakpoint = 768;
 
   constructor(
               private store: Store,
@@ -78,10 +88,10 @@ export class HomePagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+        this.isSmallScreen = window.innerWidth < this.smallScreenBreakpoint;
         this.store.dispatch(fetchUIElements());
         this.selectPopular$.subscribe((data) => {
           console.log(data);
         })
   }
-  
 }
