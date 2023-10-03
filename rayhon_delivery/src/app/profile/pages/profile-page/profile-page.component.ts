@@ -28,6 +28,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   public userAddresses$ = this.store.select(selectAddresses);
 
+  public isProfileButtonDisabled = false;
+
 
   constructor(
               private profileService: ProfileService,
@@ -61,6 +63,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     if(this.profileForm.valid) {
+      this.isProfileButtonDisabled = true;
       const name = this.profileForm.get('name')!.value!.split(' ');
       const profileValues = {
         first_name: name[0],
@@ -74,25 +77,38 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
             this.store.dispatch(fetchUser());
             return this.userAddresses$
           })
-        ).subscribe((data) => {
+        ).subscribe({
+          next: (data) => {
+          this.isProfileButtonDisabled = false;
           if(data.length > 0) {
             this.router.navigate(['/home'])
           }
           else {
             this.router.navigate(['/profile/location'])
           }        
-        })
+        },
+        error: (error) => {
+          this.isProfileButtonDisabled = false;
+          console.log(error)
+        }
+       })
       }
       else {
-        this.userAddresses$.subscribe((data) => {
-          console.log(data)
+        this.userAddresses$.subscribe({
+          next: (data) => {
+          this.isProfileButtonDisabled = false;
           if(data.length > 0) {
             this.router.navigate(['/home'])
           }
           else {
             this.router.navigate(['/profile/location'])
           }
-        })
+        },
+          error: (error) => {
+            this.isProfileButtonDisabled = false;
+            console.log(error)
+          }
+      })
       }
     }
   }
@@ -101,20 +117,29 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     const f: File[] = (event.srcElement! || event!.target).files;
     this.uploadedImg = f[0];
     const imageSize = this.uploadedImg.size / (1024 * 1024);
+    this.isProfileButtonDisabled = true;
     if(imageSize > 4.99) {
       this.profileForm.controls.profileImg.setErrors({
         tooBigImg: true
-      }); 
+      });
+      this.isProfileButtonDisabled = false; 
     }
     else {
       const formData = new FormData();
       formData.append('image', this.uploadedImg);
       this.profileService.uploadProfileImage(formData).pipe(
         takeUntil(this.unsubscribe$),
-      ).subscribe((data) => {
-        console.log(data);
-        this.store.dispatch(fetchUser())
-      })
+      ).subscribe({
+        next: (data) => {
+          this.isProfileButtonDisabled = false; 
+          this.store.dispatch(fetchUser());
+        },
+        error: (error) => {
+          console.log(error);
+          this.isProfileButtonDisabled = false;
+        }
+
+    })
     }
   }
 
