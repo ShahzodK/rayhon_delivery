@@ -18,6 +18,8 @@ export class LocationPageComponent implements OnInit {
 
   public errorMsg = '';
 
+  public isLocationButtonDisabled = false;
+
   constructor(
               private profileService: ProfileService,
               private store: Store,
@@ -43,15 +45,16 @@ export class LocationPageComponent implements OnInit {
       (this.profileService.latitude !== CommonKey.TASHKENT_LATITUDE_CENTER ||
       this.profileService.longitude !== CommonKey.TASHKENT_LONGITUDE_CENTER) &&
       this.profileService.latitude && this.profileService.longitude)) {
+      this.isLocationButtonDisabled = true;
       const profileValues = {
         name: this.locationForm.get('locationName')!.value!,
         is_default: this.profileService.addressesCount > 0 ? false : true,
         latitude: this.profileService.latitude,
         longitude: this.profileService.longitude
       }
-      this.profileService.createAddress(profileValues).subscribe((data) => {
-        console.log(data);
-        console.log(profileValues)
+      this.profileService.createAddress(profileValues).subscribe({
+        next: (data) => {
+        this.isLocationButtonDisabled = false;
         if(data.data) {
           console.log(data);
           this.store.dispatch(fetchAddresses());
@@ -65,7 +68,12 @@ export class LocationPageComponent implements OnInit {
           })
           this.errorMsg = data.error.message;
         }
-      })
+      },
+      error: (error) => {
+        this.isLocationButtonDisabled = false;
+        console.log(error);
+      }
+    })
     }
   }
 

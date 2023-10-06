@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnDestroy {
 
 
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
+  public isLoginButtonDisabled = false;
 
   constructor(
               public authService: AuthService,
@@ -34,13 +35,20 @@ export class LoginPageComponent implements OnDestroy {
         phone: '998' + this.authForm.value.phoneNum!,
         language: 'ru'
       }
+      this.isLoginButtonDisabled = true;
       this.authService.login(profileValues).pipe(
         takeUntil(this.unsubscribe$)
-      ).subscribe((data) => {
+      ).subscribe({
+        next: (data) => {
         console.log(data)
+        this.isLoginButtonDisabled = false;
         this.store.dispatch(saveLoginDataSuccess({phoneNum: '+' + profileValues.phone, otp_job_id: data.data!.otp_job_id}))
         this.router.navigate(['/auth/verify_num']);
-      })
+      },
+      error: (error) => {
+        this.isLoginButtonDisabled = false;
+        console.log(error)
+      }})
     }
   }
 

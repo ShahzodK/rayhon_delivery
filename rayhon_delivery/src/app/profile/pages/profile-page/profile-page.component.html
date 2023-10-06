@@ -31,7 +31,9 @@
                     </mat-datepicker>
                 </div>
             </form>
-            <div class="profile_save_btn"><button (click)="onSubmit()" [disabled]="!profileForm.valid">{{"Profile.btn" | translate}}</button>
+            <div class="profile_save_btn">
+                <button *ngIf="!isProfileButtonDisabled" (click)="onSubmit()" [disabled]="!profileForm.valid">{{"Profile.btn" | translate}}</button>
+                <button *ngIf="isProfileButtonDisabled" class="loading-spinner-button" style="width:35vw"></button>
             </div>
         </div>
     </div>
