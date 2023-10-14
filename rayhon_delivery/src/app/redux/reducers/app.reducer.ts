@@ -40,12 +40,17 @@ export const initialState: IAppState = {
             items: [],
             items_count: 0,
         },
-        popular: [{
+        populars: [{
             id: 0,
             name: '',
             items: [],
             items_count: 0
-        }]
+        }],
+        menu: {
+            categories: [],
+            items: [],
+            items_count: 0
+        }
     },
     notifications: {
         generalNotifications: false,

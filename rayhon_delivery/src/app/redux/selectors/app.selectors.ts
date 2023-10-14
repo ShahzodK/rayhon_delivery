@@ -30,7 +30,7 @@ export const selectOffers = createSelector(
 
 export const selectPopular = createSelector(
     selectAppState,
-    (state) => state.UIElements.popular
+    (state) => state.UIElements.populars
 )
 
 export const selectNotification = createSelector(

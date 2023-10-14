@@ -1,0 +1,28 @@
+<section class="payment">
+    <div class="container">
+        <div class="payment_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{"Payment.payment-methods.title" | translate}}</h4>
+        </div>
+        <div class="payment_content">
+            <div class="payment_options">
+                <ul>
+                    <li>
+                        <div class="payment_options_name">
+                            <img src="../../../../assets/icons/click-logo.svg" alt="click">
+                            <span>Click</span>
+                        </div>
+                        <button>{{"Payment.payment-methods.link" | translate}}</button>
+                    </li>
+                    <li>
+                        <div class="payment_options_name">
+                            <img src="../../../../assets/icons/payme-logo.svg" alt="click">
+                            <span>Payme</span>
+                        </div>
+                        <button>{{"Payment.payment-methods.link" | translate}}</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
