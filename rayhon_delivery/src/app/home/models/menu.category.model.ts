@@ -1,17 +1,19 @@
-export interface IPopularMeal {
-    id: number,
-    name: string,
+export interface IMenu {
+    categories: {
+        id: string,
+        name: string
+    }[],
     items: {
         id: string,
         name: string,
         description: string,
         price: number,
         image: string,
-        active: boolean,
+        active: boolean;
         start: string,
         finish: string,
         has_discount: boolean,
-        preparation_time: number
+        preparation_time: number,
         discount: {
             type: string,
             value: number

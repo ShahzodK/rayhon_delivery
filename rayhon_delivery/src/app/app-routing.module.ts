@@ -27,6 +27,11 @@ const routes: Routes = [
       .then((mod) => mod.OrdersModule),
   },
   {
+    path: AppRoutePathes.PAYMENT,
+    loadChildren: () => import('./payment/payment.module')
+      .then((mod) => mod.PaymentModule),
+  },
+  {
     path: '**',
     redirectTo: '/auth/login',
   }

@@ -47,7 +47,8 @@ export class LoginPageComponent implements OnDestroy {
       },
       error: (error) => {
         this.isLoginButtonDisabled = false;
-        console.log(error)
+        console.log(error);
+        console.log(profileValues)
       }})
     }
   }
