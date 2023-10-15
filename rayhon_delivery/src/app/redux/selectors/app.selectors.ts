@@ -33,7 +33,17 @@ export const selectPopular = createSelector(
     (state) => state.UIElements.populars
 )
 
+export const selectMenu = createSelector(
+    selectAppState,
+    (state) => state.UIElements.menu
+)
+
 export const selectNotification = createSelector(
     selectAppState,
     (state) => state.notifications
+)
+
+export const selectFavorites = createSelector(
+    selectAppState,
+    (state) => state.favorites
 )

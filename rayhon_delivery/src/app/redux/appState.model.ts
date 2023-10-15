@@ -1,7 +1,8 @@
 import { ICategory } from "../home/models/category.model"
-import { IMenu } from "../home/models/menu.category.model"
+import { IMenu } from "../home/models/menu.model"
 import { IOffer } from "../home/models/offer.model"
 import { IPopularMeal } from "../home/models/popularMeal.model"
+import { IFavorites } from "../profile/models/favorites.model"
 
 export interface IAppState {
     auth: {
@@ -48,5 +49,6 @@ export interface IAppState {
         updates: boolean,
         services: boolean,
         advices: boolean
-    }
+    },
+    favorites: Pick<IFavorites, "data"> 
 }

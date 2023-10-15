@@ -5,7 +5,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 @Injectable()
 
-export class notificationEffects {
+export class NotificationEffects {
     constructor(
                 private actions$: Actions
                ) {}

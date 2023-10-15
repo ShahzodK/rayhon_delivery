@@ -23,4 +23,22 @@ export class HomeService {
       })
     })
   }
+
+  public addToFavorites(id: string) {
+    return this.http.post(CommonUrl.MAIN_URL + CommonUrl.FAVORITE_URL + `?item_id=${id}`, id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public removeFromFavorites(id: string) {
+    return this.http.delete(CommonUrl.MAIN_URL + CommonUrl.FAVORITE_URL + `?item_id=${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
 }

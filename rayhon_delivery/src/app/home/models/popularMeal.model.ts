@@ -11,7 +11,8 @@ export interface IPopularMeal {
         start: string,
         finish: string,
         has_discount: boolean,
-        preparation_time: number
+        preparation_time: number,
+        is_favourite: boolean,
         discount: {
             type: string,
             value: number
