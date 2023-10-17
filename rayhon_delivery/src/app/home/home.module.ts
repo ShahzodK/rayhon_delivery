@@ -8,6 +8,7 @@ import { SpecialOffersComponent } from './components/special-offers/special-offe
 import { SpecialOffersItemComponent } from './components/special-offers/special-offers-item/special-offers-item.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.component';
 
 
 
@@ -18,7 +19,8 @@ import { FilterComponent } from './components/filter/filter.component';
     SpecialOffersComponent,
     SpecialOffersItemComponent,
     SearchPageComponent,
-    FilterComponent
+    FilterComponent,
+    FoodInfoPageComponent
   ],
   imports: [
     CommonModule,

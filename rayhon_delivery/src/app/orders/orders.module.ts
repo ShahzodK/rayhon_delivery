@@ -12,7 +12,7 @@ import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.com
   declarations: [
     DriverInformationPageComponent,
     RateDriverPageComponent,
-    RateCafePageComponent
+    RateCafePageComponent,
   ],
   imports: [
     CommonModule,

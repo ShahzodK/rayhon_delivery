@@ -1,0 +1,115 @@
+.food-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--mainBg);
+    color: var(--greyscaleColor900);
+    min-height: 100vh;
+    padding-bottom: 36px;
+    &_header {
+        height: 40vh;
+        background: url('../../../../assets/icons/food-info-example.png') no-repeat center;
+        background-size: cover;
+        padding-top: 24px;
+        img {
+            margin-left: 24px;
+        }
+    }
+    &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            textarea {
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                background: var(--greyscaleColor50);
+                color: var(--greyscaleColor900);
+                padding: 20px 20px;
+                border: none;
+                border-radius: 16px;
+            }
+        }
+        h3 {
+            margin: 0px;
+        }
+    }
+    &_description {
+        color: var(--greyscaleColor800);
+        font-weight: 500;
+        padding-top: 20px;
+        border-top: 1px solid var(--greyscaleColor200);
+    }
+    &_options {
+        h5 {
+            margin: 0
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--greyscaleColor200);
+            li {
+                display: flex;
+                justify-content: space-between;
+                span {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+        }
+        &_item_size {
+            display: flex;
+            gap: 16px;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: var(--blockBg);
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+    }
+    .option_state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border: 2.5px solid var(--primaryColor);
+        border-radius: 100px;
+        align-self: center;
+        span {
+            width: 12px;
+            height: 12px;
+            background: var(--primaryColor);
+            display: inline-block;
+            border-radius: 100px;            
+        }
+    }
+    &_amount {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        align-items: center;
+        button {
+            font-size: 22px;
+            color: var(--primaryColor);
+            background: transparent;
+            padding: 12px 18px;            
+            border: 1px solid var(--greyscaleColor300);
+            border-radius: 16px;
+            box-shadow: none;
+        }
+    }
+    &_submit-btn {
+        align-self: center;
+    }
+}

@@ -23,6 +23,13 @@ export interface IMenu {
                 type: string,
                 value: number
             },
+            variants?: {
+                id: string,
+                name: string,
+                price: number,
+                active: boolean,
+                preparation_time: number
+            }[],
             is_favourite: boolean
         }[]
     }[],

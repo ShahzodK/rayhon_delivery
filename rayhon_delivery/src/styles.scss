@@ -204,8 +204,11 @@ input {
     }
 }
 
-.home-page_menu_categories .owl-stage, .profile-support .owl-stage {
+.home-page_menu_categories_list .owl-stage, .profile-support .owl-stage {
     display: flex !important;
+}
+.home-page_menu_categories_list .owl-item {
+    width: initial !important;
 }
 
 .home-page {

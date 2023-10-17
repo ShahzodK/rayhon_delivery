@@ -262,32 +262,33 @@
                 </div>
                 <div class="home-page_menu_content">
                     <div class="home-page_menu_categories_list">
-                        <mat-chip-listbox [multiple]="false" [required]="true">
-                                <owl-carousel-o [options]="menuCategoriesCarouselOptions" #owlSlide>
-                                    <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                        <mat-chip-option>{{menu.name}}</mat-chip-option>
-                                    </ng-template>
-                                    <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                        <mat-chip-option>Лагман</mat-chip-option>
-                                    </ng-template>
-                                    <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                        <mat-chip-option>Первое блюдо</mat-chip-option>
-                                    </ng-template>
-                                    <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                        <mat-chip-option>Второе</mat-chip-option>
-                                    </ng-template>
-                                    <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                        <mat-chip-option>{{menu.name}}</mat-chip-option>
-                                    </ng-template>
+                            <owl-carousel-o [options]="menuCategoriesCarouselOptions" #owlSlide>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu(menu.name)">{{"Home.all" | translate}}</mat-chip-option>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu(menu.name)">{{menu.name}}</mat-chip-option>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu('Лагман')">Лагман</mat-chip-option>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu('Первое')">Первое</mat-chip-option>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu(menu.name)">Второе</mat-chip-option>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu(menu.name)">{{menu.name}}</mat-chip-option>
+                                </ng-template>
                             </owl-carousel-o>
-                        </mat-chip-listbox>
                         <div class="home-page_menu_list">
                             <div class="container">
                                 <div class="home-page_menu_category" *ngFor="let category of menu.category_items">
                                     <h5>
                                         {{category.name}}
                                     </h5>
-                                    <div class="home-page_menu_category_item" *ngFor="let item of category.items">
+                                    <div class="home-page_menu_category_item" *ngFor="let item of category.items" [routerLink]="'/home/menu/' + item.id">
                                         <img src="../../../../assets/icons/menu-example.png" alt="menu">
                                         <div class="home-page_menu_category_item_content">
                                             <h5>{{item.name}}</h5>

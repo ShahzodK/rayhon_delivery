@@ -1,11 +1,12 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { fetchUIElements, toggleFavorite } from 'src/app/redux/actions/home.actions';
 import { selectChosenAddress, selectMenu, selectOffers, selectPopular, selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
 
 @Component({
   selector: 'app-home-pages',
@@ -120,6 +121,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
     },
   }
 
+
   ngOnInit(): void {
         this.isSmallScreen = window.innerWidth < this.smallScreenBreakpoint;
         this.store.dispatch(fetchUIElements());
@@ -131,6 +133,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
   ngAfterViewChecked(): void {
     this.cdRef.detectChanges();
   }
+
 
   public toggleFavorite(state: boolean, id: string) {
     if(state == true) {
@@ -153,7 +156,10 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
       })
       this.store.dispatch(fetchUIElements())
     }
+  }
 
+  public sortMenu(name: string) {
+    console.log(name)
   }
 
   ngOnDestroy(): void {
