@@ -288,11 +288,11 @@
                                     <h5>
                                         {{category.name}}
                                     </h5>
-                                    <div class="home-page_menu_category_item" *ngFor="let item of category.items" [routerLink]="'/home/menu/' + item.id">
+                                    <div class="home-page_menu_category_item food-cart" *ngFor="let item of category.items" [routerLink]="'/home/menu/' + item.id">
                                         <img src="../../../../assets/icons/menu-example.png" alt="menu">
-                                        <div class="home-page_menu_category_item_content">
+                                        <div class="home-page_menu_category_item_content food-cart_content">
                                             <h5>{{item.name}}</h5>
-                                            <div class="home-page_menu_category_item_time">
+                                            <div class="home-page_menu_category_item_time food-cart_time">
                                                 <p>
                                                     <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
                                                     <span *ngIf="item.preparation_time != 0">{{item.preparation_time}}</span>
@@ -303,7 +303,7 @@
                                                     <span>20 min</span>
                                                 </p>
                                             </div>
-                                            <div class="home-page_menu_category_item_footer">
+                                            <div class="home-page_menu_category_item_footer food-cart_footer">
                                                 <h5>{{item.price}} so'm</h5>
                                                 <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id)">
                                                 <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id)">

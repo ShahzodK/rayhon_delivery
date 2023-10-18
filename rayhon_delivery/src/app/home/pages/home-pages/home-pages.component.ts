@@ -162,8 +162,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
     console.log(name)
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next(true);
-    this.unsubscribe$.unsubscribe();
-  }
+    ngOnDestroy(): void {
+      this.unsubscribe$.next(true);
+      this.unsubscribe$.unsubscribe();
+    }
 }

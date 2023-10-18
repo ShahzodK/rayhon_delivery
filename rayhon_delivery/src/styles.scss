@@ -204,10 +204,10 @@ input {
     }
 }
 
-.home-page_menu_categories_list .owl-stage, .profile-support .owl-stage {
+.home-page_menu_categories_list .owl-stage, .profile-support .owl-stage, .search-page_results_options .owl-stage {
     display: flex !important;
 }
-.home-page_menu_categories_list .owl-item {
+.home-page_menu_categories_list .owl-item, .search-page_results_options .owl-item {
     width: initial !important;
 }
 
@@ -287,6 +287,84 @@ input {
             }
         }
     }
+}
+
+.food-cart {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px;
+    background: var(--blockBg);
+    border-radius: 28px;
+    box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+    &_content {
+        display: flex;
+        flex-direction: column;
+        h5 {
+            margin: 0;
+            color: var(--greyscaleColor900);
+        }
+    }
+    &_time {
+        display: flex;
+        p {
+            display: flex;
+            align-items: center;
+            color: var(--greyscaleColor700);
+            // padding-right: 5px;
+            position: relative;
+            &:first-of-type:after {
+                background: #616161;
+                content: "";
+                height: 50%;
+                width: 1px;
+                position: absolute;
+                right: 0;
+                bottom: 3px;
+            }
+            span {
+                &:first-of-type {
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+                &:last-of-type {
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+            }
+            &:last-of-type {
+                padding-left: 5px;
+                padding-right: 0;
+            }
+        }
+        img {
+            width: 16px;
+        }
+    }
+    &_footer {
+        display: flex;
+        h5 {
+            color: var(--primaryColor);
+            padding-right: 8px;
+            margin: 0;
+            border-right: 1px solid var(--greyscaleColor700)
+        }
+        img {
+            padding-left: 8px;
+            width: 32px;
+        }
+    }
+}
+
+.search-input {
+    color: var(--searchTextColor);
+    font-size: 14px;  
+    font-weight: 600;
+    background: url('../src/assets/icons/search.svg') no-repeat 20px;
+    width: 100%;
+    border-radius: 16px;
+    padding-left: 45px;
+    padding-right: 20px;
 }
 
 

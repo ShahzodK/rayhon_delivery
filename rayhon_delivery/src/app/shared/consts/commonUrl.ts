@@ -8,5 +8,6 @@ export let CommonUrl = {
     UI_ELEMENTS_URL: 'ui-elements',
     FAVORITE_URL: 'favourites',
     ITEMS_URL: 'items',
-    CART_URL: 'cart'
+    CART_URL: 'cart',
+    SEARCH_URL: 'searches'
 }
