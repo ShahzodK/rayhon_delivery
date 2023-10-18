@@ -1,0 +1,39 @@
+<section class="food-info">
+    <div class="food-info_header">
+        <img src="../../../../assets/icons/arrow-left-white.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+    </div>
+    <div class="container">
+        <div class="food-info_content">
+            <h3>{{currentFood?.name}}</h3>
+            <p class="food-info_description">{{currentFood?.description}}</p>
+            <form [formGroup]="foodInfoForm">
+                <div class="food-info_options">
+                    <h5>{{"Home.food-info.option" | translate}}</h5>
+                    <ul>
+                        <li *ngFor="let option of currentFood?.variants" (click)="onOptionSelected(option)" class="food_info_options_item">
+                            <div class="food-info_options_item_size">
+                                <div class="option_state">
+                                    <span *ngIf="foodInfoForm.get('selectedOption')?.value == option"></span>
+                                </div>
+                                <span>0.7</span>
+                            </div>
+                            <span class="food_info_options_item_price">{{option?.price}} so'm</span>
+                            <input
+                                  type="radio"
+                                  formControlName="selectedOption"
+                                  [value]="option"
+                                  style="display: none"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="food-info_amount">
+                    <button class="counter-btn" (click)="changeAmount(false)">-</button>
+                    <h3 class="food-info_amount_value">{{foodInfoForm.get('selectedAmount')?.value }}</h3>                    
+                    <button class="counter-btn" (click)="changeAmount(true)">+</button>
+                </div>
+                <textarea type="text" formControlName="notesForRestaurant" [placeholder]="'Home.food-info.notes' | translate" cols="10" rows="6"></textarea>
+                <button (click)="addToBasket()" class="food-info_submit-btn">{{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm</button>
+            </form>
+        </div>
+    </div>
+</section>

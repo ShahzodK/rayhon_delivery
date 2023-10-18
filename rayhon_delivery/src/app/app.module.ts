@@ -15,6 +15,8 @@ import { AuthEffects } from './redux/effects/auth.effects';
 import { AddressEffects } from './redux/effects/address.effects';
 import { appReducer } from './redux/reducers/app.reducer';
 import { HomeEffects } from './redux/effects/home.effects';
+import { NotificationEffects } from './redux/effects/notification.effects';
+import { ProfileEffects } from './redux/effects/profile.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([AuthEffects, AddressEffects, HomeEffects]),
+    EffectsModule.forRoot([AuthEffects, AddressEffects, HomeEffects, ProfileEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

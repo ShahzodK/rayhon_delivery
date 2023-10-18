@@ -6,6 +6,7 @@ import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 import { IAddressRequest } from '../models/addressRequest.model';
 import { IAddresses } from '../models/addresses.model';
 import { IAddress } from '../models/address.model';
+import { IFavorites } from '../models/favorites.model';
 
 @Injectable({
   providedIn: 'root'
@@ -130,5 +131,13 @@ export class ProfileService {
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
     });
+  }
+
+  public getFavorites() {
+    return this.http.get<IFavorites> (CommonUrl.MAIN_URL + CommonUrl.FAVORITE_URL, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
+      })
+    })
   }
 }

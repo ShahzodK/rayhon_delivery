@@ -21,7 +21,6 @@ export class HomeEffects {
             ofType(fetchUIElements),
             switchMap(() => this.homeService.getUIElements()),
             map((UIElements: IUIElements) => {
-                console.log(UIElements)
                 if(UIElements.data) return fetchUIElementsSuccess(UIElements)
                 return fetchUIElementsFailed
             }),

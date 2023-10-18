@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
@@ -7,7 +7,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './profile-support-page.component.html',
   styleUrls: ['./profile-support-page.component.scss']
 })
-export class ProfileSupportPageComponent implements AfterViewInit, AfterViewChecked {
+export class ProfileSupportPageComponent implements AfterViewChecked {
 
   @ViewChild('carouselHolder', { static: false }) carouselHolder!: ElementRef;
   isCarouselFor1stTabVisible = false;
@@ -39,9 +39,6 @@ export class ProfileSupportPageComponent implements AfterViewInit, AfterViewChec
         items: 8
       }
     },
-  }
-
-  ngAfterViewInit(): void {
   }
 
   ngAfterViewChecked(): void {

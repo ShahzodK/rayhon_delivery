@@ -5,5 +5,9 @@ export let CommonUrl = {
     USER_URL: 'me',
     UPLOAD_IMG: 'upload-profile-image',
     ADDRESSES_URL: 'addresses',
-    UI_ELEMENTS_URL: 'ui-elements'
+    UI_ELEMENTS_URL: 'ui-elements',
+    FAVORITE_URL: 'favourites',
+    ITEMS_URL: 'items',
+    CART_URL: 'cart',
+    SEARCH_URL: 'searches'
 }

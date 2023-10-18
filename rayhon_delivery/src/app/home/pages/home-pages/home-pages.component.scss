@@ -152,8 +152,28 @@
             }
         }
     }
+    &_menu {
+        h5 {
+            color: var(--greyscaleColor900);
+            margin: 0;
+        }
+        &_categories_list {
+            margin-top: 24px;
+        }
+        &_list {
+            margin-top: 20px;
+        }
+        &_category {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
     &_search {
         margin-top: 24px;
         margin-bottom: 24px;
+    }
+    &_like_btn {
+        cursor: pointer;
     }
 }

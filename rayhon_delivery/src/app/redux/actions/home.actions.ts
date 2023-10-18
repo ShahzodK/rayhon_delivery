@@ -13,3 +13,8 @@ export const fetchUIElementsSuccess = createAction (
 export const fetchUIElementsFailed = createAction (
     '[HOME] Fetch UI Elements Failed'
 )
+
+export const toggleFavorite = createAction (
+    '[HOME] Toggle Favorite',
+    props<{ itemId: string, isFavorite: boolean }>()
+);
