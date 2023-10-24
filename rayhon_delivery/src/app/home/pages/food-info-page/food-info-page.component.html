@@ -32,8 +32,29 @@
                     <button class="counter-btn" (click)="changeAmount(true)">+</button>
                 </div>
                 <textarea type="text" formControlName="notesForRestaurant" [placeholder]="'Home.food-info.notes' | translate" cols="10" rows="6"></textarea>
-                <button (click)="addToBasket()" class="food-info_submit-btn">{{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm</button>
+                <button *ngIf="!isAddToBasketButtonLoading" (click)="addToBasket()" class="food-info_submit-btn">{{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm</button>
+                <button *ngIf="isAddToBasketButtonLoading" class="loading-spinner-button" style="width:185px; align-self: center;"></button>
             </form>
         </div>
     </div>
 </section>
+
+<app-shared-modal *ngIf="modalService.showSuccessModal"
+                  [modalType]="'success'"
+                  [imageUrl]="'../../../../assets/icons/smile-heart.png'"
+                  [title]="'Home.shared-modal.added' | translate"
+                  [description]="'Home.shared-modal.meal-added' | translate"
+                  [primaryButtonLabel]="'Home.shared-modal.continue' | translate"
+                  [secondaryButtonLabel]="'Home.shared-modal.basket' | translate"
+                  (primaryButtonClick)="goToMenu()"
+                  (secondaryButtonClick)="router.navigate(['/home'])"></app-shared-modal>
+
+<app-shared-modal *ngIf="modalService.showErrorModal"
+                  [modalType]="'error'"
+                  [imageUrl]="'../../../../assets/icons/error-modal.png'"
+                  [title]="'Home.shared-modal.error' | translate"
+                  [description]="'Home.shared-modal.error-description' | translate"
+                  [primaryButtonLabel]="'Home.shared-modal.try-again' | translate"
+                  [secondaryButtonLabel]="'Home.shared-modal.support' | translate"
+                  (primaryButtonClick)="modalService.showErrorModal = false"
+                  (secondaryButtonClick)="router.navigate(['/profile/support'])"></app-shared-modal>

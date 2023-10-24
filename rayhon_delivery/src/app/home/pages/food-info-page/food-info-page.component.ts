@@ -1,34 +1,38 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { fetchUIElements } from 'src/app/redux/actions/home.actions';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectMenu } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
 import { IMenu } from '../../models/menu.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrdersService } from 'src/app/orders/services/orders/orders.service';
+import { ModalService } from 'src/app/shared/services/modal/modal.service';
 
 @Component({
   selector: 'app-food-info-page',
   templateUrl: './food-info-page.component.html',
   styleUrls: ['./food-info-page.component.scss']
 })
-export class FoodInfoPageComponent implements OnInit, AfterViewChecked {
+export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   public id!: string;
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
   public selectMenu$ = this.store.select(selectMenu);
   public currentFood!: any;
-  selectedOption: any; 
+  public selectedOption: any;
+  public isAddToBasketButtonLoading = false; 
 
   constructor(
               private store: Store,
               public location: Location,
               private route: ActivatedRoute,
+              public router: Router,
               private homeService: HomeService,
-              private ordersService: OrdersService
+              private ordersService: OrdersService,
+              public modalService: ModalService
               ) {}
   
   public foodInfoForm = new FormGroup({
@@ -77,14 +81,41 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked {
   addToBasket() {
     if(this.foodInfoForm.valid) {
       let dataForCart = {
-        item_id: this.foodInfoForm.get('selectedOption')!.value.id,
+        variant_id: this.foodInfoForm.get('selectedOption')!.value.id,
         quantity: +this.foodInfoForm.get('selectedAmount')!.value,
         note: this.foodInfoForm.get('notesForRestaurant')!.value
       }
+      this.isAddToBasketButtonLoading = true;
       console.log(dataForCart);
-      this.ordersService.addToCart(dataForCart).subscribe((data) => {
+      this.ordersService.addToCart(dataForCart).pipe(takeUntil(this.unsubscribe$)).subscribe({
+        next: (data) => {
+        this.isAddToBasketButtonLoading = false;
+        if(data.data) {
+          this.modalService.showSuccessModal = true;
+        }
+        if(data.error) {
+          this.modalService.showErrorModal = true;
+        }
         console.log(data)
-      })
+      },
+      error: () => {
+        this.modalService.showErrorModal = true;
+        this.isAddToBasketButtonLoading = false;
+      }
+    })
     }
   }
+
+  public goToMenu() {
+    
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
+    this.modalService.showErrorModal = false;
+    this.modalService.showSuccessModal = true;  
+  }
+
+  
 }
