@@ -18,7 +18,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   public searchByWord(word: string) {
-    return this.http.get<{ data: IMenu['category_items'][0]['items'] | [], error: IError | [] }>(`${CommonUrl.MAIN_URL}${CommonUrl.ITEMS_URL}/${CommonUrl.SEARCH_URL}/q?search_text=${word}`, {
+    return this.http.get<{ data: IMenu['category_items'][0]['items'] | [], error: IError | [] }>(`${CommonUrl.MAIN_URL}${CommonUrl.SEARCH_URL}/q?search_text=${word}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -27,7 +27,7 @@ export class SearchService {
   }
 
   public getRecentSearchWords() {
-    return this.http.get<{ data: string[] | [], error: IError | [] }>(`${CommonUrl.MAIN_URL}${CommonUrl.ITEMS_URL}/${CommonUrl.SEARCH_URL}/recently-searched`, {
+    return this.http.get<{ data: string[] | [], error: IError | [] }>(`${CommonUrl.MAIN_URL}${CommonUrl.SEARCH_URL}/recently-searched`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
