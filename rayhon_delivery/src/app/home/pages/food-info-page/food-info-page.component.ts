@@ -25,6 +25,7 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
   public currentFood!: any;
   public selectedOption: any;
   public isAddToBasketButtonLoading = false; 
+  public foodInfoPageLoaded = false;
 
   constructor(
               private store: Store,
@@ -56,6 +57,7 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
       this.id = params.get('id')!;
     });
     this.homeService.getItem(this.id).subscribe((data) => {
+      this.foodInfoPageLoaded = true;
       this.currentFood = data.data;
       this.foodInfoForm.get('selectedOption')!.setValue(this.currentFood?.variants[0]);
       console.log(data)
