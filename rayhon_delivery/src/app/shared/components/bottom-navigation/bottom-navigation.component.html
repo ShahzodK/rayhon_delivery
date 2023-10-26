@@ -11,7 +11,7 @@
                     <img src="../../../../assets/icons/orders.svg" alt="">
                     <span>{{"Bottom-navigation.orders" | translate}}</span>
                 </li>
-                <li #basketBtn>
+                <li #basketBtn (click)="toPage('/orders/basket')">
                     <img src="../../../../assets/icons/bag.svg" alt="bag">
                     <span>{{"Bottom-navigation.cart" | translate}}</span>
                 </li>

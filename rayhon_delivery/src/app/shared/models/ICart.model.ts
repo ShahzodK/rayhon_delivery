@@ -4,11 +4,11 @@ export interface ICart {
     delivery_distance: number,
     delivery_date_display: string,
     delivery_time_display: string,
-    promo_code: string
+    promo_code: string,
     subtotal: {
         price: number,
         discount: number
-    }
+    },
     delivery: {
         price: number,
         discount: number
@@ -16,7 +16,7 @@ export interface ICart {
     total: {
         price: number,
         discount: number
-    }
+    },
     items: {
         variant_id: string,
         price: number,

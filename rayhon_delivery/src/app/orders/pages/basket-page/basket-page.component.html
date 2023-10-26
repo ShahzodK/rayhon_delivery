@@ -1,0 +1,29 @@
+<section class="basket">
+    <div class="container">
+        <div class="basket_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{"Orders.basket" | translate}}</h4>
+        </div>
+        <div class="basket_content">
+            <button class="basket_clear">{{"Orders.clear" | translate}}</button>
+            <div class="basket_item food-cart">
+                <img src="../../../../assets/icons/menu-example.png" alt="meal-photo">
+                <div class="basket_item_info food-cart_content">
+                    <h5>Плов</h5>
+                    <span class="basket_item_quantity">
+                        <span class="minus sign">&minus;</span>
+                        <span class="basket_item_quantity_counter">3</span>
+                        <span class="plus sign">+</span>
+                    </span>
+                    <span class="basket_item_price">
+                        18000 сум
+                    </span>
+                </div>
+                <div class="basket_item_delete">
+                    <img src="../../../../assets/icons/red-bin.svg" alt="delete">
+                </div>
+            </div>
+            <button class="basket_make_order">{{"Orders.make-order" | translate}}</button>
+        </div>
+    </div>
+</section>

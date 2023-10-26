@@ -10,6 +10,7 @@ import { IMenu } from '../../models/menu.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrdersService } from 'src/app/orders/services/orders/orders.service';
 import { ModalService } from 'src/app/shared/services/modal/modal.service';
+import { SaveCartSuccess } from 'src/app/redux/actions/orders.actions';
 
 @Component({
   selector: 'app-food-info-page',
@@ -92,6 +93,8 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
         this.isAddToBasketButtonLoading = false;
         if(data.data) {
           this.modalService.showSuccessModal = true;
+          this.store.dispatch(SaveCartSuccess(data.data))
+          console.log(data)
         }
         if(data.error) {
           this.modalService.showErrorModal = true;
