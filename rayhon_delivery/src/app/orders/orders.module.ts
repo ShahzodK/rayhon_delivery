@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { RateDriverPageComponent } from './pages/rate-driver-page/rate-driver-page.component';
 import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.component';
+import { BasketPageComponent } from './pages/basket-page/basket-page.component';
+import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout-order-page.component';
 
 
 
@@ -13,6 +15,8 @@ import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.com
     DriverInformationPageComponent,
     RateDriverPageComponent,
     RateCafePageComponent,
+    BasketPageComponent,
+    CheckoutOrderPageComponent,
   ],
   imports: [
     CommonModule,

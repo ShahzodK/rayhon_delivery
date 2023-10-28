@@ -3,6 +3,7 @@ import { IMenu } from "../home/models/menu.model"
 import { IOffer } from "../home/models/offer.model"
 import { IPopularMeal } from "../home/models/popularMeal.model"
 import { IFavorites } from "../profile/models/favorites.model"
+import { ICart } from "../shared/models/ICart.model"
 
 export interface IAppState {
     auth: {
@@ -39,6 +40,7 @@ export interface IAppState {
         populars: IPopularMeal[], 
         menu: IMenu
     },
+    cart: ICart,
     notifications: {
         generalNotifications: boolean,
         sound: boolean,

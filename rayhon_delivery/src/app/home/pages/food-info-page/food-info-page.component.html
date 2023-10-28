@@ -1,4 +1,39 @@
-<section class="food-info">
+<ng-container *ngIf="!foodInfoPageLoaded">
+    <div class="food-info">
+        <div class="food-info_header" style="padding-top: 0; height: 200px">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '99vw', height: '200px'}"></ngx-skeleton-loader>
+        </div>
+        <div class="container">
+            <div class="food-info_content">
+                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '125px', }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader count="2" appearance="line" [theme]="{width: '65vw', display:'block'}"></ngx-skeleton-loader>
+                <div class="food-info_options" style="gap:5px;">
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '20vw'}"></ngx-skeleton-loader>
+                    <div class="food-info_option" style="display:flex; justify-content: space-between;">
+                        <ngx-skeleton-loader count="1" appearance="circle" [theme]="{width: '20px', height: '20px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100px'}"></ngx-skeleton-loader>
+                    </div>
+                    <div class="food-info_option" style="display:flex; justify-content: space-between;">
+                        <ngx-skeleton-loader count="1" appearance="circle" [theme]="{width: '20px', height: '20px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100px'}"></ngx-skeleton-loader>
+                    </div>
+                    <div class="food-info_option" style="display:flex; justify-content: space-between;">
+                        <ngx-skeleton-loader count="1" appearance="circle" [theme]="{width: '20px', height: '20px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100px'}"></ngx-skeleton-loader>
+                    </div>
+                </div>
+                <div class="food-info_amount">
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height: '60px', borderRadius: '15px'}"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height:'50px'}"></ngx-skeleton-loader>
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height: '60px', borderRadius: '15px'}"></ngx-skeleton-loader>
+                </div>
+                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '90vw', height: '90px'}"></ngx-skeleton-loader>
+                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100px', height: '40px', marginLeft: 'auto', marginRight: 'auto', display: 'block', borderRadius: '10px'}"></ngx-skeleton-loader>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<section class="food-info" *ngIf="foodInfoPageLoaded">
     <div class="food-info_header">
         <img src="../../../../assets/icons/arrow-left-white.svg" alt="back" class="back-icon arrow" (click)="location.back()">
     </div>

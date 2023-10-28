@@ -8,7 +8,7 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePagesComponent },
+  { path: '', component: HomePagesComponent, data: {url: '/home'}},
   { path: 'deliver-to', component: DeliverToComponent},
   { path: 'special-offers', component: SpecialOffersComponent},
   { path: 'special-offers', component: SpecialOffersComponent},

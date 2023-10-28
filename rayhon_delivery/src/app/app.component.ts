@@ -6,7 +6,7 @@ import { ModeToggleService } from './shared/services/mode-toggle.service';
 import { Mode } from './shared/services/mode-toggle.model';
 import { CommonKey } from './shared/consts/commonKey';
 import * as AuthActions from 'src/app/redux/actions/auth.actions'
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +18,21 @@ export class AppComponent implements OnInit {
 
   public currentMode: Mode = Mode.LIGHT;
 
-
+// don't remove modeToggleService(its for dark mode)
   constructor(
               private translateService: TranslateService,
               private modeToggleService: ModeToggleService,
               private store: Store,
               private router: Router
               ) {
+                  router.events.subscribe((event) => {
+                    if (event instanceof NavigationStart) {
+                      CommonKey.PREVIOUS_URL = this.router.url
+                    }
+                  });
               };
 
-    ngOnInit(): void {
+    ngOnInit(): void {  
       this.translateService.setDefaultLang(environment.defaultLocale);
       this.translateService.use(environment.defaultLocale);
       if(localStorage.getItem(CommonKey.TOKEN) && localStorage.getItem(CommonKey.TOKEN_EXPIRE_DATE)) {

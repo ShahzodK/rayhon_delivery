@@ -1,0 +1,59 @@
+.basket {
+    background: var(--mainBg);
+    min-height: 100vh;
+    &_header {
+        display: flex;
+        padding-top: 24px;
+        h4 {
+            margin: 0;
+            margin-left: 17px;
+            color: var(--greyscaleColor900);
+        }
+    }
+    &_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    &_item {
+        align-self: normal;
+        gap: 21px;
+        h5 {
+            margin: 0;
+        }
+        &_info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        &_quantity {
+            .sign {
+                color: var(--primaryColor);
+                padding: 0px 5px;
+                border: 1px solid var(--primaryColor);
+                border-radius: 7px;
+            }
+            &_counter {
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--greyscaleColor700);
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+        &_price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primaryColor);
+        }
+        &_delete {
+            margin-left: auto;
+        }
+    }
+    &_clear {
+        align-self: flex-end;
+        background: var(--errorColor);
+        padding: 6px 16px;
+    }
+}

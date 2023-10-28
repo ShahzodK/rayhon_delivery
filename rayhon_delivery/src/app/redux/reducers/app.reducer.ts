@@ -3,6 +3,7 @@ import * as AuthActions from '../actions/auth.actions';
 import * as AddressActions from '../actions/address.actions';
 import * as HomeActions from '../actions/home.actions';
 import * as ProfileActions from '../actions/profile.actions';
+import * as OrdersActions from '../actions/orders.actions';
 import { IAppState } from "../appState.model";
 import { IPopularMeal } from 'src/app/home/models/popularMeal.model';
 
@@ -67,6 +68,41 @@ export const initialState: IAppState = {
     },
     favorites: {
         data: []
+    },
+    cart: {
+        items_count: 0,
+        delivery_time: '',
+        delivery_distance: 0,
+        delivery_date_display: '',
+        delivery_time_display: '',
+        promo_code: '',
+        subtotal: {
+            price: 0,
+            discount: 0
+        },
+        delivery: {
+            price: 0,
+            discount: 0
+        },
+        total: {
+            price: 0,
+            discount: 0
+        },
+        items: [],
+        vendor: {
+            id: '',
+            name: '',
+            phone: '',
+            active: false,
+            pre_order: false,
+            start: '',
+            finish: ''
+        },
+        address: {
+          id: '',
+          name: '',
+          address: ''
+        }
     }
 }
 
@@ -161,4 +197,11 @@ export const appReducer = createReducer(
             favorites: favorites
         })
     ),
+    on(
+        OrdersActions.SaveCartSuccess,
+        (state, cart): IAppState => ({
+            ...state,
+            cart: cart
+        })
+    )
 )

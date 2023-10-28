@@ -47,3 +47,8 @@ export const selectFavorites = createSelector(
     selectAppState,
     (state) => state.favorites
 )
+
+export const selectCart = createSelector(
+    selectAppState,
+    (state) => state.cart
+)
