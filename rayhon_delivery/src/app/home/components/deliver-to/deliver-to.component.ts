@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { chooseAddress } from 'src/app/redux/actions/address.actions';
 import { selectAddresses } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
+import { CommonKey } from 'src/app/shared/consts/commonKey';
 
 @Component({
   selector: 'app-deliver-to',
@@ -14,10 +15,13 @@ export class DeliverToComponent {
 
   public selectAddresses$ = this.store.select(selectAddresses);
 
+  public keys = CommonKey;
+
   constructor(
               public store: Store,
               public homeService: HomeService,
               public location: Location) {}
+
 
   public setAsDefaultAddress(address: {id: string, name: string, is_default: boolean}) {
     this.store.dispatch(chooseAddress(address));

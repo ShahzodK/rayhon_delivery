@@ -1,0 +1,70 @@
+<section class="checkout-order">
+    <div class="container">
+        <div class="checkout-order_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{"Orders.checkout" | translate}}</h4>
+        </div>
+        <div class="checkout-order_content">
+            <div class="checkout-order_address">
+                <h5>{{"Orders.address" | translate}}</h5>
+                <div class="checkout-order_address_item" routerLink="/home/deliver-to">
+                    <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">
+                    <div class="checkout-order_address_item_content">
+                        <div class="checkout-order_address_item_content_top">
+                            <h6>Адрес Доставки</h6>
+                            <span>{{"Home.deliver-to.default" | translate}}</span>
+                        </div>
+                        <span class="checkout-order_address_item_content_address">Полный адрес</span>
+                    </div>
+                    <span class="checkout-order_address_change arrow-right"></span>
+                </div>
+            </div>
+            <div class="checkout-order_menu">
+                <div class="checkout-order_menu_header">
+                    <h5>{{"Orders.overall-order" | translate}}</h5>
+                    <button>{{"Orders.add" | translate}}</button>
+                </div>
+                <div class="checkout-order_menu_item">
+                    <img src="../../../../assets/icons/cart-example.png" alt="food-photo">
+                    <div class="checkout-order_menu_item_content">
+                        <h6>Mixed Vegetable Salmon</h6>
+                        <span>35000 Сум</span>
+                    </div>
+                    <div class="checkout-order_menu_item_change">
+                        <span class="checkout-order_menu_item_quantity">2x</span>
+                        <img src="../../../../assets/icons/edit.svg" alt="edit">
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-order_payment">
+                <div class="checkout-order_payment_content">
+                    <img src="../../../../assets/icons/wallet-green.svg" alt="wallet">
+                    <span>{{"Orders.payment" | translate}}</span>
+                </div>
+                <span class="checkout-order_address_change arrow-right"></span>
+            </div>
+            <div class="checkout-order_bill">
+                <div class="checkout-order_bill_content">
+                    <div class="checkout-order_bill_order">
+                        <span class="checkout-order_bill_order_title">{{"Orders.order" | translate}}</span>
+                        <span class="checkout-order_bill_order_price">240000 Сум</span>
+                    </div>
+                    <div class="checkout-order_bill_order">
+                        <span class="checkout-order_bill_order_title">{{"Orders.delivery" | translate}}</span>
+                        <span class="checkout-order_bill_order_price">13000 Сум</span>
+                    </div>
+                    <div class="checkout-order_bill_order">
+                        <span class="checkout-order_bill_order_title">{{"Orders.discount" | translate}}</span>
+                        <span class="checkout-order_bill_order_price">15000 Сум</span>
+                    </div>
+                </div>
+                <div class="checkout-order_bill_summary">
+                    <span class="checkout-order_bill_order_title">{{"Orders.discount" | translate}}</span>
+                    <span class="checkout-order_bill_order_price">15000 Сум</span>
+                </div>
+            </div>
+            <button class="checkout-order_next">{{"Orders.checkout-btn" | translate}} - 253000 сум</button>
+        </div>
+    </div>
+    <app-bottom-navigation></app-bottom-navigation>
+</section>
