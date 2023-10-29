@@ -264,10 +264,10 @@
                     <div class="home-page_menu_categories_list">
                             <owl-carousel-o [options]="menuCategoriesCarouselOptions" #owlSlide>
                                 <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                    <mat-chip-option (click)="sortMenu(menu.name)">{{"Home.all" | translate}}</mat-chip-option>
+                                    <mat-chip-option (click)="sortMenu('')">{{"Home.all" | translate}}</mat-chip-option>
                                 </ng-template>
                                 <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                    <mat-chip-option (click)="sortMenu(menu.name)">{{menu.name}}</mat-chip-option>
+                                    <mat-chip-option (click)="sortMenu(menu.id)">{{menu.name}}</mat-chip-option>
                                 </ng-template>
                                 <ng-template carouselSlide *ngFor="let menu of menu.categories">
                                     <mat-chip-option (click)="sortMenu('Лагман')">Лагман</mat-chip-option>
@@ -276,40 +276,39 @@
                                     <mat-chip-option (click)="sortMenu('Первое')">Первое</mat-chip-option>
                                 </ng-template>
                                 <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                    <mat-chip-option (click)="sortMenu(menu.name)">Второе</mat-chip-option>
-                                </ng-template>
-                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
-                                    <mat-chip-option (click)="sortMenu(menu.name)">{{menu.name}}</mat-chip-option>
+                                    <mat-chip-option (click)="sortMenu('Второе')">Второе</mat-chip-option>
                                 </ng-template>
                             </owl-carousel-o>
                         <div class="home-page_menu_list">
                             <div class="container">
                                 <div class="home-page_menu_category" *ngFor="let category of menu.category_items">
-                                    <h5>
-                                        {{category.name}}
-                                    </h5>
-                                    <div class="home-page_menu_category_item food-cart" *ngFor="let item of category.items" [routerLink]="'/home/menu/' + item.id">
-                                        <img src="../../../../assets/icons/menu-example.png" alt="menu">
-                                        <div class="home-page_menu_category_item_content food-cart_content">
-                                            <h5>{{item.name}}</h5>
-                                            <div class="home-page_menu_category_item_time food-cart_time">
-                                                <p>
-                                                    <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
-                                                    <span *ngIf="item.preparation_time != 0">{{item.preparation_time}}</span>
-                                                    <span *ngIf="item.preparation_time == 0">{{"Home.ready" | translate}}</span>
-                                                </p>
-                                                <p>
-                                                    <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
-                                                    <span>20 min</span>
-                                                </p>
-                                            </div>
-                                            <div class="home-page_menu_category_item_footer food-cart_footer">
-                                                <h5>{{item.price}} so'm</h5>
-                                                <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id)">
-                                                <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id)">
+                                    <ng-container *ngIf="sortedMenuIds.includes(category.id) || sortedMenuIds.includes('') || !sortedMenuIds.length">
+                                        <h5>
+                                            {{category.name}}
+                                        </h5>
+                                        <div class="home-page_menu_category_item food-cart" *ngFor="let item of category.items" [routerLink]="'/home/menu/' + item.id">
+                                            <img src="../../../../assets/icons/menu-example.png" alt="menu">
+                                            <div class="home-page_menu_category_item_content food-cart_content">
+                                                <h5>{{item.name}}</h5>
+                                                <div class="home-page_menu_category_item_time food-cart_time">
+                                                    <p>
+                                                        <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                                        <span *ngIf="item.preparation_time != 0">{{item.preparation_time}}</span>
+                                                        <span *ngIf="item.preparation_time == 0">{{"Home.ready" | translate}}</span>
+                                                    </p>
+                                                    <p>
+                                                        <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                                        <span>20 min</span>
+                                                    </p>
+                                                </div>
+                                                <div class="home-page_menu_category_item_footer food-cart_footer">
+                                                    <h5>{{item.price}} so'm</h5>
+                                                    <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id)">
+                                                    <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id)">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </ng-container>
                                 </div>
                             </div>
                         </div>
