@@ -52,7 +52,6 @@ export class LocationPageComponent implements OnInit {
         latitude: this.profileService.latitude,
         longitude: this.profileService.longitude
       }
-      console.log(profileValues)
       this.profileService.createAddress(profileValues).subscribe({
         next: (data) => {
         this.isLocationButtonDisabled = false;

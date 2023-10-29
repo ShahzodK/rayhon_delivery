@@ -11,8 +11,9 @@
                     <img src="../../../../assets/icons/orders.svg" alt="">
                     <span>{{"Bottom-navigation.orders" | translate}}</span>
                 </li>
-                <li #basketBtn (click)="toPage('/orders/basket')">
-                    <img src="../../../../assets/icons/bag.svg" alt="bag">
+                <li (click)="toPage('/orders/basket')" #basketBtn>
+                    <img src="../../../../assets/icons/bag.svg" alt="bag" *ngIf="activePage !== 'basket'">
+                    <img src="../../../../assets/icons/bag-active.svg" alt="bag" *ngIf="activePage == 'basket'">
                     <span>{{"Bottom-navigation.cart" | translate}}</span>
                 </li>
                 <li (click)="toPage('/profile/settings')" #profileBtn>

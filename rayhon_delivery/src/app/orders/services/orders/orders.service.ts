@@ -39,4 +39,13 @@ export class OrdersService {
       })
     })
   }
+
+  public setCartAddress(id: string) {
+    return this.http.post<{data: ICart, error: IError}>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}/action/set-address?address_id=${id}`, {},  {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    });
+  }
 }

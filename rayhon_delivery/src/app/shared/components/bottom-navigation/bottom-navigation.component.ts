@@ -27,6 +27,7 @@ export class BottomNavigationComponent implements AfterViewInit, OnDestroy {
     const currentUrl = this.router.url;
     const home = 'home';
     const profile = 'profile/settings';
+    const basket = 'orders/basket';
     if(currentUrl.includes(profile)) {
       this.profileBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'profile'
@@ -34,6 +35,10 @@ export class BottomNavigationComponent implements AfterViewInit, OnDestroy {
     if(currentUrl.includes(home)) {
       this.homeBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'home'
+    }
+    if(currentUrl.includes(basket)) {
+      this.basketBtn.nativeElement.classList.add('bottom_nav_active');
+      this.activePage = 'basket'
     }
     this.cdRef.detectChanges()
   }
