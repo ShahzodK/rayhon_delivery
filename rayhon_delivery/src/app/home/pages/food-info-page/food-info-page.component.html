@@ -82,7 +82,7 @@
                   [primaryButtonLabel]="'Home.shared-modal.continue' | translate"
                   [secondaryButtonLabel]="'Home.shared-modal.basket' | translate"
                   (primaryButtonClick)="goToMenu()"
-                  (secondaryButtonClick)="router.navigate(['/home'])"></app-shared-modal>
+                  (secondaryButtonClick)="router.navigate(['/orders/basket'])"></app-shared-modal>
 
 <app-shared-modal *ngIf="modalService.showErrorModal"
                   [modalType]="'error'"

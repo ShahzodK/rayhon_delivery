@@ -6,24 +6,38 @@
         </div>
         <div class="basket_content">
             <button class="basket_clear">{{"Orders.clear" | translate}}</button>
-            <div class="basket_item food-cart">
-                <img src="../../../../assets/icons/menu-example.png" alt="meal-photo">
-                <div class="basket_item_info food-cart_content">
-                    <h5>Плов</h5>
-                    <span class="basket_item_quantity">
-                        <span class="minus sign">&minus;</span>
-                        <span class="basket_item_quantity_counter">3</span>
-                        <span class="plus sign">+</span>
-                    </span>
-                    <span class="basket_item_price">
-                        18000 сум
-                    </span>
+            <ng-container *ngIf="selectCart$ | async as cart">
+                <div class="basket_item food-cart" *ngFor="let item of cart.items" [routerLink]="'/home/menu/' + item.item_id">
+                    <img src="../../../../assets/icons/menu-example.png" alt="meal-photo">
+                    <div class="basket_item_info food-cart_content">
+                        <h5>{{item.name}}</h5>
+                        <span class="basket_item_quantity">
+                            <span class="minus sign" (click)="changeQuantity(item, false); $event.stopPropagation()">&minus;</span>
+                            <span class="basket_item_quantity_counter" *ngIf="!isQuantityLoading">{{item.quantity}}</span>
+                            <span *ngIf="isQuantityLoading" class="loading-spinner-button quantity-spinner"></span>
+                            <span class="plus sign" (click)="changeQuantity(item, true); $event.stopPropagation()">+</span>
+                        </span>
+                        <span class="basket_item_price">
+                            {{+item.price * +item.quantity}} сум
+                        </span>
+                    </div>
+                    <div class="basket_item_delete" (click)="chooseItemTodelete(item); $event.stopPropagation()">
+                        <img src="../../../../assets/icons/red-bin.svg" alt="delete">
+                    </div>
                 </div>
-                <div class="basket_item_delete">
-                    <img src="../../../../assets/icons/red-bin.svg" alt="delete">
-                </div>
-            </div>
+            </ng-container>
             <button class="basket_make_order" routerLink="/orders/checkout">{{"Orders.make-order" | translate}}</button>
         </div>
     </div>
 </section>
+
+<app-shared-modal *ngIf="showDeleteItemModal"
+                  [modalType]="'success'"
+                  [imageUrl]="'../../../../assets/icons/smile-heart.png'"
+                  [title]="'Orders.basket-page.delete-item'| translate"
+                  [description]="('Orders.basket-page.ask-delete-item' | translate) + ' ' + itemToBeRemoved.name"
+                  [primaryButtonLabel]="'Orders.basket-page.delete' | translate"
+                  [secondaryButtonLabel]="'Orders.basket-page.cancel' | translate"
+                  (primaryButtonClick)="deleteItem()"
+                  (secondaryButtonClick)="cancelDeleteItem()"
+                  (outsideClick)="cancelDeleteItem()"></app-shared-modal>

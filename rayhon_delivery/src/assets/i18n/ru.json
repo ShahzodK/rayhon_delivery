@@ -199,6 +199,12 @@
             "write-review": "Оставьте отзыв",
             "cancel-btn": "Отменить",
             "send-btn": "Отправить"
+        },
+        "basket-page": {
+            "delete-item": "Удаление позиции",
+            "ask-delete-item": "Вы действительно хотите удалить",
+            "delete": "Удалить",
+            "cancel": "Отменить"
         }
     },
     "Payment": {

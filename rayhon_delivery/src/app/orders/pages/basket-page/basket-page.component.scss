@@ -41,6 +41,15 @@
                 margin-left: 10px;
                 margin-right: 10px;
             }
+            .quantity-spinner {
+                margin-left: 18px;
+                margin-right: 17px;
+                &::after {
+                    width: 10px;
+                    height: 10px;
+                    left: -9px;
+                }
+            }
         }
         &_price {
             font-size: 20px;

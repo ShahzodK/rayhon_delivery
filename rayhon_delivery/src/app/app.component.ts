@@ -7,6 +7,7 @@ import { Mode } from './shared/services/mode-toggle.model';
 import { CommonKey } from './shared/consts/commonKey';
 import * as AuthActions from 'src/app/redux/actions/auth.actions'
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { fetchCart } from './redux/actions/orders.actions';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
         let currentDate = new Date().getTime();
         if(currentDate < tokenExpireDate) {
           this.store.dispatch(AuthActions.fetchUser())
+          this.store.dispatch(fetchCart())
         }
         else {
           localStorage.removeItem(CommonKey.TOKEN)

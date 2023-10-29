@@ -103,8 +103,14 @@
                             </div>
                             <div class="search-page_results_footer food-cart_footer">
                                 <h5>{{item.price}} so'm</h5>
-                                <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id)" (click)="item.is_favourite = true">
-                                <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id)" (click)="item.is_favourite = false">
+                                <img *ngIf="!item.is_favourite"
+                                     src="../../../../assets/icons/heart-red.svg"
+                                     alt="like" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()"
+                                     (click)="item.is_favourite = true;$event.stopPropagation()">
+                                <img *ngIf="item.is_favourite"
+                                     src="../../../../assets/icons/heart-clicked.svg"
+                                     alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()"
+                                     (click)="item.is_favourite = false;$event.stopPropagation()">
                             </div>
                         </div>
                     </div>
