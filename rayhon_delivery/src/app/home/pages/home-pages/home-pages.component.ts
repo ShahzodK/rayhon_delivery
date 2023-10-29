@@ -35,6 +35,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   public smallScreenBreakpoint = 768;
 
+  public sortedMenuIds: string[] = [];
+
   constructor(
               private store: Store,
               public router: Router,
@@ -144,7 +146,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
         next: (data) => console.log(data),
         error: (error) => console.log(error)
       })
-      this.store.dispatch(fetchUIElements())
+      // this.store.dispatch(fetchUIElements())
     }
     else if(state == false) {
       this.store.dispatch(toggleFavorite({ itemId: id, isFavorite: state }));
@@ -154,12 +156,19 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
         next: (data) => console.log(data),
         error: (error) => console.log(error)
       })
-      this.store.dispatch(fetchUIElements())
+      // this.store.dispatch(fetchUIElements())
     }
   }
 
-  public sortMenu(name: string) {
-    console.log(name)
+  public sortMenu(id: string) {
+    if(this.sortedMenuIds.includes(id)) {
+      console.log('gr')
+      this.sortedMenuIds = this.sortedMenuIds.filter(item => item != id);
+    }
+    else {
+      this.sortedMenuIds.push(id)
+    }
+    console.log(this.sortedMenuIds)
   }
 
     ngOnDestroy(): void {
