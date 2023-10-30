@@ -4,6 +4,7 @@ import * as AddressActions from '../actions/address.actions';
 import * as HomeActions from '../actions/home.actions';
 import * as ProfileActions from '../actions/profile.actions';
 import * as OrdersActions from '../actions/orders.actions';
+import * as NotificationActions from '../actions/notification.actions';
 import { IAppState } from "../appState.model";
 import { IPopularMeal } from 'src/app/home/models/popularMeal.model';
 
@@ -56,15 +57,15 @@ export const initialState: IAppState = {
         }
     },
     notifications: {
-        generalNotifications: false,
+        general: false,
         sound: false,
-        vibration: false,
-        specialOffers: false,
-        promos: false,
-        payments: false,
-        updates: false,
-        services: false,
-        advices: false
+        vibrate: false,
+        promotions: false,
+        special_offers: false,
+        payment: false,
+        new_release: false,
+        new_service: false,
+        new_tutorial: false
     },
     favorites: {
         data: []
@@ -209,6 +210,20 @@ export const appReducer = createReducer(
         (state, cart): IAppState => ({
             ...state,
             cart: cart
+        })
+    ),
+    on(
+        NotificationActions.fetchNotificationPreferencesSuccess,
+        (state, notifications): IAppState => ({
+            ...state,
+            notifications: notifications
+        })
+    ),
+    on(
+        NotificationActions.updateNotificationPreferencesSuccess,
+        (state, notifications): IAppState => ({
+            ...state,
+            notifications: notifications
         })
     )
 )

@@ -39,7 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([AuthEffects, AddressEffects, HomeEffects, ProfileEffects, OrdersEffects]),
+    EffectsModule.forRoot([AuthEffects, AddressEffects, HomeEffects, ProfileEffects, OrdersEffects, NotificationEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

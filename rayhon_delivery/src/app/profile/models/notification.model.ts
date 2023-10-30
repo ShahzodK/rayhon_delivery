@@ -1,11 +1,11 @@
 export interface INotifications {
-    generalNotifications: boolean,
+    general: boolean,
     sound: boolean,
-    vibration: boolean,
-    specialOffers: boolean,
-    promos: boolean,
-    payments: boolean,
-    updates: boolean,
-    services: boolean,
-    advices: boolean
+    vibrate: boolean,
+    promotions: boolean,
+    special_offers: boolean,
+    payment: boolean,
+    new_release: boolean,
+    new_service: boolean,
+    new_tutorial: boolean
 }
