@@ -5,13 +5,15 @@ import { RateDriverPageComponent } from './pages/rate-driver-page/rate-driver-pa
 import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.component';
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout-order-page.component';
+import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 
 const routes: Routes = [
+  { path: '', component: OrdersPageComponent},
   { path: 'driver-info', component: DriverInformationPageComponent },
   { path: 'rate-driver', component: RateDriverPageComponent },
   { path: 'rate-cafe', component: RateCafePageComponent },
   { path: 'basket', component: BasketPageComponent},
-  { path: 'checkout', component: CheckoutOrderPageComponent, data: {url: '/orders/checkout'}}
+  { path: 'checkout', component: CheckoutOrderPageComponent}
 ];
 
 @NgModule({

@@ -28,17 +28,22 @@ export class BottomNavigationComponent implements AfterViewInit, OnDestroy {
     const home = 'home';
     const profile = 'profile/settings';
     const basket = 'orders/basket';
+    const orders = 'orders';
     if(currentUrl.includes(profile)) {
       this.profileBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'profile'
     }
-    if(currentUrl.includes(home)) {
+    else if(currentUrl.includes(home)) {
       this.homeBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'home'
     }
-    if(currentUrl.includes(basket)) {
+    else if(currentUrl.includes(basket)) {
       this.basketBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'basket'
+    }
+    else if(currentUrl.includes(orders)) {
+      this.ordersBtn.nativeElement.classList.add('bottom_nav_active');
+      this.activePage = 'orders'
     }
     this.cdRef.detectChanges()
   }

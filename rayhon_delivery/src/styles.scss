@@ -130,6 +130,15 @@ input {
 .mdc-tab {
     width: 50%;
 }
+
+.orders_content .mdc-tab {
+    width: 33%;
+}
+
+.orders_content .mat-mdc-tab-header-pagination {
+    display: none !important;
+}
+
 .mdc-tab__text-label {
     color: var(--greyscaleColor500) !important;
 }

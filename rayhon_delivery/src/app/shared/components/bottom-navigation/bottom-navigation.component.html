@@ -7,8 +7,9 @@
                     <img src="../../../../assets/icons/home-active.svg" alt="" *ngIf="activePage == 'home'">
                     <span>{{"Bottom-navigation.home" | translate}}</span>
                 </li>
-                <li #ordersBtn>
-                    <img src="../../../../assets/icons/orders.svg" alt="">
+                <li (click)="toPage('/orders')" #ordersBtn>
+                    <img src="../../../../assets/icons/orders.svg" alt="" *ngIf="activePage !== 'orders'">
+                    <img src="../../../../assets/icons/orders-active.svg" alt="" *ngIf="activePage == 'orders'">
                     <span>{{"Bottom-navigation.orders" | translate}}</span>
                 </li>
                 <li (click)="toPage('/orders/basket')" #basketBtn>
