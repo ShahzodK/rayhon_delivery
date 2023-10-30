@@ -26,7 +26,7 @@
                 justify-content: space-between;
                 color: var(--greyscaleColor900);
                 font-weight: 600;
-                #generalNotification, #sound, #vibration, #specialOffers, #payments, #updates, #newServices, #newAdvices {
+                #general, #sound, #vibrate, #promotions, #special_offers, #payment, #new_release, #new_service, #new_tutorial {
                     visibility: hidden;
                     position: absolute;
                   }

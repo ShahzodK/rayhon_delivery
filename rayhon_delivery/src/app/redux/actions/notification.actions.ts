@@ -1,15 +1,29 @@
 import { createAction, props } from "@ngrx/store";
 import { INotifications } from "src/app/profile/models/notification.model";
 
-export const notification = createAction (
-    '[NOTIFICATION] Notification'
+export const fetchNotificationPreferences = createAction (
+    '[NOTIFICATION] Fetch Notification Preferences'
 )
 
-export const notificationSuccess = createAction (
-    '[NOTIFICATION] Notification Success',
+export const fetchNotificationPreferencesSuccess = createAction (
+    '[NOTIFICATION] Fetch Notification Preferences Success',
     props<INotifications>(),
 )
 
-export const notificationFailed = createAction (
-    '[NOTIFICATION] Notification Failed'
+export const fetchNotificationPreferencesFailed = createAction (
+    '[NOTIFICATION] Fetch Notification Preferences Failed'
+)
+
+export const updateNotificationPreferences = createAction (
+    '[NOTIFICATION] Fetch Notification',
+    props<INotifications>()
+)
+
+export const updateNotificationPreferencesSuccess = createAction (
+    '[NOTIFICATION] Fetch Notification Success',
+    props<INotifications>()
+)
+
+export const updateNotificationPreferencesFailed = createAction (
+    '[NOTIFICATION] Fetch Notification Failed'
 )

@@ -9,5 +9,6 @@ export let CommonUrl = {
     FAVORITE_URL: 'favourites/favourites',
     ITEMS_URL: 'ui-elements/items',
     CART_URL: 'carts',
-    SEARCH_URL: 'items/items/searches'
+    SEARCH_URL: 'items/items/searches',
+    NOTIFICATION_URL: 'notifications/notifications'
 }
