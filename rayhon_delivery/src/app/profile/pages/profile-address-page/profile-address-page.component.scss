@@ -35,6 +35,10 @@
                 font-size: 18px;
                 font-weight: 700;
                 color: var(--greyscaleColor900);
+                white-space: nowrap;
+                overflow: hidden;
+                width: 36vw;
+                text-overflow: ellipsis;
             }
         }
         .new-address_btn {

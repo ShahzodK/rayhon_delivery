@@ -1,0 +1,82 @@
+.orders {
+    background: var(--mainBg);
+    min-height: 100vh;
+    padding-top: 16px;
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        &_text {
+            display: flex;
+            gap: 16px;
+        }
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    &_item {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        background: var(--blockBg);
+        padding: 14px;
+        margin-top: 24px;
+        border-radius: 28px;
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+        &_content {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            &_wrapper {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            h5 {
+                margin: 0;
+            }
+        }
+        &_number {
+            color: var(--greyscaleColor900);
+        }
+        &_quantity {
+            color: var(--greyscaleColor700);
+        }
+        &_price {
+            color: var(--primaryColor);
+        }
+        &_state {
+            font-size: 10px;
+            font-weight: 600;
+            background: var(--primaryColor);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+        &_footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        &_actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--greyscaleColor200);
+            button {
+                font-size: 14px;
+                font-weight: 500;
+                padding: 6px 16px;
+            }
+        }
+        &_cancel {
+            background: transparent;
+            border: 2px solid var(--primaryColor);
+        }
+    }
+}

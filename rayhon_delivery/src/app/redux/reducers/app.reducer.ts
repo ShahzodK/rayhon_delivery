@@ -203,5 +203,12 @@ export const appReducer = createReducer(
             ...state,
             cart: cart
         })
+    ),
+    on(
+        OrdersActions.fetchCartSuccess,
+        (state, cart): IAppState => ({
+            ...state,
+            cart: cart
+        })
     )
 )

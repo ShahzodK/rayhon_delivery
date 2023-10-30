@@ -1,0 +1,39 @@
+<section class="orders">
+    <div class="container">
+        <div class="orders_header">
+            <div class="orders_header_text">
+                <img src="../../../../assets/icons/orders-logo.svg">
+                <h4>{{"Orders.orders" | translate}}</h4>
+            </div>
+            <img src="../../../../assets/icons/search.svg" alt="search">
+        </div>
+        <div class="orders_content">
+            <mat-tab-group>
+                <mat-tab [label]="'Orders.active' | translate">
+                    <div class="orders_item">
+                        <div class="orders_item_content_wrapper">
+                            <img src="../../../../assets/icons/order-example.png" alt="meal">
+                            <div class="orders_item_content">
+                                <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
+                                <span class="orders_item_quantity">
+                                    3 продукта | 2.4 km 
+                                </span>
+                                <div class="orders_item_footer">
+                                    <h5 class="orders_item_price">210000 сум</h5>
+                                    <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="orders_item_actions">
+                            <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                            <button>{{"Orders.track-order" | translate}}</button>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab [label]="'Orders.completed' | translate"></mat-tab>
+                <mat-tab [label]="'Orders.cancelled' | translate"></mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+    <app-bottom-navigation></app-bottom-navigation>
+</section>

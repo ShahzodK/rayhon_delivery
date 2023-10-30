@@ -15,6 +15,7 @@ export class SharedModalComponent {
   @Input() modalType!: string;
   @Output() primaryButtonClick = new EventEmitter<void>();
   @Output() secondaryButtonClick = new EventEmitter<void>();
+  @Output() outsideClick = new EventEmitter<void>();
 
   constructor(
               private elRef: ElementRef,

@@ -7,6 +7,7 @@ import { RateDriverPageComponent } from './pages/rate-driver-page/rate-driver-pa
 import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.component';
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout-order-page.component';
+import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 
 
 
@@ -17,6 +18,7 @@ import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout
     RateCafePageComponent,
     BasketPageComponent,
     CheckoutOrderPageComponent,
+    OrdersPageComponent,
   ],
   imports: [
     CommonModule,

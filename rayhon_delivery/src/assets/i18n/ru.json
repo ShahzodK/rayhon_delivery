@@ -166,7 +166,7 @@
     "Orders": {
         "driver": "Курьер",
         "rating": "Рейтинг",
-        "orders": "Заказа",
+        "orders": "Заказы",
         "experience": "Опыт",
         "member-since": "Курьер с",
         "transport-model": "Модель транспорта",
@@ -185,6 +185,12 @@
         "discount": "Скидка",
         "overall": "Итог",
         "checkout-btn": "Оформить",
+        "active": "Активный",
+        "completed": "Завершен",
+        "cancelled": "Отменен",
+        "paid": "Оплачен",
+        "cancel-order": "Отменить заказ",
+        "track-order": "Отслеживать",
         "rate-driver": {
             "title": "Оценим службу доставки курьера",
             "content": "Как прошла доставка вашего заказа?",
@@ -199,6 +205,12 @@
             "write-review": "Оставьте отзыв",
             "cancel-btn": "Отменить",
             "send-btn": "Отправить"
+        },
+        "basket-page": {
+            "delete-item": "Удаление позиции",
+            "ask-delete-item": "Вы действительно хотите удалить",
+            "delete": "Удалить",
+            "cancel": "Отменить"
         }
     },
     "Payment": {
