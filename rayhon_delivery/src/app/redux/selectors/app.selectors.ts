@@ -52,3 +52,8 @@ export const selectCart = createSelector(
     selectAppState,
     (state) => state.cart
 )
+
+export const selectPreOrderedTimeSlots = createSelector(
+    selectAppState,
+    (state) => state.preOrderedSlots
+)

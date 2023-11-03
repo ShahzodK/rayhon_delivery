@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { fetchCart, fetchCartFailed, fetchCartSuccess } from "../actions/orders.actions";
+import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, fetchCart, fetchCartFailed, fetchCartSuccess } from "../actions/orders.actions";
 import { OrdersService } from "src/app/orders/services/orders/orders.service";
 import { ICart } from "src/app/shared/models/ICart.model";
 import { switchMap, map, catchError, of } from "rxjs";
 import { IError } from "src/app/shared/models/IError.model";
+import { ITimeSlots } from "src/app/orders/models/timeSlots.model";
 
 @Injectable()
 
@@ -24,6 +25,20 @@ export class OrdersEffects {
                     return fetchCartFailed
                 }),
                 catchError(() => of(fetchCartFailed))
+            )
+        })
+
+        public fetchPreOrderedSlots$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(FetchPreOrderedSlots),
+                switchMap(() => this.ordersService.getPreOrderedSlots()),
+                map((timeSlots: {data: ITimeSlots, error: IError}) => {
+                    console.log(timeSlots)
+                    if(timeSlots.data) return FetchPreOrderedSlotsSuccess(timeSlots.data)
+                    return FetchPreOrderedSlotsFailed
+                }),
+                catchError(() => of(FetchPreOrderedSlotsFailed))
             )
         })
 }

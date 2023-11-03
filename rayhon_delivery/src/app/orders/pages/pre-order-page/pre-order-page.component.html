@@ -1,0 +1,23 @@
+<section class="pre-order" *ngIf="(selectPreOrderedSlots$ | async) as preOrderedSlots">
+    <div class="container">
+        <div class="pre-order_header">
+            <img src="../../../../assets/icons/pre-order.png" alt="pre-order">
+        </div>
+        <div class="pre-order_content">
+            <h4 *ngIf="!(selectCart$ | async)?.vendor?.active">{{"Orders.pre-order.title" | translate}}</h4>
+            <span>{{"Orders.pre-order.content" | translate}}</span>
+            <div class="pre-order_date" >
+                <select name="day" [(ngModel)]="selectedDay" id="day">
+                    <ng-container *ngIf="(selectCart$ | async)?.vendor?.pre_order">
+                        <option [value]="day" *ngFor="let day of days;index as i" [selected]="i == 2 ? true : false">{{ day }}</option>
+                    </ng-container>
+                    <option [value]="'Orders.urgent' | translate" *ngIf="(selectCart$ | async)?.vendor?.active" selected>{{"Orders.urgent" | translate}}</option>
+                </select>
+                <select name="time" [(ngModel)]="selectedTime" id="time" *ngIf="selectedDay !== ('Orders.urgent' | translate)">
+                    <option [value]="time" *ngFor="let time of schedule[selectedDay];index as i" [selected]="i == 0 ? true : false">{{ time }}</option>
+                </select>
+            </div>
+            <button routerLink="/orders/checkout">{{"Orders.pre-order.continue" | translate}}</button>
+        </div>
+    </div>
+</section>

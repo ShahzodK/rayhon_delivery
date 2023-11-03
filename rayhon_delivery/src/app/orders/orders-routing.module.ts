@@ -6,6 +6,7 @@ import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.com
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout-order-page.component';
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
+import { PreOrderPageComponent } from './pages/pre-order-page/pre-order-page.component';
 
 const routes: Routes = [
   { path: '', component: OrdersPageComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'rate-driver', component: RateDriverPageComponent },
   { path: 'rate-cafe', component: RateCafePageComponent },
   { path: 'basket', component: BasketPageComponent},
-  { path: 'checkout', component: CheckoutOrderPageComponent}
+  { path: 'checkout', component: CheckoutOrderPageComponent},
+  { path: 'pre-order', component: PreOrderPageComponent }
 ];
 
 @NgModule({

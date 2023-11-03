@@ -104,6 +104,11 @@ export const initialState: IAppState = {
           name: '',
           address: ''
         }
+    },
+    preOrderedSlots: {
+        today: [],
+        tomorrow: [],
+        day_after_tomorrow: []
     }
 }
 
@@ -224,6 +229,13 @@ export const appReducer = createReducer(
         (state, notifications): IAppState => ({
             ...state,
             notifications: notifications
+        })
+    ),
+    on(
+        OrdersActions.FetchPreOrderedSlotsSuccess,
+        (state, timeslots): IAppState => ({
+            ...state,
+            preOrderedSlots: timeslots
         })
     )
 )

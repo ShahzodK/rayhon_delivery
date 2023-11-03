@@ -4,6 +4,7 @@ import { CommonKey } from 'src/app/shared/consts/commonKey';
 import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 import { ICart } from 'src/app/shared/models/ICart.model';
 import { IError } from 'src/app/shared/models/IError.model';
+import { ITimeSlots } from '../../models/timeSlots.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,14 @@ export class OrdersService {
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
       })
     });
+  }
+
+  public getPreOrderedSlots() {
+    return this.http.get<{data: ITimeSlots, error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${CommonUrl.PRE_ORDERED_SLOTS_URL}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
   }
 }
