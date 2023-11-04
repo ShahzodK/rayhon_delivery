@@ -10,28 +10,103 @@
         <div class="orders_content">
             <mat-tab-group>
                 <mat-tab [label]="'Orders.active' | translate">
-                    <div class="orders_item">
-                        <div class="orders_item_content_wrapper">
-                            <img src="../../../../assets/icons/order-example.png" alt="meal">
-                            <div class="orders_item_content">
-                                <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
-                                <span class="orders_item_quantity">
-                                    3 продукта | 2.4 km 
-                                </span>
-                                <div class="orders_item_footer">
-                                    <h5 class="orders_item_price">210000 сум</h5>
-                                    <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
-                                </div>
+                    <ng-template #empty>
+                        <div class="orders_empty">
+                            <img src="../../../../assets/icons/empty.png" alt="empty">
+                            <div class="orders_empty_content">
+                                <h4>{{"Orders.empty" | translate}}</h4>
+                                <span>{{"Orders.active-empty" | translate}}</span>
+                                <!-- <span>{{"Orders.completed-empty" | translate}}</span>
+                                <span>{{"Orders.cancelled-empty" | translate}}</span> -->
                             </div>
                         </div>
-                        <div class="orders_item_actions">
-                            <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
-                            <button>{{"Orders.track-order" | translate}}</button>
+                    </ng-template>
+                    <ng-container *ngIf="(getOrders$ | async)?.activeOrders as orders">
+                        <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                            <div class="orders_item_content_wrapper">
+                                <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                <div class="orders_item_content">
+                                    <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
+                                    <span class="orders_item_quantity">
+                                        3 продукта | 2.4 km
+                                    </span>
+                                    <div class="orders_item_footer">
+                                        <h5 class="orders_item_price">210000 сум</h5>
+                                        <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="orders_item_actions">
+                                <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                <button>{{"Orders.track-order" | translate}}</button>
+                            </div>
                         </div>
-                    </div>
+                    </ng-container>
                 </mat-tab>
-                <mat-tab [label]="'Orders.completed' | translate"></mat-tab>
-                <mat-tab [label]="'Orders.cancelled' | translate"></mat-tab>
+                <mat-tab [label]="'Orders.completed' | translate">
+                    <ng-template #empty>
+                        <div class="orders_empty">
+                            <img src="../../../../assets/icons/empty.png" alt="empty">
+                            <div class="orders_empty_content">
+                                <h4>{{"Orders.empty" | translate}}</h4>
+                                 <span>{{"Orders.completed-empty" | translate}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-container *ngIf="(getOrders$ | async)?.completedOrders as orders">
+                        <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                            <div class="orders_item_content_wrapper">
+                                <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                <div class="orders_item_content">
+                                    <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
+                                    <span class="orders_item_quantity">
+                                        3 продукта | 2.4 km
+                                    </span>
+                                    <div class="orders_item_footer">
+                                        <h5 class="orders_item_price">210000 сум</h5>
+                                        <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="orders_item_actions">
+                                <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                <button>{{"Orders.track-order" | translate}}</button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </mat-tab>
+                <mat-tab [label]="'Orders.cancelled' | translate">
+                    <ng-template #empty>
+                        <div class="orders_empty">
+                            <img src="../../../../assets/icons/empty.png" alt="empty">
+                            <div class="orders_empty_content">
+                                <h4>{{"Orders.empty" | translate}}</h4>
+                                <span>{{"Orders.cancelled-empty" | translate}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-container *ngIf="(getOrders$ | async)?.cancelledOrders as orders">
+                        <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                            <div class="orders_item_content_wrapper">
+                                <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                <div class="orders_item_content">
+                                    <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
+                                    <span class="orders_item_quantity">
+                                        3 продукта | 2.4 km
+                                    </span>
+                                    <div class="orders_item_footer">
+                                        <h5 class="orders_item_price">210000 сум</h5>
+                                        <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="orders_item_actions">
+                                <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                <button>{{"Orders.track-order" | translate}}</button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </mat-tab>
             </mat-tab-group>
         </div>
     </div>

@@ -2,6 +2,8 @@ import { ICategory } from "../home/models/category.model"
 import { IMenu } from "../home/models/menu.model"
 import { IOffer } from "../home/models/offer.model"
 import { IPopularMeal } from "../home/models/popularMeal.model"
+import { IChosenOrder } from "../orders/models/chosenOrder.model"
+import { IOrder } from "../orders/models/order.model"
 import { ITimeSlots } from "../orders/models/timeSlots.model"
 import { IFavorites } from "../profile/models/favorites.model"
 import { ICart } from "../shared/models/ICart.model"
@@ -54,5 +56,11 @@ export interface IAppState {
         new_tutorial: boolean
     },
     favorites: Pick<IFavorites, "data"> ,
-    preOrderedSlots: ITimeSlots
+    preOrderedSlots: ITimeSlots,
+    orders: {
+        activeOrders: IOrder[]
+        completedOrders: IOrder[]
+        cancelledOrders: IOrder[]
+    },
+    chosenOrder: IChosenOrder
 }

@@ -5,6 +5,8 @@ import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 import { ICart } from 'src/app/shared/models/ICart.model';
 import { IError } from 'src/app/shared/models/IError.model';
 import { ITimeSlots } from '../../models/timeSlots.model';
+import { IOrder } from '../../models/order.model';
+import { IChosenOrder } from '../../models/chosenOrder.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,30 @@ import { ITimeSlots } from '../../models/timeSlots.model';
 export class OrdersService {
 
   constructor(private http : HttpClient) { }
+
+  public createMap(map: any, latitude: number, longitude: number): void {
+    let tashkentCityCoords = [
+                              [41.536747, 68.757843, 41.563500, 69.530394],
+                              [40.970277, 69.730380, 40.970277, 69.730380],
+                             ] 
+    map = new ymaps.Map('map', {
+      center: [latitude, longitude],
+      zoom: 14,
+      controls: ['zoomControl',  'fullscreenControl'],
+    }, {
+      suppressMapOpenBlock: true,
+      restrictMapArea: tashkentCityCoords,
+    });
+
+    let myGeoObject = new ymaps.GeoObject({
+      // Описание геометрии.
+      geometry: {
+          type: "Point",
+          coordinates: [latitude, longitude]
+      },
+    });
+    map.geoObjects.add(myGeoObject)
+  }
 
   public addToCart(data: {variant_id:string, quantity: number, note: string}) {
     const noteUrl = `&note=${data.note}`;
@@ -52,6 +78,24 @@ export class OrdersService {
 
   public getPreOrderedSlots() {
     return this.http.get<{data: ITimeSlots, error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${CommonUrl.PRE_ORDERED_SLOTS_URL}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public getOrders() {
+    return this.http.get<{data: IOrder[], error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders?&limit=20&offset=0`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public getChosenOrder(id: string) {
+    return this.http.get<{data: IChosenOrder, error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders/${id}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

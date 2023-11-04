@@ -109,6 +109,59 @@ export const initialState: IAppState = {
         today: [],
         tomorrow: [],
         day_after_tomorrow: []
+    },
+    orders: {
+        activeOrders: [],
+        completedOrders: [],
+        cancelledOrders: []
+    },
+    chosenOrder: {
+        id: 0,
+        actions: [],
+        delivery_time: '',
+        delivery_distance: 0,
+        created_date: '',
+        created_time: '',
+        items_count: 0,
+        status: {
+            id: '',
+            name: ''
+        },
+        items: [],
+        address: {
+            id: '',
+            name: '',
+            address: ''
+        },
+        payment: {
+            id: '',
+            name: '',
+            status: ''
+        },
+        courier: {
+            id: '',
+            name: '',
+            phone: '',
+            image: '',
+            latitude: 0,
+            longitude: 0,
+            rating: 0,
+            joined_date: '',
+            vehicle_name: '',
+            plate_number: ''
+        },
+        subtotal: {
+            price: 0,
+            discount: 0
+          },
+          delivery: {
+            price: 0,
+            discount: 0
+          },
+          total: {
+            price: 0,
+            discount: 0
+          }
     }
 }
 
@@ -237,5 +290,19 @@ export const appReducer = createReducer(
             ...state,
             preOrderedSlots: timeslots
         })
-    )
+    ),
+    on(
+        OrdersActions.fetchOrdersSuccess,
+        (state, orders): IAppState => ({
+            ...state,
+            orders: orders
+        })
+    ),
+    on(
+        OrdersActions.fetchChosenOrderSuccess,
+        (state, chosenOrder): IAppState => ({
+            ...state,
+            chosenOrder: chosenOrder
+        })
+    ),
 )

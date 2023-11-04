@@ -57,3 +57,13 @@ export const selectPreOrderedTimeSlots = createSelector(
     selectAppState,
     (state) => state.preOrderedSlots
 )
+
+export const selectOrders = createSelector(
+    selectAppState,
+    (state) => state.orders
+)
+
+export const selectChosenOrder = createSelector(
+    selectAppState,
+    (state) => state.chosenOrder
+)
