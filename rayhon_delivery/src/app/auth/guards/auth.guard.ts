@@ -25,9 +25,9 @@ export const authGuardCanActivate: CanActivateFn = (route, state) => {
       if(navigateToHome) {
         return
       }
-      else if(data.first_name && !navigateToHome) {
-        router.navigate(['/profile/location']);
-      }
+      // else if(data.first_name && !navigateToHome) {
+      //   router.navigate(['/profile/location']);
+      // }
       else {
         router.navigate(['/profile'])
       }
@@ -42,7 +42,6 @@ export const authGuardCanActivate: CanActivateFn = (route, state) => {
 export const authGuardCanMatch: CanMatchFn = (route, state) => {
   const router: Router = inject(Router);
   const store: Store = inject(Store);
-
   if(localStorage.getItem(CommonKey.IS_LOGINED) == 'true') {
     let navigateToHome = false;
     store.select(selectAddresses).pipe(
@@ -60,9 +59,9 @@ export const authGuardCanMatch: CanMatchFn = (route, state) => {
       if(navigateToHome) {
         return
       }
-      else if(data.first_name && !navigateToHome) {
-        router.navigate(['/profile/location']);
-      }
+      // else if(data.first_name && !navigateToHome) {
+      //   router.navigate(['/profile/location']);
+      // }
       else {
         router.navigate(['/profile'])
       }

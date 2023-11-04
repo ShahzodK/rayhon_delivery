@@ -49,6 +49,7 @@
                     width: 10px;
                     height: 10px;
                     left: -9px;
+                    border-top-color: var(--greyscaleColor700);
                 }
             }
         }
@@ -65,5 +66,23 @@
         align-self: flex-end;
         background: var(--errorColor);
         padding: 6px 16px;
+        box-shadow: none;
+    }
+    &_empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+        margin-top: 120px;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin: 0;
+            margin-bottom: 12px;
+        }
+        span {
+            font-size: 18px;
+            color: var(--greyscaleColor900);
+        }
     }
 }

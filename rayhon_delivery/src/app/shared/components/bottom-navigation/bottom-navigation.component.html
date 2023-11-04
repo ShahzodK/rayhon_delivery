@@ -13,6 +13,7 @@
                     <span>{{"Bottom-navigation.orders" | translate}}</span>
                 </li>
                 <li (click)="toPage('/orders/basket')" #basketBtn>
+                    <span class="notification" *ngIf="(selectCart$ | async)?.items!.length > 0"></span>
                     <img src="../../../../assets/icons/bag.svg" alt="bag" *ngIf="activePage !== 'basket'">
                     <img src="../../../../assets/icons/bag-active.svg" alt="bag" *ngIf="activePage == 'basket'">
                     <span>{{"Bottom-navigation.cart" | translate}}</span>

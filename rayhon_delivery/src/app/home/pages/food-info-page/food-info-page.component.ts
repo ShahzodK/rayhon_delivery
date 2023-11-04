@@ -112,7 +112,7 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
   }
 
   public goToMenu() {
-    
+    this.router.navigate(['/home'])
   }
 
   public ngOnDestroy(): void {

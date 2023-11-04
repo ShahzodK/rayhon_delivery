@@ -8,6 +8,8 @@ import { RateCafePageComponent } from './pages/rate-cafe-page/rate-cafe-page.com
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout-order-page.component';
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
+import { PreOrderPageComponent } from './pages/pre-order-page/pre-order-page.component';
+import { TrackOrderPageComponent } from './pages/track-order-page/track-order-page.component';
 
 
 
@@ -19,6 +21,8 @@ import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
     BasketPageComponent,
     CheckoutOrderPageComponent,
     OrdersPageComponent,
+    PreOrderPageComponent,
+    TrackOrderPageComponent,
   ],
   imports: [
     CommonModule,

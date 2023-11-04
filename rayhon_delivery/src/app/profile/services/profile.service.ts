@@ -96,7 +96,7 @@ export class ProfileService {
   }
 
   public uploadProfileImage(data: any) {
-    return this.http.post<IUser>(CommonUrl.MAIN_URL + CommonUrl.UPLOAD_IMG, data , {
+    return this.http.post<IUser>(CommonUrl.MAIN_URL + 'users/' + CommonUrl.UPLOAD_IMG, data , {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })

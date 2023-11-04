@@ -10,5 +10,7 @@ export let CommonUrl = {
     ITEMS_URL: 'ui-elements/items',
     CART_URL: 'carts',
     SEARCH_URL: 'items/items/searches',
-    NOTIFICATION_URL: 'notifications/notifications'
+    NOTIFICATION_URL: 'notifications/notifications',
+    ORDER_URL: 'orders',
+    PRE_ORDERED_SLOTS_URL: 'pre-order/timeslots'
 }

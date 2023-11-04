@@ -1,0 +1,80 @@
+.track-order {
+    min-height: 100vh;
+    &_back {
+        position: absolute;
+        top: 15px;
+        left: 24px;
+        background: #A4DEB7;
+        border-radius: 100px;
+        padding: 14px 20px;
+        padding-right: 15px;
+        z-index: 100;
+        .arrow {
+            border: solid var(--greyscaleColor900);
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 5px;
+        }
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+    }
+    &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-height: 100%;
+    }
+    &_info {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        min-height: 30vh;
+        background: var(--blockBg);
+        border-radius: 48px 48px 0px 0px;
+    }
+    &_driver-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        border-top: 1px solid var(--greyscaleColor200);
+        border-bottom: 1px solid var(--greyscaleColor200);
+        img {
+            width: 60px;
+        }
+        h6 {
+            margin: 0;
+            margin-bottom: 7px;
+            color: var(--greyscaleColor900);
+        }
+        &_footer {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            // padding-bottom: 36px;
+        }
+        &_rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--greyscaleColor700);
+        }
+        &_number {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--greyscaleColor900);
+        }
+        &_car {
+            color: var(--greyscaleColor700);
+        }
+        &_additional {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+    }
+}
