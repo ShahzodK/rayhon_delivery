@@ -44,6 +44,7 @@
             background: var(--secondaryBtnColor);
             color: var(--primaryColor);
             text-shadow: 4px 8px 24px rgba(27, 172, 75, 0.25);
+            box-shadow: none;
         }
     }
     &_address_item {

@@ -49,6 +49,7 @@
                     width: 10px;
                     height: 10px;
                     left: -9px;
+                    border-top-color: var(--greyscaleColor700);
                 }
             }
         }
@@ -65,5 +66,6 @@
         align-self: flex-end;
         background: var(--errorColor);
         padding: 6px 16px;
+        box-shadow: none;
     }
 }
