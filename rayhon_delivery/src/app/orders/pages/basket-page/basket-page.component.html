@@ -4,9 +4,9 @@
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
             <h4>{{"Orders.basket" | translate}}</h4>
         </div>
-        <div class="basket_content">
-            <button class="basket_clear">{{"Orders.clear" | translate}}</button>
-            <ng-container *ngIf="selectCart$ | async as cart">
+        <div class="basket_content" *ngIf="selectCart$ | async as cart">
+            <ng-container *ngIf="cart.items.length > 0; else emptyBasket">
+                <button class="basket_clear">{{"Orders.clear" | translate}}</button>
                 <div class="basket_item food-cart" *ngFor="let item of cart.items" [routerLink]="'/home/menu/' + item.item_id">
                     <img src="../../../../assets/icons/menu-example.png" alt="meal-photo">
                     <div class="basket_item_info food-cart_content">
@@ -25,8 +25,17 @@
                         <img src="../../../../assets/icons/red-bin.svg" alt="delete">
                     </div>
                 </div>
+                <button class="basket_make_order" routerLink="/orders/checkout">{{"Orders.make-order" | translate}}</button>
             </ng-container>
-            <button class="basket_make_order" routerLink="/orders/checkout">{{"Orders.make-order" | translate}}</button>
+            <ng-template #emptyBasket>
+                <div class="basket_empty">
+                    <img src="../../../../assets/icons/empty.png" alt="empty">
+                    <div class="basket_empty_content">
+                        <h4>{{"Orders.empty" | translate}}</h4>
+                        <span>{{"Orders.basket-page.empty" | translate}}</span>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
     <app-bottom-navigation></app-bottom-navigation>

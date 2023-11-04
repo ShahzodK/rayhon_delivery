@@ -1,6 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { selectCart } from 'src/app/redux/selectors/app.selectors';
 
 @Component({
   selector: 'app-bottom-navigation',
@@ -14,13 +16,17 @@ export class BottomNavigationComponent implements AfterViewInit, OnDestroy {
   @ViewChild('basketBtn', { static: false }) basketBtn!: ElementRef;
   @ViewChild('profileBtn', { static: false }) profileBtn!: ElementRef;
 
+
   public activePage!: string;
 
   public unsubscribe$ = new Subject()
 
+  public selectCart$ = this.store.select(selectCart);
+
   constructor(
               private router: Router,
-              private cdRef: ChangeDetectorRef   
+              private cdRef: ChangeDetectorRef,
+              private store: Store   
               ) {}
 
   ngAfterViewInit() {
