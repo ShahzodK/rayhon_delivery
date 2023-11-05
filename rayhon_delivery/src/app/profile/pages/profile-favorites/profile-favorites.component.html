@@ -5,7 +5,7 @@
             <h4>{{"Profile.favorites-page.title" | translate}}</h4>
         </div>
         <div class="profile_favorites_content" *ngIf="(selectFavorites$ | async) as favorites">
-            <div class="profile_favorites_item home-page_menu_category_item" *ngFor="let item of favorites.data">
+            <div class="profile_favorites_item home-page_menu_category_item" *ngFor="let item of favorites.data" [routerLink]="'/home/menu/' + item.id">
                 <img src="../../../../assets/icons/menu-example.png" alt="menu">
                 <div class=" profile_favorites_item_content home-page_menu_category_item_content">
                     <h5>{{item.name}}</h5>

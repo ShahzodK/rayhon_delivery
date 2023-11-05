@@ -24,7 +24,7 @@
                     <h5>{{userData.first_name + ' ' +  userData.last_name}}</h5>
                     <span>{{userData.phone}}</span>
                 </div>
-                <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/profile" [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none'}">
+                <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/profile" [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none', 'cursor': 'pointer'}">
             </ng-container>
         </div>
         <div class="profile-settings_additional">
