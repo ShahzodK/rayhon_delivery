@@ -391,6 +391,15 @@ input {
     }
 }
 
+.notification-indicator {
+    position: absolute;
+    width: 6px;
+    height: 5px;
+    left: 5px;
+    border-radius: 100%;
+    background: red;
+}
+
 
 @media (max-width: 384px) {
     .container {

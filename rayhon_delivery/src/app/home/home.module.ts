@@ -9,6 +9,7 @@ import { SpecialOffersItemComponent } from './components/special-offers/special-
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.component';
+import { NotificationsPageComponent } from './pages/notifications-page/notifications-page.component';
 
 
 
@@ -20,7 +21,8 @@ import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.com
     SpecialOffersItemComponent,
     SearchPageComponent,
     FilterComponent,
-    FoodInfoPageComponent
+    FoodInfoPageComponent,
+    NotificationsPageComponent
   ],
   imports: [
     CommonModule,

@@ -39,9 +39,14 @@
             }
         }
         &_notifications {
+            position: relative;
             padding: 10px 12px;
             border: 1px solid var(--greyscaleColor200);
             border-radius: 100px;
+            .notification-indicator {
+                width: 5px;
+                left: 6px;
+            }
         }
     }
     &_showAll {
