@@ -1,5 +1,5 @@
 export let CommonUrl = {
-    MAIN_URL: 'https://champslab.tech/api/v1/customers/',
+    MAIN_URL: 'https://api.rayhonmilliy.uz/api/v1/customers/',
     LOGIN_URL: 'users/login',
     VERIFY_OTP_URL: 'users/verify-otp',
     USER_URL: 'users/me',
