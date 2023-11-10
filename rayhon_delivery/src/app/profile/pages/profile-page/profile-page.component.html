@@ -23,7 +23,7 @@
                     </label>
                     <img [src]="userData!.image || '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
                 </div>
-                <input type="text" formControlName="name" placeholder="{{'Profile.name' | translate}}">
+                <input type="text" formControlName="name" class="input_name" placeholder="{{'Profile.name' | translate}}">
                 <div class="input_datepicker">
                     <input matInput disabled="true" [matDatepicker]="datepicker" [max]="maxDate" placeholder="{{'Profile.birthday' | translate}}">
                     <mat-datepicker-toggle disabled="false" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
