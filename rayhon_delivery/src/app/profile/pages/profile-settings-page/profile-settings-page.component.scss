@@ -141,3 +141,12 @@
 .arrow-right {
     margin-right: 7px;
 }
+
+@media (min-width: 480px) {
+  .profile-settings {
+    &_user_data {
+      justify-content: flex-start;
+      gap: 80px;
+    }
+  }
+}

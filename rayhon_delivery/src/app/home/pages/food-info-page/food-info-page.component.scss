@@ -19,6 +19,9 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        .textarea-skeleton {
+            width: 90vw;
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -112,5 +115,29 @@
     }
     &_submit-btn {
         align-self: center;
+    }
+}
+
+@media (min-width: 786px){
+    .food-info {
+        &_content {
+            .textarea-skeleton {
+                width: 45%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            form {
+                textarea {
+                    width: 45%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+        &_options {
+            width: 45%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 }
