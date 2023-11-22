@@ -25,24 +25,24 @@ export class AddressEffects {
         .pipe(
             ofType(ProfileActions.fetchAddresses),
             switchMap(() => this.profileService.getAddresses()),
-            map((addresses: IAddresses) => {
-                if(addresses.data) {
-                    this.profileService.addressesCount = addresses.count;
+            map((addresses: IAddress[]) => {
+                if(addresses.length > 0) {
+                    this.profileService.addressesCount = addresses.length;
                     let hasDefaultAddress = false;
-                    addresses.data.forEach(address => {
+                    addresses.forEach(address => {
                         if(address.is_default == true){
                             this.homeService.chosenAddressId = address.id
                             this.store.dispatch(ProfileActions.fetchChosenAddress(address))
                             hasDefaultAddress = true;
                         }
                     });
-                    if (!hasDefaultAddress && addresses.data.length > 0) {
-                        const firstAddress = addresses.data[0];
+                    if (!hasDefaultAddress && addresses.length > 0) {
+                        const firstAddress = addresses[0];
                         firstAddress.is_default = true;
                         this.homeService.chosenAddressId = firstAddress.id;
                         this.store.dispatch(ProfileActions.fetchChosenAddress(firstAddress));
                     }
-                    return ProfileActions.fetchAddressesSuccess(addresses)
+                    return ProfileActions.fetchAddressesSuccess({data: addresses})
                 }
                 else return ProfileActions.fetchAddressesFailed
             }),
@@ -56,7 +56,7 @@ export class AddressEffects {
             ofType(ProfileActions.chooseAddress),
             switchMap((payload) => this.profileService.updateAddress(payload)),
             map((address: IAddress) => {
-                if(address.data) {
+                if(address) {
                     return ProfileActions.chooseAddressSuccess(address)
                 }
                 else return ProfileActions.chooseAddressFailed

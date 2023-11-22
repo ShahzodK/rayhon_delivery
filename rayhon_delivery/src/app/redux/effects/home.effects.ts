@@ -21,7 +21,7 @@ export class HomeEffects {
             ofType(fetchUIElements),
             switchMap(() => this.homeService.getUIElements()),
             map((UIElements: IUIElements) => {
-                if(UIElements.data) return fetchUIElementsSuccess(UIElements)
+                if(UIElements) return fetchUIElementsSuccess(UIElements)
                 return fetchUIElementsFailed
             }),
             catchError(() => of(fetchUIElementsFailed))

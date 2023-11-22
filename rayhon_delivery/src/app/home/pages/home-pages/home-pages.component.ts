@@ -63,8 +63,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
         items: 2,
         margin: 12
       },
-      976: {
-        items: 3
+      998: {
+        items: 3,
       }
     },
   }
@@ -91,7 +91,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
         items: 3,
         margin: 12
       },
-      992: {
+      998: {
         items: 4,
         margin: 16
       }
@@ -117,7 +117,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
       768: {
         items: 5,
       },
-      992: {
+      998: {
         items: 7,
       }
     },
@@ -162,7 +162,6 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   public sortMenu(id: string) {
     if(this.sortedMenuIds.includes(id)) {
-      console.log('gr')
       this.sortedMenuIds = this.sortedMenuIds.filter(item => item != id);
     }
     else {

@@ -11,9 +11,8 @@
                        #searchInput>            
             </div>
         </div>
-    </div>    
+    
         <div class="search-page_content" *ngIf="!filterService.isFilterOpened">
-            <div class="container">
                 <ng-container *ngIf="searchService.searchWord == ''">
                     <div class="recent-search search-page_section">
                         <h5>{{"Home.search-page.recent-search" | translate}}</h5>
@@ -62,7 +61,6 @@
                         <p>{{"Home.search-page.not-found-text" | translate}}</p>
                     </div>
                 </ng-container>
-            </div>
             <ng-container *ngIf="!searchService.isSearching && searchService.searchWord !== '' && searchResults.length !== 0">
                 <div class="search-page_results_options">
                     <owl-carousel-o [options]="resultsOptions" #owlSlide>
@@ -85,7 +83,6 @@
                         </ng-template>
                     </owl-carousel-o> 
                 </div>
-                <div class="container">
                     <div class="search-page_results food-cart" *ngFor="let item of searchResults" [routerLink]="'/home/menu/' + item.id">
                         <img src="../../../../assets/icons/menu-example.png" alt="menu">
                         <div class="search-page_results_content food-cart_content">
@@ -114,10 +111,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </ng-container>
         </div>
-        <ng-container *ngIf="filterService.isFilterOpened">
-            <app-filter></app-filter>
-        </ng-container>
+    </div>
+    <ng-container *ngIf="filterService.isFilterOpened">
+        <app-filter></app-filter>
+    </ng-container>
 </section>

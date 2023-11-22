@@ -67,7 +67,7 @@
                     margin-bottom: 0;
                     white-space: nowrap;
                     overflow: hidden;
-                    width: 36vw;
+                    max-width: 36vw;
                     text-overflow: ellipsis;
                 }
                 span {
@@ -86,7 +86,7 @@
                 color: var(--greyscaleColor700);
                 white-space: nowrap;
                 overflow: hidden;
-                width: 57vw;
+                max-width: 57vw;
                 text-overflow: ellipsis;
             }
         }
@@ -112,5 +112,79 @@
         align-self: center;
         margin-top: auto;
         margin-bottom: 36px;
+    }
+}
+
+
+@media (min-width: 786px) {
+    .deliver-to {
+        &_address_item {
+            &_content_address {
+                max-width: 42vw;
+            }
+        }
+        &_content {
+            ul {
+                .new-address_btn {
+                    max-width: 70%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                li {
+                    width: 70%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    h6 {
+                        max-width: 35vw !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 997px) {
+    .deliver-to {
+        &_address_item {
+            &_content_address {
+                width: 25vw;
+            }
+        }
+        &_content {
+            ul {
+                li {
+                    h6 {
+                        max-width: 17vw !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1100px) {
+    .deliver-to {
+        &_address_item {
+            &_content_address {
+                width: 26vw;
+            }
+        }
+        &_content {
+            ul {
+                .new-address_btn {
+                    width: 50%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                li {
+                    width: 85%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    h6 {
+                        max-width: 19.5vw !important;
+                    }
+                }
+            }
+        }
     }
 }

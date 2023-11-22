@@ -5,11 +5,8 @@ import { IPopularMeal } from "./popularMeal.model";
 import { IMenu } from "./menu.model";
 
 export interface IUIElements {
-    data: {
-        category: ICategory,
-        offer: IOffer,
-        populars: IPopularMeal[],
-        menu: IMenu
-    },
-    error: IError | null
+    category: ICategory,
+    offer: IOffer,
+    populars: IPopularMeal[],
+    menu: IMenu
 }

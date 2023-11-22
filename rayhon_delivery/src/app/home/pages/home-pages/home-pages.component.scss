@@ -30,7 +30,7 @@
                 span {
                     font-size: 18px;
                     font-weight: 700;
-                    width: 50vw;
+                    max-width: 50vw;
                     color: var(--greyscaleColor900);
                     white-space: nowrap;
                     overflow: hidden;
@@ -68,6 +68,7 @@
             display: flex;
             img {
                 margin-left: 12px;
+                cursor: pointer;
             }
         }
     }
@@ -105,6 +106,7 @@
             }
             &_img {
                 width: 80vw;
+                cursor: pointer;
             }
             &_time {
                 display: flex;

@@ -96,7 +96,7 @@ export class ProfileService {
   }
 
   public uploadProfileImage(data: any) {
-    return this.http.post<IUser>(CommonUrl.MAIN_URL + 'users/' + CommonUrl.UPLOAD_IMG, data , {
+    return this.http.post<IUser>(CommonUrl.MAIN_URL + 'accounts/' + CommonUrl.UPLOAD_IMG, data , {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -104,7 +104,7 @@ export class ProfileService {
   }
 
   public getAddresses() {
-    return this.http.get<IAddresses>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}`, {
+    return this.http.get<IAddress[]>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -112,7 +112,7 @@ export class ProfileService {
   }
 
   public createAddress(data: IAddressRequest) {
-    return this.http.post<IAddresses>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL, data, {
+    return this.http.post<IAddress[]>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL + '/', data, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -144,7 +144,7 @@ export class ProfileService {
   }
 
   public getNotificationPreferences() {
-    return this.http.get<{data: INotifications, error: IError}> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', {
+    return this.http.get<INotifications> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -152,7 +152,7 @@ export class ProfileService {
   }
 
   public updateNotificationPreferences(data: INotifications) {
-    return this.http.put<{data: INotifications, error: IError}> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', data, {
+    return this.http.put<INotifications> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', data, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })

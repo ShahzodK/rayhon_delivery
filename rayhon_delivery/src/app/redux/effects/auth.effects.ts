@@ -27,10 +27,10 @@ export class AuthEffects {
             ofType(AuthActions.fetchUser),
             switchMap(() => this.authService.getUser()),
             map((user: IUser) => {
-                if(user.data) {
+                if(user) {
                     localStorage.setItem(CommonKey.IS_LOGINED, 'true');
                     this.store.dispatch(fetchAddresses());
-                    this.homeService.chosenLanguage = user.data.language;
+                    this.homeService.chosenLanguage = user.language;
                     return AuthActions.fetchUserSuccess(user)
                 }
                 else return AuthActions.fetchUserFailed

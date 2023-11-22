@@ -54,23 +54,20 @@ export class LocationPageComponent implements OnInit {
       }
       this.profileService.createAddress(profileValues).subscribe({
         next: (data) => {
+        console.log(data)
         this.isLocationButtonDisabled = false;
-        if(data.data) {
-          console.log(data);
-          this.store.dispatch(fetchAddresses());
-          this.router.navigate(['/home']);
-          this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;
-          this.profileService.longitude = CommonKey.TASHKENT_LONGITUDE_CENTER;
-        }
-        else if(data.error) {
-          this.locationForm.controls.locationAddress.setErrors({
-            unsupportedLocation: true
-          })
-          this.errorMsg = data.error.message;
-        }
+        console.log(data);
+        this.store.dispatch(fetchAddresses());
+        this.router.navigate(['/home']);
+        this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;
+        this.profileService.longitude = CommonKey.TASHKENT_LONGITUDE_CENTER;
       },
       error: (error) => {
         this.isLocationButtonDisabled = false;
+        this.locationForm.controls.locationAddress.setErrors({
+          unsupportedLocation: true
+        })
+        this.errorMsg = error.error.message;
         console.log(error);
       }
     })

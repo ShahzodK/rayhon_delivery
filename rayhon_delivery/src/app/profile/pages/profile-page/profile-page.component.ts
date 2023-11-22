@@ -20,7 +20,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   public maxDate: Date;
 
-  public userData!: IUser["data"];
+  public userData!: IUser;
 
   public uploadedImg!: File;
 

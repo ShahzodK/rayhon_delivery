@@ -48,3 +48,19 @@
         }
     }
 }
+
+@media (min-width: 560px) {
+    .modal {
+        &_content {
+            width: 50%;
+        }
+    }
+}
+
+@media (min-width: 786px) {
+    .modal {
+        &_content {
+            width: 35%;
+        }
+    }
+}

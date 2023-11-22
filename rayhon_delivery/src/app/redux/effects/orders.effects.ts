@@ -22,8 +22,8 @@ export class OrdersEffects {
             .pipe(
                 ofType(fetchCart),
                 switchMap(() => this.ordersService.getCart()),
-                map((cart: {data: ICart, error: IError}) => {
-                    if(cart.data) return fetchCartSuccess(cart.data)
+                map((cart: ICart) => {
+                    if(cart) return fetchCartSuccess(cart)
                     return fetchCartFailed
                 }),
                 catchError(() => of(fetchCartFailed))
@@ -35,9 +35,9 @@ export class OrdersEffects {
             .pipe(
                 ofType(FetchPreOrderedSlots),
                 switchMap(() => this.ordersService.getPreOrderedSlots()),
-                map((timeSlots: {data: ITimeSlots, error: IError}) => {
+                map((timeSlots: ITimeSlots) => {
                     console.log(timeSlots)
-                    if(timeSlots.data) return FetchPreOrderedSlotsSuccess(timeSlots.data)
+                    if(timeSlots) return FetchPreOrderedSlotsSuccess(timeSlots)
                     return FetchPreOrderedSlotsFailed
                 }),
                 catchError(() => of(FetchPreOrderedSlotsFailed))
@@ -50,10 +50,10 @@ export class OrdersEffects {
                 ofType(fetchOrders),
                 switchMap(() => this.ordersService.getOrders()),
                 map((orders) => {
-                    if(orders.data) {
-                        const activeOrders = orders.data.filter((order: IOrder) => order.status.status == 'active');
-                        const completedOrders = orders.data.filter((order: IOrder) => order.status.status == 'completed');
-                        const cancelledOrders = orders.data.filter((order: IOrder) => order.status.status == 'cancelled');
+                    if(orders) {
+                        const activeOrders = orders.filter((order: IOrder) => order.status.status == 'active');
+                        const completedOrders = orders.filter((order: IOrder) => order.status.status == 'completed');
+                        const cancelledOrders = orders.filter((order: IOrder) => order.status.status == 'cancelled');
                         return fetchOrdersSuccess({activeOrders, completedOrders, cancelledOrders})
                     }
                     return fetchOrdersSuccess
@@ -67,9 +67,9 @@ export class OrdersEffects {
             .pipe(
                 ofType(fetchChosenOrder),
                 switchMap((payload) => this.ordersService.getChosenOrder(payload.id)),
-                map((order: {data: IChosenOrder, error: IError}) => {
-                    if(order.data) {
-                        return fetchChosenOrderSuccess(order.data)
+                map((order: IChosenOrder) => {
+                    if(order) {
+                        return fetchChosenOrderSuccess(order)
                     }
                     return fetchChosenOrderFailed
                 }),

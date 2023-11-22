@@ -40,17 +40,17 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         return this.searchService.searchByWord(word)
       }),
       takeUntil(this.unsubscribe$)
-    ).subscribe((data: { data: IMenu['category_items'][0]['items'] | [], error: IError | [] }) => {
+    ).subscribe((data: IMenu['category_items'][0]['items']) => {
       this.searchService.isSearching = false;
-      this.searchResults = data.data;
+      this.searchResults = data;
     })
 
     this.searchService.getRecentSearchWords().pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe((data) => {
       console.log(data)
-      if(data.data.length > 0) {
-        this.recentlySearchedWords = data.data.filter(item => item.length > 3).slice(0,6);
+      if(data.length > 0) {
+        this.recentlySearchedWords = data.filter(item => item.length > 3).slice(0,6);
       }
     })
   }

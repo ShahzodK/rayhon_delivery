@@ -412,3 +412,22 @@ input {
         padding-right: 2vw;
     }
 }
+
+@media (min-width: 998px) {
+    .container {
+        padding-left: 220px;
+        padding-right: 220px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .container {
+        padding-left: 28vw;
+        padding-right: 28vw;
+    }
+    .home-page_offers_carousel, .home-page_popular_carousel {
+        .skeleton-loader {
+            max-width: 13vw;
+        }
+    }
+}

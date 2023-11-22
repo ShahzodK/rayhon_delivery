@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnDestroy {
     if(this.authForm.valid) {
       let profileValues = {
         phone: '998' + this.authForm.value.phoneNum!,
-        language: 'ru'
+        language: 'en'
       }
       this.isLoginButtonDisabled = true;
       this.authService.login(profileValues).pipe(
@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnDestroy {
         next: (data) => {
         console.log(data)
         this.isLoginButtonDisabled = false;
-        this.store.dispatch(saveLoginDataSuccess({phoneNum: '+' + profileValues.phone, otp_job_id: data.data!.otp_job_id}))
+        this.store.dispatch(saveLoginDataSuccess({phoneNum: '+' + profileValues.phone, otp_job_id: data.otp_job_id}))
         this.router.navigate(['/auth/verify_num']);
       },
       error: (error) => {

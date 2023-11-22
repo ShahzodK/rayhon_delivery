@@ -182,12 +182,12 @@ export const appReducer = createReducer(
         (state, profile): IAppState => ({
             ...state,
             user: {
-                id: profile.data!.id,
-                phone: profile.data!.phone,
-                first_name: profile.data!.first_name,
-                last_name: profile.data!.last_name,
-                image: profile.data!.image,
-                language: profile.data!.language
+                id: profile!.id,
+                phone: profile!.phone,
+                first_name: profile!.first_name,
+                last_name: profile!.last_name,
+                image: profile!.image,
+                language: profile!.language
             }
         })
     ),
@@ -202,7 +202,7 @@ export const appReducer = createReducer(
         AddressActions.chooseAddressSuccess,
         (state, address): IAppState => ({
             ...state,
-            chosenAddress: address.data
+            chosenAddress: address
         })
     ),
     on(
@@ -216,7 +216,7 @@ export const appReducer = createReducer(
         HomeActions.fetchUIElementsSuccess,
         (state, elements): IAppState => ({
             ...state,
-            UIElements: elements.data
+            UIElements: elements
         })
     ),
     on(HomeActions.toggleFavorite, (state, { itemId, isFavorite }) => {

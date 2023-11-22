@@ -88,7 +88,11 @@
             font-weight: 700;
         }
     }
-
+    .loading-spinner-button {
+        padding-top: 31px;
+        padding-bottom: 23px;
+        width: 31vw;
+    }
 }
 
 @media (min-width: 480px) {
@@ -99,6 +103,22 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+        }
+    }
+}
+
+@media (min-width: 786px) {
+    .profile {
+        .loading-spinner-button {
+            width: 15vw;
+        }
+    }
+}
+
+@media (min-width: 997px) {
+    .profile {
+        .loading-spinner-button {
+            width: 12vw;
         }
     }
 }

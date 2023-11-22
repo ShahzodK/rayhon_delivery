@@ -41,7 +41,7 @@ export class OrdersService {
 
   public addToCart(data: {variant_id:string, quantity: number, note: string}) {
     const noteUrl = `&note=${data.note}`;
-    return this.http.put<{data: ICart, error: IError}>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}?variant_id=${data.variant_id}&quantity=${data.quantity}${data.note == '' ? '' : noteUrl}`, data,  {
+    return this.http.put<ICart>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}?variant_id=${data.variant_id}&quantity=${data.quantity}${data.note == '' ? '' : noteUrl}`, data,  {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -50,7 +50,7 @@ export class OrdersService {
   }
 
   public getCart() {
-    return this.http.get<{data: ICart, error: IError}>(CommonUrl.MAIN_URL + CommonUrl.CART_URL, {
+    return this.http.get<ICart>(CommonUrl.MAIN_URL + CommonUrl.CART_URL, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -59,7 +59,7 @@ export class OrdersService {
   }
 
   public deleteItemFromCart(id: string, quantity: number) {
-    return this.http.delete<{data: ICart, error: IError}>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}?item_id=${id}&quantity=${quantity}`, {
+    return this.http.delete<ICart>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}?item_id=${id}&quantity=${quantity}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -68,7 +68,7 @@ export class OrdersService {
   }
 
   public setCartAddress(id: string) {
-    return this.http.post<{data: ICart, error: IError}>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}/action/set-address?address_id=${id}`, {},  {
+    return this.http.post<ICart>(`${CommonUrl.MAIN_URL + CommonUrl.CART_URL}/action/set-address?address_id=${id}`, {},  {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -77,7 +77,7 @@ export class OrdersService {
   }
 
   public getPreOrderedSlots() {
-    return this.http.get<{data: ITimeSlots, error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${CommonUrl.PRE_ORDERED_SLOTS_URL}`, {
+    return this.http.get<ITimeSlots>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${CommonUrl.PRE_ORDERED_SLOTS_URL}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -86,7 +86,7 @@ export class OrdersService {
   }
 
   public getOrders() {
-    return this.http.get<{data: IOrder[], error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders?&limit=20&offset=0`, {
+    return this.http.get<IOrder[]>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders?&limit=20&offset=0`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -95,7 +95,7 @@ export class OrdersService {
   }
 
   public getChosenOrder(id: string) {
-    return this.http.get<{data: IChosenOrder, error: IError}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders/${id}`, {
+    return this.http.get<IChosenOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders/${id}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

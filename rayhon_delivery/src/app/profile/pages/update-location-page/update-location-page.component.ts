@@ -22,7 +22,7 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
   public errorMsg = '';
   public unsubscribe$ = new Subject();
   public id!: string;
-  public currentAddress!: IAddress['data'];
+  public currentAddress!: IAddress;
   public selectAddresses$ = this.store.select(selectAddresses);
 
   constructor(
@@ -76,21 +76,21 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
         this.profileService.deleteAddress(this.currentAddress.id).pipe(
           takeUntil(this.unsubscribe$),
           switchMap(() => this.profileService.createAddress(profileValues))
-        ).subscribe((data) => {
-          console.log(data);
-          console.log('new');
-          if(data.data) {
-            this.router.navigate(['/home']);
-            this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;
-            this.profileService.longitude = CommonKey.TASHKENT_LONGITUDE_CENTER;
+        ).subscribe(
+          {
+            next: (data) => {
+              this.router.navigate(['/home']);
+              this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;
+              this.profileService.longitude = CommonKey.TASHKENT_LONGITUDE_CENTER;
+            },
+            error: (error) => {
+              this.locationForm.controls.locationAddress.setErrors({
+                unsupportedLocation: true
+              })
+              this.errorMsg = error.error.message;
+            }
           }
-          else if(data.error) {
-            this.locationForm.controls.locationAddress.setErrors({
-              unsupportedLocation: true
-            })
-            this.errorMsg = data.error.message;
-          }
-        })
+        )
       }
       else if (this.profileService.latitude == this.currentAddress.latitude
               && this.profileService.longitude == this.currentAddress.longitude) {
@@ -100,20 +100,22 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
               is_default: profileValues.is_default
             }).pipe(
                     takeUntil(this.unsubscribe$)
-                    ).subscribe((data) => {
-                      console.log(data);
-                      if(data.data) {
-                        this.router.navigate(['/home']),
-                        this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;
-                        this.profileService.longitude = CommonKey.TASHKENT_LONGITUDE_CENTER;
+                    ).subscribe(
+                      {
+                        next: (data) => {
+                          console.log(data);
+                          this.router.navigate(['/home']),
+                          this.profileService.latitude = CommonKey.TASHKENT_LATITUDE_CENTER;
+                          this.profileService.longitude = CommonKey.TASHKENT_LONGITUDE_CENTER;
+                        },
+                        error: (error) => {
+                          this.locationForm.controls.locationAddress.setErrors({
+                            unsupportedLocation: true
+                          })
+                          this.errorMsg = error.error.message;
+                        }
                       }
-                      else if(data.error) {
-                        this.locationForm.controls.locationAddress.setErrors({
-                          unsupportedLocation: true
-                        })
-                        this.errorMsg = data.error.message;
-                      }
-            })
+                )
         }
         this.store.dispatch(fetchAddresses())
   }

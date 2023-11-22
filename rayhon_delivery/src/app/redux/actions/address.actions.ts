@@ -8,7 +8,7 @@ export const fetchAddresses = createAction (
   
 export const fetchAddressesSuccess = createAction(
   '[ADDRESS] Fetch Addresses Success',
-  props<Pick<IAddresses, 'data'>>(),
+  props<{data: IAddress[]}>(),
 )
 
 export const fetchAddressesFailed = createAction (
@@ -17,7 +17,7 @@ export const fetchAddressesFailed = createAction (
 
 export const fetchChosenAddress = createAction (
   '[ADDRESS] Fetch Chosen Addresses',
-  props<IAddress['data']>(),
+  props<IAddress>(),
 )
 
 export const chooseAddress = createAction(

@@ -89,12 +89,13 @@ export class VerifyPhoneComponent implements OnDestroy {
             phone: authData.phoneNum.slice(1),
             otp: smsCode,
             otp_job_id: (+authData.otp_job_id).toString(),
-            Device: {
+            device: {
               id: uuid.v4() as string,
               name: 'name',
               platform: 'web',
               version: this.deviceInformationService.getDeviceInfo().osVersion.toString(),
-              build: 'build'
+              build: 'build',
+              notifications_muted: false
             }
           }
           return this.authService.verifyPhoneNum(profileValues);
@@ -102,22 +103,17 @@ export class VerifyPhoneComponent implements OnDestroy {
       ).pipe(takeUntil(this.unsubscribe$)).subscribe({
         next: (data) => {
         console.log(data)
-        if(data.data) {
-          localStorage.setItem(CommonKey.TOKEN, data.data!.access_token);
-          localStorage.setItem(CommonKey.TOKEN_EXPIRE_DATE, data.data!.expires);
+          localStorage.setItem(CommonKey.TOKEN, data!.access_token);
+          localStorage.setItem(CommonKey.TOKEN_EXPIRE_DATE, data!.expires);
           this.store.dispatch(AuthActions.fetchUser());
           this.router.navigate(['profile'])
-        }
-        else if(data.error) {
-          this.verifyPhoneForm.controls.sixthNum.setErrors({
-            wrongPassword: true
-          });
-          this.errorMsg = data.error.message;
-        }
       },
         error: (error) => {
           this.isVerifyButtonDisabled = false;
-          console.log(error)
+          this.verifyPhoneForm.controls.sixthNum.setErrors({
+            wrongPassword: true
+          });
+          this.errorMsg = error.error.message;
         }
     })
     }

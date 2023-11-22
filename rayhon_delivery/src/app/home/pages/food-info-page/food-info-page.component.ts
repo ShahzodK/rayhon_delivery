@@ -93,15 +93,11 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
       this.ordersService.addToCart(dataForCart).pipe(takeUntil(this.unsubscribe$)).subscribe({
         next: (data) => {
         this.isAddToBasketButtonLoading = false;
-        if(data.data) {
+        if(data) {
           this.modalService.showSuccessModal = true;
-          this.store.dispatch(SaveCartSuccess(data.data))
+          this.store.dispatch(SaveCartSuccess(data))
           console.log(data)
         }
-        if(data.error) {
-          this.modalService.showErrorModal = true;
-        }
-        console.log(data)
       },
       error: () => {
         this.modalService.showErrorModal = true;

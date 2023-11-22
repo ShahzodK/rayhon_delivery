@@ -91,11 +91,8 @@ export class BasketPageComponent implements OnDestroy {
       this.ordersService.addToCart(data).pipe(takeUntil(this.unsubscribe$)).subscribe({
         next: (data) => {
           this.isQuantityLoading = false;
-          if(data.data) {
-            this.store.dispatch(SaveCartSuccess(data.data))
-          }
-          if(data.error) {
-            console.error(data.error)
+          if(data) {
+            this.store.dispatch(SaveCartSuccess(data))
           }
         },
         error: (error) => {
@@ -108,11 +105,8 @@ export class BasketPageComponent implements OnDestroy {
       this.ordersService.deleteItemFromCart(data.variant_id, 1).pipe(takeUntil(this.unsubscribe$)).subscribe({
         next: (data) => {
           this.isQuantityLoading = false;
-          if(data.data) {
-            this.store.dispatch(SaveCartSuccess(data.data))
-          }
-          if(data.error) {
-            console.error(data.error)
+          if(data) {
+            this.store.dispatch(SaveCartSuccess(data))
           }
         },
         error: (error) => {

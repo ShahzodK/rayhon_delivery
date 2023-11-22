@@ -12,7 +12,7 @@
                         <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">
                         <div class="deliver-to_address_item_content">
                             <div class="deliver-to_address_item_content_top">
-                                <h6 [style]="homeService.chosenAddressId == address.id ? 'width: 36vw': 'width: 45vw'">{{address.name}}</h6>
+                                <h6 [style]="homeService.chosenAddressId == address.id ? 'max-width: 36vw': 'max-width: 45vw'">{{address.name}}</h6>
                                 <span *ngIf="homeService.chosenAddressId == address.id">{{"Home.deliver-to.default" | translate}}</span>
                             </div>
                             <span class="deliver-to_address_item_content_address">{{address.address}}</span>

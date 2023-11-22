@@ -1,13 +1,15 @@
 <div class="modal" (click)="clickToOutside($event)" (click)="outsideClick.emit()">
-  <div class="modal_content" (click)="stopPropagation($event)">
-    <img [src]="imageUrl" alt="Modal Image">
-    <div class="modal_content-text">
-      <h4 [style]="{'color': modalType == 'success' ? '#1BAC4B': '#F75555'}">{{ title }}</h4>
-      <p>{{ description }}</p>
-    </div>
-    <div class="modal_actions">
-      <button (click)="primaryButtonClick.emit()">{{ primaryButtonLabel }}</button>
-      <button (click)="secondaryButtonClick.emit()" class="secondary_btn">{{ secondaryButtonLabel }}</button>
+  <div class="container">
+    <div class="modal_content" (click)="stopPropagation($event)">
+      <img [src]="imageUrl" alt="Modal Image">
+      <div class="modal_content-text">
+        <h4 [style]="{'color': modalType == 'success' ? '#1BAC4B': '#F75555'}">{{ title }}</h4>
+        <p>{{ description }}</p>
+      </div>
+      <div class="modal_actions">
+        <button (click)="primaryButtonClick.emit()">{{ primaryButtonLabel }}</button>
+        <button (click)="secondaryButtonClick.emit()" class="secondary_btn">{{ secondaryButtonLabel }}</button>
+      </div>
     </div>
   </div>
 </div>

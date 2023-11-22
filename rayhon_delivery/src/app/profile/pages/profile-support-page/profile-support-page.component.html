@@ -5,7 +5,6 @@
             <h4>{{"Profile.support-page.title" | translate}}</h4>
             <img src="../../../../assets/icons/more.svg" alt="more" class="more-icon">
         </div>
-    </div>
         <div class="profile-support_content">
                 <mat-tab-group>
                     <mat-chip-listbox [multiple]="false" [required]="true">
@@ -31,7 +30,6 @@
                                         </owl-carousel-o>
                                 </ng-container>
                             </div>
-                            <div class="container" [style.margin-top]="'24px'">
                                 <app-search></app-search>
                                 <div class="faq-questions-list">
                                     <mat-accordion>
@@ -47,10 +45,8 @@
                                         </mat-expansion-panel>
                                     </mat-accordion>
                                 </div>
-                            </div>
                     </mat-tab>
                 </mat-chip-listbox>
-                    <div class="container">
                         <mat-tab [label]="'Profile.support-page.contact-with-us' | translate">
                             <ul class="profile-support_content_contact_tab">
                                 <li>
@@ -75,7 +71,8 @@
                                 </li>
                             </ul>
                         </mat-tab>
-                    </div>
                 </mat-tab-group>
         </div>
+    </div>
+
 </section>
