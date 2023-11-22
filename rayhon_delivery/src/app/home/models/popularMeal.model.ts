@@ -7,14 +7,23 @@ export interface IPopularMeal {
         description: string,
         price: number,
         image: string,
+        active: boolean,
         start: string,
         finish: string,
         has_discount: boolean,
+        preparation_time: number,
+        is_favourite: boolean,
         discount: {
             type: string,
             value: number
         },
-        type: string
+        variants: {
+            id: string,
+            name: string,
+            price: number,
+            active: boolean,
+            preparation_time: number
+        }
     }[],
     items_count: number
 }

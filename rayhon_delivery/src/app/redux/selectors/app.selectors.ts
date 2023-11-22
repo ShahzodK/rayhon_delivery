@@ -30,10 +30,40 @@ export const selectOffers = createSelector(
 
 export const selectPopular = createSelector(
     selectAppState,
-    (state) => state.UIElements.popular
+    (state) => state.UIElements.populars
+)
+
+export const selectMenu = createSelector(
+    selectAppState,
+    (state) => state.UIElements.menu
 )
 
 export const selectNotification = createSelector(
     selectAppState,
     (state) => state.notifications
+)
+
+export const selectFavorites = createSelector(
+    selectAppState,
+    (state) => state.favorites
+)
+
+export const selectCart = createSelector(
+    selectAppState,
+    (state) => state.cart
+)
+
+export const selectPreOrderedTimeSlots = createSelector(
+    selectAppState,
+    (state) => state.preOrderedSlots
+)
+
+export const selectOrders = createSelector(
+    selectAppState,
+    (state) => state.orders
+)
+
+export const selectChosenOrder = createSelector(
+    selectAppState,
+    (state) => state.chosenOrder
 )

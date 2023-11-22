@@ -14,6 +14,8 @@ export class ProfileSettingsPageComponent implements OnInit {
 
   public selectUserData$ = this.store.select(selectUserData);
 
+  public profileImgLoaded = false;
+
   constructor(  
               private store: Store,
               public modeToggleService: ModeToggleService,

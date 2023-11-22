@@ -24,7 +24,7 @@ export class AuthService {
   ) { }
 
   public getUser() {
-    return this.http.get<IUser>(CommonUrl.MAIN_URL + CommonUrl.USER_URL, {
+    return this.http.get<IUser>(CommonUrl.MAIN_URL + CommonUrl.USER_URL , {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -35,7 +35,8 @@ export class AuthService {
   public login(data: {phone: string, language: string}) {
     return this.http.post<ILoginResponse>(CommonUrl.MAIN_URL + CommonUrl.LOGIN_URL, JSON.stringify(data), {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        accept: 'application/json',
       })
     });
   }

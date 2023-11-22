@@ -9,4 +9,5 @@ export class FilterService {
 
   public sortType!: string;
   public maxPrice: number = 0;
+  public isFilterOpened = false;
 }

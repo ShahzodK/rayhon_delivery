@@ -8,6 +8,7 @@ import { ProfileLanguagePageComponent } from './pages/profile-language-page/prof
 import { UpdateLocationPageComponent } from './pages/update-location-page/update-location-page.component';
 import { ProfileSupportPageComponent } from './pages/profile-support-page/profile-support-page.component';
 import { ProfileNotificationsPageComponent } from './pages/profile-notifications-page/profile-notifications-page.component';
+import { ProfileFavoritesComponent } from './pages/profile-favorites/profile-favorites.component';
 
 const routes: Routes = [
   { path: '', component: ProfilePageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'location/:id', component: UpdateLocationPageComponent },
   { path: 'support', component: ProfileSupportPageComponent },
   { path: 'notifications', component: ProfileNotificationsPageComponent },
+  { path: 'favorites', component: ProfileFavoritesComponent },
 ];
 
 @NgModule({

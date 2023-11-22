@@ -78,3 +78,15 @@
         }
     }
 }
+
+@media (min-width: 480px) {
+    .verify_phone{
+        &_form {
+            button {
+                width: 50%;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+}

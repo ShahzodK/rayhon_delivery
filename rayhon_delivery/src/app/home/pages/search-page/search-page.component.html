@@ -1,41 +1,120 @@
-<!-- <section class="search-page">
-    <div class="container">
+<section class="search-page">
+    <div class="container" *ngIf="!filterService.isFilterOpened">
         <div class="search-page_header">
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
             <div class="search-page_input">
-                <app-search></app-search>
+                <input type="text"
+                       placeholder="{{'Home.search' | translate}}"
+                       (input)="updateSearchWord($event)"
+                       class="search-input"
+                       [value]="searchService.searchWord"
+                       #searchInput>            
             </div>
         </div>
-        <div class="search-page_content">
-            <div class="recent-search search-page_section">
-                <h5>{{"Home.search-page.recent-search" | translate}}</h5>
-                <mat-chip-listbox>
-                    <mat-chip-option>Pizza</mat-chip-option>
-                    <mat-chip-option>Salad</mat-chip-option>
-                    <mat-chip-option>Vegetarian</mat-chip-option>
-                    <mat-chip-option>Dessert</mat-chip-option>
-                    <mat-chip-option>Pancakes</mat-chip-option>
-                </mat-chip-listbox>
-            </div>
-            <div class="popular-meals search-page_section">
-                <h5>{{"Home.search-page.popular-meals" | translate}}</h5>
-                <mat-chip-listbox>
-                    <mat-chip-option>Breakfast</mat-chip-option>
-                    <mat-chip-option>Snack</mat-chip-option>
-                    <mat-chip-option>Fast Food</mat-chip-option>
-                    <mat-chip-option>Beverages</mat-chip-option>
-                    <mat-chip-option>Seafood</mat-chip-option>
-                </mat-chip-listbox>
-            </div>
-            <div class="all-meals search-page_section">
-                <h5>{{"Home.search-page.all-meals" | translate}}</h5>
-                <mat-chip-listbox>
-                    <mat-chip-option>Pizza</mat-chip-option>
-                    <mat-chip-option>Bakery & Cake</mat-chip-option>
-                    <mat-chip-option>Dessert</mat-chip-option>
-                </mat-chip-listbox>
-            </div>
+    
+        <div class="search-page_content" *ngIf="!filterService.isFilterOpened">
+                <ng-container *ngIf="searchService.searchWord == ''">
+                    <div class="recent-search search-page_section">
+                        <h5>{{"Home.search-page.recent-search" | translate}}</h5>
+                        <mat-chip-listbox>
+                            <mat-chip-option *ngFor="let word of recentlySearchedWords" (click)="updateSearchWord($event, true, word)">{{word}}</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                    <div class="popular-meals search-page_section">
+                        <h5>{{"Home.search-page.popular-meals" | translate}}</h5>
+                        <mat-chip-listbox>
+                            <mat-chip-option>Breakfast</mat-chip-option>
+                            <mat-chip-option>Snack</mat-chip-option>
+                            <mat-chip-option>Fast Food</mat-chip-option>
+                            <mat-chip-option>Beverages</mat-chip-option>
+                            <mat-chip-option>Seafood</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                    <div class="all-meals search-page_section">
+                        <h5>{{"Home.search-page.all-meals" | translate}}</h5>
+                        <mat-chip-listbox>
+                            <mat-chip-option>Pizza</mat-chip-option>
+                            <mat-chip-option>Bakery & Cake</mat-chip-option>
+                            <mat-chip-option>Dessert</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="searchService.isSearching">
+                    <div class="food-cart" *ngFor="let key of [1,2,3]" style="margin-top: 20px">
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width:'30vw', height: '25vh', 'border-radius': '20px'}"></ngx-skeleton-loader>
+                        <div class="food-cart_content">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30vw', 'margin-left': '10px'}"></ngx-skeleton-loader>
+                            <div class="food-cart_time">
+                                <ngx-skeleton-loader count="2" appearance="line" [theme]="{width: '15vw', height: '3vh', 'margin-left': '10px'}"></ngx-skeleton-loader>
+                            </div>
+                            <div class="food-cart_footer">
+                                <ngx-skeleton-loader count="2" appearance="line" [theme]="{width: '15vw', height: '3vh', 'margin-left': '10px'}"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!searchService.isSearching && searchService.searchWord !== '' && searchResults.length == 0">
+                    <div class="search-page_not_found">
+                        <h4>
+                            {{"Home.search-page.not-found" | translate}}
+                        </h4>
+                        <p>{{"Home.search-page.not-found-text" | translate}}</p>
+                    </div>
+                </ng-container>
+            <ng-container *ngIf="!searchService.isSearching && searchService.searchWord !== '' && searchResults.length !== 0">
+                <div class="search-page_results_options">
+                    <owl-carousel-o [options]="resultsOptions" #owlSlide>
+                        <ng-template carouselSlide>
+                            <mat-chip-option (click)="filterService.isFilterOpened = true">
+                                <img src="../../../../assets/icons/filter-icon.svg" alt="">
+                                {{"Home.search-page.filter" | translate}}
+                            </mat-chip-option>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <mat-chip-option>
+                                <img src="../../../../assets/icons/sort-icon.svg" alt="">
+                                {{"Home.search-page.sort" | translate}}
+                            </mat-chip-option>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                            <mat-chip-option>
+                                {{"Home.search-page.promo" | translate}}
+                            </mat-chip-option>
+                        </ng-template>
+                    </owl-carousel-o> 
+                </div>
+                    <div class="search-page_results food-cart" *ngFor="let item of searchResults" [routerLink]="'/home/menu/' + item.id">
+                        <img src="../../../../assets/icons/menu-example.png" alt="menu">
+                        <div class="search-page_results_content food-cart_content">
+                            <h5>{{item.name}}</h5>
+                            <div class="search-page_results_time food-cart_time">
+                                <p>
+                                    <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                    <span *ngIf="item.preparation_time != 0">{{item.preparation_time}}</span>
+                                    <span *ngIf="item.preparation_time == 0">{{"Home.ready" | translate}}</span>
+                                </p>
+                                <p>
+                                    <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                    <span>20 min</span>
+                                </p>
+                            </div>
+                            <div class="search-page_results_footer food-cart_footer">
+                                <h5>{{item.price}} so'm</h5>
+                                <img *ngIf="!item.is_favourite"
+                                     src="../../../../assets/icons/heart-red.svg"
+                                     alt="like" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()"
+                                     (click)="item.is_favourite = true;$event.stopPropagation()">
+                                <img *ngIf="item.is_favourite"
+                                     src="../../../../assets/icons/heart-clicked.svg"
+                                     alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()"
+                                     (click)="item.is_favourite = false;$event.stopPropagation()">
+                            </div>
+                        </div>
+                    </div>
+            </ng-container>
         </div>
     </div>
-</section> -->
-<app-filter></app-filter>
+    <ng-container *ngIf="filterService.isFilterOpened">
+        <app-filter></app-filter>
+    </ng-container>
+</section>

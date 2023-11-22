@@ -21,6 +21,7 @@ import * as AuthActions from 'src/app/redux/actions/auth.actions'
 export class VerifyPhoneComponent implements OnDestroy {
 
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
+  public isVerifyButtonDisabled = false;
 
   constructor(
               public store: Store,
@@ -79,37 +80,42 @@ export class VerifyPhoneComponent implements OnDestroy {
       + this.verifyPhoneForm.value.fourthNum
       + this.verifyPhoneForm.value.fifthNum
       + this.verifyPhoneForm.value.sixthNum;
+
+      this.isVerifyButtonDisabled = true;
+
       this.authData$.pipe(
         switchMap(authData => {
           const profileValues: IVerifyPhoneRequest = {
             phone: authData.phoneNum.slice(1),
             otp: smsCode,
-            otp_job_id: (+authData.otp_job_id + 1).toString(),
-            Device: {
+            otp_job_id: (+authData.otp_job_id).toString(),
+            device: {
               id: uuid.v4() as string,
               name: 'name',
               platform: 'web',
               version: this.deviceInformationService.getDeviceInfo().osVersion.toString(),
-              build: 'build'
+              build: 'build',
+              notifications_muted: false
             }
           }
           return this.authService.verifyPhoneNum(profileValues);
         })
-      ).pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
+      ).pipe(takeUntil(this.unsubscribe$)).subscribe({
+        next: (data) => {
         console.log(data)
-        if(data.data) {
-          localStorage.setItem(CommonKey.TOKEN, data.data!.access_token);
-          localStorage.setItem(CommonKey.TOKEN_EXPIRE_DATE, data.data!.expires);
+          localStorage.setItem(CommonKey.TOKEN, data!.access_token);
+          localStorage.setItem(CommonKey.TOKEN_EXPIRE_DATE, data!.expires);
           this.store.dispatch(AuthActions.fetchUser());
           this.router.navigate(['profile'])
-        }
-        else if(data.error) {
+      },
+        error: (error) => {
+          this.isVerifyButtonDisabled = false;
           this.verifyPhoneForm.controls.sixthNum.setErrors({
             wrongPassword: true
           });
-          this.errorMsg = data.error.message;
+          this.errorMsg = error.error.message;
         }
-      })
+    })
     }
   }
 

@@ -6,6 +6,9 @@ import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 import { IAddressRequest } from '../models/addressRequest.model';
 import { IAddresses } from '../models/addresses.model';
 import { IAddress } from '../models/address.model';
+import { IFavorites } from '../models/favorites.model';
+import { INotifications } from '../models/notification.model';
+import { IError } from 'src/app/shared/models/IError.model';
 
 @Injectable({
   providedIn: 'root'
@@ -93,7 +96,7 @@ export class ProfileService {
   }
 
   public uploadProfileImage(data: any) {
-    return this.http.post<IUser>(CommonUrl.MAIN_URL + CommonUrl.UPLOAD_IMG, data , {
+    return this.http.post<IUser>(CommonUrl.MAIN_URL + 'accounts/' + CommonUrl.UPLOAD_IMG, data , {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -101,7 +104,7 @@ export class ProfileService {
   }
 
   public getAddresses() {
-    return this.http.get<IAddresses>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}`, {
+    return this.http.get<IAddress[]>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -109,7 +112,7 @@ export class ProfileService {
   }
 
   public createAddress(data: IAddressRequest) {
-    return this.http.post<IAddresses>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL, data, {
+    return this.http.post<IAddress[]>(CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL + '/', data, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
@@ -130,5 +133,29 @@ export class ProfileService {
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
     });
+  }
+
+  public getFavorites() {
+    return this.http.get<IFavorites> (CommonUrl.MAIN_URL + CommonUrl.FAVORITE_URL, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
+      })
+    })
+  }
+
+  public getNotificationPreferences() {
+    return this.http.get<INotifications> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
+      })
+    })
+  }
+
+  public updateNotificationPreferences(data: INotifications) {
+    return this.http.put<INotifications> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', data, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
+      })
+    })
   }
 }

@@ -1,7 +1,9 @@
 .special-offers {
+    background: var(--mainBg);
     &_back {
         display: flex;
         h4 {
+            color: var(--greyscaleColor900);
             margin-left: 17px;
         }
     }

@@ -14,7 +14,8 @@
                        mask="(00)-000-00-00"
                        formControlName="phoneNum"
                        #phoneNum>
-                <button (click)="login()" [disabled]="phoneNum.value.length !== 18">{{"Auth.btn" | translate}}</button>
+                <button *ngIf="!isLoginButtonDisabled" (click)="login()" [disabled]="phoneNum.value.length !== 18">{{"Auth.btn" | translate}}</button>
+                <button *ngIf="isLoginButtonDisabled" class="loading-spinner-button"></button>
             </form>
             <div class="auth_agreement">
                 {{"Auth.agreement" | translate}}

@@ -16,6 +16,10 @@ import { AddressEffects } from './redux/effects/address.effects';
 import { appReducer } from './redux/reducers/app.reducer';
 import { HomeEffects } from './redux/effects/home.effects';
 import { initializeApp } from "firebase/app";
+import { NotificationEffects } from './redux/effects/notification.effects';
+import { ProfileEffects } from './redux/effects/profile.effects';
+import { OrdersEffects } from './redux/effects/orders.effects';
+
 initializeApp(environment.firebase);
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,7 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([AuthEffects, AddressEffects, HomeEffects]),
+    EffectsModule.forRoot([AuthEffects, AddressEffects, HomeEffects, ProfileEffects, OrdersEffects, NotificationEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

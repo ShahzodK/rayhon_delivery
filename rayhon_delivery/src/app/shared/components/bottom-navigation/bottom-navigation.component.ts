@@ -1,6 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { selectCart } from 'src/app/redux/selectors/app.selectors';
 
 @Component({
   selector: 'app-bottom-navigation',
@@ -14,26 +16,40 @@ export class BottomNavigationComponent implements AfterViewInit, OnDestroy {
   @ViewChild('basketBtn', { static: false }) basketBtn!: ElementRef;
   @ViewChild('profileBtn', { static: false }) profileBtn!: ElementRef;
 
+
   public activePage!: string;
 
   public unsubscribe$ = new Subject()
 
+  public selectCart$ = this.store.select(selectCart);
+
   constructor(
               private router: Router,
-              private cdRef: ChangeDetectorRef   
+              private cdRef: ChangeDetectorRef,
+              private store: Store   
               ) {}
 
   ngAfterViewInit() {
     const currentUrl = this.router.url;
     const home = 'home';
     const profile = 'profile/settings';
+    const basket = 'orders/basket';
+    const orders = 'orders';
     if(currentUrl.includes(profile)) {
       this.profileBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'profile'
     }
-    if(currentUrl.includes(home)) {
+    else if(currentUrl.includes(home)) {
       this.homeBtn.nativeElement.classList.add('bottom_nav_active');
       this.activePage = 'home'
+    }
+    else if(currentUrl.includes(basket)) {
+      this.basketBtn.nativeElement.classList.add('bottom_nav_active');
+      this.activePage = 'basket'
+    }
+    else if(currentUrl.includes(orders)) {
+      this.ordersBtn.nativeElement.classList.add('bottom_nav_active');
+      this.activePage = 'orders'
     }
     this.cdRef.detectChanges()
   }

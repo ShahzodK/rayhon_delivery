@@ -33,9 +33,7 @@ export class ProfileLanguagePageComponent implements OnDestroy {
     this.homeService.chosenLanguage = language;
     this.profileService.updateUser(profileValues).pipe(
       takeUntil(this.unsubscribe$)).subscribe((data) => {
-        if(data.data) {
-          this.store.dispatch(fetchUser());
-        }
+        this.store.dispatch(fetchUser());
     })
   }
 

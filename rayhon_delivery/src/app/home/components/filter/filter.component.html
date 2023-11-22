@@ -1,7 +1,7 @@
 <div class="filter">
     <div class="container">
         <div class="filter_header">
-            <span class="filter_close" (click)="location.back()"></span>
+            <span class="filter_close" (click)="filterService.isFilterOpened = false"></span>
             <h4>{{"Home.search-page.filter" | translate}}</h4>
         </div>
         <div class="filter_content">
@@ -60,7 +60,7 @@
                         </button>
                     </div>
                     <div class="filter_content_actions">
-                        <button class="filter_content_action_btn filter_content_cancel_btn" (click)="location.back()">{{"Home.search-page.cancel" | translate}}</button>
+                        <button class="filter_content_action_btn filter_content_cancel_btn" (click)="filterService.isFilterOpened = false">{{"Home.search-page.cancel" | translate}}</button>
                         <button class="filter_content_action_btn filter_content_apply_btn">{{"Home.search-page.apply" | translate}}</button>
                     </div>
                 </mat-tab>

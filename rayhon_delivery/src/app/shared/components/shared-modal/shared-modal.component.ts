@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { ModalService } from '../../services/modal/modal.service';
 
 @Component({
   selector: 'app-shared-modal',
@@ -11,14 +12,19 @@ export class SharedModalComponent {
   @Input() description!: string;
   @Input() primaryButtonLabel!: string;
   @Input() secondaryButtonLabel!: string;
+  @Input() modalType!: string;
   @Output() primaryButtonClick = new EventEmitter<void>();
   @Output() secondaryButtonClick = new EventEmitter<void>();
+  @Output() outsideClick = new EventEmitter<void>();
 
-  constructor(private elRef: ElementRef) {}
+  constructor(
+              private elRef: ElementRef,
+              private modalService: ModalService) {}
   @HostListener('document:click', ['$event'])
 
   clickToOutside(event: Event) {
-    console.log('rgr')
+    this.modalService.showErrorModal = false;
+    this.modalService.showSuccessModal = false;
   }
 
   stopPropagation(event: Event) {

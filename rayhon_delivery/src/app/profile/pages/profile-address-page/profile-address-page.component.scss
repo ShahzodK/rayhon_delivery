@@ -35,6 +35,10 @@
                 font-size: 18px;
                 font-weight: 700;
                 color: var(--greyscaleColor900);
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 36vw;
+                text-overflow: ellipsis;
             }
         }
         .new-address_btn {
@@ -44,6 +48,7 @@
             background: var(--secondaryBtnColor);
             color: var(--primaryColor);
             text-shadow: 4px 8px 24px rgba(27, 172, 75, 0.25);
+            box-shadow: none;
         }
     }
     &_address_item {
@@ -83,7 +88,7 @@
                 color: var(--greyscaleColor700);
                 white-space: nowrap;
                 overflow: hidden;
-                width: 57vw;
+                max-width: 57vw;
                 text-overflow: ellipsis;
             }
         }
@@ -92,5 +97,62 @@
         align-self: center;
         margin-top: auto;
         margin-bottom: 36px;
+    }
+    .address_change {
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 786px) {
+    .profile-address {
+        &_address_item_content_address {
+            max-width: 42vw;
+        }
+        ul {
+            li {
+                width: 70%;
+                margin-left: auto;
+                margin-right: auto;
+                h6 {
+                    max-width: 38vw;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 997px) {
+    .profile-address {
+        &_address_item_content_address {
+            max-width: 25vw;
+        }
+        ul {
+            li {
+                width: 70%;
+                margin-left: auto;
+                margin-right: auto;
+                h6 {
+                    max-width: 17vw;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1100px) {
+    .profile-address {
+        &_address_item_content_address {
+            max-width: 25vw;
+        }
+        ul {
+            li {
+                width: 85%;
+                margin-left: auto;
+                margin-right: auto;
+                h6 {
+                    max-width: 17vw;
+                }
+            }
+        }
     }
 }

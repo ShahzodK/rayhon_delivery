@@ -1,94 +1,169 @@
 <section class="home-page">
+    <div class="container">
         <div class="home-page_content">
-            <div class="container">
-                <div class="home-page_header">
-                    <ng-template #userImageLoading>
-                        <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
-                    </ng-template>
-                        <img *ngIf="selectUserData$ | async as user; else userImageLoading"
-                             [src]="user.image || '../../../../assets/icons/user-photo.svg'"
-                             alt="user-image" class="user-image"
-                             routerLink="/profile/settings">
-                    <div class="home-page_header_location">
-                        <p>{{"Home.delivery-address" | translate}}</p>
-                        <div class="home-page_header_location_name"
-                             routerLink="/home/deliver-to">
-                            <ng-template #userAddressLoading>
-                                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '45vw'}"></ngx-skeleton-loader>
-                            </ng-template>
-                            <ng-container *ngIf="selectChosenAddress$ | async as userAdresses; else userAddressLoading">
-                                <span>
-                                    {{userAdresses.address}}
-                                </span>
-                                <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
-                            </ng-container>
-                        </div>
-                    </div>
-                    <div class="home-page_header_notifications">
-                        <img src="../../../../assets/icons/notification.svg" alt="notifications" class="notifications_img">
+            <div class="home-page_header">
+                <ng-container #userImageLoading *ngIf="userImageLoaded === false">
+                    <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+                </ng-container>
+                <ng-container *ngIf="selectUserData$ | async as user">
+                    <img [ngStyle]="{'display': userImageLoaded ? 'block' : 'none'}"
+                         [src]="user.image || '../../../../assets/icons/user-photo.svg'"
+                         alt="user-image" class="user-image"
+                         routerLink="/profile/settings"
+                         (load)="userImageLoaded = true">
+                </ng-container>
+                <div class="home-page_header_location">
+                    <p>{{"Home.delivery-address" | translate}}</p>
+                    <div class="home-page_header_location_name"
+                         routerLink="/home/deliver-to">
+                        <ng-template #userAddressLoading>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '45vw'}"></ngx-skeleton-loader>
+                        </ng-template>
+                        <ng-container *ngIf="selectChosenAddress$ | async as userAdresses; else userAddressLoading">
+                            <span>
+                                {{userAdresses.address}}
+                            </span>
+                            <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
+                        </ng-container>
                     </div>
                 </div>
-                <div class="home-page_search">
-                    <app-search routerLink="/home/search"></app-search>
+                <div class="home-page_header_notifications" routerLink="/home/notifications">
+                    <img src="../../../../assets/icons/notification.svg" alt="notifications" class="notifications_img">
+                    <span class="notification-indicator"></span>
                 </div>
             </div>
-            <ng-template #offersName>
+            <div class="home-page_search">
+                <app-search routerLink="/home/search"></app-search>
+            </div>
+            <ng-container #offersSkeleton *ngIf="offersImageLoaded == false">
                 <div class="home-page_offers">
-                    <div class="container">
-                            <div class="home-page_offers_header">
-                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30vw'}"></ngx-skeleton-loader>
-                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '5vw'}"></ngx-skeleton-loader>
-                            </div>
-                        <div class="home-page_offers_content" style="display: flex; justify-content: space-around">
-                            <div class="home-page_offers_carousel" style="margin-right: 20px;">
-                                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '20vh'}"></ngx-skeleton-loader>
-                            </div>
-                            <div class="home-page_offers_carousel" style="margin-right: 20px;">
-                                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '20vh'}"></ngx-skeleton-loader>
-                            </div>
-                            <div class="home-page_offers_carousel">
-                                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '20vh'}"></ngx-skeleton-loader>
-                            </div>
+                    <div class="home-page_offers_header">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30vw'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '5vw'}"></ngx-skeleton-loader>
+                    </div>
+                    <div class="home-page_offers_content" style="display: flex; justify-content: space-around">
+                        <div class="home-page_offers_carousel" style="margin-right: 20px;">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '25vh'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="home-page_offers_carousel" style="margin-right: 20px;">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '25vh'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="home-page_offers_carousel">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '25vh'}"></ngx-skeleton-loader>
                         </div>
                     </div>
                 </div>
-            </ng-template>
+            </ng-container>
 
-            <div class="home-page_offers" *ngIf="(selectOffers$ | async) as offers; else offersName">
-                <div class="container">
-                    <div class="home-page_offers_header home-page_header">
-                        <h5>{{offers.name}}</h5>
-                        <span class="home-page_showAll" routerLink="/home/special-offers">{{"Home.all" | translate}}</span>
-                    </div>
+            <div class="home-page_offers" *ngIf="(selectOffers$ | async) as offers">
+                <div class="home-page_offers_header home-page_header" *ngIf="offersImageLoaded == true">
+                    <h5>{{offers.name}}</h5>
+                    <span class="home-page_showAll" routerLink="/home/special-offers">{{"Home.all" | translate}}</span>
                 </div>
                 <div class="home-page_offers_content">
                     <owl-carousel-o [options]="offersCarouselOptions" #owlSlide>
                         <ng-container *ngFor="let offer of offers.items">
                             <ng-template carouselSlide>
                                 <div class="home-page_offers_carousel">
-                                    <img src="../../../../assets/icons/offer-example.png" [alt]="offer.name"  [routerLink]="'/home/special-offers/' + offer.id">
+                                    <img
+                                         [ngStyle]="{'display': offersImageLoaded ? 'block' : 'none'}"
+                                         src="../../../../assets/icons/offer-example.png"
+                                         [alt]="offer.name"
+                                         [routerLink]="'/home/special-offers/' + offer.id"
+                                         (load)="offersImageLoaded = true">
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngFor="let offer of offers.items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_offers_carousel">
+                                    <img
+                                         [ngStyle]="{'display': offersImageLoaded ? 'block' : 'none'}"
+                                         src="../../../../assets/icons/offer-example.png"
+                                         [alt]="offer.name"
+                                         [routerLink]="'/home/special-offers/' + offer.id"
+                                         (load)="offersImageLoaded = true">
                                 </div>
                             </ng-template>
                         </ng-container>
                     </owl-carousel-o>
                 </div>
             </div>
-            <div class="home-page_popular" *ngIf="(selectPopular$ | async) as popularMeals; else offersName">
-                <div class="container">
+            <ng-container #popularSkeleton *ngIf="popularImageLoaded == false">
+                <div class="home-page_offers">
                     <div class="home-page_popular_header home-page_header">
-                        <h5>{{popularMeals[0].name}}</h5>
-                        <span class="home-page_showAll">{{"Home.all" | translate}}</span>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30vw'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '5vw'}"></ngx-skeleton-loader>
                     </div>
+                    <div *ngIf="!isSmallScreen"
+                         class="home-page_popular_content home-page_popula_content_big"
+                         style="display: flex; justify-content: space-around">
+                        <div class="home-page_popular_carousel" style="margin-right: 20px;">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '14vw', height: '35vh'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '5vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '10vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '10vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="home-page_popular_carousel" style="margin-right: 20px;">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '20vw', height: '35vh'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '5vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '10vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '10vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>                            
+                        </div>
+                        <div class="home-page_popular_carousel">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '20vw', height: '35vh'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '5vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '10vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '10vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>                            
+                        </div>
+                    </div>
+                    <div *ngIf="isSmallScreen"
+                         class="home-page_popular_content home-page_popula_content_small"
+                         style="display: flex; justify-content: space-around">
+                        <div class="home-page_popular_carousel" style="margin-right: 20px;">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '22vh'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '8vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '13vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '13vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="home-page_popular_carousel" style="margin-right: 20px;">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '22vh'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '8vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '13vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '13vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>                            
+                        </div>
+                        <div class="home-page_popular_carousel">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '28vw', height: '22vh'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '8vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '13vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '13vw', height: '3vh', display:'block'}"></ngx-skeleton-loader>                            
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+
+            <div class="home-page_popular" *ngIf="(selectPopular$ | async) as popularMeals">
+                <div class="home-page_popular_header home-page_header" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
+                    <h5>{{popularMeals[0].name}}</h5>
+                    <span class="home-page_showAll">{{"Home.all" | translate}}</span>
                 </div>
                 <div class="home-page_popular_content">
                     <owl-carousel-o [options]="popularCarouselOptions" #owlSlide>
                         <ng-container *ngFor="let popular of popularMeals[0].items">
                             <ng-template carouselSlide>
-                                <div class="home-page_popular_item">
+                                <div class="home-page_popular_item"
+                                     [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}"
+                                     [routerLink]="'/home/menu/' + popular.id">
                                     <span class="home-page_popular_item_discount" *ngIf="popular.has_discount">{{popular.discount.value}}</span>
-                                    <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
-                                    <h5>{{popular.name}}</h5>
-                                    <div class="home-page_popular_item_time">
+                                    <img
+                                        [ngStyle]="{'display': popularImageLoaded ? 'block' : 'none'}"
+                                        src="../../../../assets/icons/popular-example.png"
+                                        [alt]="popular.name"
+                                        class="home-page_popular_item_img"
+                                        (load)="popularImageLoaded = true">
+                                    <h5 [ngStyle]="{'display': popularImageLoaded ? 'block' : 'none'}">{{popular.name}}</h5>
+                                    <div class="home-page_popular_item_time" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
                                         <p>
                                             <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
                                             <span>20 min</span>
@@ -98,16 +173,17 @@
                                             <span>20 min</span>
                                         </p>
                                     </div>
-                                    <div class="home-page_popular_item_footer">
+                                    <div class="home-page_popular_item_footer" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
                                         <h5>{{popular.price}} so'm</h5>
-                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                        <img *ngIf="!popular.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!popular.is_favourite, popular.id)">
+                                        <img *ngIf="popular.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!popular.is_favourite, popular.id)">                                    
                                     </div>
                                 </div>
                             </ng-template>
                         </ng-container>
                         <ng-container *ngFor="let popular of popularMeals[0].items">
                             <ng-template carouselSlide>
-                                <div class="home-page_popular_item">
+                                <div class="home-page_popular_item" [routerLink]="'/home/menu/' + popular.id">
                                     <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
                                     <h5>{{popular.name}}</h5>
                                     <div class="home-page_popular_item_time">
@@ -122,14 +198,15 @@
                                     </div>
                                     <div class="home-page_popular_item_footer">
                                         <h5>{{popular.price}} so'm</h5>
-                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                        <img *ngIf="!popular.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!popular.is_favourite, popular.id)">
+                                        <img *ngIf="popular.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!popular.is_favourite, popular.id)">                                    
                                     </div>
                                 </div>
                             </ng-template>
                         </ng-container>
                         <ng-container *ngFor="let popular of popularMeals[0].items">
                             <ng-template carouselSlide>
-                                <div class="home-page_popular_item">
+                                <div class="home-page_popular_item" [routerLink]="'/home/menu/' + popular.id">
                                     <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
                                     <h5>{{popular.name}}</h5>
                                     <div class="home-page_popular_item_time">
@@ -144,14 +221,15 @@
                                     </div>
                                     <div class="home-page_popular_item_footer">
                                         <h5>{{popular.price}} so'm</h5>
-                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                        <img *ngIf="!popular.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!popular.is_favourite, popular.id)">
+                                        <img *ngIf="popular.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!popular.is_favourite, popular.id)">                                    
                                     </div>
                                 </div>
                             </ng-template>
                         </ng-container>     
                         <ng-container *ngFor="let popular of popularMeals[0].items">
                             <ng-template carouselSlide>
-                                <div class="home-page_popular_item">
+                                <div class="home-page_popular_item" [routerLink]="'/home/menu/' + popular.id">
                                     <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
                                     <h5>{{popular.name}}</h5>
                                     <div class="home-page_popular_item_time">
@@ -166,14 +244,88 @@
                                     </div>
                                     <div class="home-page_popular_item_footer">
                                         <h5>{{popular.price}} so'm</h5>
-                                        <img src="../../../../assets/icons/heart-red.svg" alt="">
+                                        <img *ngIf="!popular.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!popular.is_favourite, popular.id)">
+                                        <img *ngIf="popular.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!popular.is_favourite, popular.id)">                                    
                                     </div>
                                 </div>
                             </ng-template>
                         </ng-container>     
+                        <ng-container *ngFor="let popular of popularMeals[0].items">
+                            <ng-template carouselSlide>
+                                <div class="home-page_popular_item" [routerLink]="'/home/menu/' + popular.id">
+                                    <img src="../../../../assets/icons/popular-example.png" [alt]="popular.name" class="home-page_popular_item_img">
+                                    <h5>{{popular.name}}</h5>
+                                    <div class="home-page_popular_item_time">
+                                        <p>
+                                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                            <span>20 min</span>
+                                        </p>
+                                        <p>
+                                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                            <span>20 min</span>
+                                        </p>
+                                    </div>
+                                    <div class="home-page_popular_item_footer">
+                                        <h5>{{popular.price}} so'm</h5>
+                                        <img *ngIf="!popular.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!popular.is_favourite, popular.id)">
+                                        <img *ngIf="popular.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!popular.is_favourite, popular.id)">                                    
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-container>  
                     </owl-carousel-o>
                 </div>
             </div>
+
+            <div class="home-page_menu" *ngIf="(selectMenu$ | async) as menu">
+                <div class="home-page_menu_header home-page_header" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
+                    <h5>{{"Home.menu" | translate}}</h5>
+                </div>
+                <div class="home-page_menu_content">
+                        <div class="home-page_menu_categories_list">
+                            <owl-carousel-o [options]="menuCategoriesCarouselOptions" #owlSlide>
+                                <ng-template carouselSlide>
+                                    <mat-chip-option (click)="sortMenu('')">{{"Home.all" | translate}}</mat-chip-option>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let menu of menu.categories">
+                                    <mat-chip-option (click)="sortMenu(menu.id)">{{menu.name}}</mat-chip-option>
+                                </ng-template>
+                            </owl-carousel-o>
+                        <div class="home-page_menu_list">
+                            <div class="home-page_menu_category" *ngFor="let category of menu.category_items">
+                                <ng-container *ngIf="sortedMenuIds.includes(category.id) || sortedMenuIds.includes('') || !sortedMenuIds.length">
+                                    <h5>
+                                        {{category.name}}
+                                    </h5>
+                                    <div class="home-page_menu_category_item food-cart" *ngFor="let item of category.items" [routerLink]="'/home/menu/' + item.id">
+                                        <img src="../../../../assets/icons/menu-example.png" alt="menu">
+                                        <div class="home-page_menu_category_item_content food-cart_content">
+                                            <h5>{{item.name}}</h5>
+                                            <div class="home-page_menu_category_item_time food-cart_time">
+                                                <p>
+                                                    <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                                                    <span *ngIf="item.preparation_time != 0">{{item.preparation_time}}</span>
+                                                    <span *ngIf="item.preparation_time == 0">{{"Home.ready" | translate}}</span>
+                                                </p>
+                                                <p>
+                                                    <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                                                    <span>20 min</span>
+                                                </p>
+                                            </div>
+                                            <div class="home-page_menu_category_item_footer food-cart_footer">
+                                                <h5>{{item.price}} so'm</h5>
+                                                <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id)">
+                                                <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <app-bottom-navigation></app-bottom-navigation>
+    </div>
+    <app-bottom-navigation></app-bottom-navigation>
 </section>

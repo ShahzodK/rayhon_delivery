@@ -30,7 +30,7 @@
                 span {
                     font-size: 18px;
                     font-weight: 700;
-                    width: 50vw;
+                    max-width: 50vw;
                     color: var(--greyscaleColor900);
                     white-space: nowrap;
                     overflow: hidden;
@@ -39,9 +39,15 @@
             }
         }
         &_notifications {
+            position: relative;
             padding: 10px 12px;
             border: 1px solid var(--greyscaleColor200);
             border-radius: 100px;
+            cursor: pointer;
+            .notification-indicator {
+                width: 5px;
+                left: 6px;
+            }
         }
     }
     &_showAll {
@@ -62,6 +68,7 @@
             display: flex;
             img {
                 margin-left: 12px;
+                cursor: pointer;
             }
         }
     }
@@ -99,6 +106,7 @@
             }
             &_img {
                 width: 80vw;
+                cursor: pointer;
             }
             &_time {
                 display: flex;
@@ -152,8 +160,28 @@
             }
         }
     }
+    &_menu {
+        h5 {
+            color: var(--greyscaleColor900);
+            margin: 0;
+        }
+        &_categories_list {
+            margin-top: 24px;
+        }
+        &_list {
+            margin-top: 20px;
+        }
+        &_category {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
     &_search {
         margin-top: 24px;
         margin-bottom: 24px;
+    }
+    &_like_btn {
+        cursor: pointer;
     }
 }

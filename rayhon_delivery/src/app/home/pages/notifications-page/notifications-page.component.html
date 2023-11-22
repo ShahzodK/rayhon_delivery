@@ -1,0 +1,25 @@
+<section class="notifications">
+    <div class="container">
+        <div class="notifications_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{"Home.notifications.title" | translate}}</h4>
+        </div>
+        <div class="notifications_content">
+            <div class="notifications_item">
+                <div class="notifications_item_header">
+                    <div class="notifications_item_header_content">
+                        <img src="../../../../assets/icons/notification-example.svg" alt="notification">
+                        <div class="notifications_item_header_text">
+                            <h5>Заказ отменен!</h5>
+                            <span>19 Dec, 2022 | 20:50 PM</span>
+                        </div>
+                    </div>
+                    <span class="notifications_item_header_state">{{"Home.notifications.new" | translate}}</span>
+                </div>
+                <div class="notifications_item_content">
+                    Вы отменили заказ №100-001. Приносим извинения за неудобства. Постараемся улучшить наш сервис в следующий раз 🥲
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

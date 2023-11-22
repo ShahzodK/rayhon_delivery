@@ -1,0 +1,88 @@
+.basket {
+    background: var(--mainBg);
+    min-height: 100vh;
+    padding-bottom: 150px;
+    &_header {
+        display: flex;
+        padding-top: 24px;
+        h4 {
+            margin: 0;
+            margin-left: 17px;
+            color: var(--greyscaleColor900);
+        }
+    }
+    &_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    &_item {
+        align-self: normal;
+        gap: 21px;
+        h5 {
+            margin: 0;
+        }
+        &_info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        &_quantity {
+            .sign {
+                color: var(--primaryColor);
+                padding: 0px 5px;
+                border: 1px solid var(--primaryColor);
+                border-radius: 7px;
+            }
+            &_counter {
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--greyscaleColor700);
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .quantity-spinner {
+                margin-left: 18px;
+                margin-right: 17px;
+                &::after {
+                    width: 10px;
+                    height: 10px;
+                    left: -9px;
+                    border-top-color: var(--greyscaleColor700);
+                }
+            }
+        }
+        &_price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primaryColor);
+        }
+        &_delete {
+            margin-left: auto;
+        }
+    }
+    &_clear {
+        align-self: flex-end;
+        background: var(--errorColor);
+        padding: 6px 16px;
+        box-shadow: none;
+    }
+    &_empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+        margin-top: 120px;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin: 0;
+            margin-bottom: 12px;
+        }
+        span {
+            font-size: 18px;
+            color: var(--greyscaleColor900);
+        }
+    }
+}

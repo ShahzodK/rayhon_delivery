@@ -10,32 +10,32 @@
             </div>
             <form class="verify_phone_form" [formGroup]="verifyPhoneForm">
                 <div class="verify_phone_form_input">
-                    <input type="text"
+                    <input type="tel"
                            maxlength="1"
                            formControlName="firstNum"
                            (keyup)="onInputKeyUp($event, 'firstNum')"
                            mask="0" #input1>
-                    <input type="text"
+                    <input type="tel"
                            maxlength="1"
                            formControlName="secondNum"
                            (keyup)="onInputKeyUp($event, 'secondNum')"
                            mask="0" #input2>
-                    <input type="text"
+                    <input type="tel"
                            maxlength="1"
                            formControlName="thirdNum"
                            (keyup)="onInputKeyUp($event, 'thirdNum')"
                            mask="0" #input3>
-                    <input type="text"
+                    <input type="tel"
                            maxlength="1"
                            formControlName="fourthNum"
                            (keyup)="onInputKeyUp($event, 'fourthNum')"
                            mask="0" #input4>
-                    <input type="text"
+                    <input type="tel"
                            maxlength="1"
                            formControlName="fifthNum"
                            (keyup)="onInputKeyUp($event, 'fifthNum')"
                            mask="0" #input5>
-                    <input type="text"
+                    <input type="tel"
                            maxlength="1"
                            formControlName="sixthNum"
                            (keyup)="onInputKeyUp($event, 'sixthNum')"
@@ -52,7 +52,8 @@
                 <p class="verify_phone_resend" *ngIf="time == 0">
                     <span>{{"Auth.sms.sendAgain" | translate}}</span>
                 </p>
-                <button [disabled]="!verifyPhoneForm.valid" (click)="verify()">{{"Auth.sms.btn" | translate}}</button>
+                <button *ngIf="!isVerifyButtonDisabled" [disabled]="!verifyPhoneForm.valid" (click)="verify()">{{"Auth.sms.btn" | translate}}</button>
+                <button *ngIf="isVerifyButtonDisabled" class="loading-spinner-button"></button>
             </form>
         </div>
     </div>

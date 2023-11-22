@@ -19,17 +19,48 @@
         margin-left: auto;
         margin-right: auto;
         border-radius: 52px;
-        background: var(--white);
+        background: var(--blockBg);
+        img {
+            width: 160px;
+            align-self: center;
+        }
         h4 {
-            padding-bottom: 15px;
             text-align: center;
+            padding-bottom: 15px;
+            margin: 0;
         }
         p {
+            color: var(--greyscaleColor900);
             text-align: center;
+            margin: 0;
         }
         .secondary_btn {
             background:var(--secondaryBtnColor);
             color: var(--successColor);
+        }
+    }
+    &_actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        button {
+            font-weight: 700;
+        }
+    }
+}
+
+@media (min-width: 560px) {
+    .modal {
+        &_content {
+            width: 50%;
+        }
+    }
+}
+
+@media (min-width: 786px) {
+    .modal {
+        &_content {
+            width: 35%;
         }
     }
 }
