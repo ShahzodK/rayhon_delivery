@@ -136,7 +136,7 @@ export class ProfileService {
   }
 
   public getFavorites() {
-    return this.http.get<IFavorites> (CommonUrl.MAIN_URL + CommonUrl.FAVORITE_URL, {
+    return this.http.get<IFavorites['data']> (CommonUrl.MAIN_URL + CommonUrl.FAVORITE_URL, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })

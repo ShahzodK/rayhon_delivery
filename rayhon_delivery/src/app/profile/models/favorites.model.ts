@@ -25,5 +25,4 @@ export interface IFavorites {
             preparation_time: number
         }[]
     }[],
-    error: IError | null
 }

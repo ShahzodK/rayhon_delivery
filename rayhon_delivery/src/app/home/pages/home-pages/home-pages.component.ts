@@ -76,7 +76,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
     dots: false,
     navSpeed: 700,
     center: false,
-    stagePadding: 70,
+    stagePadding: 90,
     navText: ['', ''],
     responsive: {
       0: {
@@ -92,7 +92,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
         margin: 12
       },
       998: {
-        items: 4,
+        items: 5,
         margin: 16
       }
     },
