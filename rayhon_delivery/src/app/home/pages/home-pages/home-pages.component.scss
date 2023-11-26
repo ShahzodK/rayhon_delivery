@@ -185,3 +185,11 @@
         cursor: pointer;
     }
 }
+
+@media (min-width:998px) {
+    .home-page_header_location_name {
+        span {
+            max-width: 33vw;
+        }
+    }
+}

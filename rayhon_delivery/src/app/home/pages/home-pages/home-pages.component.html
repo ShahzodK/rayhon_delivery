@@ -21,7 +21,7 @@
                         </ng-template>
                         <ng-container *ngIf="selectChosenAddress$ | async as userAdresses; else userAddressLoading">
                             <span>
-                                {{userAdresses.address}}
+                                {{userAdresses.address.slice(0,-31)}}
                             </span>
                             <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
                         </ng-container>

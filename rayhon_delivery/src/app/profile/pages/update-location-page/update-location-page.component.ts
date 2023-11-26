@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { fetchAddresses } from 'src/app/redux/actions/address.actions';
 import { CommonKey } from 'src/app/shared/consts/commonKey';
 import { ProfileService } from '../../services/profile.service';
-import { Subject, filter, of, switchMap, takeUntil } from 'rxjs';
+import { Subject, debounceTime, filter, of, switchMap, takeUntil } from 'rxjs';
 import { selectAddresses } from 'src/app/redux/selectors/app.selectors';
 import { IAddress } from '../../models/address.model';
 
@@ -18,12 +18,15 @@ import { IAddress } from '../../models/address.model';
 export class UpdateLocationPageComponent implements OnInit, OnDestroy {
   public map: any;
   @ViewChild('yamaps') mapElement!: ElementRef;
+  @ViewChild('suggestInput') suggestInput!: ElementRef;
 
   public errorMsg = '';
   public unsubscribe$ = new Subject();
   public id!: string;
   public currentAddress!: IAddress;
   public selectAddresses$ = this.store.select(selectAddresses);
+  public possibleLocations: {latitude: number, longitude: number, display_name: string}[] = [];
+  private searchSubject = new Subject<string>();
 
   constructor(
               private profileService: ProfileService,
@@ -33,12 +36,11 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    ymaps.ready().then(() => this.profileService.createMap(this.map));
+    ymaps.ready().then(() => this.profileService.createMap(this.map, true));
 
     this.route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
       this.id = params.get('id')!;
     });
-    console.log(this.profileService.latitude)
 
     this.selectAddresses$.pipe(takeUntil(this.unsubscribe$)).subscribe((data) => {
       data.forEach((item) => {
@@ -46,11 +48,30 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
           this.currentAddress = item;
           this.profileService.latitude = item.latitude;
           this.profileService.longitude = item.longitude;
+          this.profileService.coords.next({lat: item.latitude, lng: item.longitude})
           this.locationForm.get('locationAddress')?.setValue(this.currentAddress.address);
           this.locationForm.get('locationName')?.setValue(this.currentAddress.name);
         }
       })
     })
+
+    this.profileService.coords$.pipe(
+      takeUntil(this.unsubscribe$),
+      debounceTime(300),
+      switchMap((data) => this.profileService.geocode(data))
+      ).subscribe((data) => {
+      this.suggestInput.nativeElement.value = data.display_name;
+    });
+
+    this.searchSubject.pipe(
+      debounceTime(300),
+      takeUntil(this.unsubscribe$),
+      switchMap(() => {
+        return this.profileService.reverseGeocode(this.suggestInput.nativeElement.value);
+      })
+    ).subscribe(locations => {
+      this.possibleLocations = locations;
+    });
   }
 
   public locationForm = new FormGroup({
@@ -122,6 +143,26 @@ export class UpdateLocationPageComponent implements OnInit, OnDestroy {
 
   public goBack() {
     this.location.back()
+  }
+
+  public onInputChange() {
+    this.searchSubject.next('');
+  }
+
+  public sendAdress(location: {latitude: number, longitude: number, display_name: string}) {
+    this.profileService.coords.next({
+      lat: location.latitude,
+      lng: location.longitude
+    });
+    this.profileService.myPlacemark.geometry.setCoordinates([location.latitude,location.longitude]);
+    this.possibleLocations = [];
+    this.profileService.map.setBounds(this.profileService.map.geoObjects.getBounds(), {
+      checkZoomRange: true,
+      zoomMargin: 1,
+    }).then(() => { 
+        if(this.profileService.map.getZoom() > 10) {
+          this.profileService.map.setZoom(16);
+      }});
   }
 
   public deleteAddress() {

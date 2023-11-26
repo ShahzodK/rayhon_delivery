@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Location } from '@angular/common';
-import { chooseAddress } from 'src/app/redux/actions/address.actions';
+import { chooseAddress, fetchAddresses } from 'src/app/redux/actions/address.actions';
 import { selectAddresses } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
 import { CommonKey } from 'src/app/shared/consts/commonKey';
@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './deliver-to.component.html',
   styleUrls: ['./deliver-to.component.scss']
 })
-export class DeliverToComponent implements OnDestroy {
+export class DeliverToComponent implements  OnDestroy {
 
   public selectAddresses$ = this.store.select(selectAddresses);
 

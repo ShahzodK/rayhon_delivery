@@ -7,6 +7,7 @@ import { selectChosenAddress, selectMenu, selectOffers, selectPopular, selectUse
 import { HomeService } from '../../services/home/home.service';
 import { Subject, takeUntil } from 'rxjs';
 import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
+import { fetchAddresses } from 'src/app/redux/actions/address.actions';
 
 @Component({
   selector: 'app-home-pages',
@@ -127,6 +128,7 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
   ngOnInit(): void {
         this.isSmallScreen = window.innerWidth < this.smallScreenBreakpoint;
         this.store.dispatch(fetchUIElements());
+        this.store.dispatch(fetchAddresses())
         this.selectMenu$.subscribe((data) => {
           console.log(data)
         })
