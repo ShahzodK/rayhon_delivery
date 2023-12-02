@@ -1,0 +1,20 @@
+.category {
+    background: var(--greyscaleColor100);
+    min-height: 100vh;
+    &-header {
+        display: flex;
+        justify-content: flex-start;
+        padding-top: 10px;
+        margin-bottom: 24px;
+        width: 100%;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-left: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    &-item {
+        margin-bottom: 20px;
+    }
+}

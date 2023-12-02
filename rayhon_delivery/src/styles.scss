@@ -411,12 +411,30 @@ input {
         padding-left: 2vw;
         padding-right: 2vw;
     }
+    .food-info {
+        .skeleton-loader {
+            max-width: calc(100vw - 2vw - 2vw);
+        }
+    }
+}
+
+@media (min-width: 384px) {
+    .food-info {
+        .skeleton-loader {
+            max-width: calc(100vw - 24px - 24px);
+        }
+    }
 }
 
 @media (min-width: 998px) {
     .container {
         padding-left: 220px;
         padding-right: 220px;
+    }
+    .food-info {
+        .skeleton-loader {
+            max-width: calc(100vw - 220px - 220px);
+        }
     }
 }
 
@@ -428,6 +446,11 @@ input {
     .home-page_offers_carousel, .home-page_popular_carousel {
         .skeleton-loader {
             max-width: 13vw;
+        }
+    }
+    .food-info {
+        .skeleton-loader {
+            max-width: calc(100vw - 28vw - 28vw);
         }
     }
 }

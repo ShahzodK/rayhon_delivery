@@ -1,0 +1,15 @@
+<div class="edit_food_modal" #editFoodModal>
+    <div class="edit_food_modal_content">
+        <h4> {{this.data.name}}</h4>
+        <div class="food-info_amount">
+            <button class="counter-btn" (click)="changeAmount(false)">-</button>
+            <h3 class="food-info_amount_value">5</h3>                    
+            <button class="counter-btn" (click)="changeAmount(true)">+</button>
+        </div>
+        <input type="text" [value]="'editFoodData.note'">
+        <div class="edit_food_modal_actions">
+            <button mat-dialog-close>{{"Home.food-info.cancel" | translate}}</button>
+            <button (click)="editOrder()" class="cancel-btn">{{"Home.food-info.edit" | translate}}</button>
+        </div>
+    </div>
+</div>

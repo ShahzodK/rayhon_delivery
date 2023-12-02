@@ -47,7 +47,16 @@ export class HomeService {
   }
 
   public getItem(id: string) {
-    return this.http.get<{data: IMenu['category_items'][0]['items'], error: IError }>(CommonUrl.MAIN_URL + CommonUrl.ITEMS_URL + `/${id}`, {
+    return this.http.get<IMenu['category_items'][0]['items']>(CommonUrl.MAIN_URL + CommonUrl.ITEMS_URL + `/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public getCategoryItems(id: string) {
+    return this.http.get<IMenu['category_items'][0]['items']>(CommonUrl.MAIN_URL + CommonUrl.CATEGORIES_URL + `/${id}/` + 'items', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

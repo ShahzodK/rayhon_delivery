@@ -71,6 +71,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
         language: this.userData!.language 
       }
       if(this.userData?.first_name !== profileValues.first_name || this.userData.last_name !== profileValues.last_name) {
+        console.log('12312');
         this.profileService.updateUser(profileValues).pipe(
           switchMap(() => {
             this.store.dispatch(fetchUser());
@@ -94,6 +95,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
        })
       }
       else {
+        console.log('wef');
         this.userAddresses$.subscribe({
           next: (data) => {
           this.isProfileButtonDisabled = false;

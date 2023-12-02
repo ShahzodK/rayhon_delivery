@@ -8,6 +8,7 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.component';
 import { NotificationsPageComponent } from './pages/notifications-page/notifications-page.component';
 import { PopularComponent } from './components/popular/popular.component';
+import { CategoryComponent } from './components/category/category.component';
 
 const routes: Routes = [
   { path: '', component: HomePagesComponent, data: {url: '/home'}},
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'popular', component: PopularComponent },
   { path: 'search', component: SearchPageComponent},
   { path: 'menu/:id', component: FoodInfoPageComponent },
-  { path: 'notifications', component: NotificationsPageComponent }
+  { path: 'notifications', component: NotificationsPageComponent },
+  { path: 'category/:id', component: CategoryComponent },
 ];
 
 @NgModule({

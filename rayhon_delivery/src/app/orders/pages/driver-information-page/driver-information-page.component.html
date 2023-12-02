@@ -8,9 +8,10 @@
             <div class="driver-info_driver_details">
                 <img src="../../../../assets/icons/driver-img.png" alt="driver-img">
                 <h4>Rayford Chenail</h4>
-                <div class="driver-info_number_block">
-                    <span class="driver-info_number">+1-202-555-0161</span>
-                    <img src="../../../../assets/icons/copy.svg" alt="copy">
+                <div class="driver-info_number_block" (click)="copyDriverNum()">
+                    <span class="driver-info_number" #driverNum>+1-202-555-0161</span>
+                    <img *ngIf="!isNumCopied" src="../../../../assets/icons/copy.svg" alt="copy">
+                    <img *ngIf="isNumCopied" src="../../../../assets/icons/green-tick.svg" alt="copied">
                 </div>
             </div>
             <div class="driver-info_experience">

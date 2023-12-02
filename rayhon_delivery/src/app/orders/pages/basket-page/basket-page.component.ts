@@ -117,6 +117,10 @@ export class BasketPageComponent implements OnDestroy {
     }
   }
 
+  public clearBasket() {
+    this.ordersService.clearBasket()
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();

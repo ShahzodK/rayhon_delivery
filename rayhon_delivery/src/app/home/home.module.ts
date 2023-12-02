@@ -11,6 +11,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.component';
 import { NotificationsPageComponent } from './pages/notifications-page/notifications-page.component';
 import { PopularComponent } from './components/popular/popular.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 
@@ -24,7 +25,8 @@ import { PopularComponent } from './components/popular/popular.component';
     FilterComponent,
     FoodInfoPageComponent,
     NotificationsPageComponent,
-    PopularComponent
+    PopularComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,

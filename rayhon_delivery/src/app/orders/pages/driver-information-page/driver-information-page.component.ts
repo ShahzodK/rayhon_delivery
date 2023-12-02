@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -8,6 +8,16 @@ import { Location } from '@angular/common';
 })
 export class DriverInformationPageComponent {
 
+  @ViewChild('driverNum') public driverNum!: ElementRef;
+
+  public isNumCopied = false;
+
   constructor(public location: Location) {}
+
+  public copyDriverNum() {
+    const num = this.driverNum.nativeElement.textContent;
+    navigator.clipboard.writeText(num);
+    this.isNumCopied = true;
+  }
 
 }

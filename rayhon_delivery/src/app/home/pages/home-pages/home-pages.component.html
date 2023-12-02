@@ -89,6 +89,48 @@
                     </owl-carousel-o>
                 </div>
             </div>
+
+            <div class="home-page_categories" *ngIf="(selectCategories$ | async) as categories">
+                <div class="home-page_categories_content">
+                        <div class="home-page_categories_list">
+                            <owl-carousel-o [options]="categoriesCarouselOptions" #owlSlide>
+                                <ng-template carouselSlide *ngFor="let category of categories.items">
+                                        <div class="home-page_category" [routerLink]="'/home/category/' + category.id">
+                                            <img src="../../../../assets/images/category-example.png" alt="">
+                                            <span>
+                                                {{category.name}}
+                                            </span>
+                                        </div>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let category of categories.items">
+                                    <div class="home-page_category">
+                                        <img src="../../../../assets/images/category-example.png" alt="">
+                                        <span>
+                                            {{category.name}}
+                                        </span>
+                                    </div>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let category of categories.items">
+                                    <div class="home-page_category">
+                                        <img src="../../../../assets/images/category-example.png" alt="">
+                                        <span>
+                                            {{category.name}}
+                                        </span>
+                                    </div>
+                                </ng-template>
+                                <ng-template carouselSlide *ngFor="let category of categories.items">
+                                    <div class="home-page_category">
+                                        <img src="../../../../assets/images/category-example.png" alt="">
+                                        <span>
+                                            {{category.name}}
+                                        </span>
+                                    </div>
+                                </ng-template>
+                            </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+            
             <ng-container #popularSkeleton *ngIf="popularImageLoaded == false">
                 <div class="home-page_offers">
                     <div class="home-page_popular_header home-page_header">
@@ -141,7 +183,6 @@
                     </div>
                 </div>
             </ng-container>
-
 
             <div class="home-page_popular" *ngIf="(selectPopular$ | async) as popularMeals">
                 <div class="home-page_popular_header home-page_header" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
@@ -276,7 +317,6 @@
                     </owl-carousel-o>
                 </div>
             </div>
-
             <div class="home-page_menu" *ngIf="(selectMenu$ | async) as menu">
                 <div class="home-page_menu_header home-page_header" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
                     <h5>{{"Home.menu" | translate}}</h5>

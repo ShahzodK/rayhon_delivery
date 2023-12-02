@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { fetchUIElements, toggleFavorite } from 'src/app/redux/actions/home.actions';
-import { selectChosenAddress, selectMenu, selectOffers, selectPopular, selectUserData } from 'src/app/redux/selectors/app.selectors';
+import { selectCategories, selectChosenAddress, selectMenu, selectOffers, selectPopular, selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
 import { Subject, takeUntil } from 'rxjs';
 import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
@@ -22,7 +22,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
   public selectChosenAddress$ = this.store.select(selectChosenAddress);
   public selectOffers$ = this.store.select(selectOffers);
   public selectPopular$ = this.store.select(selectPopular);
-  public selectMenu$ = this.store.select(selectMenu)
+  public selectMenu$ = this.store.select(selectMenu);
+  public selectCategories$ = this.store.select(selectCategories);
 
   public contentLoaded = false;
 
@@ -82,11 +83,23 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
     responsive: {
       0: {
         items: 1,
-        margin: 12
+        margin: 12,
+        stagePadding: 60
+      },
+      400: {
+        items: 1,
+        margin: 12,
+        stagePadding: 90
       },
       476: {
         items: 2,
-        margin: 12
+        margin: 12,
+        stagePadding: 50
+      },
+      678: {
+        items: 3,
+        margin: 12,
+        stagePadding: 50
       },
       768: {
         items: 3,
@@ -120,6 +133,35 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
       },
       998: {
         items: 7,
+      }
+    },
+  }
+
+  public categoriesCarouselOptions: OwlOptions = {
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    center: false,
+    stagePadding: 30,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 3,
+        margin: 12
+      },
+      476: {
+        items: 4,
+        margin: 12
+      },
+      768: {
+        items: 5,
+        margin: 12
+      },
+      1100: {
+        items: 6,
+        margin: 12,
       }
     },
   }

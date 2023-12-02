@@ -62,5 +62,8 @@ export interface IAppState {
         completedOrders: IOrder[]
         cancelledOrders: IOrder[]
     },
-    chosenOrder: IChosenOrder
+    chosenOrder: IChosenOrder,
+    chosenCategory: {
+        items: IMenu['category_items'][0]['items']
+    }
 }

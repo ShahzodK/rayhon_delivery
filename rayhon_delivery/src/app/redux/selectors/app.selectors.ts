@@ -38,6 +38,11 @@ export const selectMenu = createSelector(
     (state) => state.UIElements.menu
 )
 
+export const selectCategories = createSelector(
+    selectAppState,
+    (state) => state.UIElements.category
+)
+
 export const selectNotification = createSelector(
     selectAppState,
     (state) => state.notifications
@@ -66,4 +71,9 @@ export const selectOrders = createSelector(
 export const selectChosenOrder = createSelector(
     selectAppState,
     (state) => state.chosenOrder
+)
+
+export const selectChosenCategory = createSelector(
+    selectAppState,
+    (state) => state.chosenCategory
 )

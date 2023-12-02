@@ -62,3 +62,30 @@ export const fetchChosenOrderSuccess = createAction (
 export const fetchChosenOrderFailed = createAction (
     '[ORDERS] Fetch Chosen Order Failed'
 )
+
+export const updateCart = createAction (
+    '[ORDERS] Update Cart',
+    props<ICart['items'][0]>()
+)
+
+export const updateCartSuccess = createAction (
+    '[ORDERS] Update Cart Success',
+    props<ICart>()
+)
+
+export const updateCartFailed = createAction (
+    '[ORDERS] Update Cart Failed'
+)
+
+export const clearBasket = createAction (
+    '[ORDERS] Clear Basker Failed'
+)
+
+export const clearBasketSuccess = createAction (
+    '[ORDERS] Clear Basker Success',
+    props<ICart>()
+)
+
+export const clearBasketFailed = createAction (
+    '[ORDERS] Clear Basker Failed'
+)

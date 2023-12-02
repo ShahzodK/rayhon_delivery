@@ -162,6 +162,9 @@ export const initialState: IAppState = {
             price: 0,
             discount: 0
           }
+    },
+    chosenCategory: {
+        items: []
     }
 }
 
@@ -305,4 +308,18 @@ export const appReducer = createReducer(
             chosenOrder: chosenOrder
         })
     ),
+    on(
+        OrdersActions.updateCartSuccess,
+        (state, cart): IAppState => ({
+            ...state,
+            cart: cart
+        })
+    ),
+    on(
+        OrdersActions.clearBasketSuccess,
+        (state, cart): IAppState => ({
+            ...state,
+            cart: cart
+        })
+    )
 )

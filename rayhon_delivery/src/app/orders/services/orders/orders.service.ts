@@ -30,7 +30,6 @@ export class OrdersService {
     });
 
     let myGeoObject = new ymaps.GeoObject({
-      // Описание геометрии.
       geometry: {
           type: "Point",
           coordinates: [latitude, longitude]
@@ -96,6 +95,24 @@ export class OrdersService {
 
   public getChosenOrder(id: string) {
     return this.http.get<IChosenOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public editCartItem(foodData: ICart['items'][0]) {
+    return this.http.put<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/item/${foodData.variant_id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public clearBasket() {
+    return this.http.post<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/clear`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

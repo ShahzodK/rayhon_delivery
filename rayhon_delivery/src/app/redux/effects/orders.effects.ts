@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, fetchCart, fetchCartFailed, fetchCartSuccess, fetchChosenOrder, fetchChosenOrderFailed, fetchChosenOrderSuccess, fetchOrders, fetchOrdersFailed, fetchOrdersSuccess } from "../actions/orders.actions";
+import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, clearBasket, clearBasketFailed, clearBasketSuccess, fetchCart, fetchCartFailed, fetchCartSuccess, fetchChosenOrder, fetchChosenOrderFailed, fetchChosenOrderSuccess, fetchOrders, fetchOrdersFailed, fetchOrdersSuccess, updateCart, updateCartFailed, updateCartSuccess } from "../actions/orders.actions";
 import { OrdersService } from "src/app/orders/services/orders/orders.service";
 import { ICart } from "src/app/shared/models/ICart.model";
 import { switchMap, map, catchError, of } from "rxjs";
@@ -74,6 +74,36 @@ export class OrdersEffects {
                     return fetchChosenOrderFailed
                 }),
                 catchError(() => of(fetchChosenOrderFailed))
+            )
+        })
+
+        public updateCart$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(updateCart),
+                switchMap((payload) => this.ordersService.editCartItem(payload)),
+                map((cart: ICart) => {
+                    if(cart) {
+                        return updateCartSuccess(cart)
+                    }
+                    return updateCartFailed
+                }),
+                catchError(() => of(updateCartFailed))
+            )
+        })
+
+        public clearBasket$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(clearBasket),
+                switchMap(() => this.ordersService.clearBasket()),
+                map((cart: ICart) => {
+                    if(cart) {
+                        return clearBasketSuccess(cart)
+                    }
+                    return clearBasketFailed
+                }),
+                catchError(() => of(clearBasketFailed))
             )
         })
 }

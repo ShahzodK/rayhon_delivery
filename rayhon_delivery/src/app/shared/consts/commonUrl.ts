@@ -12,5 +12,6 @@ export let CommonUrl = {
     SEARCH_URL: 'items/searches',
     NOTIFICATION_URL: 'notifications',
     ORDER_URL: 'orders',
-    PRE_ORDERED_SLOTS_URL: 'pre-order/timeslots'
+    PRE_ORDERED_SLOTS_URL: 'pre-order/timeslots',
+    CATEGORIES_URL: 'ui/categories'
 }
