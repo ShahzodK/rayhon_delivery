@@ -17,6 +17,9 @@
         img {
             margin-left: 24px;
         }
+        .back-icon {
+            filter: invert(0);
+        }
     }
     &_content {
         display: flex;

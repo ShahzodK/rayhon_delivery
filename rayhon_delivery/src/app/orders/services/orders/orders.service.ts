@@ -103,7 +103,7 @@ export class OrdersService {
   }
 
   public editCartItem(foodData: ICart['items'][0]) {
-    return this.http.put<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/item/${foodData.variant_id}`, {
+    return this.http.put<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/items/${foodData.variant_id}?quantity=${foodData.quantity}&note=${foodData.note}`, {}, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

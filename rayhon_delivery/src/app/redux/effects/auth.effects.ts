@@ -8,6 +8,7 @@ import { IUser } from "src/app/auth/models/user.model";
 import { fetchAddresses } from "../actions/address.actions";
 import { CommonKey } from "src/app/shared/consts/commonKey";
 import { HomeService } from "src/app/home/services/home/home.service";
+import { TranslateService } from "@ngx-translate/core";
 
 
 @Injectable()
@@ -18,7 +19,8 @@ export class AuthEffects {
         private actions$: Actions,
         private store: Store,
         private authService: AuthService,
-        private homeService: HomeService
+        private homeService: HomeService,
+        private translate: TranslateService
         ) {}
 
     public fetchUsers$ = createEffect(() => {
@@ -29,6 +31,7 @@ export class AuthEffects {
             map((user: IUser) => {
                 if(user) {
                     localStorage.setItem(CommonKey.IS_LOGINED, 'true');
+                    this.translate.use(user.language);
                     this.store.dispatch(fetchAddresses());
                     this.homeService.chosenLanguage = user.language;
                     return AuthActions.fetchUserSuccess(user)

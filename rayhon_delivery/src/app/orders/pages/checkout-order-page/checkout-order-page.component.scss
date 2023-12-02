@@ -130,7 +130,7 @@
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    width: 45vw;
+                    max-width: 45vw;
                 }
                 span {
                     font-size: 18px;

@@ -5,7 +5,7 @@
             <h4>{{"Profile.language-page.title" | translate}}</h4>
         </div>
         <ul>
-            <li  (click)="updateLanguage(user.first_name,user.last_name,'uz')">
+            <li  (click)="updateLanguage(user.first_name,user.last_name,locales.UZ)">
                 <div class="profile-language_item">
                     <span class="profile-language_item_content">O'zbek tili</span>
                     <div class="language_state">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </li>
-            <li (click)="updateLanguage(user.first_name,user.last_name,'ru')">
+            <li (click)="updateLanguage(user.first_name,user.last_name,locales.RU)">
                 <div class="profile-language_item">
                     <span class="profile-language_item_content">Русский</span>
                     <div class="language_state">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </li>
-            <li (click)="updateLanguage(user.first_name,user.last_name,'en')">
+            <li (click)="updateLanguage(user.first_name,user.last_name,locales.EN)">
                 <div class="profile-language_item">
                     <span class="profile-language_item_content">English</span>
                     <div class="language_state">

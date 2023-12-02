@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
               private translateService: TranslateService,
               private modeToggleService: ModeToggleService,
               private store: Store,
-              private router: Router
+              private router: Router,
               ) {
                   router.events.subscribe((event) => {
                     if (event instanceof NavigationStart) {

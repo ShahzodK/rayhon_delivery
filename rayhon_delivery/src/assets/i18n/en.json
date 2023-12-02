@@ -1,0 +1,243 @@
+{
+    "Auth": {
+      "walkthrough": {
+        "walkthrough-1": {
+          "title": "Order Your Favorite Food",
+          "desc": "There are more than 70 national dishes to choose from"
+        },
+        "walkthrough-2": {
+          "title": "Pay easily",
+          "desc": "Easily pay for your order in a way convenient for you. "
+        },
+        "walkthrough-3": {
+          "title": "Fast delivery",
+          "desc": "We will deliver your order within 30 minutes after accepting the order.",
+          "btn": "Order"
+        },
+        "btn": "Continue"
+      },
+      "sms": {
+        "title": "SMS code confirmation",
+        "desc": "The confirmation code has been sent to the number: ",
+        "sendAgain": "Resend",
+        "sendAgainAfter": "Resend via",
+        "btn": "Confirm",
+        "seconds": "seconds"
+      },
+      "title": "Login",
+      "btn": "Continue",
+      "agreement": "By clicking the “Continue” button, you accept ",
+      "agreement-btn": "terms of user agreement"
+    },
+    "Profile": {
+      "title": "Profile",
+      "name": "Full name",
+      "birthday": "Date of Birth",
+      "btn": "Save",
+      "events": "Promo",
+      "payment": "Payment Methods",
+      "profile": "Profile",
+      "address": "Address",
+      "notification": "Notification",
+      "favorite-meals": "Favorite dishes",
+      "language": "Language",
+      "language-name": "English",
+      "dark-mode": "Dark mode",
+      "support": "Support",
+      "invite-friends": "Invite friends",
+      "exit": "Exit",
+      "too-big-image": "The photo is too big! ",
+      "location": {
+        "title": "Location",
+        "address": "Select Delivery Address",
+        "btn": "Continue"
+      },
+      "address-page": {
+        "title": "Address",
+        "btn": "Add address",
+        "default": "Default"
+      },
+      "language-page": {
+        "title": "Language"
+      },
+      "support-page": {
+        "title": "Support",
+        "contact-with-us": "Contact us",
+        "chips": {
+          "general": "Main",
+          "account": "Account",
+          "service": "Service",
+          "payment": "Payment"
+        }
+      },
+      "notifications-page": {
+        "title": "Notification",
+        "general": "General Notice",
+        "sound": "Sound",
+        "vibration": "Vibration",
+        "special-offers": "Special offers",
+        "promo": "Promos and discounts",
+        "payments": "Payments",
+        "updates": "Application updates",
+        "service": "New service available",
+        "advice": "New tips available"
+      },
+      "favorites-page": {
+        "title": "My favorite dishes"
+      },
+      "exit-modal": {
+        "title": "exit",
+        "content": "Do you really want to leave?",
+        "cancel-btn": "Cancel",
+        "accept-btn": "Yes, get out"
+      }
+    },
+    "Location": {
+      "title": "Location",
+      "choose-location": "Select Delivery Address",
+      "write-address": "Write your address",
+      "address-name": "Write the address name",
+      "btn": "Continue"
+    },
+    "Home": {
+      "deliver-to": {
+        "title": "Delivery address",
+        "default": "Default",
+        "new-address-btn": "Add new address",
+        "choose-btn": "Choose"
+      },
+      "special-offers": {
+        "title": "Special offers"
+      },
+      "update-address": {
+        "title": "Location",
+        "edit": "Edit",
+        "delete-btn": "Delete",
+        "save-btn": "Save"
+      },
+      "search-page": {
+        "recent-search": "Recent Searches",
+        "popular-meals": "Popular dishes",
+        "all-meals": "All dishes",
+        "filter": "Filter",
+        "sort": "Sorting",
+        "price": "Price",
+        "sort-by": "Sort by",
+        "promo": "Promo",
+        "popularity": "Popularity",
+        "review": "Review",
+        "any": "Any",
+        "apply": "Apply",
+        "cancel": "Cancel",
+        "up-to-20000": "Less than 20,000 soum",
+        "up-to-40000": "Less than 40,000 soum",
+        "up-to-80000": "Less than 80,000 soum",
+        "not-found": "Nothing found",
+        "not-found-text": "Sorry, the keyword you entered could not be found, please check again or search with a different keyword."
+      },
+      "food-info": {
+        "option": "Options",
+        "notes": "Comment about the restaurant (optional)",
+        "add": "Add",
+        "cancel": "Cancel",
+        "edit": "Change"
+      },
+      "shared-modal": {
+        "added": "Added",
+        "meal-added": "Food has been added to cart!",
+        "continue": "Continue",
+        "basket": "Basket",
+        "error": "Error",
+        "error-description": "Please try again later or contact us.",
+        "try-again": "Try again",
+        "support": "Support"
+      },
+      "notifications": {
+        "title": "Notifications",
+        "new": "New"
+      },
+      "delivery-address": "Delivery address",
+      "special-offer": "Special offers",
+      "menu": "Menu",
+      "ready": "ready",
+      "all": "All",
+      "search": "Search"
+    },
+    "Bottom-navigation": {
+      "home": "House",
+      "orders": "Orders",
+      "cart": "Basket",
+      "profile": "Profile"
+    },
+    "Orders": {
+      "driver": "Courier",
+      "rating": "Rating",
+      "orders": "Orders",
+      "experience": "Experience",
+      "member-since": "Courier with",
+      "transport-model": "Transport model",
+      "plate-number": "Transport number",
+      "make-order": "Checkout",
+      "delivery-address": "Delivery address",
+      "overall-order": "Order summary",
+      "basket": "Basket",
+      "clear": "Clear",
+      "checkout": "Order",
+      "address": "Delivery address",
+      "add": "Add",
+      "payment": "Payment method",
+      "order": "Order",
+      "delivery": "Delivery",
+      "discount": "Discount",
+      "overall": "Bottom line",
+      "checkout-btn": "Design",
+      "active": "Active",
+      "completed": "Completed",
+      "cancelled": "Canceled",
+      "paid": "Paid",
+      "cancel-order": "Cancel the order",
+      "track-order": "Track",
+      "urgent": "Urgent",
+      "empty": "Empty",
+      "active-empty": "You currently do not have an active order",
+      "completed-empty": "You currently do not have a completed order",
+      "cancelled-empty": "You currently do not have a canceled order",
+      "rate-driver": {
+        "title": "Let's evaluate the courier delivery service",
+        "content": "How was the delivery of your order?",
+        "didnt-get-order": "Didn't receive your order?",
+        "contact-us": "Contact us",
+        "cancel-btn": "Cancel",
+        "send-btn": "Send"
+      },
+      "rate-cafe": {
+        "title": "How was the delivery of your order?",
+        "content": "Enjoying your food? ",
+        "write-review": "Leave a review",
+        "cancel-btn": "Cancel",
+        "send-btn": "Send"
+      },
+      "basket-page": {
+        "delete-item": "Deleting a position",
+        "ask-delete-item": "Are you sure you want to delete",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "empty": "You currently have no products in your cart"
+      },
+      "pre-order": {
+        "title": "The restaurant is closed",
+        "content": "Select the appropriate date and time to pre-order",
+        "today": "Today",
+        "day": "Day",
+        "time": "Time",
+        "continue": "Continue"
+      }
+    },
+    "Payment": {
+      "payment-methods": {
+        "title": "Payment Methods",
+        "link": "link"
+      },
+      "title": "Payment method"
+    }
+  }
