@@ -19,6 +19,7 @@ export class BasketPageComponent implements OnDestroy {
   public showDeleteItemModal = false;
   public itemToBeRemoved!: ICart['items'][0];
   public isQuantityLoading = false;
+  public isClearBasketLoading = false;
 
   constructor(
               public location: Location,
@@ -118,7 +119,14 @@ export class BasketPageComponent implements OnDestroy {
   }
 
   public clearBasket() {
-    this.ordersService.clearBasket()
+    this.isClearBasketLoading = true;
+    this.ordersService.clearBasket().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((data) => {
+      this.isClearBasketLoading = false;
+      this.store.dispatch(fetchCart());
+      console.log(data)
+    });
   }
 
   ngOnDestroy(): void {

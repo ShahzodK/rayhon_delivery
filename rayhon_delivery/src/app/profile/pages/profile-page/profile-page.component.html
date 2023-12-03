@@ -33,7 +33,9 @@
             </form>
             <div class="profile_save_btn">
                 <button *ngIf="!isProfileButtonDisabled" (click)="onSubmit()" [disabled]="!profileForm.valid">{{"Profile.btn" | translate}}</button>
-                <button *ngIf="isProfileButtonDisabled" class="loading-spinner-button"></button>
+                <button *ngIf="isProfileButtonDisabled" class="loading-spinner-button">
+                    <span>{{"Profile.btn" | translate}}</span>
+                </button>
             </div>
         </div>
     </div>

@@ -35,7 +35,9 @@
                 </form>
                 <div class="location_save_btn">
                     <button *ngIf="!isLocationButtonDisabled" (click)="onSubmit()">{{'Location.btn' | translate}}</button>
-                    <button *ngIf="isLocationButtonDisabled" class="loading-spinner-button" style="width:35vw"></button>
+                    <button *ngIf="isLocationButtonDisabled" class="loading-spinner-button">
+                        <span>{{'Location.btn' | translate}}</span>
+                    </button>
                 </div>
             </div>
         </div>

@@ -119,6 +119,9 @@ input {
         border-radius: 50%;
         animation: button-loading-spinner 1s ease infinite;
       }
+      span {
+        visibility: hidden;
+      }
 }
 
 @keyframes button-loading-spinner {

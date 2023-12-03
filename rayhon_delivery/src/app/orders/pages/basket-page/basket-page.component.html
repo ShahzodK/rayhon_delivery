@@ -6,7 +6,10 @@
         </div>
         <div class="basket_content" *ngIf="selectCart$ | async as cart">
             <ng-container *ngIf="cart.items.length > 0; else emptyBasket">
-                <button class="basket_clear" (click)="clearBasket()">{{"Orders.clear" | translate}}</button>
+                <button class="basket_clear" (click)="clearBasket()" *ngIf="!isClearBasketLoading">{{"Orders.clear" | translate}}</button>
+                <button class="basket_clear loading-spinner-button" *ngIf="isClearBasketLoading">
+                    <span>{{"Orders.clear" | translate}}</span>
+                </button>
                 <div class="basket_item food-cart" *ngFor="let item of cart.items" [routerLink]="'/home/menu/' + item.item_id">
                     <img src="../../../../assets/icons/menu-example.png" alt="meal-photo">
                     <div class="basket_item_info food-cart_content">

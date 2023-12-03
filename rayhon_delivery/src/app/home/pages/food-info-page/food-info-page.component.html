@@ -68,7 +68,11 @@
                 </div>
                 <textarea type="text" formControlName="notesForRestaurant" [placeholder]="'Home.food-info.notes' | translate" cols="10" rows="6"></textarea>
                 <button *ngIf="!isAddToBasketButtonLoading" (click)="addToBasket()" class="food-info_submit-btn">{{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm</button>
-                <button *ngIf="isAddToBasketButtonLoading" class="loading-spinner-button" style="width:185px; align-self: center;"></button>
+                <button *ngIf="isAddToBasketButtonLoading" class="loading-spinner-button">
+                    <span>
+                        {{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm
+                    </span>
+                </button>
             </form>
         </div>
     </div>

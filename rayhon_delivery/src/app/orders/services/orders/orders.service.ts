@@ -112,7 +112,7 @@ export class OrdersService {
   }
 
   public clearBasket() {
-    return this.http.post<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/clear`, {
+    return this.http.post<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/clear`, {}, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
