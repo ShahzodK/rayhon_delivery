@@ -20,7 +20,7 @@
                             <mat-chip-option *ngFor="let word of recentlySearchedWords" (click)="updateSearchWord($event, true, word)">{{word}}</mat-chip-option>
                         </mat-chip-listbox>
                     </div>
-                    <div class="popular-meals search-page_section">
+                    <!-- <div class="popular-meals search-page_section">
                         <h5>{{"Home.search-page.popular-meals" | translate}}</h5>
                         <mat-chip-listbox>
                             <mat-chip-option>Breakfast</mat-chip-option>
@@ -37,9 +37,9 @@
                             <mat-chip-option>Bakery & Cake</mat-chip-option>
                             <mat-chip-option>Dessert</mat-chip-option>
                         </mat-chip-listbox>
-                    </div>
+                    </div> -->
                 </ng-container>
-                <ng-container *ngIf="searchService.isSearching">
+                <ng-container *ngIf="searchService.isSearching && searchService.searchWord !== ''">
                     <div class="food-cart" *ngFor="let key of [1,2,3]" style="margin-top: 20px">
                         <ngx-skeleton-loader count="1" appearance="line" [theme]="{width:'30vw', height: '25vh', 'border-radius': '20px'}"></ngx-skeleton-loader>
                         <div class="food-cart_content">
@@ -62,7 +62,7 @@
                     </div>
                 </ng-container>
             <ng-container *ngIf="!searchService.isSearching && searchService.searchWord !== '' && searchResults.length !== 0">
-                <div class="search-page_results_options">
+                <!-- <div class="search-page_results_options">
                     <owl-carousel-o [options]="resultsOptions" #owlSlide>
                         <ng-template carouselSlide>
                             <mat-chip-option (click)="filterService.isFilterOpened = true">
@@ -82,7 +82,7 @@
                             </mat-chip-option>
                         </ng-template>
                     </owl-carousel-o> 
-                </div>
+                </div> -->
                     <div class="search-page_results food-cart" *ngFor="let item of searchResults" [routerLink]="'/home/menu/' + item.id">
                         <img src="../../../../assets/icons/menu-example.png" alt="menu">
                         <div class="search-page_results_content food-cart_content">
