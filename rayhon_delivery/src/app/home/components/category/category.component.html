@@ -4,7 +4,7 @@
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
             <h4>Плов</h4>
         </div>
-        <!-- <div class="category-content" *ngIf="selectCategoryItems$ | async as category">
+        <div class="category-content" *ngIf="categoryItems as category">
             <div class="category-item food-cart" *ngFor="let item of category" [routerLink]="'/home/menu/' + item.id">
                 <img src="../../../../assets/icons/menu-example.png" alt="menu">
                 <div class="food-cart_content">
@@ -22,11 +22,11 @@
                     </div>
                     <div class="food-cart_footer">
                         <h5>{{item.price}} so'm</h5>
-                        <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id)">
-                        <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id)">
+                        <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()">
+                        <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()">
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </section>

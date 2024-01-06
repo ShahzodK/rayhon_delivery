@@ -77,3 +77,13 @@ export const selectChosenCategory = createSelector(
     selectAppState,
     (state) => state.chosenCategory
 )
+
+export const selectPaymentMethods = createSelector(
+    selectAppState,
+    (state) => state.paymentMethods.paymentMethods
+)
+
+export const selectChosenOffer = createSelector(
+    selectAppState,
+    (state) => state.chosenOffer
+)

@@ -100,6 +100,9 @@
         "btn": "Продолжить"
     },
     "Home" : {
+        "delivery": "Доставка",
+        "takeaway": "На вынос",
+        "branch-order": "Филиал Заказа",
         "deliver-to": {
             "title": "Адрес Доставки",
             "default": "По Умолчанию",
@@ -107,7 +110,8 @@
             "choose-btn": "Выбрать"
         },
         "special-offers": {
-            "title": "Специальные предложения"
+            "title": "Специальные предложения",
+            "open": "Открыть"
         },
         "update-address": {
             "title": "Локация",
@@ -161,7 +165,8 @@
         "menu": "Меню",
         "ready": "готов",
         "all": "Все",
-        "search": "Поиск"
+        "search": "Поиск",
+        "more-categories": "More Categories"
     },
     "Bottom-navigation": {
         "home": "Дом",
@@ -197,11 +202,22 @@
         "paid": "Оплачен",
         "cancel-order": "Отменить заказ",
         "track-order": "Отслеживать",
+        "rate-order": "Оставить отзыв",
         "urgent": "Срочный",
         "empty": "Пусто",
         "active-empty": "В настоящее время у вас нет активного заказа",
         "completed-empty": "В настоящее время у вас нет завершенного заказа",
         "cancelled-empty": "В настоящее время у вас нет отмененного заказа",
+        "products": "продуктов",
+        "sum": "Сум",
+        "order-issued": "Оформлен",
+        "order-issued-description": "Заказ успешно оформлен",
+        "order-issued-track": "Отслеживать заказ",
+        "order-issued-return": "Вернутьсяна главную",
+        "order-error": "Ошибка",
+        "order-error-description": "Пожалуйста, попробуйте снова чуть позже или свяжитесь с нами.",
+        "order-error-retry": "Попробовать снова",
+        "order-error-support": "Служба поддержки",
         "rate-driver": {
             "title": "Оценим службу доставки курьера",
             "content": "Как прошла доставка вашего заказа?",
@@ -236,7 +252,9 @@
     "Payment": {
         "payment-methods": {
             "title": "Способы Оплаты",
-            "link": "Привязать"
+            "link": "Привязать",
+            "cash": "Наличкой",
+            "choose": "Выбрать"
         },
         "title": "Метод оплаты"
     }

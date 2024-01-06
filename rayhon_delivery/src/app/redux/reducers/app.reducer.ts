@@ -164,7 +164,22 @@ export const initialState: IAppState = {
           }
     },
     chosenCategory: {
-        items: []
+        items: [],
+        items_count: 0
+    },
+    chosenOffer: {
+        id: '',
+        name: '',
+        description: '',
+        image: '',
+        order_button_text: '',
+        order_button_color_hex: '',
+        order_button_action: '',
+        item: '',
+        category: ''
+    },
+    paymentMethods: {
+        paymentMethods: []
     }
 }
 
@@ -320,6 +335,34 @@ export const appReducer = createReducer(
         (state, cart): IAppState => ({
             ...state,
             cart: cart
+        })
+    ),
+    on(
+        OrdersActions.fetchPaymentMethodsSuccess,
+        (state, methods): IAppState => ({
+            ...state,
+            paymentMethods: methods
+        })
+    ),
+    on(
+        HomeActions.fetchCategoryItemsSuccess,
+        (state, category): IAppState => ({
+            ...state,
+            chosenCategory: category
+        })
+    ),
+    on(
+        HomeActions.fetchChosenOfferSuccess,
+        (state, offer): IAppState => ({
+            ...state,
+            chosenOffer: offer.offer
+        })
+    ),
+    on(
+        HomeActions.clearChosenOffer,
+        (state, offer): IAppState => ({
+            ...state,
+            chosenOffer: offer.offer
         })
     )
 )

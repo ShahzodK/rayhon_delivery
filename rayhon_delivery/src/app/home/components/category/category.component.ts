@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { fetchCategoryItems, toggleFavorite } from 'src/app/redux/actions/home.actions';
+import { fetchCategoryItems, fetchUIElements, toggleFavorite } from 'src/app/redux/actions/home.actions';
 import { selectChosenCategory } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
+import { IMenu } from '../../models/menu.model';
 
 @Component({
   selector: 'app-category',
@@ -16,7 +17,8 @@ export class CategoryComponent implements OnInit {
 
   public id!: string;
   public unsubscribe$ = new Subject();
-  public selectCategoryItems$ = this.store.select(selectChosenCategory)
+  public selectCategoryItems$ = this.store.select(selectChosenCategory);
+  public categoryItems: IMenu['category_items'][0]['items'] = [];
 
   constructor(
               public location: Location,
@@ -29,6 +31,11 @@ export class CategoryComponent implements OnInit {
       this.id = params.get('id')!;
     });
     this.store.dispatch(fetchCategoryItems({id: this.id}))
+    this.selectCategoryItems$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((items) => {
+      this.categoryItems = items.items
+    })
   }
 
   public toggleFavorite(state: boolean, id: string) {
@@ -40,6 +47,7 @@ export class CategoryComponent implements OnInit {
         next: (data) => console.log(data),
         error: (error) => console.log(error)
       })
+      this.store.dispatch(fetchCategoryItems({id: this.id}))
     }
     else if(state == false) {
       this.store.dispatch(toggleFavorite({ itemId: id, isFavorite: state }));
@@ -49,7 +57,7 @@ export class CategoryComponent implements OnInit {
         next: (data) => console.log(data),
         error: (error) => console.log(error)
       })
-      // this.store.dispatch(fetchUIElements())
+      this.store.dispatch(fetchCategoryItems({id: this.id}))
     }
   }
 }

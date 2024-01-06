@@ -100,6 +100,9 @@
       "btn": "Continue"
     },
     "Home": {
+      "delivery": "Delivery",
+      "takeaway": "Takeaway",
+      "branch-order": "Branch of the Order",
       "deliver-to": {
         "title": "Delivery address",
         "default": "Default",
@@ -107,7 +110,8 @@
         "choose-btn": "Choose"
       },
       "special-offers": {
-        "title": "Special offers"
+        "title": "Special offers",
+        "open": "Open"
       },
       "update-address": {
         "title": "Location",
@@ -161,7 +165,8 @@
       "menu": "Menu",
       "ready": "ready",
       "all": "All",
-      "search": "Search"
+      "search": "Search",
+      "more-categories": "Больше Категорий"
     },
     "Bottom-navigation": {
       "home": "House",
@@ -195,13 +200,24 @@
       "completed": "Completed",
       "cancelled": "Canceled",
       "paid": "Paid",
-      "cancel-order": "Cancel the order",
-      "track-order": "Track",
+      "cancel-order": "Cancel Order",
+      "track-order": "Track Order",
+      "rate-order": "Rate Order",
       "urgent": "Urgent",
       "empty": "Empty",
       "active-empty": "You currently do not have an active order",
       "completed-empty": "You currently do not have a completed order",
       "cancelled-empty": "You currently do not have a canceled order",
+      "products": "products",
+      "sum": "Sum",
+      "order-issued": "Accepted",
+      "order-issued-description": "Order accepted successfully",
+      "order-issued-track": "Track order",
+      "order-issued-return": "Return to home",
+      "order-error": "Ошибка",
+      "order-error-description": "Please try again later or contact us.",
+      "order-error-retry": "Try again",
+      "order-error-support": "Contact support",
       "rate-driver": {
         "title": "Let's evaluate the courier delivery service",
         "content": "How was the delivery of your order?",
@@ -236,7 +252,9 @@
     "Payment": {
       "payment-methods": {
         "title": "Payment Methods",
-        "link": "link"
+        "link": "link",
+        "cash": "Cash",
+        "choose": "Choose"
       },
       "title": "Payment method"
     }

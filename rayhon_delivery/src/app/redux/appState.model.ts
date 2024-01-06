@@ -1,9 +1,11 @@
 import { ICategory } from "../home/models/category.model"
+import { IChosenOffer } from "../home/models/chosenOffer.model"
 import { IMenu } from "../home/models/menu.model"
 import { IOffer } from "../home/models/offer.model"
 import { IPopularMeal } from "../home/models/popularMeal.model"
 import { IChosenOrder } from "../orders/models/chosenOrder.model"
 import { IOrder } from "../orders/models/order.model"
+import { IPayment } from "../orders/models/payment.model"
 import { ITimeSlots } from "../orders/models/timeSlots.model"
 import { IFavorites } from "../profile/models/favorites.model"
 import { ICart } from "../shared/models/ICart.model"
@@ -64,6 +66,11 @@ export interface IAppState {
     },
     chosenOrder: IChosenOrder,
     chosenCategory: {
-        items: IMenu['category_items'][0]['items']
+        items: IMenu['category_items'][0]['items'],
+        items_count: number
+    },
+    chosenOffer: IChosenOffer,
+    paymentMethods: {
+        paymentMethods: IPayment[]
     }
 }

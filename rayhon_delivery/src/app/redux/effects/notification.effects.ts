@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ProfileService } from "src/app/profile/services/profile.service";
-import { INotifications } from "src/app/profile/models/notification.model";
 import { switchMap, map, catchError, of } from "rxjs";
 import { IError } from "src/app/shared/models/IError.model";
 import { fetchNotificationPreferences, fetchNotificationPreferencesFailed, fetchNotificationPreferencesSuccess, updateNotificationPreferences } from "../actions/notification.actions";
+import { INotificationsSettings } from "src/app/profile/models/notificationSettings.model";
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class NotificationEffects {
         .pipe(
             ofType(fetchNotificationPreferences),
             switchMap(() => this.profileService.getNotificationPreferences()),
-            map((notifications: INotifications) => {
+            map((notifications: INotificationsSettings) => {
                 if(notifications) return fetchNotificationPreferencesSuccess(notifications)
                 return fetchNotificationPreferencesFailed;
             }),
@@ -32,8 +32,8 @@ export class NotificationEffects {
         return this.actions$
         .pipe(
             ofType(updateNotificationPreferences),
-            switchMap((payload: INotifications) => this.profileService.updateNotificationPreferences(payload)),
-            map((notifications: INotifications) => {
+            switchMap((payload: INotificationsSettings) => this.profileService.updateNotificationPreferences(payload)),
+            map((notifications: INotificationsSettings) => {
                 if(notifications) return fetchNotificationPreferencesSuccess(notifications)
                 return fetchNotificationPreferencesFailed;
             }),

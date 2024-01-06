@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, clearBasket, clearBasketFailed, clearBasketSuccess, fetchCart, fetchCartFailed, fetchCartSuccess, fetchChosenOrder, fetchChosenOrderFailed, fetchChosenOrderSuccess, fetchOrders, fetchOrdersFailed, fetchOrdersSuccess, updateCart, updateCartFailed, updateCartSuccess } from "../actions/orders.actions";
+import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, clearBasket, clearBasketFailed, clearBasketSuccess, fetchCart, fetchCartFailed, fetchCartSuccess, fetchChosenOrder, fetchChosenOrderFailed, fetchChosenOrderSuccess, fetchOrders, fetchOrdersFailed, fetchOrdersSuccess, fetchPaymentMethods, fetchPaymentMethodsSuccess, updateCart, updateCartFailed, updateCartSuccess, fetchPaymentMethodsFailed } from "../actions/orders.actions";
 import { OrdersService } from "src/app/orders/services/orders/orders.service";
 import { ICart } from "src/app/shared/models/ICart.model";
 import { switchMap, map, catchError, of } from "rxjs";
@@ -8,6 +8,7 @@ import { IError } from "src/app/shared/models/IError.model";
 import { ITimeSlots } from "src/app/orders/models/timeSlots.model";
 import { IOrder } from "src/app/orders/models/order.model";
 import { IChosenOrder } from "src/app/orders/models/chosenOrder.model";
+import { IPayment } from "src/app/orders/models/payment.model";
 
 @Injectable()
 
@@ -51,9 +52,10 @@ export class OrdersEffects {
                 switchMap(() => this.ordersService.getOrders()),
                 map((orders) => {
                     if(orders) {
-                        const activeOrders = orders.filter((order: IOrder) => order.status.status == 'active');
-                        const completedOrders = orders.filter((order: IOrder) => order.status.status == 'completed');
-                        const cancelledOrders = orders.filter((order: IOrder) => order.status.status == 'cancelled');
+                        console.log(orders)
+                        const activeOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'active' || order.status.name.toLowerCase() == 'new');
+                        const completedOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'completed');
+                        const cancelledOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'cancelled');
                         return fetchOrdersSuccess({activeOrders, completedOrders, cancelledOrders})
                     }
                     return fetchOrdersSuccess
@@ -104,6 +106,21 @@ export class OrdersEffects {
                     return clearBasketFailed
                 }),
                 catchError(() => of(clearBasketFailed))
+            )
+        })
+
+        public fetchPaymentMethods$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(fetchPaymentMethods),
+                switchMap(() => this.ordersService.getPaymentMethods()),
+                map((payments: IPayment[]) => {
+                    if(payments) {
+                        return fetchPaymentMethodsSuccess({paymentMethods: payments})
+                    }
+                    return fetchPaymentMethodsFailed
+                }),
+                catchError(() => of(fetchPaymentMethodsFailed))
             )
         })
 }

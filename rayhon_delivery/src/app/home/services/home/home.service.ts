@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IUser } from 'src/app/auth/models/user.model';
 import { CommonKey } from 'src/app/shared/consts/commonKey';
 import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 import { IUIElements } from '../../models/uiElements.model';
 import { IMenu } from '../../models/menu.model';
-import { IError } from 'src/app/shared/models/IError.model';
+import { INotification } from '../../models/notification.model';
+import { IChosenOffer } from '../../models/chosenOffer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +56,25 @@ export class HomeService {
   }
 
   public getCategoryItems(id: string) {
-    return this.http.get<IMenu['category_items'][0]['items']>(CommonUrl.MAIN_URL + CommonUrl.CATEGORIES_URL + `/${id}/` + 'items', {
+    return this.http.get<{items: IMenu['category_items'][0]['items'], items_count: number}>(CommonUrl.MAIN_URL + CommonUrl.CATEGORIES_URL + `/${id}/` + 'items', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public getNotificationsList() {
+    return this.http.get<{notifications: INotification[], count: number}>(CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public getChosenOffer(id: string) {
+    return this.http.get<IChosenOffer>(CommonUrl.MAIN_URL + CommonUrl.OFFERS_URL + id, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

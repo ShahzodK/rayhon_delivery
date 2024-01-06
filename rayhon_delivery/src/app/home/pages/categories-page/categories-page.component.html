@@ -1,0 +1,18 @@
+<section class="categories">
+    <div class="container">
+        <div class="categories_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{"Home.more-categories" | translate}}</h4>
+        </div>
+        <div class="categories_content" *ngIf="(selectCategories$ | async) as categories">
+            <div *ngFor="let category of categories.items"
+                 class="categories_item"
+                 [routerLink]="'/home/category/' + category.id">
+                <img src="../../../../assets/images/category-example.png" alt="category">
+                <span>
+                    {{category.name}}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
