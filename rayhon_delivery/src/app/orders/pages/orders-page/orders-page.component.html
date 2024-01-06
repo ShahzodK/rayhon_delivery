@@ -21,25 +21,28 @@
                         </div>
                     </ng-template>
                     <ng-container *ngIf="(getOrders$ | async)?.activeOrders as orders">
-                        <div class="orders_item" *ngIf="orders.length > 0; else empty">
-                            <div class="orders_item_content_wrapper">
-                                <img src="../../../../assets/icons/order-example.png" alt="meal">
-                                <div class="orders_item_content">
-                                    <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
-                                    <span class="orders_item_quantity">
-                                        3 продукта | 2.4 km
-                                    </span>
-                                    <div class="orders_item_footer">
-                                        <h5 class="orders_item_price">210000 сум</h5>
-                                        <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                        <ng-container *ngFor="let order of orders">
+                            <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                                <div class="orders_item_content_wrapper">
+                                    <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                    <div class="orders_item_content">
+                                        <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
+                                        <span class="orders_item_quantity">
+                                            {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
+                                        </span>
+                                        <div class="orders_item_footer">
+                                            <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
+                                            <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="orders_item_actions">
+                                    <button *ngIf="findAction(order.actions, 'cancel')" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'track')">{{"Orders.track-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                </div>
                             </div>
-                            <div class="orders_item_actions">
-                                <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
-                                <button>{{"Orders.track-order" | translate}}</button>
-                            </div>
-                        </div>
+                        </ng-container>
                     </ng-container>
                 </mat-tab>
                 <mat-tab [label]="'Orders.completed' | translate">
@@ -53,25 +56,28 @@
                         </div>
                     </ng-template>
                     <ng-container *ngIf="(getOrders$ | async)?.completedOrders as orders">
-                        <div class="orders_item" *ngIf="orders.length > 0; else empty">
-                            <div class="orders_item_content_wrapper">
-                                <img src="../../../../assets/icons/order-example.png" alt="meal">
-                                <div class="orders_item_content">
-                                    <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
-                                    <span class="orders_item_quantity">
-                                        3 продукта | 2.4 km
-                                    </span>
-                                    <div class="orders_item_footer">
-                                        <h5 class="orders_item_price">210000 сум</h5>
-                                        <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                        <ng-container *ngFor="let order of orders">
+                            <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                                <div class="orders_item_content_wrapper">
+                                    <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                    <div class="orders_item_content">
+                                        <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
+                                        <span class="orders_item_quantity">
+                                            {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
+                                        </span>
+                                        <div class="orders_item_footer">
+                                            <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
+                                            <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="orders_item_actions">
+                                    <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'track')">{{"Orders.track-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                </div>
                             </div>
-                            <div class="orders_item_actions">
-                                <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
-                                <button>{{"Orders.track-order" | translate}}</button>
-                            </div>
-                        </div>
+                        </ng-container>
                     </ng-container>
                 </mat-tab>
                 <mat-tab [label]="'Orders.cancelled' | translate">
@@ -85,25 +91,28 @@
                         </div>
                     </ng-template>
                     <ng-container *ngIf="(getOrders$ | async)?.cancelledOrders as orders">
-                        <div class="orders_item" *ngIf="orders.length > 0; else empty">
-                            <div class="orders_item_content_wrapper">
-                                <img src="../../../../assets/icons/order-example.png" alt="meal">
-                                <div class="orders_item_content">
-                                    <h5 class="orders_item_number">{{"Orders.order" | translate}} 100-102</h5>
-                                    <span class="orders_item_quantity">
-                                        3 продукта | 2.4 km
-                                    </span>
-                                    <div class="orders_item_footer">
-                                        <h5 class="orders_item_price">210000 сум</h5>
-                                        <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                        <ng-container *ngFor="let order of orders">
+                            <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                                <div class="orders_item_content_wrapper">
+                                    <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                    <div class="orders_item_content">
+                                        <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
+                                        <span class="orders_item_quantity">
+                                            {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
+                                        </span>
+                                        <div class="orders_item_footer">
+                                            <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
+                                            <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="orders_item_actions">
+                                    <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'track')">{{"Orders.track-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                </div>
                             </div>
-                            <div class="orders_item_actions">
-                                <button class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
-                                <button>{{"Orders.track-order" | translate}}</button>
-                            </div>
-                        </div>
+                        </ng-container>
                     </ng-container>
                 </mat-tab>
             </mat-tab-group>

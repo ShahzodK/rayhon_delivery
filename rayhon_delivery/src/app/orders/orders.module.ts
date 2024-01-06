@@ -11,6 +11,7 @@ import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { PreOrderPageComponent } from './pages/pre-order-page/pre-order-page.component';
 import { TrackOrderPageComponent } from './pages/track-order-page/track-order-page.component';
 import { EditFoodModalComponent } from './components/edit-food-modal/edit-food-modal.component';
+import { PaymentMethodsPageComponent } from './pages/payment-methods-page/payment-methods-page.component';
 
 
 
@@ -25,6 +26,7 @@ import { EditFoodModalComponent } from './components/edit-food-modal/edit-food-m
     PreOrderPageComponent,
     TrackOrderPageComponent,
     EditFoodModalComponent,
+    PaymentMethodsPageComponent,
   ],
   imports: [
     CommonModule,

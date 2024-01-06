@@ -18,4 +18,8 @@ export class OrdersPageComponent implements OnInit {
       this.store.dispatch(fetchOrders());
   }
 
+  public findAction(actions: string[], target_action: string) {
+    return actions.find((action) => action == target_action)
+  }
+
 }

@@ -8,6 +8,7 @@ import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { PreOrderPageComponent } from './pages/pre-order-page/pre-order-page.component';
 import { TrackOrderPageComponent } from './pages/track-order-page/track-order-page.component';
+import { PaymentMethodsPageComponent } from './pages/payment-methods-page/payment-methods-page.component';
 
 const routes: Routes = [
   { path: '', component: OrdersPageComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'basket', component: BasketPageComponent},
   { path: 'checkout', component: CheckoutOrderPageComponent},
   { path: 'pre-order', component: PreOrderPageComponent },
+  { path: 'payment-method', component: PaymentMethodsPageComponent },
 ];
 
 @NgModule({
