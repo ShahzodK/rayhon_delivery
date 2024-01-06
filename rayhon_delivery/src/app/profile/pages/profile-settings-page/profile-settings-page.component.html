@@ -16,7 +16,7 @@
             <ng-container *ngIf="(selectUserData$ | async) as userData">
                 <img
                     [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none'}"
-                    [src]="userData.image || '../../../../assets/icons/user-photo.svg'"
+                    [src]="'https://api.rayhonmilliy.uz' + userData.image || '../../../../assets/icons/user-photo.svg'"
                     alt="user-image"
                     class="user-image"
                     (load)="profileImgLoaded = true">
@@ -26,24 +26,6 @@
                 </div>
                 <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/profile" [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none', 'cursor': 'pointer'}">
             </ng-container>
-        </div>
-        <div class="profile-settings_additional">
-            <ul>
-                <li>
-                    <div class="profile-settings_item">
-                        <img src="../../../../assets/icons/discount.svg" alt="icon">
-                        <span>{{"Profile.events" | translate}}</span>
-                    </div>
-                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right arrow">
-                </li>
-                <li routerLink="/payment/payment-methods">
-                    <div class="profile-settings_item">
-                        <img src="../../../../assets/icons/wallet.svg" alt="icon">
-                        <span>{{"Profile.payment" | translate}}</span>
-                    </div>
-                    <img src="../../../../assets/icons/arrow-right.svg" alt="go" class="arrow-right arrow">
-                </li>
-            </ul>
         </div>
         <div class="profile-settings_main">
             <ul>

@@ -1,4 +1,4 @@
-export interface INotifications {
+export interface INotificationsSettings {
     general: boolean,
     sound: boolean,
     vibrate: boolean,

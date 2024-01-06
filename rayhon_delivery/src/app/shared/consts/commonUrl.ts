@@ -13,5 +13,7 @@ export let CommonUrl = {
     NOTIFICATION_URL: 'notifications',
     ORDER_URL: 'orders',
     PRE_ORDERED_SLOTS_URL: 'pre-order/timeslots',
-    CATEGORIES_URL: 'ui/categories'
+    CATEGORIES_URL: 'ui/categories',
+    PAYMENT_URL: 'payment-methods',
+    OFFERS_URL: 'ui/ui-offers/'
 }

@@ -31,9 +31,9 @@ export class DeliverToComponent implements  OnDestroy {
   public setAsDefaultAddress(address: {id: string, name: string, is_default: boolean}) {
     this.store.dispatch(chooseAddress(address));
     this.homeService.chosenAddressId = address.id;
-    this.ordersService.setCartAddress(address.id).pipe(
-      takeUntil(this.unsubscribe$)
-      ).subscribe()
+    // this.ordersService.setCartAddress(address.id).pipe(
+    //   takeUntil(this.unsubscribe$)
+    //   ).subscribe()
   }
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);

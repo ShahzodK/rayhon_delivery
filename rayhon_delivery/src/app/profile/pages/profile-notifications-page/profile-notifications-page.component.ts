@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { fetchNotificationPreferences, updateNotificationPreferences } from 'src/app/redux/actions/notification.actions';
 import { selectNotification } from 'src/app/redux/selectors/app.selectors';
-import { INotifications } from '../../models/notification.model';
+import { INotificationsSettings } from '../../models/notificationSettings.model';
 
 @Component({
   selector: 'app-profile-notifications-page',
@@ -60,7 +60,7 @@ export class ProfileNotificationsPageComponent implements OnInit {
       new_service: this.new_service.nativeElement.checked,
       new_tutorial: this.new_tutorial.nativeElement.checked
     });
-    const profileValues: INotifications = {
+    const profileValues: INotificationsSettings = {
       general: this.notificationForm.value.general!,
       sound: this.notificationForm.value.sound!,
       vibrate: this.notificationForm.value.vibrate!,

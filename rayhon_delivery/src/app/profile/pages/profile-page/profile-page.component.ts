@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { selectAddresses, selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { IUser } from 'src/app/auth/models/user.model';
 import { fetchUser } from 'src/app/redux/actions/auth.actions';
+import { CommonUrl } from 'src/app/shared/consts/commonUrl';
 
 @Component({
   selector: 'app-profile-page',
@@ -30,6 +31,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   public isProfileButtonDisabled = false;
 
+  public serverUrl = CommonUrl.MAIN_URL;
+
 
   constructor(
               private profileService: ProfileService,
@@ -45,6 +48,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     this.userData$.pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
       if(data) {
         this.userData = data;
+        console.log(data)
         if(this.userData.first_name) {
           this.profileForm.get('name')?.setValue(`${this.userData!.first_name} ${this.userData!.last_name}`);
         }
@@ -95,7 +99,6 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
        })
       }
       else {
-        console.log('wef');
         this.userAddresses$.subscribe({
           next: (data) => {
           this.isProfileButtonDisabled = false;

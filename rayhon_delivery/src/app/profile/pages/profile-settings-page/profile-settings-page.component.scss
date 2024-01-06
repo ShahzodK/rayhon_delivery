@@ -1,6 +1,7 @@
 .profile-settings {
-    padding-bottom: 80px;
+    min-height: 100vh;
     background: var(--bottomNavigationBg);
+    padding-bottom: 80px;
     &_header {
         padding-top: 10px;
         margin-bottom: 36px;
