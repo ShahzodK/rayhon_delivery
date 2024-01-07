@@ -408,6 +408,237 @@ input {
     background: red;
 }
 
+.order-detail {
+    &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    &_address {
+        background: var(--blockBg);
+        padding: 20px;
+        margin-top: 36px;
+        border-radius: 24px;
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+        h5 {
+            color: var(--greyscaleColor900);
+            margin: 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--greyscaleColor200);
+        }
+        &_item {
+            display: flex;
+            color: var(--greyscaleColor900);
+            justify-content: space-between;
+            padding-top: 20px;
+            margin-right: auto;
+            &_content {
+                display: flex;
+                flex-direction: column;
+                margin-left: 16px;
+                margin-right: auto;
+                img {
+                    margin-top: 25px;
+                    margin-left: 14px;
+                }
+                &_top {
+                    display: flex;
+                    align-items: flex-end;
+                    margin-bottom: 7px;
+                    h6 {
+                        margin-top: 0;
+                        margin-bottom: 0;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        max-width: 36vw;
+                        text-overflow: ellipsis;
+                    }
+                    span {
+                        background: var(--transparentGreenColor);
+                        color: var(--primaryColor);
+                        font-size: 10px;
+                        font-weight: 600;
+                        padding: 6px 10px;
+                        margin-left: 8px;
+                        border-radius: 6px;
+                    }
+                }
+                &_address {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--greyscaleColor700);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 57vw;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+    .arrow-right {
+        align-self: center;
+        border: solid var(--primaryColor);
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 4px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+    &_menu {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: var(--blockBg);
+        padding: 20px;
+        border-radius: 24px;
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+        &_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--greyscaleColor900);
+            h5 {
+                margin: 0;
+            }
+            button {
+                background: transparent;
+                color: var(--primaryColor);
+                font-size: 14px;
+                padding: 6px 16px;
+                border: 2px solid var(--primaryColor);
+                box-shadow: none;
+            }
+        }
+        &_item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid var(--greyscaleColor200);
+            gap: 16px;
+            &_content {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-right: auto;
+                h6 {
+                    color: var(--greyscaleColor900);
+                    margin: 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 45vw;
+                }
+                span {
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: var(--primaryColor);
+                }
+            }
+            &_change {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                span {
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: var(--primaryColor);
+                    padding: 8px;
+                    border: 1px solid var(--primaryColor);
+                    border-radius: 8px;
+                }
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &_payment {
+        display: flex;
+        justify-content: space-between;
+        background: var(--blockBg);
+        padding: 20px;
+        border-radius: 24px;
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+        cursor: pointer;
+        &_content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--greyscaleColor900);
+        }
+    }
+    &_bill {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+        border-radius: 24px;
+        background: var(--blockBg);
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+        &_content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        &_order {
+            display: flex;
+            justify-content: space-between;
+            &_title {
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--greyscaleColor800);
+            }
+            &_price {
+                font-weight: 600;
+                color: var(--greyscaleColor900);
+            }
+        }
+        &_summary {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid var(--greyscaleColor200);
+        }
+    }
+    &_next {
+        margin-top: 44px;
+        align-self: center;
+    }
+    &_time {
+        background: var(--blockBg);
+        padding: 20px;
+        margin-top: 36px;
+        border-radius: 24px;
+        box-shadow: 0px 4px 60px 0px rgba(4, 6, 15, 0.05);
+        h5 {
+            color: var(--greyscaleColor900);
+            margin: 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--greyscaleColor200);
+        }
+        &_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--greyscaleColor900);
+            padding-top: 20px;
+            cursor: pointer;
+        }
+        &_content {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-left: 16px;
+            margin-right: auto;
+            h6 {
+                margin: 0;
+            }
+        }
+    }
+}
+
 
 @media (max-width: 384px) {
     .container {
@@ -439,6 +670,22 @@ input {
             max-width: calc(100vw - 220px - 220px);
         }
     }
+    .order-detail {
+        &_address {
+            &_item_content {
+                &_top {
+                    h6 {
+                        max-width: 34vw;
+                    }
+                }
+                &_address {
+                    overflow: hidden;
+                    max-width: 43vw;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
 }
 
 @media (min-width: 1100px) {
@@ -454,6 +701,22 @@ input {
     .food-info {
         .skeleton-loader {
             max-width: calc(100vw - 28vw - 28vw);
+        }
+    }
+    .order-detail {
+        &_address {
+            &_item_content {
+                &_top {
+                    h6 {
+                        max-width: 24vw;
+                    }
+                }
+                &_address {
+                    overflow: hidden;
+                    max-width: 33vw;
+                    text-overflow: ellipsis;
+                }
+            }
         }
     }
 }

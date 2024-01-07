@@ -1,0 +1,66 @@
+<div class="order-detail">
+    <div class="container">
+        <div class="order-detail_header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>Заказ {{order?.id}}</h4>
+        </div>
+        <div class="checkout-order_content order-detail_content">
+            <div class="checkout-order_address order-detail_address">
+                <h5>{{"Orders.address" | translate}}</h5>
+                <div class="checkout-order_address_item order-detail_address_item">
+                    <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">
+                    <div class="checkout-order_address_item_content order-detail_address_item_content">
+                        <div class="checkout-order_address_item_content_top order-detail_address_item_content_top">
+                            <h6>{{order?.address?.name}}</h6>
+                            <span>{{"Home.deliver-to.default" | translate}}</span>
+                        </div>
+                        <span class="checkout-order_address_item_content_address order-detail_address_item_content_address">{{order?.address?.address}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-order_menu order-detail_menu">
+                <div class="checkout-order_menu_header order-detail_menu_header">
+                    <h5>{{"Orders.overall-order" | translate}}</h5>
+                </div>
+                <div class="checkout-order_menu_item order-detail_menu_item" *ngFor="let item of order?.items">
+                    <img src="../../../../assets/icons/cart-example.png" alt="food-photo">
+                    <div class="checkout-order_menu_item_content order-detail_menu_item_content">
+                        <h6>{{item.name}}</h6>
+                        <span>{{+item.price * +item.quantity}} Сум</span>
+                    </div>
+                    <div class="checkout-order_menu_item_change order-detail_menu_item_change">
+                        <span class="checkout-order_menu_item_quantity order-detail_menu_item_quantity">{{item.quantity}}x</span>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-order_payment order-detail_payment" routerLink="/orders/payment-method">
+                <div class="checkout-order_payment_content order-detail_payment_content">
+                    <img src="../../../../assets/icons/wallet-green.svg" alt="wallet">
+                    <span>{{"Orders.payment" | translate}}</span>
+                </div>
+                <span class="order-detail_payment_type">{{order?.payment?.name}}</span>
+            </div>
+            <div class="checkout-order_bill order-detail_bill">
+                <div class="checkout-order_bill_content order-detail_bill_content">
+                    <div class="checkout-order_bill_order order-detail_bill_order">
+                        <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.order" | translate}}</span>
+                        <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{order?.subtotal?.price}} Сум</span>
+                    </div>
+                    <div class="checkout-order_bill_order order-detail_bill_order">
+                        <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.delivery" | translate}}</span>
+                        <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{order?.delivery?.price}} Сум</span>
+                    </div>
+                    <div class="checkout-order_bill_order" *ngIf="order?.total?.discount != 0">
+                        <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.discount" | translate}}</span>
+                        <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{order?.total?.discount}} Сум</span>
+                    </div>
+                </div>
+                <div class="checkout-order_bill_summary order-detail_bill_summary">
+                    <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.discount" | translate}}</span>
+                    <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{order?.total?.price}} Сум</span>
+                </div>
+            </div>
+            <button class="checkout-order_next">{{"Orders.order-again" | translate}}</button>
+        </div>
+    </div>
+</div>

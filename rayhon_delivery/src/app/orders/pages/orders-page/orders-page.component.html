@@ -22,7 +22,7 @@
                     </ng-template>
                     <ng-container *ngIf="(getOrders$ | async)?.activeOrders as orders">
                         <ng-container *ngFor="let order of orders">
-                            <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                            <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
                                 <div class="orders_item_content_wrapper">
                                     <img src="../../../../assets/icons/order-example.png" alt="meal">
                                     <div class="orders_item_content">
@@ -37,8 +37,8 @@
                                     </div>
                                 </div>
                                 <div class="orders_item_actions">
-                                    <button *ngIf="findAction(order.actions, 'cancel')" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'track')">{{"Orders.track-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'cancel')" (click)="cancelOrder(order)" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
                                     <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                     </ng-template>
                     <ng-container *ngIf="(getOrders$ | async)?.completedOrders as orders">
                         <ng-container *ngFor="let order of orders">
-                            <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                            <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
                                 <div class="orders_item_content_wrapper">
                                     <img src="../../../../assets/icons/order-example.png" alt="meal">
                                     <div class="orders_item_content">
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="orders_item_actions">
                                     <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'track')">{{"Orders.track-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
                                     <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                     </ng-template>
                     <ng-container *ngIf="(getOrders$ | async)?.cancelledOrders as orders">
                         <ng-container *ngFor="let order of orders">
-                            <div class="orders_item" *ngIf="orders.length > 0; else empty">
+                            <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
                                 <div class="orders_item_content_wrapper">
                                     <img src="../../../../assets/icons/order-example.png" alt="meal">
                                     <div class="orders_item_content">
@@ -106,9 +106,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="orders_item_actions">
+                                <div class="orders_item_actions" *ngIf="order.actions.length > 0">
                                     <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'track')">{{"Orders.track-order" | translate}}</button>
+                                    <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
                                     <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
                                 </div>
                             </div>

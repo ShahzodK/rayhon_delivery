@@ -55,7 +55,7 @@ export class OrdersEffects {
                         console.log(orders)
                         const activeOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'active' || order.status.name.toLowerCase() == 'new');
                         const completedOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'completed');
-                        const cancelledOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'cancelled');
+                        const cancelledOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'canceled');
                         return fetchOrdersSuccess({activeOrders, completedOrders, cancelledOrders})
                     }
                     return fetchOrdersSuccess
@@ -70,6 +70,7 @@ export class OrdersEffects {
                 ofType(fetchChosenOrder),
                 switchMap((payload) => this.ordersService.getChosenOrder(payload.id)),
                 map((order: IChosenOrder) => {
+                    console.log(order)
                     if(order) {
                         return fetchChosenOrderSuccess(order)
                     }

@@ -218,6 +218,7 @@
       "order-error-description": "Please try again later or contact us.",
       "order-error-retry": "Try again",
       "order-error-support": "Contact support",
+      "order-again": "Order Again",
       "rate-driver": {
         "title": "Let's evaluate the courier delivery service",
         "content": "How was the delivery of your order?",

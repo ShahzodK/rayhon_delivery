@@ -9,18 +9,18 @@
         <div class="container">
             <div class="track-order_content">
                 <div class="track-order_state"></div>
-                <div class="track-order_driver-info">
+                <div class="track-order_driver-info" routerLink="/orders/driver-info">
                     <img src="../../../../assets/icons/driver-img.png" alt="driver image">
                     <div class="track-order_driver-info_content">
-                        <h6>{{order.courier.name}}</h6>
-                        <span class="track-order_driver-info_car">{{order.courier.vehicle_name}}</span>
+                        <h6>{{order?.courier?.name}}</h6>
+                        <span class="track-order_driver-info_car">{{order?.courier?.vehicle_name}}</span>
                     </div>
                     <div class="track-order_driver-info_additional">
                         <span class="track-order_driver-info_rating">
                             <star-rating [starType]="'svg'" [rating]="1" [numOfStars]="1" style="display: block; width:20px;"></star-rating>
-                            {{order.courier.rating}}
+                            {{order?.courier?.rating}}
                         </span>
-                        <span class="track-order_driver-info_number">{{order.courier.plate_number}}</span>
+                        <span class="track-order_driver-info_number">{{order?.courier?.plate_number}}</span>
                     </div>
                 </div>
                 <div class="track-order_driver-info_footer">

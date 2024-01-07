@@ -95,7 +95,7 @@ export class OrdersService {
   }
 
   public getChosenOrder(id: string) {
-    return this.http.get<IChosenOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders/${id}`, {
+    return this.http.get<IChosenOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${id}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -105,6 +105,15 @@ export class OrdersService {
 
   public createOrder(data: {payment_id: string, delivery_method_id: string}) {
     return this.http.post<IOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public cancelOrder(id: string) {
+    return this.http.post<IOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${id}/cancel`, {}, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
