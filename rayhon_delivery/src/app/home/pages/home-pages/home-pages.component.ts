@@ -33,6 +33,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   public popularImageLoaded = false;
 
+  public categoriesLoaded = false;
+
   public isSmallScreen = false;
 
   public smallScreenBreakpoint = 768;

@@ -137,7 +137,7 @@
                                          src="../../../../assets/icons/offer-example.png"
                                          [alt]="offer.name"
                                          [routerLink]="'/home/special-offers/' + offer.id"
-                                         (load)="offersImageLoaded = true">
+                                         c>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -157,20 +157,37 @@
                 </div>
             </div>
 
-            <div class="home-page_categories" *ngIf="(selectCategories$ | async) as categories">
+            <ng-container #categoriesSkeleton *ngIf="categoriesLoaded == false">
                 <div class="home-page_categories_content">
+                    <div class="home-page_categories_list">
+                        <owl-carousel-o [options]="categoriesCarouselOptions" #owlSlide>
+                            <ng-template carouselSlide *ngFor="let slides of [0,0,0]">
+                                    <div class="home-page_category">
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height: '60px'}"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height: '10px'}"></ngx-skeleton-loader>
+                                    </div>
+                            </ng-template>
+                        </owl-carousel-o>
+                </div>
+            </div>
+            </ng-container>
+
+            <div class="home-page_categories" *ngIf="(selectCategories$ | async) as categories">
+                <div class="home-page_categories_content" >
                         <div class="home-page_categories_list">
                             <owl-carousel-o [options]="categoriesCarouselOptions" #owlSlide>
                                 <ng-template carouselSlide *ngFor="let category of categories.items.slice(0, categories.wrap_at)">
                                         <div class="home-page_category" [routerLink]="'/home/category/' + category.id">
-                                            <img src="../../../../assets/images/category-example.png" alt="category">
+                                            <img src="../../../../assets/images/category-example.png"
+                                                 alt="category"
+                                                 (load)="categoriesLoaded = true">
                                             <span>
                                                 {{category.name}}
                                             </span>
                                         </div>
                                 </ng-template>
                                 <ng-template carouselSlide>
-                                    <div class="home-page_category" routerLink="/home/category">
+                                    <div class="home-page_category" routerLink="/home/category" *ngIf="categoriesLoaded">
                                         <img src="../../../../assets/images/category-example.png" alt="all">
                                         <span>
                                             {{"Home.all" | translate}}
