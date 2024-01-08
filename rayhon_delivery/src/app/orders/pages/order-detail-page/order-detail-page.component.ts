@@ -16,6 +16,8 @@ export class OrderDetailPageComponent implements OnInit {
   public id!: string;
   public order!: IChosenOrder;
 
+  public orderLoaded = true;
+
   constructor(
               public location: Location,
               private ordersService: OrdersService,

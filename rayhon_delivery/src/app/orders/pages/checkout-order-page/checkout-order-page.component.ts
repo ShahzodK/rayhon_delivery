@@ -29,6 +29,8 @@ export class CheckoutOrderPageComponent implements OnInit {
   
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
+  public orderLoaded = true;
+
   constructor(
               public location: Location,
               private store: Store,
