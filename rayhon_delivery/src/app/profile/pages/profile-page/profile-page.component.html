@@ -27,12 +27,12 @@
                     <img [src]="'https://api.rayhonmilliy.uz' + userData!.image || '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
                 </div>
                 <input type="text" formControlName="name" class="input_name" placeholder="{{'Profile.name' | translate}}">
-                <div class="input_datepicker">
+                <!-- <div class="input_datepicker">
                     <input matInput disabled="true" [matDatepicker]="datepicker" [max]="maxDate" placeholder="{{'Profile.birthday' | translate}}">
                     <mat-datepicker-toggle disabled="false" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker disabled="false" #datepicker [touchUi]="true">
                     </mat-datepicker>
-                </div>
+                </div> -->
             </form>
             <div class="profile_save_btn">
                 <button *ngIf="!isProfileButtonDisabled" (click)="onSubmit()" [disabled]="!profileForm.valid">{{"Profile.btn" | translate}}</button>

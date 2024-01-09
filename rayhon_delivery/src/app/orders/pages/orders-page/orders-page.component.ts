@@ -16,6 +16,10 @@ export class OrdersPageComponent implements OnInit {
   public getOrders$ = this.store.select(selectOrders);
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
+  public isActiveOrdersLoaded = true;
+  public isCompletedOrdersLoaded = true;
+  public isCanceledOrdersLoaded = true;
+
   constructor(
               private store: Store,
               private ordersService: OrdersService) {}

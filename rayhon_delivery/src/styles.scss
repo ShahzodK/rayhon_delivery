@@ -75,6 +75,9 @@ button:not(.mat-calendar button) {
         background:var(--disabledColor);
         box-shadow: none;
     }
+    &:hover {
+        background: darken(#1BAC4B, 5%);
+    }
 }
 
 input {

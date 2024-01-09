@@ -20,31 +20,61 @@
                             </div>
                         </div>
                     </ng-template>
-                    <ng-container *ngIf="(getOrders$ | async)?.activeOrders as orders">
-                        <ng-container *ngFor="let order of orders">
-                            <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+
+                    <ng-container *ngIf="isActiveOrdersLoaded == false">
+                        <ng-container *ngFor="let order of [0,0,0]">
+                            <div class="orders_item">
                                 <div class="orders_item_content_wrapper">
-                                    <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '110px', 'height': '120px'}"></ngx-skeleton-loader>
                                     <div class="orders_item_content">
-                                        <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
-                                        <span class="orders_item_quantity">
-                                            {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
-                                        </span>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '100px'}"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '130px'}"></ngx-skeleton-loader>
                                         <div class="orders_item_footer">
-                                            <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
-                                            <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '70px', 'height': '4vh'}"></ngx-skeleton-loader>
+                                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '50px', 'height': '4vh'}"></ngx-skeleton-loader>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="orders_item_actions">
-                                    <button *ngIf="findAction(order.actions, 'cancel')" (click)="cancelOrder(order)" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                    <button [style.background]="'transparent'" [style.box-shadow]="'none'">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </button>
+                                    <button [style.background]="'transparent'" [style.box-shadow]="'none'">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </button>
                                 </div>
                             </div>
                         </ng-container>
                     </ng-container>
+
+                    <ng-container *ngIf="isActiveOrdersLoaded">
+                        <ng-container *ngIf="(getOrders$ | async)?.activeOrders as orders">
+                            <ng-container *ngFor="let order of orders">
+                                <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+                                    <div class="orders_item_content_wrapper">
+                                        <img src="../../../../assets/icons/order-example.png" alt="meal" (load)="isActiveOrdersLoaded">
+                                        <div class="orders_item_content">
+                                            <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
+                                            <span class="orders_item_quantity">
+                                                {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
+                                            </span>
+                                            <div class="orders_item_footer">
+                                                <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
+                                                <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="orders_item_actions">
+                                        <button *ngIf="findAction(order.actions, 'cancel')" (click)="cancelOrder(order)" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                        <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
+                                        <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
                 </mat-tab>
+
                 <mat-tab [label]="'Orders.completed' | translate">
                     <ng-template #empty>
                         <div class="orders_empty">
@@ -55,30 +85,60 @@
                             </div>
                         </div>
                     </ng-template>
-                    <ng-container *ngIf="(getOrders$ | async)?.completedOrders as orders">
-                        <ng-container *ngFor="let order of orders">
-                            <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+
+                    <ng-container *ngIf="isCompletedOrdersLoaded == false">
+                        <ng-container *ngFor="let order of [0,0,0]">
+                            <div class="orders_item">
                                 <div class="orders_item_content_wrapper">
-                                    <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '110px', 'height': '120px'}"></ngx-skeleton-loader>
                                     <div class="orders_item_content">
-                                        <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
-                                        <span class="orders_item_quantity">
-                                            {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
-                                        </span>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '100px'}"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '130px'}"></ngx-skeleton-loader>
                                         <div class="orders_item_footer">
-                                            <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
-                                            <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '70px', 'height': '4vh'}"></ngx-skeleton-loader>
+                                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '50px', 'height': '4vh'}"></ngx-skeleton-loader>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="orders_item_actions">
-                                    <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                    <button [style.background]="'transparent'" [style.box-shadow]="'none'">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </button>
+                                    <button [style.background]="'transparent'" [style.box-shadow]="'none'">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </button>
                                 </div>
                             </div>
                         </ng-container>
                     </ng-container>
+
+                    <ng-container *ngIf="isCompletedOrdersLoaded">
+                        <ng-container *ngIf="(getOrders$ | async)?.completedOrders as orders">
+                            <ng-container *ngFor="let order of orders">
+                                <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+                                    <div class="orders_item_content_wrapper">
+                                        <img src="../../../../assets/icons/order-example.png" alt="meal" (load)="isCompletedOrdersLoaded = true">
+                                        <div class="orders_item_content">
+                                            <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
+                                            <span class="orders_item_quantity">
+                                                {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
+                                            </span>
+                                            <div class="orders_item_footer">
+                                                <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
+                                                <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="orders_item_actions">
+                                        <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
+                                        <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
+                                        <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+
                 </mat-tab>
                 <mat-tab [label]="'Orders.cancelled' | translate">
                     <ng-template #empty>
@@ -90,28 +150,57 @@
                             </div>
                         </div>
                     </ng-template>
-                    <ng-container *ngIf="(getOrders$ | async)?.cancelledOrders as orders">
-                        <ng-container *ngFor="let order of orders">
-                            <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+
+                    <ng-container *ngIf="isCanceledOrdersLoaded == false">
+                        <ng-container *ngFor="let order of [0,0,0]">
+                            <div class="orders_item">
                                 <div class="orders_item_content_wrapper">
-                                    <img src="../../../../assets/icons/order-example.png" alt="meal">
+                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '110px', 'height': '120px'}"></ngx-skeleton-loader>
                                     <div class="orders_item_content">
-                                        <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
-                                        <span class="orders_item_quantity">
-                                            {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
-                                        </span>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '100px'}"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '130px'}"></ngx-skeleton-loader>
                                         <div class="orders_item_footer">
-                                            <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
-                                            <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '70px', 'height': '4vh'}"></ngx-skeleton-loader>
+                                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{'width': '50px', 'height': '4vh'}"></ngx-skeleton-loader>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="orders_item_actions" *ngIf="order.actions.length > 0">
-                                    <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
-                                    <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                <div class="orders_item_actions">
+                                    <button [style.background]="'transparent'" [style.box-shadow]="'none'">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </button>
+                                    <button [style.background]="'transparent'" [style.box-shadow]="'none'">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </button>
                                 </div>
                             </div>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="isCanceledOrdersLoaded">
+                        <ng-container *ngIf="(getOrders$ | async)?.cancelledOrders as orders">
+                            <ng-container *ngFor="let order of orders">
+                                <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+                                    <div class="orders_item_content_wrapper">
+                                        <img src="../../../../assets/icons/order-example.png" alt="meal" (load)="isCanceledOrdersLoaded = true">
+                                        <div class="orders_item_content">
+                                            <h5 class="orders_item_number">{{"Orders.order" | translate}} {{order.id}}</h5>
+                                            <span class="orders_item_quantity">
+                                                {{order.items_count}} {{"Orders.products" | translate}} | {{order.delivery_distance}}km
+                                            </span>
+                                            <div class="orders_item_footer">
+                                                <h5 class="orders_item_price">{{order.total}} {{"Orders.sum" | translate}}</h5>
+                                                <span class="orders_item_state">{{"Orders.paid" | translate}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="orders_item_actions" *ngIf="order.actions.length > 0">
+                                        <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
+                                        <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
+                                        <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
+                                    </div>
+                                </div>
+                            </ng-container>
                         </ng-container>
                     </ng-container>
                 </mat-tab>

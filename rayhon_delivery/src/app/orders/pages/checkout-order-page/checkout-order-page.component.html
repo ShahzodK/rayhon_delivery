@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="checkout-order_time">
-                <h5>{{"Orders.address" | translate}}</h5>
+                <h5>{{"Orders.order-time" | translate}}</h5>
                 <div class="checkout-order_time_item" routerLink="/orders/pre-order">
                     <img src="../../../../assets/icons/clock.svg" alt="clock">
                     <div class="checkout-order_time_content">
@@ -153,7 +153,10 @@
                     <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{cart.total.price}} Сум</span>
                 </div>
             </div>
-            <button class="checkout-order_next" (click)="createOrder(cart)">{{"Orders.checkout-btn" | translate}} - {{cart.total.price}} сум</button>
+            <button *ngIf="!isOrderButtonDisabled" class="checkout-order_next" (click)="createOrder(cart)">{{"Orders.checkout-btn" | translate}} - {{cart.total.price}} сум</button>
+            <button *ngIf="isOrderButtonDisabled" class="loading-spinner-button">
+                <span>{{"Orders.checkout-btn" | translate}} - 000000 Сум</span>
+            </button>
         </div>
     </div>
     <app-bottom-navigation></app-bottom-navigation>
@@ -166,7 +169,7 @@
                   [description]="'Orders.order-issued-description' | translate"
                   [primaryButtonLabel]="'Orders.order-issued-track' | translate"
                   [secondaryButtonLabel]="'Orders.order-issued-return' | translate"
-                  (primaryButtonClick)="router.navigate(['/orders'])"
+                  (primaryButtonClick)="router.navigate(['/orders/track/' + orderId])"
                   (secondaryButtonClick)="router.navigate(['/home'])"></app-shared-modal>
 
 <app-shared-modal *ngIf="modalService.showErrorModal"

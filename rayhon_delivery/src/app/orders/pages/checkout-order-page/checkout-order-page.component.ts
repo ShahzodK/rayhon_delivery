@@ -31,6 +31,10 @@ export class CheckoutOrderPageComponent implements OnInit {
 
   public orderLoaded = true;
 
+  public isOrderButtonDisabled = false;
+
+  public orderId!: string;
+
   constructor(
               public location: Location,
               private store: Store,
@@ -44,6 +48,8 @@ export class CheckoutOrderPageComponent implements OnInit {
       window.scrollTo(0,0)
       this.store.dispatch(fetchCart());
       this.store.dispatch(fetchPaymentMethods());
+      this.modalService.showErrorModal = false;
+      this.modalService.showSuccessModal = false;
   }
 
   public openEditOrderModal(enterAnimationDuration: string, exitAnimationDuration: string) {
@@ -59,15 +65,19 @@ export class CheckoutOrderPageComponent implements OnInit {
       payment_id: 'cash',
       delivery_method_id: 'delivery'
     }
+    this.isOrderButtonDisabled = true;
     this.orderService.createOrder(orderData).pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe({
       next: (data) => {
         console.log(data)
+        this.isOrderButtonDisabled = false;
         this.modalService.showSuccessModal = true;
+        this.orderId = data.id;
       },
       error: (data) => {
         console.log(data)
+        this.isOrderButtonDisabled = false;
         this.modalService.showErrorModal = true;
       }
     })

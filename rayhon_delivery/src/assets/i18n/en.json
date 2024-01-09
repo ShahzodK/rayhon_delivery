@@ -219,6 +219,7 @@
       "order-error-retry": "Try again",
       "order-error-support": "Contact support",
       "order-again": "Order Again",
+      "order-time": "Delivery Time",
       "rate-driver": {
         "title": "Let's evaluate the courier delivery service",
         "content": "How was the delivery of your order?",

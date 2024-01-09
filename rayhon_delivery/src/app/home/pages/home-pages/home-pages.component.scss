@@ -158,6 +158,9 @@
                 img {
                     padding-left: 8px;
                     width: 32px;
+                    &:hover {
+                        opacity: 0.9;
+                    }
                 }
             }
         }

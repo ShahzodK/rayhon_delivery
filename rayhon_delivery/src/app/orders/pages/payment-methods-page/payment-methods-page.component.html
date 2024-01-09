@@ -6,15 +6,6 @@
         </div>
         <div class="payment-methods_content">
             <ul class="payment-methods_list" *ngIf="(selectPaymentMethods$ | async) as paymentMethods">
-                <li class="payment-methods_item">
-                    <div class="payment-methods_item_content">
-                        <img src="../../../../assets/icons/wallet-green.svg" alt="cash">
-                        <h6>{{'Payment.payment-methods.cash' | translate}}</h6>
-                    </div>
-                    <div class="payment-methods_item_state">
-                        <span></span>
-                    </div>
-                </li>
                 <li class="payment-methods_item" *ngFor="let method of paymentMethods">
                     <div class="payment-methods_item_content">
                         <img src="../../../../assets/icons/wallet-green.svg" alt="cash">

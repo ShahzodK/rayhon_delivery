@@ -79,7 +79,13 @@
         }
         &_cancel {
             background: transparent;
+            color: var(--greyscaleColor900);
             border: 2px solid var(--primaryColor);
+            box-shadow: none;
+            &:hover {
+                background: transparent;
+                opacity: 0.9;
+            }
         }
     }
     &_empty {
