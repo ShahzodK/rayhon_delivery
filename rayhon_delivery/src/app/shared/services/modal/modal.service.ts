@@ -9,4 +9,5 @@ export class ModalService {
 
   public showErrorModal = false;
   public showSuccessModal = false;
+  public showCancelOrderModal = false;
 }

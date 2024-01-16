@@ -14,7 +14,7 @@ import { OrderDetailPageComponent } from './pages/order-detail-page/order-detail
 const routes: Routes = [
   { path: '', component: OrdersPageComponent},
   { path: 'track/:id', component: TrackOrderPageComponent},
-  { path: 'driver-info', component: DriverInformationPageComponent },
+  { path: 'driver-info/:id', component: DriverInformationPageComponent },
   { path: 'rate-driver', component: RateDriverPageComponent },
   { path: 'rate-cafe', component: RateCafePageComponent },
   { path: 'basket', component: BasketPageComponent},

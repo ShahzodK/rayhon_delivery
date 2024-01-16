@@ -47,12 +47,12 @@
                 </div>
             </div>
             <div class="driver-info_actions">
-                <button>
-                    <img src="../../../../assets/icons/driver-sms.svg" alt="sms">
-                </button>
-                <button>
-                    <img src="../../../../assets/icons/driver-phone.svg" alt="call">
-                </button>
+                <a [href]="'sms:' + order?.courier?.phone">
+                    <img src="../../../../assets/icons/message.png" alt="message">
+                </a>
+                <a [href]="'tel:' + order?.courier?.phone">
+                    <img src="../../../../assets/icons/phone.png" alt="phone" >
+                </a>
             </div>
         </div>
     </div>

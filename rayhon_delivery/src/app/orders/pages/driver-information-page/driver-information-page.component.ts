@@ -1,14 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectChosenOrder } from 'src/app/redux/selectors/app.selectors';
+import { Subject, takeUntil } from 'rxjs';
+import { fetchChosenOrder } from 'src/app/redux/actions/orders.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-driver-information-page',
   templateUrl: './driver-information-page.component.html',
   styleUrls: ['./driver-information-page.component.scss']
 })
-export class DriverInformationPageComponent {
+export class DriverInformationPageComponent implements OnInit {
 
   @ViewChild('driverNum') public driverNum!: ElementRef;
 
@@ -18,10 +21,22 @@ export class DriverInformationPageComponent {
 
   public experienceInMonth = false;
 
+  public unsubscribe$: Subject<boolean> = new Subject<boolean>();
+  public id!: string;
+
   constructor(
               public location: Location,
-              private store: Store
+              private store: Store,
+              private route: ActivatedRoute
               ) {}
+  
+  ngOnInit(): void {
+    console.log('rggr')
+    this.route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
+      this.id = params.get('id')!;
+      this.store.dispatch(fetchChosenOrder({id: this.id}));
+    });
+  }
 
   public copyDriverNum() {
     const num = this.driverNum.nativeElement.textContent;

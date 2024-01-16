@@ -64,8 +64,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="orders_item_actions">
-                                        <button *ngIf="findAction(order.actions, 'cancel')" (click)="cancelOrder(order)" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
+                                    <div class="orders_item_actions" (click)="stopPropagation($event)">
+                                        <button *ngIf="findAction(order.actions, 'cancel')" (click)="modalService.showCancelOrderModal = true; canceledOrder = order" class="orders_item_cancel">{{"Orders.cancel-order" | translate}}</button>
                                         <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
                                         <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
                                     </div>
@@ -130,7 +130,6 @@
                                         </div>
                                     </div>
                                     <div class="orders_item_actions">
-                                        <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
                                         <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
                                         <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
                                     </div>
@@ -195,7 +194,6 @@
                                         </div>
                                     </div>
                                     <div class="orders_item_actions" *ngIf="order.actions.length > 0">
-                                        <button class="orders_item_cancel" *ngIf="findAction(order.actions, 'cancel')">{{"Orders.cancel-order" | translate}}</button>
                                         <button *ngIf="findAction(order.actions, 'track')" [routerLink]="'/orders/track/' + order.id">{{"Orders.track-order" | translate}}</button>
                                         <button *ngIf="findAction(order.actions, 'rate')">{{"Orders.rate-order" | translate}}</button>
                                     </div>
@@ -209,3 +207,23 @@
     </div>
     <app-bottom-navigation></app-bottom-navigation>
 </section>
+
+<app-shared-modal *ngIf="modalService.showCancelOrderModal"
+                  [modalType]="'error'"
+                  [imageUrl]="'../../../../assets/icons/error-modal.png'"
+                  [title]="'Home.shared-modal.cancel-order-title' | translate"
+                  [description]="'Home.shared-modal.cancel-order-description' | translate"
+                  [primaryButtonLabel]="'Home.shared-modal.cancel-order' | translate"
+                  [secondaryButtonLabel]="'Home.shared-modal.back' | translate"
+                  (primaryButtonClick)="cancelOrder(canceledOrder)"
+                  (secondaryButtonClick)="modalService.showCancelOrderModal = false"></app-shared-modal>
+
+<app-shared-modal *ngIf="modalService.showErrorModal"
+                  [modalType]="'error'"
+                  [imageUrl]="'../../../../assets/icons/error-modal.png'"
+                  [title]="'Home.shared-modal.error' | translate"
+                  [description]="'Home.shared-modal.error-description' | translate"
+                  [primaryButtonLabel]="'Home.shared-modal.try-again' | translate"
+                  [secondaryButtonLabel]="'Home.shared-modal.support' | translate"
+                  (primaryButtonClick)="modalService.showErrorModal = false"
+                  (secondaryButtonClick)="router.navigate(['/profile/support'])"></app-shared-modal>

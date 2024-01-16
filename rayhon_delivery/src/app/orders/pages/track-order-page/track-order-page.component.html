@@ -9,7 +9,7 @@
         <div class="container">
             <div class="track-order_content">
                 <div class="track-order_state"></div>
-                <div class="track-order_driver-info" routerLink="/orders/driver-info">
+                <div class="track-order_driver-info" [routerLink]="'/orders/driver-info/' + id">
                     <img src="../../../../assets/icons/driver-img.png" alt="driver image">
                     <div class="track-order_driver-info_content">
                         <h6>{{order?.courier?.name}}</h6>
@@ -24,8 +24,12 @@
                     </div>
                 </div>
                 <div class="track-order_driver-info_footer">
-                    <img src="../../../../assets/icons/message.png" alt="message">
-                    <img src="../../../../assets/icons/phone.png" alt="phone">
+                    <a [href]="'sms:' + order?.courier?.phone">
+                        <img src="../../../../assets/icons/message.png" alt="message">
+                    </a>
+                    <a [href]="'tel:' + order?.courier?.phone">
+                        <img src="../../../../assets/icons/phone.png" alt="phone" >
+                    </a>
                 </div>
             </div>
         </div>

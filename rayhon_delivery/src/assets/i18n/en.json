@@ -156,7 +156,11 @@
         "error": "Error",
         "error-description": "Please try again later or contact us.",
         "try-again": "Try again",
-        "support": "Support"
+        "support": "Support",
+        "cancel-order": "Cancel Order",
+        "back": "Return",
+        "cancel-order-title": "Cancel Order",
+        "cancel-order-description": "Are you sure you want to cancel your order?"
       },
       "notifications": {
         "title": "Notifications",
@@ -197,7 +201,7 @@
       "delivery": "Delivery",
       "discount": "Discount",
       "overall": "Bottom line",
-      "checkout-btn": "Design",
+      "checkout-btn": "Order",
       "active": "Active",
       "completed": "Completed",
       "cancelled": "Canceled",

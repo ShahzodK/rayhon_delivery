@@ -25,6 +25,7 @@ export class SharedModalComponent {
   clickToOutside(event: Event) {
     this.modalService.showErrorModal = false;
     this.modalService.showSuccessModal = false;
+    this.modalService.showCancelOrderModal = false;
   }
 
   stopPropagation(event: Event) {
