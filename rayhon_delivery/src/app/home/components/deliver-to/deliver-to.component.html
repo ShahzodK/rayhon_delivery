@@ -26,8 +26,9 @@
                     {{"Home.deliver-to.new-address-btn" | translate}}
                 </button>
             </ul>
-            <button class="choose_btn" [routerLink]="keys.PREVIOUS_URL">
+            <button class="choose_btn" [routerLink]="keys.PREVIOUS_URL == '/home/not-available-address' ?  '/home' :  keys.PREVIOUS_URL">
                 {{"Home.deliver-to.choose-btn" | translate}}
+                {{keys.PREVIOUS_URL}}
             </button>
         </div>
     </div>

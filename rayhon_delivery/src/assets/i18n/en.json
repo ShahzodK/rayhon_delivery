@@ -103,6 +103,8 @@
       "delivery": "Delivery",
       "takeaway": "Takeaway",
       "branch-order": "Branch of the Order",
+      "not-available-address": "Unfortunately, delivery to your address is temporarily unavailable. Please choose a different address.",
+      "choose-address": "Choose Address",
       "deliver-to": {
         "title": "Delivery address",
         "default": "Default",
