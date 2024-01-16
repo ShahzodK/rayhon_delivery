@@ -11,6 +11,7 @@ import { INotificationsSettings } from '../models/notificationSettings.model';
 import { IError } from 'src/app/shared/models/IError.model';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { IFaq } from '../models/faq.model';
 
 @Injectable({
   providedIn: 'root'
@@ -190,6 +191,14 @@ export class ProfileService {
   public reverseGeocode(address: string) {
     console.log(address);
     return this.http.post<{latitude: number, longitude: number, display_name: string}[]>(`${CommonUrl.MAIN_URL + CommonUrl.ADDRESSES_URL}/action/reverse-geocode?address=${address}`, '', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
+      })
+    })
+  }
+
+  public getFAQ() {
+    return this.http.get<IFaq[]>(`${CommonUrl.MAIN_URL + CommonUrl.SUPPORT_URL}faq`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })

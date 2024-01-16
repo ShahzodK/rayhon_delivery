@@ -9,41 +9,30 @@
                 <mat-tab-group>
                     <mat-chip-listbox [multiple]="false" [required]="true">
                     <mat-tab label="FAQ">
-                            <div #carouselHolder [style.margin-top]="'24px'">
+                            <div #carouselHolder [style.margin-top]="'24px'" [style.margin-bottom]="'24px'">
                                 <ng-container *ngIf="isCarouselFor1stTabVisible">
                                         <owl-carousel-o [options]="chipsCarouselOptions" #owlSlide>
-                                            <ng-template carouselSlide>
-                                                <mat-chip-option >{{"Profile.support-page.chips.general" | translate}}</mat-chip-option>
-                                            </ng-template>
-                                            <ng-template carouselSlide>
-                                                <mat-chip-option>{{"Profile.support-page.chips.account" | translate}}</mat-chip-option>
-                                            </ng-template>
-                                            <ng-template carouselSlide>
-                                                <mat-chip-option>{{"Profile.support-page.chips.service" | translate}}</mat-chip-option>
-                                            </ng-template>
-                                            <ng-template carouselSlide>
-                                                <mat-chip-option>{{"Profile.support-page.chips.payment" | translate}}</mat-chip-option>
-                                            </ng-template>
-                                            <ng-template carouselSlide>
-                                                <mat-chip-option>{{"Profile.support-page.chips.payment" | translate}}</mat-chip-option>
+                                            <ng-template carouselSlide *ngFor="let category of faq">
+                                                <mat-chip-option (click)="sortFAQ(category.id)">{{category.name}}</mat-chip-option>
                                             </ng-template>
                                         </owl-carousel-o>
                                 </ng-container>
                             </div>
                                 <app-search></app-search>
-                                <div class="faq-questions-list">
-                                    <mat-accordion>
-                                        <mat-expansion-panel hideToggle class="accordion-item">
-                                            <mat-expansion-panel-header>
-                                                <mat-panel-title><h6>What is Foodu?</h6></mat-panel-title>
-                                                <img src="../../../../assets/icons/accordion-arrow.svg" alt="arrow">
-                                            </mat-expansion-panel-header>
-                                            <p class="accordion-title">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                                ut labore et dolore magna aliqua.
-                                            </p>
-                                        </mat-expansion-panel>
-                                    </mat-accordion>
+                                <div class="faq-questions-list" *ngFor="let category of faq">
+                                    <ng-container *ngIf="sortedFaqIds.includes(category.id) || sortedFaqIds.includes('') || !sortedFaqIds.length">
+                                        <mat-accordion *ngFor="let question of category.items">
+                                            <mat-expansion-panel hideToggle class="accordion-item">
+                                                <mat-expansion-panel-header>
+                                                    <mat-panel-title><h6>{{question.question}}</h6></mat-panel-title>
+                                                    <img src="../../../../assets/icons/accordion-arrow.svg" alt="arrow">
+                                                </mat-expansion-panel-header>
+                                                <p class="accordion-title">
+                                                    {{question.answer}}
+                                                </p>
+                                            </mat-expansion-panel>
+                                        </mat-accordion>
+                                    </ng-container>
                                 </div>
                     </mat-tab>
                 </mat-chip-listbox>

@@ -1,21 +1,44 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ProfileService } from '../../services/profile.service';
+import { IFaq } from '../../models/faq.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-profile-support-page',
   templateUrl: './profile-support-page.component.html',
   styleUrls: ['./profile-support-page.component.scss']
 })
-export class ProfileSupportPageComponent implements AfterViewChecked {
+export class ProfileSupportPageComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('carouselHolder', { static: false }) carouselHolder!: ElementRef;
   isCarouselFor1stTabVisible = false;
 
+  public faq!: any;
+
+  public unsubscribe$: Subject<boolean> = new Subject<boolean>();
+
+  public sortedFaqIds: string[] = [];
+
   constructor(
               public location: Location,
-              private cdRef: ChangeDetectorRef   
+              private cdRef: ChangeDetectorRef,
+              private profileService: ProfileService   
              ) {}
+
+  ngOnInit(): void {
+      this.profileService.getFAQ().pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe({
+        next: (data) => {
+          this.faq = data;
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      })
+  }
 
   public chipsCarouselOptions: OwlOptions = {
     mouseDrag: true,
@@ -57,5 +80,15 @@ export class ProfileSupportPageComponent implements AfterViewChecked {
     console.log(this.carouselHolder.nativeElement.clientWidth);
 
     console.log(this.isCarouselFor1stTabVisible)
+  }
+
+  public sortFAQ(id: string) {
+    if(this.sortedFaqIds.includes(id)) {
+      this.sortedFaqIds = this.sortedFaqIds.filter(item => item != id);
+    }
+    else {
+      this.sortedFaqIds.push(id)
+    }
+    console.log(this.sortedFaqIds)
   }
 }
