@@ -50,7 +50,7 @@
                     <ng-container *ngIf="isActiveOrdersLoaded">
                         <ng-container *ngIf="(getOrders$ | async)?.activeOrders as orders">
                             <ng-container *ngFor="let order of orders">
-                                <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id">
+                                <div class="orders_item" *ngIf="orders.length > 0; else empty" [routerLink]="'/orders/order/' + order.id" >
                                     <div class="orders_item_content_wrapper">
                                         <img src="../../../../assets/icons/order-example.png" alt="meal" (load)="isActiveOrdersLoaded">
                                         <div class="orders_item_content">

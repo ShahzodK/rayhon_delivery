@@ -7,8 +7,12 @@ import { Mode } from './shared/services/mode-toggle.model';
 import { CommonKey } from './shared/consts/commonKey';
 import * as AuthActions from 'src/app/redux/actions/auth.actions'
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { fetchCart } from './redux/actions/orders.actions';
+import { HomeService } from './home/services/home/home.service';
+import { Subject, takeUntil } from 'rxjs';
+import { selectCart } from './redux/selectors/app.selectors';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,6 +23,7 @@ export class AppComponent implements OnInit {
 
   public currentMode: Mode = Mode.LIGHT;
   public message:any = null;
+  public unsubscribe$: Subject<boolean> = new Subject<boolean>();
 
 // don't remove modeToggleService(its for dark mode)
   constructor(
@@ -26,6 +31,8 @@ export class AppComponent implements OnInit {
               private modeToggleService: ModeToggleService,
               private store: Store,
               private router: Router,
+              private homeService: HomeService,
+              private location: Location
               ) {
                   router.events.subscribe((event) => {
                     if (event instanceof NavigationStart) {
@@ -43,8 +50,8 @@ export class AppComponent implements OnInit {
         let tokenExpireDate = new Date(localStorage.getItem(CommonKey.TOKEN_EXPIRE_DATE)!).getTime();
         let currentDate = new Date().getTime();
         if(currentDate < tokenExpireDate) {
-          this.store.dispatch(AuthActions.fetchUser())
-          this.store.dispatch(fetchCart())
+          this.store.dispatch(AuthActions.fetchUser());
+          this.store.dispatch(fetchCart());
         }
         else {
           localStorage.removeItem(CommonKey.TOKEN)
@@ -65,6 +72,11 @@ export class AppComponent implements OnInit {
          (currentToken) => {
            if (currentToken) {
              console.log(currentToken);
+             this.homeService.sendFCMToken({device: '58541102-6b18-45b3-b573-8c78d12e6f19', token: currentToken}).pipe(
+              takeUntil(this.unsubscribe$)
+             ).subscribe((data) => {
+              console.log(data)
+             })
            } else {
              console.log('No registration token available. Request permission to generate one.');
            }

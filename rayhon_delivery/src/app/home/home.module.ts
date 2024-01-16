@@ -13,6 +13,7 @@ import { NotificationsPageComponent } from './pages/notifications-page/notificat
 import { PopularComponent } from './components/popular/popular.component';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
+import { NotAvailableAddressPageComponent } from './pages/not-available-address-page/not-available-address-page.component';
 
 
 
@@ -28,7 +29,8 @@ import { CategoriesPageComponent } from './pages/categories-page/categories-page
     NotificationsPageComponent,
     PopularComponent,
     CategoryComponent,
-    CategoriesPageComponent
+    CategoriesPageComponent,
+    NotAvailableAddressPageComponent
   ],
   imports: [
     CommonModule,

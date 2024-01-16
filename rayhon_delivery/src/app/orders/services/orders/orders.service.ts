@@ -86,7 +86,7 @@ export class OrdersService {
   }
 
   public getOrders() {
-    return this.http.get<{orders: IOrder[], count: number}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}`, {
+    return this.http.get<{orders: IOrder[], count: number}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/?limit=50`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

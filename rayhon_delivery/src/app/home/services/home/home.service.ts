@@ -17,6 +17,8 @@ export class HomeService {
 
   public searchQuery!: string
 
+  public notAvailableAddress = false;
+
   constructor(private http: HttpClient) { }
 
   public getUIElements() {
@@ -75,6 +77,15 @@ export class HomeService {
 
   public getChosenOffer(id: string) {
     return this.http.get<IChosenOffer>(CommonUrl.MAIN_URL + CommonUrl.OFFERS_URL + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public sendFCMToken(data: {device: string, token: string}) {
+    return this.http.post(CommonUrl.MAIN_URL + CommonUrl.DEVICE_URL + `${data.device}/action/set-fcm-token?token=${data.token}`, {}, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

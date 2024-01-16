@@ -53,9 +53,9 @@ export class OrdersEffects {
                 map((orders) => {
                     if(orders) {
                         console.log(orders)
-                        const activeOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'active' || order.status.name.toLowerCase() == 'new');
-                        const completedOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'completed');
-                        const cancelledOrders = orders.orders.filter((order: IOrder) => order.status.name.toLowerCase() == 'canceled');
+                        const activeOrders = orders.orders.filter((order: IOrder) => order.status.id.toLowerCase() == 'active' || order.status.id.toLowerCase() == 'new');
+                        const completedOrders = orders.orders.filter((order: IOrder) => order.status.id.toLowerCase() == 'completed');
+                        const cancelledOrders = orders.orders.filter((order: IOrder) => order.status.id.toLowerCase() == 'canceled');
                         return fetchOrdersSuccess({activeOrders, completedOrders, cancelledOrders})
                     }
                     return fetchOrdersSuccess

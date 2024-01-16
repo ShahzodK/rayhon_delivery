@@ -1,5 +1,6 @@
 .special-offer-item {
     min-height: 100vh;
+    background: var(--mainBg);
     &_wrapper {
         display: flex;
         flex-direction: column;
@@ -24,5 +25,8 @@
         text-align: center;
         margin-top: auto;
         padding-bottom: 36px;
+    }
+    &_content {
+        color: var(--greyscaleColor900);
     }
 }
