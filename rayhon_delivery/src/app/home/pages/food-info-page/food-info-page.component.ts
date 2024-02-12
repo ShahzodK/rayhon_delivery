@@ -58,7 +58,8 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
     });
     this.homeService.getItem(this.id).subscribe((data) => {
       this.foodInfoPageLoaded = true;
-      this.currentFood = data.data;
+      this.currentFood = data;
+      console.log(data);
       this.foodInfoForm.get('selectedOption')!.setValue(this.currentFood?.variants[0]);
       console.log(data)
     })
@@ -115,7 +116,7 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
     this.modalService.showErrorModal = false;
-    this.modalService.showSuccessModal = true;  
+    this.modalService.showSuccessModal = false;  
   }
 
   

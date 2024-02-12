@@ -45,6 +45,9 @@
             color: var(--primaryColor);
             text-shadow: 4px 8px 24px rgba(27, 172, 75, 0.25);
             box-shadow: none;
+            &:hover {
+                background: var(--secondaryBtnColor);
+            }
         }
     }
     &_address_item {

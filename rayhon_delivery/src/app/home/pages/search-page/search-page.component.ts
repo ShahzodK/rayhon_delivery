@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { SearchService } from 'src/app/shared/services/search/search.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
@@ -15,7 +15,7 @@ import { FilterService } from '../../services/filter/filter.service';
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent implements OnInit, OnDestroy {
+export class SearchPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('searchInput') public searchInput!: ElementRef;
 
@@ -53,6 +53,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         this.recentlySearchedWords = data.filter(item => item.length > 3).slice(0,6);
       }
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.searchInput.nativeElement.focus();
   }
 
   public updateSearchWord(event: Event, isFromChip = false, wordFromChip = '') {

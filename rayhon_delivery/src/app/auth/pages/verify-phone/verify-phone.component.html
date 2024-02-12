@@ -53,7 +53,9 @@
                     <span>{{"Auth.sms.sendAgain" | translate}}</span>
                 </p>
                 <button *ngIf="!isVerifyButtonDisabled" [disabled]="!verifyPhoneForm.valid" (click)="verify()">{{"Auth.sms.btn" | translate}}</button>
-                <button *ngIf="isVerifyButtonDisabled" class="loading-spinner-button"></button>
+                <button *ngIf="isVerifyButtonDisabled" class="loading-spinner-button">
+                    <span>{{"Auth.sms.btn" | translate}}</span>
+                </button>
             </form>
         </div>
     </div>

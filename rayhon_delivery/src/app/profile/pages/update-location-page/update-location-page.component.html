@@ -14,10 +14,15 @@
                 <h4>{{"Home.update-address.edit" | translate}}</h4>
                 <div class="choose-location">
                     <img src="../../../../assets/icons/location.svg" alt="location" class="update_location-icon">
-                    <input type="text" id="suggest" formControlName="locationAddress">
+                    <input type="text" id="suggest" formControlName="locationAddress" (input)="onInputChange()" #suggestInput>
                     <span *ngIf="locationForm.get('locationAddress')!.hasError('unsupportedLocation')" class="input_error">
                         {{errorMsg}}
                     </span>
+                    <div class="possible-locations" *ngIf="possibleLocations.length > 0">
+                        <p *ngFor="let location of possibleLocations.slice(0,5)" (click)="sendAdress(location)">
+                            {{ location.display_name.slice(0,-30) }}
+                        </p>
+                    </div>
                 </div>
                 <div class="location-name">
                     <input type="text" formControlName="locationName">

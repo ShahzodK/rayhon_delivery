@@ -1,9 +1,11 @@
 <section class="profile">
     <div class="container">
         <div class="profile_content">
-            <div class="profile_back">
-                <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
-                <h4>{{"Profile.title" | translate}}</h4>
+            <div class="profile_header">
+                <div class="profile_back">
+                    <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+                    <h4>{{"Profile.title" | translate}}</h4>
+                </div>
             </div>
             <form class="profile_form" [formGroup]="profileForm">
                 <div class="file-input-container">
@@ -21,19 +23,21 @@
                             <span>{{'Profile.too-big-image' | translate}}</span>
                         </div>
                     </label>
-                    <img [src]="userData!.image || '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
+                    <img [src]="userData!.image ? 'https://api.rayhonmilliy.uz' + userData!.image : '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
                 </div>
                 <input type="text" formControlName="name" class="input_name" placeholder="{{'Profile.name' | translate}}">
-                <div class="input_datepicker">
+                <!-- <div class="input_datepicker">
                     <input matInput disabled="true" [matDatepicker]="datepicker" [max]="maxDate" placeholder="{{'Profile.birthday' | translate}}">
                     <mat-datepicker-toggle disabled="false" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
                     <mat-datepicker disabled="false" #datepicker [touchUi]="true">
                     </mat-datepicker>
-                </div>
+                </div> -->
             </form>
             <div class="profile_save_btn">
                 <button *ngIf="!isProfileButtonDisabled" (click)="onSubmit()" [disabled]="!profileForm.valid">{{"Profile.btn" | translate}}</button>
-                <button *ngIf="isProfileButtonDisabled" class="loading-spinner-button"></button>
+                <button *ngIf="isProfileButtonDisabled" class="loading-spinner-button">
+                    <span>{{"Profile.btn" | translate}}</span>
+                </button>
             </div>
         </div>
     </div>

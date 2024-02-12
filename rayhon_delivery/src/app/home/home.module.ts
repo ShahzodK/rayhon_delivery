@@ -10,6 +10,10 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { FoodInfoPageComponent } from './pages/food-info-page/food-info-page.component';
 import { NotificationsPageComponent } from './pages/notifications-page/notifications-page.component';
+import { PopularComponent } from './components/popular/popular.component';
+import { CategoryComponent } from './components/category/category.component';
+import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
+import { NotAvailableAddressPageComponent } from './pages/not-available-address-page/not-available-address-page.component';
 
 
 
@@ -22,7 +26,11 @@ import { NotificationsPageComponent } from './pages/notifications-page/notificat
     SearchPageComponent,
     FilterComponent,
     FoodInfoPageComponent,
-    NotificationsPageComponent
+    NotificationsPageComponent,
+    PopularComponent,
+    CategoryComponent,
+    CategoriesPageComponent,
+    NotAvailableAddressPageComponent
   ],
   imports: [
     CommonModule,

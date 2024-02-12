@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { IChosenOrder } from "src/app/orders/models/chosenOrder.model";
 import { IOrder } from "src/app/orders/models/order.model";
+import { IPayment } from "src/app/orders/models/payment.model";
 import { ITimeSlots } from "src/app/orders/models/timeSlots.model";
 import { ICart } from "src/app/shared/models/ICart.model";
 
@@ -61,4 +62,44 @@ export const fetchChosenOrderSuccess = createAction (
 
 export const fetchChosenOrderFailed = createAction (
     '[ORDERS] Fetch Chosen Order Failed'
+)
+
+export const updateCart = createAction (
+    '[ORDERS] Update Cart',
+    props<ICart['items'][0]>()
+)
+
+export const updateCartSuccess = createAction (
+    '[ORDERS] Update Cart Success',
+    props<ICart>()
+)
+
+export const updateCartFailed = createAction (
+    '[ORDERS] Update Cart Failed'
+)
+
+export const clearBasket = createAction (
+    '[ORDERS] Clear Basket Failed'
+)
+
+export const clearBasketSuccess = createAction (
+    '[ORDERS] Clear Basket Success',
+    props<ICart>()
+)
+
+export const clearBasketFailed = createAction (
+    '[ORDERS] Clear Basket Failed'
+)
+
+export const fetchPaymentMethods = createAction (
+    '[ORDERS] Fetch Payment Methods'
+)
+
+export const fetchPaymentMethodsSuccess = createAction (
+    '[ORDERS] Fetch Payment Methods Success',
+    props<{paymentMethods: IPayment[]} >()
+)
+
+export const fetchPaymentMethodsFailed = createAction (
+    '[ORDERS] Fetch Payment Methods Failed'
 )

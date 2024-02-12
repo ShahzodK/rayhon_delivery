@@ -10,6 +10,9 @@ import { CheckoutOrderPageComponent } from './pages/checkout-order-page/checkout
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { PreOrderPageComponent } from './pages/pre-order-page/pre-order-page.component';
 import { TrackOrderPageComponent } from './pages/track-order-page/track-order-page.component';
+import { EditFoodModalComponent } from './components/edit-food-modal/edit-food-modal.component';
+import { PaymentMethodsPageComponent } from './pages/payment-methods-page/payment-methods-page.component';
+import { OrderDetailPageComponent } from './pages/order-detail-page/order-detail-page.component';
 
 
 
@@ -23,6 +26,9 @@ import { TrackOrderPageComponent } from './pages/track-order-page/track-order-pa
     OrdersPageComponent,
     PreOrderPageComponent,
     TrackOrderPageComponent,
+    EditFoodModalComponent,
+    PaymentMethodsPageComponent,
+    OrderDetailPageComponent,
   ],
   imports: [
     CommonModule,

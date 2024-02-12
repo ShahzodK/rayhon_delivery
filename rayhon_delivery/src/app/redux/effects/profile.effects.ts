@@ -21,8 +21,11 @@ export class ProfileEffects {
         .pipe(
             ofType(fetchFavorites),
             switchMap(() => this.profileService.getFavorites()),
-            map((favorites: IFavorites) => {
-                if(favorites.data) return fetchFavoritesSuccess(favorites)
+            map((favorites: IFavorites['data']) => {
+                const favoritesObj: IFavorites = {
+                    data: favorites
+                }
+                if(favorites) return fetchFavoritesSuccess(favoritesObj)
                 return fetchUIElementsFailed
             }),
             catchError(() => of(fetchUIElementsFailed))

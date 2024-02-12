@@ -14,10 +14,20 @@
                     <h4>Выберите Адрес Доставки</h4>
                     <div class="choose-location">
                         <img src="../../../../assets/icons/location.svg" alt="location" class="location-icon">
-                        <input type="text" id="suggest" formControlName="locationAddress" placeholder="{{'Location.write-address' | translate}}">
+                        <input type="text"
+                               id="suggest"
+                               formControlName="locationAddress"
+                               placeholder="{{'Location.write-address' | translate}}"
+                               (input)="onInputChange()"
+                               #suggestInput>
                         <span *ngIf="locationForm.get('locationAddress')!.hasError('unsupportedLocation')" class="input_error">
                             {{errorMsg}}
                         </span>
+                        <div class="possible-locations" *ngIf="possibleLocations.length > 0">
+                            <p *ngFor="let location of possibleLocations.slice(0,5)" (click)="sendAdress(location)">
+                                {{ location.display_name.slice(0,-30) }}
+                            </p>
+                        </div>
                     </div>
                     <div class="location-name">
                         <input type="text" formControlName="locationName" placeholder="{{'Location.address-name' | translate}}">
@@ -25,7 +35,9 @@
                 </form>
                 <div class="location_save_btn">
                     <button *ngIf="!isLocationButtonDisabled" (click)="onSubmit()">{{'Location.btn' | translate}}</button>
-                    <button *ngIf="isLocationButtonDisabled" class="loading-spinner-button" style="width:35vw"></button>
+                    <button *ngIf="isLocationButtonDisabled" class="loading-spinner-button">
+                        <span>{{'Location.btn' | translate}}</span>
+                    </button>
                 </div>
             </div>
         </div>

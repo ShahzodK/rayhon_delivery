@@ -1,4 +1,4 @@
-<section class="driver-info">
+<section class="driver-info" *ngIf="chosenOrder$ | async as order">
     <div class="container">
         <div class="driver-info_header">
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
@@ -7,50 +7,52 @@
         <div class="driver-info_content">
             <div class="driver-info_driver_details">
                 <img src="../../../../assets/icons/driver-img.png" alt="driver-img">
-                <h4>Rayford Chenail</h4>
-                <div class="driver-info_number_block">
-                    <span class="driver-info_number">+1-202-555-0161</span>
-                    <img src="../../../../assets/icons/copy.svg" alt="copy">
+                <h4>{{order.courier.name}}</h4>
+                <div class="driver-info_number_block" (click)="copyDriverNum()">
+                    <span class="driver-info_number" #driverNum>+1-202-555-0161</span>
+                    <img *ngIf="!isNumCopied" src="../../../../assets/icons/copy.svg" alt="copy">
+                    <img *ngIf="isNumCopied" src="../../../../assets/icons/green-tick.svg" alt="copied">
                 </div>
             </div>
             <div class="driver-info_experience">
                 <div class="driver-info_experience_block">
                     <img src="../../../../assets/icons/driver-star.svg" alt="rating">
-                    <h6>4.8</h6>
+                    <h6>{{order.courier.rating}}</h6>
                     <span>{{"Orders.rating" | translate}}</span>
                 </div>
                 <div class="driver-info_experience_block">
                     <img src="../../../../assets/icons/driver-bag.svg" alt="rating">
-                    <h6>425</h6>
+                    <h6>10</h6>
                     <span>{{"Orders.orders" | translate}}</span>
                 </div>
                 <div class="driver-info_experience_block">
                     <img src="../../../../assets/icons/driver-time.svg" alt="experience">
-                    <h6>4</h6>
-                    <span>{{"Orders.experience" | translate}}</span>
+                    <h6>{{getDriverExperience(order.courier.joined_date)}}</h6>
+                    <span *ngIf="experienceInMonth">{{"Orders.month" | translate}}</span>
+                    <span *ngIf="!experienceInMonth">{{"Orders.year" | translate}}</span>
                 </div>
             </div>
             <div class="driver-info_transport_info">
                 <div class="driver-info_transport_info_block">
                     <span class="driver-info_transport_info_block_title">{{"Orders.member-since" | translate}}</span>
-                    <span class="driver-info_transport_info_block_content">July 15, 2019</span>
+                    <span class="driver-info_transport_info_block_content">{{getDriverStartedDate(order.courier.joined_date)}}</span>
                 </div>
                 <div class="driver-info_transport_info_block">
                     <span class="driver-info_transport_info_block_title">{{"Orders.transport-model" | translate}}</span>
-                    <span class="driver-info_transport_info_block_content">Yamaha MX King</span>
+                    <span class="driver-info_transport_info_block_content">{{order.courier.vehicle_name}}</span>
                 </div>
                 <div class="driver-info_transport_info_block">
                     <span class="driver-info_transport_info_block_title">{{"Orders.plate-number" | translate}}</span>
-                    <span class="driver-info_transport_info_block_content">HSW 4736 XK</span>
+                    <span class="driver-info_transport_info_block_content">{{order.courier.plate_number}}</span>
                 </div>
             </div>
             <div class="driver-info_actions">
-                <button>
-                    <img src="../../../../assets/icons/driver-sms.svg" alt="sms">
-                </button>
-                <button>
-                    <img src="../../../../assets/icons/driver-phone.svg" alt="call">
-                </button>
+                <a [href]="'sms:' + order?.courier?.phone">
+                    <img src="../../../../assets/icons/message.png" alt="message">
+                </a>
+                <a [href]="'tel:' + order?.courier?.phone">
+                    <img src="../../../../assets/icons/phone.png" alt="phone" >
+                </a>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@ export interface IOrder {
   id: string,
   status: {
     id: string,
-    status: string
+    name: string
   },
   created_date: string,
   created_time: string,

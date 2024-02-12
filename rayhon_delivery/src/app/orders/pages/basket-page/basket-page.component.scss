@@ -67,6 +67,9 @@
         background: var(--errorColor);
         padding: 6px 16px;
         box-shadow: none;
+        &:hover {
+            background: darken(#F75555, 5%);
+        }
     }
     &_empty {
         display: flex;

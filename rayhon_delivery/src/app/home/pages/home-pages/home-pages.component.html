@@ -7,7 +7,7 @@
                 </ng-container>
                 <ng-container *ngIf="selectUserData$ | async as user">
                     <img [ngStyle]="{'display': userImageLoaded ? 'block' : 'none'}"
-                         [src]="user.image || '../../../../assets/icons/user-photo.svg'"
+                         [src]="user!.image ? 'https://api.rayhonmilliy.uz' + user!.image : '../../../../assets/icons/user-photo.svg'"
                          alt="user-image" class="user-image"
                          routerLink="/profile/settings"
                          (load)="userImageLoaded = true">
@@ -21,7 +21,7 @@
                         </ng-template>
                         <ng-container *ngIf="selectChosenAddress$ | async as userAdresses; else userAddressLoading">
                             <span>
-                                {{userAdresses.address}}
+                                {{userAdresses.address.length > 40 ? userAdresses.address.slice(0,-31) : userAdresses.address}}
                             </span>
                             <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
                         </ng-container>
@@ -32,6 +32,73 @@
                     <span class="notification-indicator"></span>
                 </div>
             </div>
+            <!-- <mat-tab-group>
+                <mat-tab [label]="'Home.delivery' | translate">
+                    <div class="home-page_header">
+                        <ng-container #userImageLoading *ngIf="userImageLoaded === false">
+                            <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+                        </ng-container>
+                        <ng-container *ngIf="selectUserData$ | async as user">
+                            <img [ngStyle]="{'display': userImageLoaded ? 'block' : 'none'}"
+                                 [src]="user.image || '../../../../assets/icons/user-photo.svg'"
+                                 alt="user-image" class="user-image"
+                                 routerLink="/profile/settings"
+                                 (load)="userImageLoaded = true">
+                        </ng-container>
+                        <div class="home-page_header_location">
+                            <p>{{"Home.delivery-address" | translate}}</p>
+                            <div class="home-page_header_location_name"
+                                 routerLink="/home/deliver-to">
+                                <ng-template #userAddressLoading>
+                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '45vw'}"></ngx-skeleton-loader>
+                                </ng-template>
+                                <ng-container *ngIf="selectChosenAddress$ | async as userAdresses; else userAddressLoading">
+                                    <span>
+                                        {{userAdresses.address.length > 40 ? userAdresses.address.slice(0,-31) : userAdresses.address}}
+                                    </span>
+                                    <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="home-page_header_notifications" routerLink="/home/notifications">
+                            <img src="../../../../assets/icons/notification.svg" alt="notifications" class="notifications_img">
+                            <span class="notification-indicator"></span>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab [label]="'Home.takeaway' | translate">
+                    <div class="home-page_header home-page_header_takeaway">
+                        <ng-container #userImageLoading *ngIf="userImageLoaded === false">
+                            <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+                        </ng-container>
+                        <ng-container>
+                            <img [ngStyle]="{'display': userImageLoaded ? 'block' : 'none'}"
+                                 src="../../../../assets/icons/logo-rounded.png"
+                                 alt="rayhon-logo" class="user-image"
+                                 (load)="userImageLoaded = true">
+                        </ng-container>
+                        <div class="home-page_header_location">
+                            <p>{{"Home.branch-order" | translate}}</p>
+                            <div class="home-page_header_location_name"
+                                 routerLink="/home/deliver-to">
+                                <ng-template #userAddressLoading>
+                                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '45vw'}"></ngx-skeleton-loader>
+                                </ng-template>
+                                <ng-container *ngIf="selectChosenAddress$ | async as userAdresses; else userAddressLoading">
+                                    <span>
+                                        {{userAdresses.address.length > 40 ? userAdresses.address.slice(0,-31) : userAdresses.address}}
+                                    </span>
+                                    <img src="../../../../assets/icons/arrow-down.svg" alt="show addresses">
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="home-page_header_notifications" routerLink="/home/notifications">
+                            <img src="../../../../assets/icons/notification.svg" alt="notifications" class="notifications_img">
+                            <span class="notification-indicator"></span>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group> -->
             <div class="home-page_search">
                 <app-search routerLink="/home/search"></app-search>
             </div>
@@ -70,7 +137,7 @@
                                          src="../../../../assets/icons/offer-example.png"
                                          [alt]="offer.name"
                                          [routerLink]="'/home/special-offers/' + offer.id"
-                                         (load)="offersImageLoaded = true">
+                                         c>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -89,6 +156,49 @@
                     </owl-carousel-o>
                 </div>
             </div>
+
+            <ng-container #categoriesSkeleton *ngIf="categoriesLoaded == false">
+                <div class="home-page_categories_content">
+                    <div class="home-page_categories_list">
+                        <owl-carousel-o [options]="categoriesCarouselOptions" #owlSlide>
+                            <ng-template carouselSlide *ngFor="let slides of [0,0,0]">
+                                    <div class="home-page_category">
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height: '60px'}"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '60px', height: '10px'}"></ngx-skeleton-loader>
+                                    </div>
+                            </ng-template>
+                        </owl-carousel-o>
+                </div>
+            </div>
+            </ng-container>
+
+            <div class="home-page_categories" *ngIf="(selectCategories$ | async) as categories">
+                <div class="home-page_categories_content" >
+                        <div class="home-page_categories_list">
+                            <owl-carousel-o [options]="categoriesCarouselOptions" #owlSlide>
+                                <ng-template carouselSlide *ngFor="let category of categories.items.slice(0, categories.wrap_at)">
+                                        <div class="home-page_category" [routerLink]="'/home/category/' + category.id">
+                                            <img src="../../../../assets/images/category-example.png"
+                                                 alt="category"
+                                                 (load)="categoriesLoaded = true">
+                                            <span>
+                                                {{category.name}}
+                                            </span>
+                                        </div>
+                                </ng-template>
+                                <ng-template carouselSlide>
+                                    <div class="home-page_category" routerLink="/home/category" *ngIf="categoriesLoaded">
+                                        <img src="../../../../assets/images/category-example.png" alt="all">
+                                        <span>
+                                            {{"Home.all" | translate}}
+                                        </span>
+                                    </div>
+                            </ng-template>
+                            </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+            
             <ng-container #popularSkeleton *ngIf="popularImageLoaded == false">
                 <div class="home-page_offers">
                     <div class="home-page_popular_header home-page_header">
@@ -142,11 +252,10 @@
                 </div>
             </ng-container>
 
-
             <div class="home-page_popular" *ngIf="(selectPopular$ | async) as popularMeals">
                 <div class="home-page_popular_header home-page_header" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
                     <h5>{{popularMeals[0].name}}</h5>
-                    <span class="home-page_showAll">{{"Home.all" | translate}}</span>
+                    <span class="home-page_showAll" routerLink="/home/popular">{{"Home.all" | translate}}</span>
                 </div>
                 <div class="home-page_popular_content">
                     <owl-carousel-o [options]="popularCarouselOptions" #owlSlide>
@@ -276,7 +385,6 @@
                     </owl-carousel-o>
                 </div>
             </div>
-
             <div class="home-page_menu" *ngIf="(selectMenu$ | async) as menu">
                 <div class="home-page_menu_header home-page_header" [ngStyle]="{'display': popularImageLoaded ? 'flex' : 'none'}">
                     <h5>{{"Home.menu" | translate}}</h5>

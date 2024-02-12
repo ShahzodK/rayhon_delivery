@@ -1,27 +1,28 @@
 <section class="popular" *ngIf="(selectPopular$ | async) as popularMeals">
     <div class="container">
-        <div class="popular_back">
+        <div class="popular_header">
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
-            <h4>{{popularMeals.name}}</h4>
+            <h4>{{popularMeals[0].name}}</h4>
         </div>
         <div class="popular_content">
             <ul>
-                <li *ngFor="let popularMeal of popularMeals?.items">
+                <li *ngFor="let popularMeal of popularMeals[0].items" class="popular_item">
                     <img src="../../../../assets/icons/popular-example.png" [alt]="popularMeal.name">
                     <h5>{{popularMeal.name}}</h5>
                     <div class="popular_item_time">
-                        <span>
+                        <p>
                             <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
                             20 min
-                        </span>
-                        <span>
+                        </p>
+                        <p>
                             <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
                             20 min
-                        </span>
+                        </p>
                     </div>
                     <div class="popular_item_footer">
-                        <span>{{popularMeal.price}}</span>
-                        <img src="../../../../assets/icons/heart.svg" alt="">
+                        <h5>{{popularMeal.price}}</h5>
+                        <img *ngIf="!popularMeal.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!popularMeal.is_favourite, popularMeal.id)">
+                        <img *ngIf="popularMeal.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!popularMeal.is_favourite, popularMeal.id)">                     
                     </div>
                 </li>
             </ul>

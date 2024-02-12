@@ -9,6 +9,7 @@
         padding: 14px 20px;
         padding-right: 15px;
         z-index: 100;
+        cursor: pointer;
         .arrow {
             border: solid var(--greyscaleColor900);
             border-width: 0 3px 3px 0;
@@ -33,6 +34,7 @@
         min-height: 30vh;
         background: var(--blockBg);
         border-radius: 48px 48px 0px 0px;
+        cursor: pointer;
     }
     &_driver-info {
         display: flex;
@@ -55,7 +57,7 @@
             display: flex;
             justify-content: center;
             gap: 24px;
-            // padding-bottom: 36px;
+            padding-bottom: 20px;
         }
         &_rating {
             display: flex;

@@ -16,6 +16,7 @@ export class SharedModalComponent {
   @Output() primaryButtonClick = new EventEmitter<void>();
   @Output() secondaryButtonClick = new EventEmitter<void>();
   @Output() outsideClick = new EventEmitter<void>();
+  @Input() isLoading = false;
 
   constructor(
               private elRef: ElementRef,
@@ -25,6 +26,7 @@ export class SharedModalComponent {
   clickToOutside(event: Event) {
     this.modalService.showErrorModal = false;
     this.modalService.showSuccessModal = false;
+    this.modalService.showCancelOrderModal = false;
   }
 
   stopPropagation(event: Event) {

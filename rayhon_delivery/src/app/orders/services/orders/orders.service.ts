@@ -7,6 +7,7 @@ import { IError } from 'src/app/shared/models/IError.model';
 import { ITimeSlots } from '../../models/timeSlots.model';
 import { IOrder } from '../../models/order.model';
 import { IChosenOrder } from '../../models/chosenOrder.model';
+import { IPayment } from '../../models/payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,6 @@ export class OrdersService {
     });
 
     let myGeoObject = new ymaps.GeoObject({
-      // Описание геометрии.
       geometry: {
           type: "Point",
           coordinates: [latitude, longitude]
@@ -86,7 +86,7 @@ export class OrdersService {
   }
 
   public getOrders() {
-    return this.http.get<IOrder[]>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders?&limit=20&offset=0`, {
+    return this.http.get<{orders: IOrder[], count: number}>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/?limit=50`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
@@ -95,7 +95,52 @@ export class OrdersService {
   }
 
   public getChosenOrder(id: string) {
-    return this.http.get<IChosenOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/orders/${id}`, {
+    return this.http.get<IChosenOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public createOrder(data: {payment_id: string, delivery_method_id: string}) {
+    return this.http.post<IOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/`, data, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public cancelOrder(id: string) {
+    return this.http.post<IOrder>(`${CommonUrl.MAIN_URL}${CommonUrl.ORDER_URL}/${id}/cancel`, {}, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public editCartItem(foodData: ICart['items'][0]) {
+    return this.http.put<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/items/${foodData.variant_id}?quantity=${foodData.quantity}&note=${foodData.note}`, {}, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public clearBasket() {
+    return this.http.post<ICart>(`${CommonUrl.MAIN_URL}${CommonUrl.CART_URL}/clear`, {}, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)
+      })
+    })
+  }
+
+  public getPaymentMethods() {
+    return this.http.get<IPayment[]>(`${CommonUrl.MAIN_URL}${CommonUrl.UI_ELEMENTS_URL}${CommonUrl.PAYMENT_URL}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!)

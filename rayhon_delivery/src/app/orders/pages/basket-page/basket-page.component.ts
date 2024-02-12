@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectCart } from 'src/app/redux/selectors/app.selectors';
@@ -12,13 +12,16 @@ import { ICart } from 'src/app/shared/models/ICart.model';
   templateUrl: './basket-page.component.html',
   styleUrls: ['./basket-page.component.scss']
 })
-export class BasketPageComponent implements OnDestroy {
+export class BasketPageComponent implements OnInit, OnDestroy {
 
   public selectCart$ = this.store.select(selectCart);
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
   public showDeleteItemModal = false;
   public itemToBeRemoved!: ICart['items'][0];
   public isQuantityLoading = false;
+  public isClearBasketLoading = false;
+
+  public isDeleteLoading = false;
 
   constructor(
               public location: Location,
@@ -26,16 +29,22 @@ export class BasketPageComponent implements OnDestroy {
               private ordersService: OrdersService,
              ) {}
 
+  ngOnInit(): void {
+      this.store.dispatch(fetchCart());
+  }
+
   public chooseItemTodelete(item: ICart['items'][0]) {
     this.itemToBeRemoved = item;
     this.showDeleteItemModal = true;
   }
 
   public deleteItem() {
+    this.isDeleteLoading = true
     this.ordersService.deleteItemFromCart(this.itemToBeRemoved.variant_id, this.itemToBeRemoved.quantity).pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe({
       next: (data) => {
+        this.isDeleteLoading = false;
         this.store.dispatch(fetchCart());
         this.showDeleteItemModal = false
         this.itemToBeRemoved = {
@@ -50,6 +59,7 @@ export class BasketPageComponent implements OnDestroy {
         }
       },
       error: (error) => {
+        this.isDeleteLoading = false;
         console.error(error);
         this.showDeleteItemModal = false
         this.itemToBeRemoved = {
@@ -92,6 +102,7 @@ export class BasketPageComponent implements OnDestroy {
         next: (data) => {
           this.isQuantityLoading = false;
           if(data) {
+            data.items = data.items.sort((a, b) => a.variant_id.localeCompare(b.variant_id));
             this.store.dispatch(SaveCartSuccess(data))
           }
         },
@@ -106,6 +117,7 @@ export class BasketPageComponent implements OnDestroy {
         next: (data) => {
           this.isQuantityLoading = false;
           if(data) {
+            data.items = data.items.sort((a, b) => a.variant_id.localeCompare(b.variant_id));
             this.store.dispatch(SaveCartSuccess(data))
           }
         },
@@ -115,6 +127,17 @@ export class BasketPageComponent implements OnDestroy {
         }
       })
     }
+  }
+
+  public clearBasket() {
+    this.isClearBasketLoading = true;
+    this.ordersService.clearBasket().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((data) => {
+      this.isClearBasketLoading = false;
+      this.store.dispatch(fetchCart());
+      console.log(data)
+    });
   }
 
   ngOnDestroy(): void {

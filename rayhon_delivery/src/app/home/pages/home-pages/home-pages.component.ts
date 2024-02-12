@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { fetchUIElements, toggleFavorite } from 'src/app/redux/actions/home.actions';
-import { selectChosenAddress, selectMenu, selectOffers, selectPopular, selectUserData } from 'src/app/redux/selectors/app.selectors';
+import { selectCategories, selectChosenAddress, selectMenu, selectOffers, selectPopular, selectUserData } from 'src/app/redux/selectors/app.selectors';
 import { HomeService } from '../../services/home/home.service';
 import { Subject, takeUntil } from 'rxjs';
 import { CarouselService } from 'ngx-owl-carousel-o/lib/services/carousel.service';
+import { fetchAddresses } from 'src/app/redux/actions/address.actions';
 
 @Component({
   selector: 'app-home-pages',
@@ -21,7 +22,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
   public selectChosenAddress$ = this.store.select(selectChosenAddress);
   public selectOffers$ = this.store.select(selectOffers);
   public selectPopular$ = this.store.select(selectPopular);
-  public selectMenu$ = this.store.select(selectMenu)
+  public selectMenu$ = this.store.select(selectMenu);
+  public selectCategories$ = this.store.select(selectCategories);
 
   public contentLoaded = false;
 
@@ -30,6 +32,8 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
   public offersImageLoaded = false;
 
   public popularImageLoaded = false;
+
+  public categoriesLoaded = false;
 
   public isSmallScreen = false;
 
@@ -76,23 +80,35 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
     dots: false,
     navSpeed: 700,
     center: false,
-    stagePadding: 70,
+    stagePadding: 90,
     navText: ['', ''],
     responsive: {
       0: {
         items: 1,
-        margin: 12
+        margin: 12,
+        stagePadding: 60
+      },
+      400: {
+        items: 1,
+        margin: 12,
+        stagePadding: 90
       },
       476: {
         items: 2,
-        margin: 12
+        margin: 12,
+        stagePadding: 50
+      },
+      678: {
+        items: 3,
+        margin: 12,
+        stagePadding: 50
       },
       768: {
         items: 3,
         margin: 12
       },
       998: {
-        items: 4,
+        items: 5,
         margin: 16
       }
     },
@@ -123,10 +139,40 @@ export class HomePagesComponent implements OnInit, AfterViewChecked, OnDestroy {
     },
   }
 
+  public categoriesCarouselOptions: OwlOptions = {
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    center: false,
+    stagePadding: 30,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 3,
+        margin: 12
+      },
+      476: {
+        items: 4,
+        margin: 12
+      },
+      768: {
+        items: 5,
+        margin: 12
+      },
+      1100: {
+        items: 6,
+        margin: 12,
+      }
+    },
+  }
+
 
   ngOnInit(): void {
         this.isSmallScreen = window.innerWidth < this.smallScreenBreakpoint;
         this.store.dispatch(fetchUIElements());
+        this.store.dispatch(fetchAddresses())
         this.selectMenu$.subscribe((data) => {
           console.log(data)
         })

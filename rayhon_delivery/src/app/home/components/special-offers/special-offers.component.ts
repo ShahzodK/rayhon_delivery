@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { selectOffers } from 'src/app/redux/selectors/app.selectors';
 import { Store } from '@ngrx/store';
 import { fetchUIElements } from 'src/app/redux/actions/home.actions';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-special-offers',
@@ -11,16 +13,17 @@ import { fetchUIElements } from 'src/app/redux/actions/home.actions';
 })
 export class SpecialOffersComponent implements OnInit {
 
-  public selectOffers$ = this.store.select(selectOffers)
+  public selectOffers$ = this.store.select(selectOffers);
 
   constructor(
               public location: Location,
-              public store: Store) {
+              public store: Store,
+              private route: ActivatedRoute) {
     
   }
 
   ngOnInit() {
-    this.store.dispatch(fetchUIElements())
+    this.store.dispatch(fetchUIElements());
   }
 
 }

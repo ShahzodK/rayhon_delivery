@@ -56,17 +56,7 @@ export const initialState: IAppState = {
             category_items_count: 0,
         }
     },
-    notifications: {
-        general: false,
-        sound: false,
-        vibrate: false,
-        promotions: false,
-        special_offers: false,
-        payment: false,
-        new_release: false,
-        new_service: false,
-        new_tutorial: false
-    },
+    notifications: [],
     favorites: {
         data: []
     },
@@ -162,6 +152,24 @@ export const initialState: IAppState = {
             price: 0,
             discount: 0
           }
+    },
+    chosenCategory: {
+        items: [],
+        items_count: 0
+    },
+    chosenOffer: {
+        id: '',
+        name: '',
+        description: '',
+        image: '',
+        order_button_text: '',
+        order_button_color_hex: '',
+        order_button_action: '',
+        item: '',
+        category: ''
+    },
+    paymentMethods: {
+        paymentMethods: []
     }
 }
 
@@ -274,14 +282,14 @@ export const appReducer = createReducer(
         NotificationActions.fetchNotificationPreferencesSuccess,
         (state, notifications): IAppState => ({
             ...state,
-            notifications: notifications
+            notifications: notifications.notifications
         })
     ),
     on(
         NotificationActions.updateNotificationPreferencesSuccess,
         (state, notifications): IAppState => ({
             ...state,
-            notifications: notifications
+            notifications: notifications.notifications
         })
     ),
     on(
@@ -305,4 +313,46 @@ export const appReducer = createReducer(
             chosenOrder: chosenOrder
         })
     ),
+    on(
+        OrdersActions.updateCartSuccess,
+        (state, cart): IAppState => ({
+            ...state,
+            cart: cart
+        })
+    ),
+    on(
+        OrdersActions.clearBasketSuccess,
+        (state, cart): IAppState => ({
+            ...state,
+            cart: cart
+        })
+    ),
+    on(
+        OrdersActions.fetchPaymentMethodsSuccess,
+        (state, methods): IAppState => ({
+            ...state,
+            paymentMethods: methods
+        })
+    ),
+    on(
+        HomeActions.fetchCategoryItemsSuccess,
+        (state, category): IAppState => ({
+            ...state,
+            chosenCategory: category
+        })
+    ),
+    on(
+        HomeActions.fetchChosenOfferSuccess,
+        (state, offer): IAppState => ({
+            ...state,
+            chosenOffer: offer.offer
+        })
+    ),
+    on(
+        HomeActions.clearChosenOffer,
+        (state, offer): IAppState => ({
+            ...state,
+            chosenOffer: offer.offer
+        })
+    )
 )

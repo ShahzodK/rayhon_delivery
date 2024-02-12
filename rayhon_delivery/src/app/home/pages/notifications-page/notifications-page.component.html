@@ -5,19 +5,19 @@
             <h4>{{"Home.notifications.title" | translate}}</h4>
         </div>
         <div class="notifications_content">
-            <div class="notifications_item">
+            <div class="notifications_item" *ngFor="let notification of notifications">
                 <div class="notifications_item_header">
                     <div class="notifications_item_header_content">
-                        <img src="../../../../assets/icons/notification-example.svg" alt="notification">
+                        <img [src]="notification.image" alt="notification">
                         <div class="notifications_item_header_text">
-                            <h5>Заказ отменен!</h5>
-                            <span>19 Dec, 2022 | 20:50 PM</span>
+                            <h5>{{notification.title}}</h5>
+                            <span>{{notification.created_date + ' | ' + notification.created_time}}</span>
                         </div>
                     </div>
                     <span class="notifications_item_header_state">{{"Home.notifications.new" | translate}}</span>
                 </div>
                 <div class="notifications_item_content">
-                    Вы отменили заказ №100-001. Приносим извинения за неудобства. Постараемся улучшить наш сервис в следующий раз 🥲
+                    {{notification.body}}
                 </div>
             </div>
         </div>

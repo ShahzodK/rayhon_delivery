@@ -1,31 +1,35 @@
 <section class="track-order">
-    <div class="track-order_back" (click)="location.back()">
+    <div class="track-order_back" [routerLink]="keys.PREVIOUS_URL == '/orders/checkout' ?  '/orders' :  keys.PREVIOUS_URL">
         <i class="arrow left"></i>
     </div>
     <div class="track-order_map">
         <div id="map" style="width: 99%; height: 75vh" #yamaps></div>   
     </div>
-    <div class="track-order_info">
+    <div class="track-order_info" *ngIf="chosenOrder$ | async as order">
         <div class="container">
             <div class="track-order_content">
                 <div class="track-order_state"></div>
-                <div class="track-order_driver-info">
+                <div class="track-order_driver-info" [routerLink]="'/orders/driver-info/' + id">
                     <img src="../../../../assets/icons/driver-img.png" alt="driver image">
                     <div class="track-order_driver-info_content">
-                        <h6>John Doe</h6>
-                        <span class="track-order_driver-info_car">Chevrolet Nexia</span>
+                        <h6>{{order?.courier?.name}}</h6>
+                        <span class="track-order_driver-info_car">{{order?.courier?.vehicle_name}}</span>
                     </div>
                     <div class="track-order_driver-info_additional">
                         <span class="track-order_driver-info_rating">
                             <star-rating [starType]="'svg'" [rating]="1" [numOfStars]="1" style="display: block; width:20px;"></star-rating>
-                            4.8
+                            {{order?.courier?.rating}}
                         </span>
-                        <span class="track-order_driver-info_number">01A635EM</span>
+                        <span class="track-order_driver-info_number">{{order?.courier?.plate_number}}</span>
                     </div>
                 </div>
                 <div class="track-order_driver-info_footer">
-                    <img src="../../../../assets/icons/message.png" alt="message">
-                    <img src="../../../../assets/icons/phone.png" alt="phone">
+                    <a [href]="'sms:' + order?.courier?.phone">
+                        <img src="../../../../assets/icons/message.png" alt="message">
+                    </a>
+                    <a [href]="'tel:' + order?.courier?.phone">
+                        <img src="../../../../assets/icons/phone.png" alt="phone" >
+                    </a>
                 </div>
             </div>
         </div>

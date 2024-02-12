@@ -15,9 +15,12 @@ import { AuthEffects } from './redux/effects/auth.effects';
 import { AddressEffects } from './redux/effects/address.effects';
 import { appReducer } from './redux/reducers/app.reducer';
 import { HomeEffects } from './redux/effects/home.effects';
+import { initializeApp } from "firebase/app";
 import { NotificationEffects } from './redux/effects/notification.effects';
 import { ProfileEffects } from './redux/effects/profile.effects';
 import { OrdersEffects } from './redux/effects/orders.effects';
+
+initializeApp(environment.firebase);
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

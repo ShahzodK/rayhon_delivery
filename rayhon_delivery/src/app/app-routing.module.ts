@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutePathes } from './shared/enums/ERoutes';
 import { authGuardCanActivate, authGuardCanMatch } from './auth/guards/auth.guard';
+import { availabilityGuardFn } from './shared/guards/availability.guard';
 
 const routes: Routes = [
   {
@@ -20,16 +21,19 @@ const routes: Routes = [
     path: AppRoutePathes.HOME,
     loadChildren: () => import('./home/home.module')
       .then((mod) => mod.HomeModule),
+      canActivate: [availabilityGuardFn]
   },
   {
     path: AppRoutePathes.ORDERS,
     loadChildren: () => import('./orders/orders.module')
       .then((mod) => mod.OrdersModule),
+    canActivate: [availabilityGuardFn]
   },
   {
     path: AppRoutePathes.PAYMENT,
     loadChildren: () => import('./payment/payment.module')
       .then((mod) => mod.PaymentModule),
+    canActivate: [availabilityGuardFn]
   },
   {
     path: '**',

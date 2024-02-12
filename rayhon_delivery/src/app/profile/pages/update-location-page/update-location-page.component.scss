@@ -40,6 +40,25 @@
                 color: var(--searchTextColor);
             }
         }
+        .possible-locations {
+            position: absolute;
+            z-index: 100;
+            font-size: 14px;
+            left: 10px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            p {
+                color: black;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin: 0;
+                cursor: pointer;
+                &:hover {
+                    background: darken(white, 10%);
+                }
+            }
+        }
         .choose-location {
             position: relative;
             margin-bottom: 24px;

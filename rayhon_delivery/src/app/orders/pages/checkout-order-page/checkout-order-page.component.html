@@ -1,81 +1,183 @@
-<section class="checkout-order">
+<ng-container #orderSkeleton *ngIf="orderLoaded == false">
+    <div class="checkout-order">
+        <div class="container">
+            <div class="checkout-order_header">
+                <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+                <h4>{{"Orders.checkout" | translate}}</h4>
+            </div>
+            <div class="checkout-order_content order-detail_content">
+                <div class="checkout-order_address order-detail_address">
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '15vw'}"></ngx-skeleton-loader>
+                    <div class="checkout-order_address_item order-detail_address_item">
+                        <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+                        <div class="checkout-order_address_item_content order-detail_address_item_content">
+                            <div class="checkout-order_address_item_content_top order-detail_address_item_content_top">
+                                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '15vw'}"></ngx-skeleton-loader>
+                            </div>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-order_time">
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '15vw'}"></ngx-skeleton-loader>
+                    <div class="checkout-order_address_item order-detail_address_item">
+                        <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+                        <div class="checkout-order_address_item_content order-detail_address_item_content">
+                            <div class="checkout-order_address_item_content_top order-detail_address_item_content_top">
+                                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '15vw'}"></ngx-skeleton-loader>
+                            </div>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-order_menu order-detail_menu">
+                    <div class="checkout-order_menu_header order-detail_menu_header">
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '100px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '70px'}"></ngx-skeleton-loader>
+                    </div>
+                    <div class="checkout-order_menu_item order-detail_menu_item">
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px', height: '10vh'}"></ngx-skeleton-loader>
+                        <div class="checkout-order_menu_item_content order-detail_menu_item_content">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '25vw'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '15vw'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="checkout-order_menu_item_change">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30px', height: '30px'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30px', height: '30px'}"></ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-order_payment order-detail_payment" routerLink="/orders/payment-method">
+                    <div class="checkout-order_payment_content order-detail_payment_content">
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                    </div>
+                    <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '30px'}"></ngx-skeleton-loader>
+                </div>
+                <div class="checkout-order_bill order-detail_bill">
+                    <div class="checkout-order_bill_content order-detail_bill_content">
+                        <div class="checkout-order_bill_order order-detail_bill_order">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="checkout-order_bill_order order-detail_bill_order">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                        </div>
+                        <div class="checkout-order_bill_order">
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                        </div>
+                    </div>
+                    <div class="checkout-order_bill_summary order-detail_bill_summary">
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '80px'}"></ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<section class="checkout-order" *ngIf="orderLoaded">
     <div class="container">
         <div class="checkout-order_header">
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
             <h4>{{"Orders.checkout" | translate}}</h4>
         </div>
-        <div class="checkout-order_content" *ngIf="selectCart$ | async as cart">
-            <div class="checkout-order_address">
+        <div class="checkout-order_content order-detail_content" *ngIf="selectCart$ | async as cart">
+            <div class="checkout-order_address order-detail_address">
                 <h5>{{"Orders.address" | translate}}</h5>
-                <div class="checkout-order_address_item" routerLink="/home/deliver-to">
+                <div class="checkout-order_address_item order-detail_address_item">
                     <img src="../../../../assets/icons/deliverToLogo.svg" alt="location">
-                    <div class="checkout-order_address_item_content">
-                        <div class="checkout-order_address_item_content_top">
+                    <div class="checkout-order_address_item_content order-detail_address_item_content">
+                        <div class="checkout-order_address_item_content_top order-detail_address_item_content_top">
                             <h6>{{cart.address.name}}</h6>
                             <span>{{"Home.deliver-to.default" | translate}}</span>
                         </div>
-                        <span class="checkout-order_address_item_content_address">{{cart.address.address}}</span>
+                        <span class="checkout-order_address_item_content_address order-detail_address_item_content_address">{{cart.address.address}}</span>
                     </div>
-                    <span class="checkout-order_address_change arrow-right"></span>
                 </div>
             </div>
             <div class="checkout-order_time">
-                <h5>{{"Orders.address" | translate}}</h5>
+                <h5>{{"Orders.order-time" | translate}}</h5>
                 <div class="checkout-order_time_item" routerLink="/orders/pre-order">
                     <img src="../../../../assets/icons/clock.svg" alt="clock">
                     <div class="checkout-order_time_content">
-                        <h6>{{"Orders.urgent" | translate}}</h6>
-                        <span>{{'2023-11-02T06:48:04.742Z' | date:'hh:mm'}}</span>
+                        <h6>{{cart.delivery_time | date: 'fullDate'}}</h6>
+                        <span>{{cart.delivery_time | date:'hh:mm'}}</span>
                     </div>
                     <span class="checkout-order_time_change arrow-right"></span>
                 </div>
             </div>
-            <div class="checkout-order_menu">
-                <div class="checkout-order_menu_header">
+            <div class="checkout-order_menu order-detail_menu">
+                <div class="checkout-order_menu_header order-detail_menu_header">
                     <h5>{{"Orders.overall-order" | translate}}</h5>
                     <button routerLink="/home">{{"Orders.add" | translate}}</button>
                 </div>
-                <div class="checkout-order_menu_item" *ngFor="let item of cart.items">
-                    <img src="../../../../assets/icons/cart-example.png" alt="food-photo">
-                    <div class="checkout-order_menu_item_content">
+                <div class="checkout-order_menu_item order-detail_menu_item" *ngFor="let item of cart.items">
+                    <img src="../../../../assets/icons/cart-example.png" alt="food-photo" (load)="orderLoaded = true">
+                    <div class="checkout-order_menu_item_content order-detail_menu_item_content">
                         <h6>{{item.name}}</h6>
                         <span>{{+item.price * +item.quantity}} Сум</span>
                     </div>
                     <div class="checkout-order_menu_item_change">
-                        <span class="checkout-order_menu_item_quantity">{{item.quantity}}x</span>
-                        <img src="../../../../assets/icons/edit.svg" alt="edit" routerLink="/orders/basket">
+                        <span class="checkout-order_menu_item_quantity order-detail_menu_item_quantity">{{item.quantity}}x</span>
+                        <img (click)="editFoodData = item" (click)="openEditOrderModal('0ms', '0ms')" src="../../../../assets/icons/edit.svg" alt="edit">
                     </div>
                 </div>
             </div>
-            <div class="checkout-order_payment">
-                <div class="checkout-order_payment_content">
+            <div class="checkout-order_payment order-detail_payment" routerLink="/orders/payment-method">
+                <div class="checkout-order_payment_content order-detail_payment_content">
                     <img src="../../../../assets/icons/wallet-green.svg" alt="wallet">
                     <span>{{"Orders.payment" | translate}}</span>
                 </div>
                 <span class="checkout-order_address_change arrow-right"></span>
             </div>
-            <div class="checkout-order_bill">
-                <div class="checkout-order_bill_content">
-                    <div class="checkout-order_bill_order">
-                        <span class="checkout-order_bill_order_title">{{"Orders.order" | translate}}</span>
-                        <span class="checkout-order_bill_order_price">{{cart.subtotal.price}} Сум</span>
+            <div class="checkout-order_bill order-detail_bill">
+                <div class="checkout-order_bill_content order-detail_bill_content">
+                    <div class="checkout-order_bill_order order-detail_bill_order">
+                        <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.order" | translate}}</span>
+                        <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{cart.subtotal.price}} Сум</span>
                     </div>
-                    <div class="checkout-order_bill_order">
-                        <span class="checkout-order_bill_order_title">{{"Orders.delivery" | translate}}</span>
-                        <span class="checkout-order_bill_order_price">{{cart.delivery.price}} Сум</span>
+                    <div class="checkout-order_bill_order order-detail_bill_order">
+                        <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.delivery" | translate}}</span>
+                        <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{cart.delivery.price}} Сум</span>
                     </div>
                     <div class="checkout-order_bill_order" *ngIf="cart.total.discount != 0">
-                        <span class="checkout-order_bill_order_title">{{"Orders.discount" | translate}}</span>
-                        <span class="checkout-order_bill_order_price">{{cart.total.discount}} Сум</span>
+                        <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.discount" | translate}}</span>
+                        <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{cart.total.discount}} Сум</span>
                     </div>
                 </div>
-                <div class="checkout-order_bill_summary">
-                    <span class="checkout-order_bill_order_title">{{"Orders.discount" | translate}}</span>
-                    <span class="checkout-order_bill_order_price">{{cart.total.price}} Сум</span>
+                <div class="checkout-order_bill_summary order-detail_bill_summary">
+                    <span class="checkout-order_bill_order_title order-detail_bill_order_title">{{"Orders.discount" | translate}}</span>
+                    <span class="checkout-order_bill_order_price order-detail_bill_order_price">{{cart.total.price}} Сум</span>
                 </div>
             </div>
-            <button class="checkout-order_next">{{"Orders.checkout-btn" | translate}} - {{cart.total.price}} сум</button>
+            <button *ngIf="!isOrderButtonDisabled" class="checkout-order_next" (click)="createOrder(cart)">{{"Orders.checkout-btn" | translate}} - {{cart.total.price}} сум</button>
+            <button *ngIf="isOrderButtonDisabled" class="loading-spinner-button">
+                <span>{{"Orders.checkout-btn" | translate}} - 000000 Сум</span>
+            </button>
         </div>
     </div>
     <app-bottom-navigation></app-bottom-navigation>
 </section>
+
+<app-shared-modal *ngIf="modalService.showSuccessModal"
+                  [modalType]="'success'"
+                  [imageUrl]="'../../../../assets/icons/smile-heart.png'"
+                  [title]="'Orders.order-issued' | translate"
+                  [description]="'Orders.order-issued-description' | translate"
+                  [primaryButtonLabel]="'Orders.order-issued-track' | translate"
+                  [secondaryButtonLabel]="'Orders.order-issued-return' | translate"
+                  (primaryButtonClick)="router.navigate(['/orders/track/' + orderId])"
+                  (secondaryButtonClick)="router.navigate(['/home'])"></app-shared-modal>
+
+<app-shared-modal *ngIf="modalService.showErrorModal"
+                  [modalType]="'error'"
+                  [imageUrl]="'../../../../assets/icons/error-modal.png'"
+                  [title]="'Orders.order-error' | translate"
+                  [description]="'Orders.order-error-description' | translate"
+                  [primaryButtonLabel]="'Orders.order-error-retry' | translate"
+                  [secondaryButtonLabel]="'Orders.order-error-support' | translate"
+                  (primaryButtonClick)="modalService.showErrorModal = false"
+                  (secondaryButtonClick)="router.navigate(['/profile/support'])"></app-shared-modal>

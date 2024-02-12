@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, fetchCart, fetchCartFailed, fetchCartSuccess, fetchChosenOrder, fetchChosenOrderFailed, fetchChosenOrderSuccess, fetchOrders, fetchOrdersFailed, fetchOrdersSuccess } from "../actions/orders.actions";
+import { FetchPreOrderedSlots, FetchPreOrderedSlotsFailed, FetchPreOrderedSlotsSuccess, clearBasket, clearBasketFailed, clearBasketSuccess, fetchCart, fetchCartFailed, fetchCartSuccess, fetchChosenOrder, fetchChosenOrderFailed, fetchChosenOrderSuccess, fetchOrders, fetchOrdersFailed, fetchOrdersSuccess, fetchPaymentMethods, fetchPaymentMethodsSuccess, updateCart, updateCartFailed, updateCartSuccess, fetchPaymentMethodsFailed } from "../actions/orders.actions";
 import { OrdersService } from "src/app/orders/services/orders/orders.service";
 import { ICart } from "src/app/shared/models/ICart.model";
 import { switchMap, map, catchError, of } from "rxjs";
@@ -8,6 +8,7 @@ import { IError } from "src/app/shared/models/IError.model";
 import { ITimeSlots } from "src/app/orders/models/timeSlots.model";
 import { IOrder } from "src/app/orders/models/order.model";
 import { IChosenOrder } from "src/app/orders/models/chosenOrder.model";
+import { IPayment } from "src/app/orders/models/payment.model";
 
 @Injectable()
 
@@ -23,7 +24,12 @@ export class OrdersEffects {
                 ofType(fetchCart),
                 switchMap(() => this.ordersService.getCart()),
                 map((cart: ICart) => {
-                    if(cart) return fetchCartSuccess(cart)
+                    console.log(cart)
+                    console.log(cart)
+                    if(cart) {
+                        cart.items = cart.items.sort((a, b) => a.variant_id.localeCompare(b.variant_id));
+                        return fetchCartSuccess(cart)
+                    } 
                     return fetchCartFailed
                 }),
                 catchError(() => of(fetchCartFailed))
@@ -51,9 +57,10 @@ export class OrdersEffects {
                 switchMap(() => this.ordersService.getOrders()),
                 map((orders) => {
                     if(orders) {
-                        const activeOrders = orders.filter((order: IOrder) => order.status.status == 'active');
-                        const completedOrders = orders.filter((order: IOrder) => order.status.status == 'completed');
-                        const cancelledOrders = orders.filter((order: IOrder) => order.status.status == 'cancelled');
+                        console.log(orders)
+                        const activeOrders = orders.orders.filter((order: IOrder) => order.status.id.toLowerCase() == 'active' || order.status.id.toLowerCase() == 'new');
+                        const completedOrders = orders.orders.filter((order: IOrder) => order.status.id.toLowerCase() == 'completed');
+                        const cancelledOrders = orders.orders.filter((order: IOrder) => order.status.id.toLowerCase() == 'canceled');
                         return fetchOrdersSuccess({activeOrders, completedOrders, cancelledOrders})
                     }
                     return fetchOrdersSuccess
@@ -68,12 +75,61 @@ export class OrdersEffects {
                 ofType(fetchChosenOrder),
                 switchMap((payload) => this.ordersService.getChosenOrder(payload.id)),
                 map((order: IChosenOrder) => {
+                    console.log(order)
                     if(order) {
                         return fetchChosenOrderSuccess(order)
                     }
                     return fetchChosenOrderFailed
                 }),
                 catchError(() => of(fetchChosenOrderFailed))
+            )
+        })
+
+        public updateCart$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(updateCart),
+                switchMap((payload) => this.ordersService.editCartItem(payload)),
+                map((cart: ICart) => {
+                    if(cart) {
+                        console.log(cart)
+                        cart.items = cart.items.sort((a, b) => a.variant_id.localeCompare(b.variant_id));
+                        console.log(cart)
+                        return updateCartSuccess(cart)
+                    }
+                    return updateCartFailed
+                }),
+                catchError(() => of(updateCartFailed))
+            )
+        })
+
+        public clearBasket$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(clearBasket),
+                switchMap(() => this.ordersService.clearBasket()),
+                map((cart: ICart) => {
+                    if(cart) {
+                        return clearBasketSuccess(cart)
+                    }
+                    return clearBasketFailed
+                }),
+                catchError(() => of(clearBasketFailed))
+            )
+        })
+
+        public fetchPaymentMethods$ = createEffect(() => {
+            return this.actions$
+            .pipe(
+                ofType(fetchPaymentMethods),
+                switchMap(() => this.ordersService.getPaymentMethods()),
+                map((payments: IPayment[]) => {
+                    if(payments) {
+                        return fetchPaymentMethodsSuccess({paymentMethods: payments})
+                    }
+                    return fetchPaymentMethodsFailed
+                }),
+                catchError(() => of(fetchPaymentMethodsFailed))
             )
         })
 }

@@ -1,9 +1,9 @@
 <ng-container *ngIf="!foodInfoPageLoaded">
     <div class="food-info">
-        <div class="food-info_header" style="padding-top: 0; height: 200px">
-            <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '99vw', height: '200px'}"></ngx-skeleton-loader>
-        </div>
         <div class="container">
+            <div class="food-info_header" style="padding-top: 0; height: 200px">
+                <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '98vw', height: '200px'}"></ngx-skeleton-loader>
+            </div>
             <div class="food-info_content">
                 <ngx-skeleton-loader count="1" appearance="line" [theme]="{width: '125px', }"></ngx-skeleton-loader>
                 <ngx-skeleton-loader count="2" appearance="line" [theme]="{width: '65vw', display:'block'}"></ngx-skeleton-loader>
@@ -34,10 +34,10 @@
     </div>
 </ng-container>
 <section class="food-info" *ngIf="foodInfoPageLoaded">
-    <div class="food-info_header">
-        <img src="../../../../assets/icons/arrow-left-white.svg" alt="back" class="back-icon arrow" (click)="location.back()">
-    </div>
     <div class="container">
+        <div class="food-info_header">
+            <img src="../../../../assets/icons/arrow-left-white.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+        </div>
         <div class="food-info_content">
             <h3>{{currentFood?.name}}</h3>
             <p class="food-info_description">{{currentFood?.description}}</p>
@@ -68,7 +68,11 @@
                 </div>
                 <textarea type="text" formControlName="notesForRestaurant" [placeholder]="'Home.food-info.notes' | translate" cols="10" rows="6"></textarea>
                 <button *ngIf="!isAddToBasketButtonLoading" (click)="addToBasket()" class="food-info_submit-btn">{{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm</button>
-                <button *ngIf="isAddToBasketButtonLoading" class="loading-spinner-button" style="width:185px; align-self: center;"></button>
+                <button *ngIf="isAddToBasketButtonLoading" class="loading-spinner-button">
+                    <span>
+                        {{"Home.food-info.add" | translate}} {{foodInfoForm.get('selectedOption')?.value.price * +foodInfoForm.get('selectedAmount')?.value!}} so'm
+                    </span>
+                </button>
             </form>
         </div>
     </div>

@@ -1,0 +1,32 @@
+<section class="category">
+    <div class="container">
+        <div class="category-header">
+            <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
+            <h4>{{categoryItems[0]?.name}}</h4>
+        </div>
+        <div class="category-content" *ngIf="categoryItems as category">
+            <div class="category-item food-cart" *ngFor="let item of category" [routerLink]="'/home/menu/' + item.id">
+                <img src="../../../../assets/icons/menu-example.png" alt="menu">
+                <div class="food-cart_content">
+                    <h5>{{item.name}}</h5>
+                    <div class="food-cart_time">
+                        <p>
+                            <img src="../../../../assets/icons/meat.svg" alt="cooking_time">
+                            <span *ngIf="item.preparation_time != 0">{{item.preparation_time}}</span>
+                            <span *ngIf="item.preparation_time == 0">{{"Home.ready" | translate}}</span>
+                        </p>
+                        <p>
+                            <img src="../../../../assets/icons/truck.svg" alt="delivery_time">
+                            <span>20 min</span>
+                        </p>
+                    </div>
+                    <div class="food-cart_footer">
+                        <h5>{{item.price}} so'm</h5>
+                        <img *ngIf="!item.is_favourite" src="../../../../assets/icons/heart-red.svg" alt="like" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()">
+                        <img *ngIf="item.is_favourite" src="../../../../assets/icons/heart-clicked.svg" alt="unlike" (click)="toggleFavorite(!item.is_favourite, item.id);$event.stopPropagation()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

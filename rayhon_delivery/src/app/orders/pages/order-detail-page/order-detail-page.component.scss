@@ -1,0 +1,27 @@
+.order-detail {
+    background: var(--mainBg);
+    min-height: 100vh;
+    padding-top: 16px;
+    padding-bottom: 150px;
+    &_header {
+        display: flex;
+        gap: 16px;
+        h4 {
+            color: var(--greyscaleColor900);
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    &_payment {
+        cursor: initial;
+        &_type {
+            font-weight: 700;
+            color: var(--primaryColor);
+            padding-right: 10px;
+        }
+    }
+    &_again_btn {
+        margin-top: 44px;
+        align-self: center;
+    }
+}
