@@ -53,4 +53,5 @@
                   [secondaryButtonLabel]="'Orders.basket-page.cancel' | translate"
                   (primaryButtonClick)="deleteItem()"
                   (secondaryButtonClick)="cancelDeleteItem()"
-                  (outsideClick)="cancelDeleteItem()"></app-shared-modal>
+                  (outsideClick)="cancelDeleteItem()"
+                  [isLoading]="isDeleteLoading"></app-shared-modal>

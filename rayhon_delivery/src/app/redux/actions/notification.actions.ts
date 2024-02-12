@@ -7,7 +7,7 @@ export const fetchNotificationPreferences = createAction (
 
 export const fetchNotificationPreferencesSuccess = createAction (
     '[NOTIFICATION] Fetch Notification Preferences Success',
-    props<INotificationsSettings>(),
+    props<{notifications: INotificationsSettings[]}>(),
 )
 
 export const fetchNotificationPreferencesFailed = createAction (
@@ -16,12 +16,12 @@ export const fetchNotificationPreferencesFailed = createAction (
 
 export const updateNotificationPreferences = createAction (
     '[NOTIFICATION] Fetch Notification',
-    props<INotificationsSettings>()
+    props<{notifications: INotificationsSettings[]}>()
 )
 
 export const updateNotificationPreferencesSuccess = createAction (
     '[NOTIFICATION] Fetch Notification Success',
-    props<INotificationsSettings>()
+    props<{notifications: INotificationsSettings[]}>()
 )
 
 export const updateNotificationPreferencesFailed = createAction (

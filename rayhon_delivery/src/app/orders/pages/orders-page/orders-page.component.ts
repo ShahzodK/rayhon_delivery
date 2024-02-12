@@ -24,6 +24,8 @@ export class OrdersPageComponent implements OnInit {
 
   public canceledOrder!: IOrder;
 
+  public isModalLoading = false;
+
   constructor(
               private store: Store,
               private ordersService: OrdersService,
@@ -39,17 +41,20 @@ export class OrdersPageComponent implements OnInit {
   }
 
   public cancelOrder(order: IOrder) {
-    console.log(order)
+    console.log(order);
+    this.isModalLoading = true;
     this.ordersService.cancelOrder(order.id).pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe({
       next: (data) => {
+        this.isModalLoading = false;
         this.store.dispatch(fetchOrders())
         console.log(data);
         console.log('canceled')
         this.modalService.showCancelOrderModal = false;
       },
       error: (error) => {
+        this.isModalLoading = false;
         this.modalService.showErrorModal = true;
       }
     })

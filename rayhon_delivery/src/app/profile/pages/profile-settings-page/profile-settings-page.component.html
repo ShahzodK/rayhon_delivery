@@ -16,7 +16,7 @@
             <ng-container *ngIf="(selectUserData$ | async) as userData">
                 <img
                     [ngStyle]="{'display': profileImgLoaded ? 'initial' : 'none'}"
-                    [src]="'https://api.rayhonmilliy.uz' + userData.image || '../../../../assets/icons/user-photo.svg'"
+                    [src]="userData!.image ? 'https://api.rayhonmilliy.uz' + userData!.image : '../../../../assets/icons/user-photo.svg'"
                     alt="user-image"
                     class="user-image"
                     (load)="profileImgLoaded = true">

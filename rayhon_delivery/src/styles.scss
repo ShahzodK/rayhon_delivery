@@ -6,10 +6,13 @@
 @import "../src/styles/variables";
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&family=Urbanist:wght@400;500;600;700&display=swap');
+@font-face {
+    font-family: 'gilroy';
+    src: url('../src/assets/fonts/gilroy/Gilroy-Regular.ttf');
+}
 
 * {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-family: 'Urbanist', sans-serif;
+    font-family: Gilroy, sans-serif;
     box-sizing: border-box
 }
 
@@ -72,8 +75,11 @@ button:not(.mat-calendar button) {
     border-radius: 100px;
     cursor: pointer;
     &:disabled {
-        background:var(--disabledColor);
+        background: var(--disabledColor);
         box-shadow: none;
+        &:hover {
+            background: var(--disabledColor);
+        }
     }
     &:hover {
         background: darken(#1BAC4B, 5%);

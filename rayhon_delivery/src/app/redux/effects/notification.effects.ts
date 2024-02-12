@@ -20,8 +20,8 @@ export class NotificationEffects {
         .pipe(
             ofType(fetchNotificationPreferences),
             switchMap(() => this.profileService.getNotificationPreferences()),
-            map((notifications: INotificationsSettings) => {
-                if(notifications) return fetchNotificationPreferencesSuccess(notifications)
+            map((notifications: INotificationsSettings[]) => {
+                if(notifications) return fetchNotificationPreferencesSuccess({notifications: notifications})
                 return fetchNotificationPreferencesFailed;
             }),
             catchError(() => of(fetchNotificationPreferencesFailed))
@@ -32,9 +32,9 @@ export class NotificationEffects {
         return this.actions$
         .pipe(
             ofType(updateNotificationPreferences),
-            switchMap((payload: INotificationsSettings) => this.profileService.updateNotificationPreferences(payload)),
-            map((notifications: INotificationsSettings) => {
-                if(notifications) return fetchNotificationPreferencesSuccess(notifications)
+            switchMap((payload: {notifications: INotificationsSettings[]}) => this.profileService.updateNotificationPreferences(payload.notifications)),
+            map((notifications: INotificationsSettings[]) => {
+                if(notifications) return fetchNotificationPreferencesSuccess({notifications: notifications})
                 return fetchNotificationPreferencesFailed;
             }),
             catchError(() => of(fetchNotificationPreferencesFailed))

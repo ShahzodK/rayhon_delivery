@@ -1,5 +1,5 @@
 <section class="track-order">
-    <div class="track-order_back" (click)="location.back()">
+    <div class="track-order_back" [routerLink]="keys.PREVIOUS_URL == '/orders/checkout' ?  '/orders' :  keys.PREVIOUS_URL">
         <i class="arrow left"></i>
     </div>
     <div class="track-order_map">

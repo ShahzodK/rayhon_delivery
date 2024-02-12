@@ -116,7 +116,7 @@ export class FoodInfoPageComponent implements OnInit, AfterViewChecked, OnDestro
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
     this.modalService.showErrorModal = false;
-    this.modalService.showSuccessModal = true;  
+    this.modalService.showSuccessModal = false;  
   }
 
   

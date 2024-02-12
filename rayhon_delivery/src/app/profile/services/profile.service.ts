@@ -8,8 +8,6 @@ import { IAddresses } from '../models/addresses.model';
 import { IAddress } from '../models/address.model';
 import { IFavorites } from '../models/favorites.model';
 import { INotificationsSettings } from '../models/notificationSettings.model';
-import { IError } from 'src/app/shared/models/IError.model';
-import { debounceTime, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { IFaq } from '../models/faq.model';
 
@@ -165,15 +163,15 @@ export class ProfileService {
   }
 
   public getNotificationPreferences() {
-    return this.http.get<INotificationsSettings> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', {
+    return this.http.get<INotificationsSettings[]> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })
     })
   }
 
-  public updateNotificationPreferences(data: INotificationsSettings) {
-    return this.http.put<INotificationsSettings> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', data, {
+  public updateNotificationPreferences(data: INotificationsSettings[]) {
+    return this.http.put<INotificationsSettings[]> (CommonUrl.MAIN_URL + CommonUrl.NOTIFICATION_URL + '/settings', data, {
       headers: new HttpHeaders({
         Authorization: 'Bearer '.concat(localStorage.getItem(CommonKey!.TOKEN)!),
       })

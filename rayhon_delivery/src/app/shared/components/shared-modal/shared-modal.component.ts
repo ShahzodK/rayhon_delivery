@@ -16,6 +16,7 @@ export class SharedModalComponent {
   @Output() primaryButtonClick = new EventEmitter<void>();
   @Output() secondaryButtonClick = new EventEmitter<void>();
   @Output() outsideClick = new EventEmitter<void>();
+  @Input() isLoading = false;
 
   constructor(
               private elRef: ElementRef,

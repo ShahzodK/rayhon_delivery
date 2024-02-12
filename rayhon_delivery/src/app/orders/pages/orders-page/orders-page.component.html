@@ -216,7 +216,8 @@
                   [primaryButtonLabel]="'Home.shared-modal.cancel-order' | translate"
                   [secondaryButtonLabel]="'Home.shared-modal.back' | translate"
                   (primaryButtonClick)="cancelOrder(canceledOrder)"
-                  (secondaryButtonClick)="modalService.showCancelOrderModal = false"></app-shared-modal>
+                  (secondaryButtonClick)="modalService.showCancelOrderModal = false"
+                  [isLoading]="isModalLoading"></app-shared-modal>
 
 <app-shared-modal *ngIf="modalService.showErrorModal"
                   [modalType]="'error'"
@@ -226,4 +227,5 @@
                   [primaryButtonLabel]="'Home.shared-modal.try-again' | translate"
                   [secondaryButtonLabel]="'Home.shared-modal.support' | translate"
                   (primaryButtonClick)="modalService.showErrorModal = false"
-                  (secondaryButtonClick)="router.navigate(['/profile/support'])"></app-shared-modal>
+                  (secondaryButtonClick)="router.navigate(['/profile/support'])"
+                  [isLoading]="isModalLoading"></app-shared-modal>

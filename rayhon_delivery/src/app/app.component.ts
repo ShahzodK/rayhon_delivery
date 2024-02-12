@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
         let currentDate = new Date().getTime();
         if(currentDate < tokenExpireDate) {
           this.store.dispatch(AuthActions.fetchUser());
-          this.store.dispatch(fetchCart());
+          // this.store.dispatch(fetchCart());
         }
         else {
           localStorage.removeItem(CommonKey.TOKEN)

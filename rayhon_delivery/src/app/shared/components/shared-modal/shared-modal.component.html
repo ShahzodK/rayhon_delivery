@@ -7,7 +7,9 @@
         <p>{{ description }}</p>
       </div>
       <div class="modal_actions">
-        <button (click)="primaryButtonClick.emit()">{{ primaryButtonLabel }}</button>
+        <button (click)="primaryButtonClick.emit()" [ngClass]="{'loading-spinner-button': isLoading}" [disabled]="isLoading">
+          <span [style.visibility]="isLoading ? 'hidden' : 'visible'">{{ primaryButtonLabel  }}</span>
+        </button>
         <button (click)="secondaryButtonClick.emit()" class="secondary_btn">{{ secondaryButtonLabel }}</button>
       </div>
     </div>

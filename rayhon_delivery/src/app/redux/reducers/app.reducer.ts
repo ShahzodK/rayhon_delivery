@@ -56,17 +56,7 @@ export const initialState: IAppState = {
             category_items_count: 0,
         }
     },
-    notifications: {
-        general: false,
-        sound: false,
-        vibrate: false,
-        promotions: false,
-        special_offers: false,
-        payment: false,
-        new_release: false,
-        new_service: false,
-        new_tutorial: false
-    },
+    notifications: [],
     favorites: {
         data: []
     },
@@ -292,14 +282,14 @@ export const appReducer = createReducer(
         NotificationActions.fetchNotificationPreferencesSuccess,
         (state, notifications): IAppState => ({
             ...state,
-            notifications: notifications
+            notifications: notifications.notifications
         })
     ),
     on(
         NotificationActions.updateNotificationPreferencesSuccess,
         (state, notifications): IAppState => ({
             ...state,
-            notifications: notifications
+            notifications: notifications.notifications
         })
     ),
     on(

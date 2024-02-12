@@ -2,7 +2,7 @@
     <div class="container">
         <div class="category-header">
             <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
-            <h4>Плов</h4>
+            <h4>{{categoryItems[0]?.name}}</h4>
         </div>
         <div class="category-content" *ngIf="categoryItems as category">
             <div class="category-item food-cart" *ngFor="let item of category" [routerLink]="'/home/menu/' + item.id">

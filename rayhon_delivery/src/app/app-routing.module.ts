@@ -16,7 +16,6 @@ const routes: Routes = [
     path: AppRoutePathes.PROFILE,
     loadChildren: () => import('./profile/profile.module')
       .then((mod) => mod.ProfileModule),
-    canActivate: [availabilityGuardFn]
   },
   {
     path: AppRoutePathes.HOME,

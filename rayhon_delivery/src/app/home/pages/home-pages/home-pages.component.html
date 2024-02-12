@@ -7,7 +7,7 @@
                 </ng-container>
                 <ng-container *ngIf="selectUserData$ | async as user">
                     <img [ngStyle]="{'display': userImageLoaded ? 'block' : 'none'}"
-                         [src]="'https://api.rayhonmilliy.uz' + user.image || '../../../../assets/icons/user-photo.svg'"
+                         [src]="user!.image ? 'https://api.rayhonmilliy.uz' + user!.image : '../../../../assets/icons/user-photo.svg'"
                          alt="user-image" class="user-image"
                          routerLink="/profile/settings"
                          (load)="userImageLoaded = true">

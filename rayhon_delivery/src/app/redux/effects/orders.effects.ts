@@ -24,7 +24,12 @@ export class OrdersEffects {
                 ofType(fetchCart),
                 switchMap(() => this.ordersService.getCart()),
                 map((cart: ICart) => {
-                    if(cart) return fetchCartSuccess(cart)
+                    console.log(cart)
+                    console.log(cart)
+                    if(cart) {
+                        cart.items = cart.items.sort((a, b) => a.variant_id.localeCompare(b.variant_id));
+                        return fetchCartSuccess(cart)
+                    } 
                     return fetchCartFailed
                 }),
                 catchError(() => of(fetchCartFailed))
@@ -87,6 +92,9 @@ export class OrdersEffects {
                 switchMap((payload) => this.ordersService.editCartItem(payload)),
                 map((cart: ICart) => {
                     if(cart) {
+                        console.log(cart)
+                        cart.items = cart.items.sort((a, b) => a.variant_id.localeCompare(b.variant_id));
+                        console.log(cart)
                         return updateCartSuccess(cart)
                     }
                     return updateCartFailed

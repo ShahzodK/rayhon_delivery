@@ -6,42 +6,10 @@
         </div>
         <div class="profile-notifications_content">
             <form class="profile-notifications_form" [formGroup]="notificationForm">
-                <ul>
-                    <li>
-                        <span>{{"Profile.notifications-page.general" | translate}}</span>
-                        <input type="checkbox" id="general" formControlName="general" (click)="updatePreferences()" #general><label for="general" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.sound" | translate}}</span>
-                        <input type="checkbox" id="sound" formControlName="sound" (click)="updatePreferences()" #sound><label for="sound" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.vibration" | translate}}</span>
-                        <input type="checkbox" id="vibrate" formControlName="vibrate" (click)="updatePreferences()" #vibrate><label for="vibrate" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.promo" | translate}}</span>
-                        <input type="checkbox" id="promotions" formControlName="promotions" (click)="updatePreferences()" #promotions><label for="promotions" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.special-offers" | translate}}</span>
-                        <input type="checkbox" id="special_offers" formControlName="special_offers" (click)="updatePreferences()" #special_offers><label for="special_offers" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.payments" | translate}}</span>
-                        <input type="checkbox" id="payment" formControlName="payment" (click)="updatePreferences()" #payment><label for="payment" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.updates" | translate}}</span>
-                        <input type="checkbox" id="new_release" formControlName="new_release" (click)="updatePreferences()" #new_release><label for="new_release" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.service" | translate}}</span>
-                        <input type="checkbox" id="new_service" formControlName="new_service" (click)="updatePreferences()" #new_service><label for="new_service" class="notificationToggle ios"></label>
-                    </li>
-                    <li>
-                        <span>{{"Profile.notifications-page.advice" | translate}}</span>
-                        <input type="checkbox" id="new_tutorial" formControlName="new_tutorial" (click)="updatePreferences()" #new_tutorial><label for="new_tutorial" class="notificationToggle ios"></label>
+                <ul *ngIf="selectNotification | async as notifications">
+                    <li *ngFor="let notification of notifications; let i = index" (click)="updatePreferences(notification)">
+                        <span>{{notification.value}}</span>
+                        <input type="checkbox" [id]="notification.key" [formControlName]="notification.key" [id]="notification.key"><label [for]="notification.key" class="notificationToggle ios"></label>
                     </li>
                 </ul>
             </form>

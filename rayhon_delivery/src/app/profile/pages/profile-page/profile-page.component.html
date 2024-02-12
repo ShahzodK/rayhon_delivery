@@ -6,7 +6,6 @@
                     <img src="../../../../assets/icons/arrow-left.svg" alt="back" class="back-icon arrow" (click)="location.back()">
                     <h4>{{"Profile.title" | translate}}</h4>
                 </div>
-                <img src="../../../../assets/icons/trash.svg" alt="delete account">
             </div>
             <form class="profile_form" [formGroup]="profileForm">
                 <div class="file-input-container">
@@ -24,7 +23,7 @@
                             <span>{{'Profile.too-big-image' | translate}}</span>
                         </div>
                     </label>
-                    <img [src]="'https://api.rayhonmilliy.uz' + userData!.image || '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
+                    <img [src]="userData!.image ? 'https://api.rayhonmilliy.uz' + userData!.image : '../../../../assets/icons/user-photo.svg'" alt="Photo" class="user-photo">
                 </div>
                 <input type="text" formControlName="name" class="input_name" placeholder="{{'Profile.name' | translate}}">
                 <!-- <div class="input_datepicker">

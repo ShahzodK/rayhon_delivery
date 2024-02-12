@@ -7,6 +7,7 @@ import { fetchChosenOrder } from 'src/app/redux/actions/orders.actions';
 import { Subject, takeUntil } from 'rxjs';
 import { fetchCategoryItems } from 'src/app/redux/actions/home.actions';
 import { ActivatedRoute } from '@angular/router';
+import { CommonKey } from 'src/app/shared/consts/commonKey';
 
 @Component({
   selector: 'app-track-order-page',
@@ -22,6 +23,8 @@ export class TrackOrderPageComponent implements OnInit {
 
   public id!: string;
   public unsubscribe$: Subject<boolean> = new Subject<boolean>();
+
+  public keys = CommonKey;
 
   constructor(
               public location: Location,

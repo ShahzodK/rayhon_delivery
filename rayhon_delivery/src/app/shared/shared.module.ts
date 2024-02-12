@@ -21,12 +21,14 @@ import { SharedModalComponent } from './components/shared-modal/shared-modal.com
 import { BottomNavigationComponent } from './components/bottom-navigation/bottom-navigation.component';
 import { SearchComponent } from './components/search/search.component';
 import { CustomStarRatingService } from '../orders/services/custom-star-rating.service';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
     SharedModalComponent,
     BottomNavigationComponent,
-    SearchComponent
+    SearchComponent,
+    OrderByPipe,
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,8 @@ import { CustomStarRatingService } from '../orders/services/custom-star-rating.s
     FormsModule,
     SharedModalComponent,
     BottomNavigationComponent,
-    SearchComponent
+    SearchComponent,
+    OrderByPipe,
   ],
   providers: [
     {
